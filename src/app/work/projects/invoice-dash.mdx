@@ -1,0 +1,150 @@
+---
+title: "InvoiceDash: Modern Invoice Management with Next.js 14"
+publishedAt: "2024-11-15"
+summary: "A comprehensive invoice management dashboard leveraging the latest Next.js 14 rendering features including Server Components, Streaming, Parallel Routes and more, with a sleek UI built on Tailwind CSS."
+images:
+  - "/images/projects/project-02/project-02.jpg"
+team:
+  - name: "Rulocode"
+    role: "Lead Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/company/once-ui/"
+link: "https://rulo-code-invoice-dash-board.vercel.app/"
+
+---
+
+## Overview
+
+InvoiceDash is a modern invoice management application that demonstrates the latest Next.js 14 rendering capabilities. It provides a powerful, responsive dashboard for tracking, creating, and managing invoices with real-time updates and advanced filtering.
+
+## Key Features
+
+### 🚀 Next.js 14 Rendering Showcase
+- **Server Components**: Zero client-side JavaScript for most UI elements
+- **Streaming**: Progressive rendering with Suspense boundaries
+- **Partial Prerendering**: Static shell with dynamic content
+- **Parallel Routes**: Simultaneous loading of different sections
+- **Intercepting Routes**: Modal views without navigation disruption
+
+### 📊 Dashboard Analytics
+- Real-time revenue tracking and forecasting
+- Overdue invoice monitoring with alerts
+- Client payment history visualization
+- Custom date range filtering with instant updates
+
+### 📱 Responsive Design
+- Fluid layout adapting to any screen size
+- Mobile-optimized invoice creation flow
+- Touch-friendly interface elements
+- Dark/light mode with system preference detection
+
+### ⚡ Performance Optimizations
+- Route prefetching for instant navigation
+- Image optimization with Next.js Image component
+- Server Actions for form submissions
+- Edge runtime deployment for global performance
+
+## Technologies Used
+
+- **Next.js 14**: Leveraging the latest App Router, Server Components, and rendering optimizations
+- **React Server Components**: For reduced bundle size and improved performance
+- **Tailwind CSS**: For responsive, utility-first styling
+- **Drizzle ORM**: Type-safe database queries with PostgreSQL
+- **Next Auth**: Secure authentication with multiple providers
+- **Vercel**: Edge deployment for global low-latency access
+
+## Rendering Implementation Details
+
+### Server Components & Streaming
+
+The dashboard implements strategic streaming with Suspense boundaries, allowing the UI shell to load instantly while data-dependent components stream in as they become available:
+
+```jsx
+// Dashboard layout with streaming components
+export default function Dashboard() {
+  return (
+    <main>
+      <header>
+        <h1>InvoiceDash</h1>
+        <UserNav />
+      </header>
+      
+      {/* Static shell loads instantly */}
+      <DashboardShell>
+        {/* Data streams in progressively */}
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Suspense fallback={<InvoiceListSkeleton />}>
+            <LatestInvoices />
+          </Suspense>
+          
+          <Suspense fallback={<ClientsSkeleton />}>
+            <TopClients />
+          </Suspense>
+        </div>
+      </DashboardShell>
+    </main>
+  );
+}
+```
+
+### Partial Prerendering
+
+InvoiceDash implements partial prerendering, generating a static shell at build time while dynamically rendering personalized content:
+
+```jsx
+// Static parts render at build time
+export const dynamic = 'force-static';
+
+// Dynamic parts use a Suspense boundary
+export default function InvoiceList() {
+  return (
+    <>
+      <StaticFilters />  {/* Prerendered */}
+      <Suspense fallback={<InvoicesTableSkeleton />}>
+        <InvoicesTable />  {/* Dynamically rendered */}
+      </Suspense>
+    </>
+  );
+}
+```
+
+### Parallel Routes
+
+The application uses parallel routes to load multiple sections simultaneously, improving perceived performance:
+
+```jsx
+// app/@stats/page.tsx and app/@invoices/page.tsx load in parallel
+// within app/layout.tsx
+export default function Layout({ stats, invoices, children }) {
+  return (
+    <div className="dashboard-layout">
+      <aside>{stats}</aside>
+      <main>{children}</main>
+      <section>{invoices}</section>
+    </div>
+  );
+}
+```
+
+## Challenges and Learnings
+
+Implementing Next.js 14's latest rendering features required rethinking traditional React patterns. Moving from client-side rendering to a server-first approach demanded careful consideration of state management, data fetching, and component boundaries.
+
+Particularly challenging was optimizing the streaming implementation to ensure a smooth user experience even with slower data sources. We developed a tiered approach to streaming, prioritizing critical UI elements while less important data loads progressively.
+
+Another significant challenge was properly implementing server actions for form submissions while maintaining type safety throughout the application. This required careful design of the data flow between client and server components.
+
+## Outcome
+
+InvoiceDash delivers impressive performance metrics:
+
+- **100ms Time to First Byte** - Static shell renders almost instantly
+- **0KB JavaScript** for initial page load (Server Components)
+- **60% reduction** in total JavaScript compared to client-rendered version
+- **99 Lighthouse Performance** score across desktop and mobile
+
+The application successfully demonstrates how the latest Next.js rendering features can be combined to create exceptionally performant web applications without sacrificing interactivity or developer experience.  
