@@ -35,29 +35,70 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
     image,
     team,
   } = post.metadata;
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
+  
+  // Optimize title length (30-65 characters)
+  const optimizedTitle = title.length > 60 ? `${title.substring(0, 57)}...` : title;
+  
+  // Optimize description length (120-320 characters)
+  const optimizedDescription = description.length > 320 
+    ? `${description.substring(0, 317)}...` 
+    : description.length < 120 
+      ? `${description} Read more about ${person.firstName}'s insights on this topic.`
+      : description;
+      
+  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/@og_img.jpg`;
 
-  return {
+  // Generate keywords based on post metadata
+  const keywords = [
     title,
     description,
+    person.name,
+    person.role,
+    'portfolio',
+    'blog',
+    'web development',
+    `${person.firstName}'s blog`,
+    'technology',
+    'design'
+  ].filter(Boolean).join(', ');
+
+  return {
+    title: optimizedTitle,
+    description: optimizedDescription,
+    keywords,
+    alternates: {
+      canonical: `https://${baseURL}/blog/${post.slug}`,
+    },
     openGraph: {
-      title,
-      description,
+      title: optimizedTitle,
+      description: optimizedDescription,
       type: "article",
       publishedTime,
       url: `https://${baseURL}/blog/${post.slug}`,
+      siteName: `${person.firstName}'s Portfolio`,
+      locale: "en_US",
       images: [
         {
           url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} | ${person.name}`,
         },
       ],
+      authors: [person.name],
+      ...(team && { "og:authors": team.map(t => t.name) }),
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      site: person.twitter,
+      title: optimizedTitle,
+      description: optimizedDescription,
       images: [ogImage],
+      creator: person.twitter,
     },
+    viewport: "width=device-width, initial-scale=1.0",
+    creator: person.name,
+    publisher: person.name,
   };
 }
 
@@ -73,28 +114,53 @@ export default function Blog({ params }: BlogParams) {
       src: person.avatar,
     })) || [];
 
+  // Generate structured data for the blog post
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.metadata.title,
+    datePublished: post.metadata.publishedAt,
+    dateModified: post.metadata.publishedAt,
+    description: post.metadata.summary,
+    image: post.metadata.image
+      ? `https://${baseURL}${post.metadata.image}`
+      : `https://${baseURL}/og?title=${post.metadata.title}`,
+    url: `https://${baseURL}/blog/${post.slug}`,
+    author: {
+      "@type": "Person",
+      name: person.name,
+      url: `https://${baseURL}`,
+      ...(person.twitter && { sameAs: `https://twitter.com/${person.twitter.replace('@', '')}` }),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: person.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `https://${baseURL}/favicon.ico`,
+      }
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://${baseURL}/blog/${post.slug}`,
+    },
+    keywords: [
+      post.metadata.title,
+      post.metadata.summary,
+      "blog",
+      "portfolio",
+      person.name,
+      person.role,
+    ].filter(Boolean).join(", "),
+  };
+
   return (
     <Column as="section" maxWidth="xs" gap="l">
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `https://${baseURL}${post.metadata.image}`
-              : `https://${baseURL}/og?title=${post.metadata.title}`,
-            url: `https://${baseURL}/blog/${post.slug}`,
-            author: {
-              "@type": "Person",
-              name: person.name,
-            },
-          }),
+          __html: JSON.stringify(structuredData),
         }}
       />
       <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">

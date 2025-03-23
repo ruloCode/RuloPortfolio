@@ -7,7 +7,7 @@ export {
   display,
   mailchimp,
   baseURL,
-} from "@/app/resources/config";
+} from "@/app/resources/config.js";
 export {
   person,
   social,

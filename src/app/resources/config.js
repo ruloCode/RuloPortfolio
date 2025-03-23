@@ -1,4 +1,5 @@
-const baseURL = "demo.magic-portfolio.com";
+// Add baseURL definition
+const baseURL = "rulocode.com";
 
 const routes = {
   "/": true,
@@ -106,4 +107,12 @@ const mailchimp = {
   },
 };
 
-export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL };
+export {
+  routes,
+  protectedRoutes,
+  effects,
+  style,
+  display,
+  mailchimp,
+  baseURL,
+};
