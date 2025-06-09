@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
+import { Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
+import { TeamAvatars } from "@/components/TeamAvatars";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -193,11 +194,35 @@ export default function Project({ params }: WorkParams) {
       )}
       <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
         <Flex gap="12" marginBottom="24" vertical="center">
-          {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="m" />}
+          {post.metadata.team && <TeamAvatars team={post.metadata.team} size="m" reverse />}
           <Text variant="body-default-s" onBackground="neutral-weak">
             {formatDate(post.metadata.publishedAt)}
           </Text>
         </Flex>
+        {(post.metadata.link || post.metadata.repository) && (
+          <Flex gap="12" marginBottom="24" wrap>
+            {post.metadata.link && (
+              <Button
+                href={post.metadata.link}
+                variant="secondary"
+                size="s"
+                suffixIcon="arrowUpRightFromSquare"
+              >
+                View Live
+              </Button>
+            )}
+            {post.metadata.repository && (
+              <Button
+                href={post.metadata.repository}
+                variant="tertiary"
+                size="s"
+                prefixIcon="github"
+              >
+                View Code
+              </Button>
+            )}
+          </Flex>
+        )}
         <CustomMDX source={post.content} />
       </Column>
       <ScrollToHash />

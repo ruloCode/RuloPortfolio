@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  AvatarGroup,
   Carousel,
   Column,
   Flex,
@@ -9,6 +8,14 @@ import {
   SmartLink,
   Text,
 } from "@/once-ui/components";
+import { TeamAvatars } from "./TeamAvatars";
+
+interface TeamMember {
+  name: string;
+  role: string;
+  avatar: string;
+  linkedIn: string;
+}
 
 interface ProjectCardProps {
   href: string;
@@ -17,7 +24,7 @@ interface ProjectCardProps {
   title: string;
   content: string;
   description: string;
-  avatars: { src: string }[];
+  team?: TeamMember[];
   link: string;
 }
 
@@ -27,12 +34,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   content,
   description,
-  avatars,
+  team,
   link,
 }) => {
   return (
     <Column fillWidth gap="m">
       <Carousel
+        indicator="thumbnail"
         sizes="(max-width: 960px) 100vw, 960px"
         images={images.map((image) => ({
           src: image,
@@ -54,9 +62,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Heading>
           </Flex>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
+        {(team?.length || description?.trim() || content?.trim()) && (
           <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+            {team && team.length > 0 && <TeamAvatars team={team} size="m" reverse />}
             {description?.trim() && (
               <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
                 {description}
