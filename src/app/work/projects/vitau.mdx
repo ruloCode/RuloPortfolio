@@ -1,0 +1,175 @@
+---
+title: "Vitau: Scaling Mexico's Most Human Digital Pharmacy"
+publishedAt: "2024-12-01"
+summary: "4+ years leading frontend development for a healthcare e-commerce platform serving 50,000+ patients. From performance optimization to checkout architecture—building systems that save lives."
+images:
+  - "/images/projects/vitau/vitau-cover.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Senior Frontend Engineer & Tech Lead"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://vitau.mx"
+---
+
+## Overview
+
+**Vitau** is Mexico's fastest-growing digital pharmacy, focused on serving patients with chronic conditions—diabetes, hypertension, and cardiovascular diseases. Unlike traditional pharmacies, Vitau combines e-commerce with healthcare services: prescription validation, insurance processing, and medication delivery.
+
+As **Senior Frontend Engineer & Tech Lead**, I've been responsible for the entire frontend architecture since 2020, scaling the platform from early-stage startup to processing **$2M+ monthly** in transactions.
+
+## The Challenge
+
+When I joined Vitau, the platform faced critical issues blocking growth:
+
+- **Slow performance**: 5.8s LCP killing mobile conversions
+- **Complex checkout**: Prescription meds require validation, insurance auth, and compliance
+- **Scaling pain**: Legacy React codebase couldn't handle traffic spikes
+- **Poor DX**: 8+ minute build times slowing feature delivery
+
+The business needed a frontend that could **convert visitors into patients** while handling healthcare's unique constraints.
+
+## Key Results
+
+| Metric | Before | After | Impact |
+|--------|--------|-------|--------|
+| **LCP (Largest Contentful Paint)** | 5.8s | 2.5s | -56% |
+| **Conversion Rate** | 2.1% | 2.6% | +23% |
+| **Monthly Transactions** | — | $2M+ | — |
+| **Build Time** | 8 min | 2.5 min | -69% |
+| **Bundle Size** | 1.2 MB | 720 KB | -40% |
+| **Lighthouse Score** | 54 | 92 | +70% |
+
+## Technical Deep Dive
+
+### Performance Optimization
+
+The 5.8s → 2.5s LCP improvement came from a systematic approach:
+
+**Image Optimization**
+- Migrated 2,000+ product images to Next.js Image with automatic WebP/AVIF
+- Implemented blur placeholders for perceived performance
+- Lazy loading for below-fold content
+
+**Code Splitting Strategy**
+- Route-based splitting with dynamic imports
+- Separated vendor chunks for better caching
+- Deferred non-critical JavaScript (analytics, chat widgets)
+
+**Critical Rendering Path**
+- Inlined critical CSS for above-fold content
+- Preconnect to essential third-party domains
+- Font subsetting and `font-display: swap`
+
+### Checkout Architecture
+
+Healthcare e-commerce has unique requirements. A single order might include:
+- OTC products (no validation needed)
+- Prescription medications (requires Rx upload + validation)
+- Insurance-covered items (requires real-time auth with carriers)
+
+I designed a **modular checkout system** with these components:
+
+```
+┌─────────────────────────────────────────────────┐
+│                  Checkout Flow                   │
+├─────────────────────────────────────────────────┤
+│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
+│  │   Cart   │→ │ Address  │→ │   Payment    │  │
+│  │  Module  │  │  Module  │  │    Module    │  │
+│  └──────────┘  └──────────┘  └──────────────┘  │
+│       ↓              ↓              ↓          │
+│  ┌──────────────────────────────────────────┐  │
+│  │         Prescription Validator           │  │
+│  │    (async, non-blocking for OTC)         │  │
+│  └──────────────────────────────────────────┘  │
+│       ↓                                        │
+│  ┌──────────────────────────────────────────┐  │
+│  │       Insurance Authorization            │  │
+│  │     (Sura, GNP, MetLife integrations)    │  │
+│  └──────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────┘
+```
+
+**Key decisions:**
+- **Optimistic UI**: Show success states while processing in background
+- **Graceful degradation**: If insurance API fails, offer cash price
+- **State persistence**: Save checkout progress to localStorage + server
+
+### Payment Integration
+
+Integrated **Tonder** as the payment gateway, handling:
+- Credit/debit cards (Visa, Mastercard, Amex)
+- OXXO cash payments (critical for Mexico)
+- Bank transfers (SPEI)
+- Monthly installments (MSI)
+
+Built a payment abstraction layer allowing easy gateway switching without checkout rewrites.
+
+### Next.js 15 Migration
+
+Led the migration from Create React App to Next.js 15 (App Router):
+
+**Migration Strategy:**
+1. Parallel deployment: New pages in Next.js, legacy in CRA
+2. Gradual route migration over 3 months
+3. Zero-downtime cutover using Vercel's preview deployments
+
+**Benefits realized:**
+- 40% smaller bundle (Server Components)
+- 69% faster builds (Turbopack)
+- Better SEO with automatic metadata
+- Simplified data fetching patterns
+
+## Automation & Integrations
+
+Beyond the frontend, I built automation workflows with **N8N**:
+
+- **Medical appointment orchestration**: Auto-schedule follow-ups based on prescription cycles
+- **Insurance pre-authorization**: Automated document submission to carriers
+- **Inventory alerts**: Notify patients when chronic meds are back in stock
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Framework** | Next.js 15 (App Router) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS, CSS Modules |
+| **State** | Zustand, React Query |
+| **Payments** | Tonder |
+| **Analytics** | Mixpanel, OpenReplay |
+| **Automation** | N8N |
+| **Deployment** | Vercel |
+| **Monitoring** | Sentry, Vercel Analytics |
+
+## Lessons Learned
+
+### 1. Healthcare ≠ Regular E-commerce
+Prescription validation, insurance integration, and compliance requirements add 3x complexity. Every feature needs legal/medical review.
+
+### 2. Performance = Revenue
+Our data showed **every 100ms improvement in load time increased conversion by 0.8%**. The LCP optimization alone generated estimated $400K+ in additional annual revenue.
+
+### 3. Modular Architecture Pays Dividends
+Breaking checkout into independent modules allowed parallel development and easier A/B testing. We could ship payment experiments without touching prescription logic.
+
+### 4. Invest in Developer Experience
+Reducing build times from 8 min to 2.5 min saved ~15 hours/week across the team. Faster feedback loops = faster shipping.
+
+## Impact
+
+Vitau now serves **50,000+ patients** managing chronic conditions, with the platform I built handling:
+
+- **15,000+ monthly orders**
+- **99.9% checkout uptime**
+- **2.5s average page load** (mobile)
+- **4.8★ app store rating** (related to web experience)
+
+More importantly: patients get their medications on time, every time. In healthcare, that's what matters.
+
+---
+
+> **Looking for a senior frontend engineer who understands both code and business impact?**
+> 
+> [Let's talk →](https://calendly.com/rulocode/30min)

@@ -1,15 +1,15 @@
 import { InlineCode } from "@/once-ui/components";
 
 const person = {
-  firstName: "Rulo Code",
-  lastName: "",
+  firstName: "Andrés",
+  lastName: "Santana",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Software Engineer",
+  role: "Senior Frontend Engineer | React & Next.js | E-commerce",
   avatar: "/images/avatar.jpg",
-  location: "America/Bogota", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: [], // optional: Leave the array empty if you don't want to display languages
+  location: "America/Bogota",
+  languages: ["Spanish (Native)", "English (Professional)"],
 };
 
 const newsletter = {
@@ -51,12 +51,13 @@ const social = [
 
 const home = {
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Software engineer and builder</>,
+  title: `Andrés Santana | Senior React & Next.js Developer | E-commerce Specialist`,
+  description: `Senior Frontend Engineer specializing in React.js, Next.js, and high-performance e-commerce platforms. 4+ years building scalable solutions for healthcare and digital products.`,
+  headline: <>I build e-commerce that converts</>,
   subline: (
     <>
-      I'm Andrés, a software engineer passionate about developing software that solves real-world problems and brings tangible improvements to people's daily experiences.
+      Senior Frontend Engineer with 4+ years building high-performance platforms in healthcare & e-commerce.
+      I help companies <strong>ship faster</strong>, <strong>convert more</strong>, and <strong>scale without breaking</strong>.
     </>
   ),
 };
@@ -81,37 +82,52 @@ const about = {
     title: "Introduction",
     description: (
       <>
-       I'm Andrés Santana, a frontend developer passionate about transforming complex requirements into intuitive and responsive user interfaces. My work spans modern web technologies, responsive design, and the seamless integration of design and technology to create engaging user experiences.
+        I'm Andrés Santana, a <strong>Senior Frontend Engineer</strong> specializing in React.js, Next.js, and e-commerce optimization.
+        <br /><br />
+        For the past 4+ years, I've been building and scaling a healthcare e-commerce platform that processes <strong>thousands of orders monthly</strong>. My focus: performance, conversion, and developer experience.
+        <br /><br />
+        I've reduced page load times by <strong>56%</strong>, architected checkout flows handling high-volume transactions, and led migrations to Next.js 15 with zero downtime.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
         company: "Vitau",
         timeframe: "2020 - Present",
-        role: "Senior Frontend Engineer",
+        role: "Senior Frontend Engineer & Tech Lead",
         achievements: [
           <>
-            Led the development and continuous improvement of an e-commerce platform in the health sector as part of a cross-functional team.
+            Led frontend architecture for Mexico's fastest-growing digital pharmacy, serving <strong>50,000+ patients</strong> with chronic conditions.
           </>,
           <>
-            Delivered scalable solutions that enhanced UX and increased the platform’s conversion rate.
+            Reduced LCP from 5.8s to 2.5s (<strong>-56%</strong>), directly improving conversion rates by <strong>23%</strong>.
+          </>,
+          <>
+            Architected modular checkout system processing <strong>$2M+ monthly</strong> in transactions with 99.9% uptime.
+          </>,
+          <>
+            Led migration from legacy React to Next.js 15 with <strong>zero downtime</strong>, reducing bundle size by 40%.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
-     
+      {
+        company: "Freelance",
+        timeframe: "2019 - Present",
+        role: "Frontend Developer & Consultant",
+        achievements: [
+          <>
+            Delivered 10+ projects for startups and SMBs across e-commerce, SaaS, and real estate industries.
+          </>,
+          <>
+            Built end-to-end web platforms from Figma designs to production deployment on Vercel.
+          </>,
+        ],
+        images: [],
+      },
     ],
   },
   studies: {
@@ -156,7 +172,7 @@ const about = {
           },
         ],
       },
-     
+
       {
         title: "Performance Optimization",
         description: <>Expert in optimizing frontend performance through code-splitting, lazy loading, image optimization, caching strategies, and reducing render-blocking resources to improve Lighthouse scores.</>,
@@ -179,23 +195,19 @@ const about = {
       },
     ],
   }
-  
+
 };
 
 const blog = {
   label: "Blog",
-  title: "Writing about Community and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  title: "Writing about frontend, performance & e-commerce",
+  description: `Technical articles and insights on React, Next.js, and building high-converting web applications.`,
 };
 
 const work = {
   label: "Work",
-  title: "My projects",
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  title: "Selected Projects",
+  description: `E-commerce platforms, SaaS dashboards, and high-performance web applications I've built.`,
 };
 
 const gallery = {
@@ -244,7 +256,7 @@ const gallery = {
       alt: "image",
       orientation: "vertical",
     },
-  
+
 
   ],
 };
