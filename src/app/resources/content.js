@@ -210,6 +210,12 @@ const work = {
   description: `E-commerce platforms, SaaS dashboards, and high-performance web applications I've built.`,
 };
 
+const services = {
+  label: "Services",
+  title: "Work With Me",
+  description: `Frontend development, performance optimization, and e-commerce solutions. Let's build something great together.`,
+};
+
 const gallery = {
   label: "Gallery",
   title: "My photo gallery",
@@ -261,4 +267,4 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, about, blog, work, services, gallery };
