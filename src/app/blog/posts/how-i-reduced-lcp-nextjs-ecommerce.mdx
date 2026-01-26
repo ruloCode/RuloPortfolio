@@ -1,0 +1,352 @@
+---
+title: "How I Reduced LCP from 5.8s to 2.5s in a Next.js E-commerce"
+publishedAt: "2026-01-15"
+image: "/images/blog/performance-optimization.jpg"
+summary: "A practical guide to improving Core Web Vitals in production. Real techniques I used to cut page load times by 56% and boost conversion rates."
+tag: "Performance"
+---
+
+# How I Reduced LCP from 5.8s to 2.5s in a Next.js E-commerce
+
+Last year, our e-commerce platform had a problem: **5.8 seconds to show the main content on mobile**. Users were bouncing. Conversion was suffering. Google was penalizing us in search rankings.
+
+Six months later, we hit **2.5 seconds**—a 56% improvement. This post breaks down exactly what we did.
+
+## Why LCP Matters (Beyond Google)
+
+LCP (Largest Contentful Paint) measures when the main content becomes visible. For e-commerce, this is usually:
+- The hero image
+- The product image on PDPs
+- The first visible product cards on category pages
+
+Our data showed a clear correlation:
+
+| LCP | Bounce Rate | Conversion |
+|-----|-------------|------------|
+| 5.8s | 62% | 1.8% |
+| 4.0s | 48% | 2.1% |
+| 2.5s | 34% | 2.6% |
+
+**Every 100ms improvement added roughly 0.1% to conversion.** At our transaction volume, that's significant revenue.
+
+## The Audit: Finding the Culprits
+
+Before optimizing, I ran a full audit using:
+- **Lighthouse** (Chrome DevTools)
+- **WebPageTest** (for real-device testing)
+- **Vercel Analytics** (real user data)
+
+The main issues:
+
+1. **Unoptimized images** - Hero images were 2MB+ PNGs
+2. **Render-blocking JavaScript** - 800KB of JS before first paint
+3. **No image prioritization** - LCP image loaded after other resources
+4. **Third-party scripts** - Analytics, chat widgets loading synchronously
+5. **No caching strategy** - Every visit fetched everything fresh
+
+## Fix #1: Image Optimization (Biggest Win)
+
+### Before
+```jsx
+// ❌ Raw img tag with massive PNG
+<img src="/hero-banner.png" alt="Sale" />
+```
+
+### After
+```jsx
+// ✅ Next.js Image with priority
+import Image from 'next/image'
+
+<Image
+  src="/hero-banner.png"
+  alt="Sale"
+  width={1200}
+  height={600}
+  priority // Tells Next.js this is the LCP image
+  placeholder="blur"
+  blurDataURL={blurDataUrl}
+/>
+```
+
+**Results:**
+- Automatic WebP/AVIF conversion (-70% file size)
+- Responsive srcset (right size for each device)
+- Lazy loading for below-fold images
+- Blur placeholder for perceived performance
+
+**Impact: -1.2s from LCP**
+
+### Product Images at Scale
+
+We had 10,000+ product images. Manual optimization wasn't an option.
+
+```jsx
+// next.config.js
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+  },
+}
+```
+
+For product cards, I implemented progressive loading:
+
+```jsx
+function ProductCard({ product }) {
+  return (
+    <div className="product-card">
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={300}
+        height={300}
+        loading="lazy" // Not priority - these are below fold
+        placeholder="blur"
+        blurDataURL={product.blurHash}
+      />
+    </div>
+  )
+}
+```
+
+## Fix #2: Code Splitting & Bundle Optimization
+
+Our initial JS bundle was **800KB**. Way too much for first paint.
+
+### Dynamic Imports for Heavy Components
+
+```jsx
+// ❌ Before: Everything loads upfront
+import { HeavyChart } from '@/components/HeavyChart'
+import { ReviewsCarousel } from '@/components/ReviewsCarousel'
+
+// ✅ After: Load when needed
+import dynamic from 'next/dynamic'
+
+const HeavyChart = dynamic(() => import('@/components/HeavyChart'), {
+  loading: () => <ChartSkeleton />,
+  ssr: false // Client-only component
+})
+
+const ReviewsCarousel = dynamic(() => import('@/components/ReviewsCarousel'), {
+  loading: () => <ReviewsSkeleton />
+})
+```
+
+### Route-Based Splitting
+
+Next.js does this automatically, but we made it explicit:
+
+```jsx
+// pages/product/[slug].tsx
+// Only loads product page code when visiting /product/*
+
+// pages/checkout/index.tsx  
+// Checkout code separate from product browsing
+```
+
+### Analyzing the Bundle
+
+```bash
+# Add to package.json scripts
+"analyze": "ANALYZE=true next build"
+```
+
+```jsx
+// next.config.js
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer({
+  // config
+})
+```
+
+This revealed we were importing entire libraries when we only needed parts:
+
+```jsx
+// ❌ Imports entire lodash (70KB)
+import _ from 'lodash'
+
+// ✅ Imports only what we need (4KB)
+import debounce from 'lodash/debounce'
+```
+
+**Impact: -0.8s from LCP** (bundle went from 800KB to 320KB)
+
+## Fix #3: Critical Rendering Path
+
+### Preconnect to Essential Origins
+
+```jsx
+// app/layout.tsx or pages/_document.tsx
+<Head>
+  <link rel="preconnect" href="https://cdn.example.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://analytics.example.com" />
+</Head>
+```
+
+### Font Optimization
+
+```jsx
+// ❌ Before: Fonts block rendering
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+// ✅ After: Next.js font optimization
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap', // Show fallback while loading
+  preload: true,
+})
+```
+
+### Inline Critical CSS
+
+For above-the-fold content, we inlined critical styles:
+
+```jsx
+// Critical CSS for hero section
+<style dangerouslySetInnerHTML={{ __html: `
+  .hero { min-height: 60vh; }
+  .hero-image { object-fit: cover; }
+`}} />
+```
+
+**Impact: -0.4s from LCP**
+
+## Fix #4: Third-Party Script Management
+
+Analytics, chat widgets, and marketing pixels were loading synchronously and blocking render.
+
+### Defer Non-Essential Scripts
+
+```jsx
+// ❌ Before: Blocks rendering
+<script src="https://chat-widget.com/loader.js"></script>
+
+// ✅ After: Load after page is interactive
+<Script 
+  src="https://chat-widget.com/loader.js"
+  strategy="lazyOnload" // Loads after everything else
+/>
+```
+
+### Load Analytics Properly
+
+```jsx
+import Script from 'next/script'
+
+// Google Analytics - load after hydration
+<Script
+  src="https://www.googletagmanager.com/gtag/js?id=GA_ID"
+  strategy="afterInteractive"
+/>
+```
+
+### Facade Pattern for Heavy Widgets
+
+Instead of loading the full chat widget immediately:
+
+```jsx
+function ChatWidget() {
+  const [loaded, setLoaded] = useState(false)
+  
+  if (!loaded) {
+    return (
+      <button onClick={() => setLoaded(true)}>
+        💬 Chat with us
+      </button>
+    )
+  }
+  
+  return <ActualChatWidget />
+}
+```
+
+**Impact: -0.5s from LCP**
+
+## Fix #5: Caching Strategy
+
+### Static Generation Where Possible
+
+```jsx
+// Product pages: ISR with 60-second revalidation
+export async function generateStaticParams() {
+  const products = await getTopProducts(100)
+  return products.map(p => ({ slug: p.slug }))
+}
+
+export const revalidate = 60 // Regenerate every 60 seconds
+```
+
+### Cache Headers for Assets
+
+```jsx
+// next.config.js
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  },
+}
+```
+
+**Impact: -0.3s on repeat visits**
+
+## The Results
+
+After implementing all fixes over 3 months:
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| **LCP** | 5.8s | 2.5s | -56% |
+| **FCP** | 3.2s | 1.4s | -56% |
+| **TTI** | 8.1s | 4.2s | -48% |
+| **Bundle Size** | 800KB | 320KB | -60% |
+| **Lighthouse** | 54 | 92 | +70% |
+
+And the business impact:
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| **Bounce Rate** | 62% | 34% | -45% |
+| **Conversion** | 1.8% | 2.6% | +44% |
+| **Avg. Session** | 1:45 | 3:12 | +83% |
+
+## Key Takeaways
+
+1. **Measure first** - Don't guess. Use real user data from Vercel Analytics or similar.
+
+2. **Images are usually the biggest win** - Next.js Image component is your friend.
+
+3. **JavaScript is expensive** - Every KB of JS has a cost. Code-split aggressively.
+
+4. **Third-party scripts add up** - Audit everything loading on your page.
+
+5. **Performance = Revenue** - For e-commerce, speed directly impacts the bottom line.
+
+## Tools I Use
+
+- **Lighthouse** - Quick audits during development
+- **WebPageTest** - Real device testing with filmstrip view
+- **Vercel Analytics** - Real user metrics in production
+- **Bundle Analyzer** - Understanding what's in your JS bundle
+
+---
+
+*Need help optimizing your Next.js application? [Let's talk →](https://calendly.com/rulocode/30min)*

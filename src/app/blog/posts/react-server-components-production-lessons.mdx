@@ -1,0 +1,390 @@
+---
+title: "React Server Components in Production: What I Actually Learned"
+publishedAt: "2026-01-10"
+image: "/images/blog/server-components.jpg"
+summary: "After migrating a large e-commerce app to React Server Components, here's what worked, what didn't, and what I wish I knew earlier."
+tag: "React"
+---
+
+# React Server Components in Production: What I Actually Learned
+
+When Next.js 13 introduced the App Router with React Server Components (RSC), I was skeptical. Another paradigm shift? More complexity?
+
+Then I migrated a large e-commerce platform to it. 18 months later, I'm a convert—but the journey taught me lessons that aren't in the docs.
+
+Here's the unfiltered reality of using RSC in production.
+
+## The Promise vs. Reality
+
+### The Promise
+- Zero JavaScript for server components
+- Smaller bundles
+- Simpler data fetching
+- Better performance
+
+### The Reality
+- **Mostly true**, but with caveats
+- Mental model shift is significant
+- Some patterns you've used for years don't work
+- Debugging is different
+
+## Lesson #1: Think in Boundaries, Not Components
+
+The biggest mental shift: **you're not just building components, you're deciding where the client-server boundary lives**.
+
+### Before RSC (Everything is Client)
+```jsx
+// Every component is interactive by default
+function ProductPage({ productId }) {
+  const [product, setProduct] = useState(null)
+  const [quantity, setQuantity] = useState(1)
+  
+  useEffect(() => {
+    fetchProduct(productId).then(setProduct)
+  }, [productId])
+  
+  return (
+    <div>
+      <ProductInfo product={product} />
+      <QuantitySelector value={quantity} onChange={setQuantity} />
+      <AddToCartButton product={product} quantity={quantity} />
+    </div>
+  )
+}
+```
+
+### With RSC (Server by Default)
+```jsx
+// app/product/[id]/page.tsx - Server Component
+async function ProductPage({ params }) {
+  // Data fetching happens on server, no useEffect
+  const product = await getProduct(params.id)
+  
+  return (
+    <div>
+      {/* Server Component - no JS shipped */}
+      <ProductInfo product={product} />
+      
+      {/* Client boundary for interactive parts */}
+      <InteractiveSection product={product} />
+    </div>
+  )
+}
+```
+
+```jsx
+// components/InteractiveSection.tsx
+'use client' // This is the boundary
+
+function InteractiveSection({ product }) {
+  const [quantity, setQuantity] = useState(1)
+  
+  return (
+    <>
+      <QuantitySelector value={quantity} onChange={setQuantity} />
+      <AddToCartButton product={product} quantity={quantity} />
+    </>
+  )
+}
+```
+
+**The insight:** Push the `'use client'` boundary as far down as possible. The more you can keep on the server, the less JS you ship.
+
+## Lesson #2: You Can't Pass Functions Across the Boundary
+
+This burned me early. You cannot pass callbacks from Server to Client Components.
+
+### ❌ This Doesn't Work
+```jsx
+// Server Component
+async function ProductPage() {
+  const product = await getProduct(id)
+  
+  const handleAddToCart = async () => {
+    // Can't pass this to a Client Component!
+    await addToCart(product.id)
+  }
+  
+  return <AddToCartButton onClick={handleAddToCart} />
+}
+```
+
+### ✅ This Works
+```jsx
+// Server Component
+async function ProductPage() {
+  const product = await getProduct(id)
+  
+  return <AddToCartButton productId={product.id} />
+}
+
+// Client Component
+'use client'
+function AddToCartButton({ productId }) {
+  const handleClick = async () => {
+    // Define the action in the client component
+    await fetch('/api/cart', {
+      method: 'POST',
+      body: JSON.stringify({ productId })
+    })
+  }
+  
+  return <button onClick={handleClick}>Add to Cart</button>
+}
+```
+
+### Or Use Server Actions
+```jsx
+// Server Component
+import { addToCart } from '@/actions/cart'
+
+async function ProductPage() {
+  const product = await getProduct(id)
+  
+  return (
+    <form action={addToCart}>
+      <input type="hidden" name="productId" value={product.id} />
+      <SubmitButton />
+    </form>
+  )
+}
+
+// actions/cart.ts
+'use server'
+export async function addToCart(formData: FormData) {
+  const productId = formData.get('productId')
+  // This runs on the server
+  await db.cart.add({ productId, userId: getCurrentUser() })
+  revalidatePath('/cart')
+}
+```
+
+## Lesson #3: Composition is Your Friend
+
+The `'use client'` boundary doesn't mean everything below it is client-rendered. You can still pass Server Components as children.
+
+### The Pattern
+```jsx
+// Server Component
+async function ProductReviews({ productId }) {
+  const reviews = await getReviews(productId) // Server data fetching
+  
+  return (
+    // Client Component wrapper for interactivity
+    <ReviewsCarousel>
+      {/* Server-rendered children */}
+      {reviews.map(review => (
+        <ReviewCard key={review.id} review={review} />
+      ))}
+    </ReviewsCarousel>
+  )
+}
+```
+
+```jsx
+// Client Component - handles carousel logic
+'use client'
+function ReviewsCarousel({ children }) {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
+  return (
+    <div className="carousel">
+      {/* children are already server-rendered */}
+      {children}
+      <CarouselControls onChange={setCurrentSlide} />
+    </div>
+  )
+}
+```
+
+**Why this matters:** The reviews content is rendered on the server (no JS for that markup), but the carousel interactivity is client-side. Best of both worlds.
+
+## Lesson #4: Streaming Changes UX Design
+
+With streaming, you can show parts of the page before others finish loading. This changes how you think about loading states.
+
+### Before: One Big Loading State
+```jsx
+function ProductPage() {
+  const { data, isLoading } = useQuery(['product', id])
+  
+  if (isLoading) return <FullPageSpinner />
+  
+  return <ProductContent data={data} />
+}
+```
+
+### After: Progressive Loading
+```jsx
+// app/product/[id]/page.tsx
+import { Suspense } from 'react'
+
+async function ProductPage({ params }) {
+  const product = await getProduct(params.id) // Fast query
+  
+  return (
+    <div>
+      {/* Shows immediately */}
+      <ProductHeader product={product} />
+      
+      {/* Streams in when ready */}
+      <Suspense fallback={<ReviewsSkeleton />}>
+        <ProductReviews productId={params.id} />
+      </Suspense>
+      
+      <Suspense fallback={<RecommendationsSkeleton />}>
+        <SimilarProducts productId={params.id} />
+      </Suspense>
+    </div>
+  )
+}
+```
+
+**Real impact:** Our perceived load time dropped 40% because users see content faster, even though total data fetching time is similar.
+
+## Lesson #5: Caching is Critical (and Tricky)
+
+RSC changes how caching works. By default, Next.js caches aggressively.
+
+### The Problem
+```jsx
+// This might serve stale data!
+async function ProductPage({ params }) {
+  const product = await getProduct(params.id)
+  return <ProductInfo product={product} />
+}
+```
+
+### Understanding Cache Behavior
+```jsx
+// Default: cached indefinitely (during build)
+const product = await getProduct(id)
+
+// Force fresh data every request
+const product = await getProduct(id, { cache: 'no-store' })
+
+// Revalidate every 60 seconds
+const product = await getProduct(id, { next: { revalidate: 60 } })
+```
+
+### What Worked for Us
+
+```jsx
+// Products: revalidate every minute (prices change)
+export const revalidate = 60
+
+async function ProductPage({ params }) {
+  const product = await getProduct(params.id)
+  return <ProductInfo product={product} />
+}
+
+// Cart: always fresh
+async function CartPage() {
+  const cart = await getCart({ cache: 'no-store' })
+  return <CartContents cart={cart} />
+}
+
+// Categories: cache for longer (rarely change)
+async function CategoryPage({ params }) {
+  const category = await getCategory(params.slug, { 
+    next: { revalidate: 3600 } // 1 hour
+  })
+  return <CategoryContent category={category} />
+}
+```
+
+## Lesson #6: Error Handling is Different
+
+With async components, errors bubble up differently.
+
+### The Pattern
+```jsx
+// app/product/[id]/page.tsx
+async function ProductPage({ params }) {
+  const product = await getProduct(params.id)
+  
+  if (!product) {
+    notFound() // Triggers not-found.tsx
+  }
+  
+  return <ProductContent product={product} />
+}
+
+// app/product/[id]/error.tsx
+'use client' // Error boundaries must be client components
+
+function ProductError({ error, reset }) {
+  return (
+    <div>
+      <h2>Something went wrong loading this product</h2>
+      <button onClick={reset}>Try again</button>
+    </div>
+  )
+}
+```
+
+### Granular Error Boundaries
+```jsx
+async function ProductPage({ params }) {
+  const product = await getProduct(params.id)
+  
+  return (
+    <div>
+      <ProductHeader product={product} />
+      
+      {/* Isolate errors in non-critical sections */}
+      <ErrorBoundary fallback={<ReviewsError />}>
+        <Suspense fallback={<ReviewsSkeleton />}>
+          <ProductReviews productId={params.id} />
+        </Suspense>
+      </ErrorBoundary>
+    </div>
+  )
+}
+```
+
+## The Results
+
+After migrating our e-commerce platform:
+
+| Metric | Before (Pages Router) | After (App Router + RSC) |
+|--------|----------------------|--------------------------|
+| **Initial JS** | 340 KB | 180 KB |
+| **LCP** | 3.2s | 2.1s |
+| **TTI** | 4.8s | 2.8s |
+| **Lighthouse** | 78 | 94 |
+
+Code complexity actually decreased once we internalized the patterns:
+- No more `useEffect` for data fetching
+- No more loading state management boilerplate
+- Clearer separation of concerns
+
+## When NOT to Use Server Components
+
+RSC isn't always the answer:
+
+1. **Highly interactive UIs** (drag-and-drop, complex forms) - Keep these client-side
+
+2. **Real-time features** - WebSocket-driven UIs need client components
+
+3. **Browser APIs** - Anything using `window`, `document`, etc.
+
+4. **Third-party libs that need client** - Some UI libraries don't support RSC yet
+
+## Key Takeaways
+
+1. **Push `'use client'` down** - The lower the boundary, the less JS shipped
+
+2. **Functions don't cross the boundary** - Use Server Actions or define handlers in client components
+
+3. **Composition still works** - Pass Server Components as children to Client Components
+
+4. **Streaming improves perceived performance** - Use Suspense strategically
+
+5. **Cache intentionally** - Understand the default behavior and override when needed
+
+6. **Error boundaries must be client components** - Design your error handling accordingly
+
+---
+
+*Considering a migration to the App Router? I've been through it. [Let's talk →](https://calendly.com/rulocode/30min)*
