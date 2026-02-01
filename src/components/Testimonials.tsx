@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Card, Column, Flex, Heading, Text } from "@/once-ui/components";
+import { Avatar, Card, Column, Heading, Text, Flex } from "@/once-ui/components";
 import { testimonials } from "@/app/resources/content";
 import styles from "./Testimonials.module.scss";
 
@@ -15,16 +15,12 @@ export function Testimonials() {
   if (!testimonials.display) return null;
 
   return (
-    <Column gap="xl" className={styles.testimonials}>
+    <Column gap="l" fillWidth className={styles.testimonials}>
       <Heading as="h2" variant="display-strong-s">
         {testimonials.title}
       </Heading>
       
-      <Flex 
-        gap="l" 
-        wrap 
-        className={styles.grid}
-      >
+      <div className={styles.grid}>
         {testimonials.items.map((testimonial: Testimonial, index: number) => (
           <Card 
             key={index}
@@ -60,7 +56,7 @@ export function Testimonials() {
             </Column>
           </Card>
         ))}
-      </Flex>
+      </div>
     </Column>
   );
 }

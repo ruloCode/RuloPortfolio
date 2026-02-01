@@ -1,21 +1,38 @@
 .testimonials {
   padding: var(--spacing-xl) 0;
+  width: 100%;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--spacing-l);
+  width: 100%;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
   background: var(--surface-background);
   border: 1px solid var(--border-neutral-alpha-weak);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
   
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  @media (max-width: 639px) {
+    &:hover {
+      transform: none;
+    }
   }
 }
 
@@ -23,4 +40,9 @@
   font-style: italic;
   line-height: 1.6;
   color: var(--text-neutral-strong);
+  font-size: 0.95rem;
+  
+  @media (max-width: 639px) {
+    font-size: 0.9rem;
+  }
 }

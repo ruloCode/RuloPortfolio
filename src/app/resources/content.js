@@ -56,11 +56,7 @@ const home = {
   headline: <>Your e-commerce is losing money. I fix that.</>,
   subline: (
     <>
-      I turned a 5.8s load time into 2.5s—and <strong>+23% conversions</strong> followed.
-      <br />
-      Senior Frontend Engineer specializing in React, Next.js & high-performance e-commerce.
-      <br /><br />
-      <strong>$2M+/month</strong> in transactions built. <strong>50,000+ users</strong> served. <strong>Zero downtime</strong> migrations.
+      I turned a 5.8s load time into 2.5s—and <strong>+23% conversions</strong> followed. Senior Frontend Engineer specializing in React, Next.js & high-performance e-commerce. <strong>$2M+/month</strong> in transactions. <strong>50K+ users</strong>. <strong>Zero downtime</strong> migrations.
     </>
   ),
 };
