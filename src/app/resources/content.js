@@ -73,19 +73,19 @@ const testimonials = {
       quote: "Andrés transformed our checkout flow and reduced load times by 56%. The impact on conversions was immediate—we saw a 23% increase within weeks. He doesn't just write code, he understands business.",
       name: "Diego Martínez",
       role: "CTO, Vitau",
-      avatar: "/images/testimonials/diego.jpg",
+      avatar: "/images/testimonials/diego.png",
     },
     {
       quote: "Working with Andrés was a game-changer. He took our outdated React app and migrated it to Next.js with zero downtime. Our dev team's productivity doubled thanks to the new architecture.",
       name: "Carolina Reyes",
       role: "Product Manager, Healthcare Startup",
-      avatar: "/images/testimonials/carolina.jpg",
+      avatar: "/images/testimonials/carolina.png",
     },
     {
       quote: "The experience with Andrés has been excellent. He transformed our branding and helped us grow sales 75% in three months. We continue working hand in hand on every project.",
       name: "Álvaro Pérez",
       role: "Founder, Clandestine",
-      avatar: "/images/testimonials/alvaro.jpg",
+      avatar: "/images/testimonials/alvaro.png",
     },
   ],
 };
