@@ -1,0 +1,26 @@
+.testimonials {
+  padding: var(--spacing-xl) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-l);
+}
+
+.card {
+  background: var(--surface-background);
+  border: 1px solid var(--border-neutral-alpha-weak);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.quote {
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-neutral-strong);
+}

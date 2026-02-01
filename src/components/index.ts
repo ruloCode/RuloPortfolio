@@ -5,3 +5,4 @@ export { ProjectCard } from "@/components/ProjectCard";
 export { TeamAvatars } from "@/components/TeamAvatars";
 export { HeadingLink } from "@/components/HeadingLink";
 export { RouteGuard } from "@/components/RouteGuard";
+export { Testimonials } from "@/components/Testimonials";

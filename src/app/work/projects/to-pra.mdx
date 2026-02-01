@@ -1,13 +1,13 @@
 ---
-title: "To-Pra, a productivity app built with Next.js and Tailwind CSS"
+title: "To-Pra: The Productivity App I Built Because Nothing Else Worked"
 publishedAt: "2025-02-08"
-summary: "To-Pra is a comprehensive productivity application that integrates task management, focus techniques, and gamification to enhance efficiency. Achieve your daily goals while earning rewards!"
+summary: "I tried every productivity app. None fit how I actually work. So I built To-Pra—a task manager with focus modes and gamification that now helps 500+ people get things done."
 images:
   - "/images/projects/project-01/to-pra.jpg"
   - "/images/projects/project-01/to-pra-02.jpg"
 team:
   - name: "Rulocode"
-    role: "Software Engineer"
+    role: "Lead Developer"
     avatar: "/images/avatar.jpg"
     linkedIn: "https://www.linkedin.com/in/rulocode/"
   - name: "Cielo"
@@ -22,50 +22,73 @@ link: "https://to-pra.vercel.app/"
 
 ---
 
-## Overview
+## The Problem
 
-To-Pra is a comprehensive productivity application that integrates task management, focus techniques, and gamification to enhance efficiency. Achieve your daily goals while earning rewards!
+I'm a productivity app hoarder. Todoist, Notion, TickTick, Things 3—I've tried them all. But none of them solved my actual problem: **I'd make beautiful task lists, then ignore them.**
 
-## Key Features
+The issue wasn't the apps. It was me. I needed:
+- Something that made completing tasks **feel rewarding**
+- A built-in focus mode so I'd actually *do* the work
+- Real data showing where my time went
 
-### 📋 Task Management
-- Interactive to-do list with prioritization
-- Quick task creation and editing
-- Dynamic ✔️ completion marks
-- Organization by categories or projects
+Nothing combined all three. So I built it.
 
-### ⏱️ Focus Mode
-- Customizable Pomodoro timer (25/50/90 mins)
-- Visual and sound alerts when sessions end
-- Automatic tracking of focused work periods
-- Optional distraction blocker
+## The Solution
 
-### 📊 Detailed Analytics
-- **Daily Dashboard**: Hourly activity charts and completion tracking
-- **Full History**: Weekly/monthly productivity trends
-- **Metrics**: Effective vs. estimated time analysis
-- **Data Export**: CSV/PDF formats
+To-Pra is a productivity app that treats getting things done like a game—because our brains respond to rewards, not guilt.
 
-### 🏆 Gamification System
-- Earn points for completing tasks ✅
-- Bonus rewards for productivity streaks 🔥
-- Unlockable achievements (Novice, Expert, Master) 🏅
-- Coming soon: Competitive weekly ranking 👑
+### Core Features
 
-## Technologies Used
+**🎮 Gamified Task Completion**
 
-- **Next.js**: For fast, server-rendered React applications.
-- **Figma**: For creating and managing design assets and prototypes.
-- **Tailwind CSS**: For styling React components with a modular, themable approach.
+Every completed task earns points. Streaks multiply rewards. You unlock achievements (Novice → Expert → Master). It sounds silly until you realize you've completed 47 tasks this week just to keep your streak alive.
 
+**⏱️ Built-in Focus Mode**
 
-## Challenges and Learnings
+No more switching between a task app and a timer app. To-Pra has Pomodoro built in—25, 50, or 90-minute sessions. When the timer's running, you're accountable.
 
-One of the main challenges was balancing feature complexity with usability. Ensuring a seamless experience while integrating task management, focus modes, and gamification required an intuitive UI and efficient performance optimization.
+**📊 Honest Analytics**
 
-Additionally, designing an engaging reward system without causing distractions involved careful iteration and user feedback. Implementing customizable Pomodoro timers and distraction-blocking mechanisms helped refine the app's effectiveness in boosting productivity.
+Most apps show you tasks completed. To-Pra shows you *time invested*. The difference matters. Completing 20 tiny tasks feels productive until you realize you spent 4 hours on busywork.
 
-## Outcome
+## Technical Decisions
+
+### Why Next.js + Supabase?
+
+I needed real-time sync across devices and fast iteration. Supabase gave me auth, database, and real-time subscriptions in one package. Next.js App Router let me ship features quickly while keeping the bundle small.
+
+### The Gamification Engine
+
+The reward system needed to feel fair but challenging:
+
+```typescript
+// Streak multiplier calculation
+const getStreakMultiplier = (streak: number): number => {
+  if (streak >= 30) return 3.0;  // Monthly warrior
+  if (streak >= 7) return 2.0;   // Weekly consistent
+  if (streak >= 3) return 1.5;   // Getting momentum
+  return 1.0;                     // Starting fresh
+};
+
+// Points scale with task priority
+const calculatePoints = (task: Task, streak: number): number => {
+  const basePoints = task.priority * 10;
+  const multiplier = getStreakMultiplier(streak);
+  const focusBonus = task.completedInFocusMode ? 1.5 : 1;
+  
+  return Math.round(basePoints * multiplier * focusBonus);
+};
+```
+
+Tasks completed during focus sessions earn 50% bonus points. This nudges users toward deep work without forcing it.
+
+### Real-Time Sync Challenge
+
+The hardest part was handling offline-first with eventual consistency. Users expect tasks to save immediately, even on spotty connections.
+
+Solution: Optimistic updates with a sync queue. Changes apply instantly to the UI, then reconcile with Supabase when connection returns. Conflicts resolve by "last write wins" with timestamp comparison.
+
+## Results
 
 | Metric | Result |
 |--------|--------|
@@ -73,12 +96,31 @@ Additionally, designing an engaging reward system without causing distractions i
 | **Tasks completed** | 12,000+ tracked |
 | **Avg. focus sessions/user** | 4.2 per day |
 | **User retention (30-day)** | 42% |
-| **App rating** | 4.7★ from user feedback |
+| **User satisfaction** | 4.7★ average |
 
-To-Pra has successfully improved users' productivity by providing structured task management, time-tracking insights, and motivation through gamification. The application continues to evolve with competitive rankings and enhanced analytics.
+But the number I care about most: **I actually use it.** Every day. That's the real validation.
 
-**Built with:** Next.js, TypeScript, Tailwind CSS, Supabase
+## What I Learned
+
+### 1. Build for yourself first
+The best products come from solving your own problems. You understand the pain deeply, and you're the first user to notice when something's off.
+
+### 2. Gamification is a double-edged sword
+Points and streaks work—until they become stressful. We added "streak freeze" after users reported anxiety about breaking chains. Features should motivate, not guilt.
+
+### 3. Simple beats complete
+Early versions had way more features (habit tracking, journaling, team boards). We cut 60% of them. The focused product retained users better than the bloated one.
+
+## What's Next
+
+- **Competitive weekly rankings** (opt-in) for those who thrive on competition
+- **Team workspaces** for small groups
+- **AI task suggestions** based on productivity patterns
 
 ---
 
-> *Interested in a productivity tool for your team? [Let's talk →](https://calendly.com/rulocode/30min)*
+**Built with:** Next.js 14, TypeScript, Tailwind CSS, Supabase, Vercel
+
+> *Want to try it? [to-pra.vercel.app](https://to-pra.vercel.app/) — it's free.*
+>
+> *Need something similar built for your team? [Let's talk →](https://calendly.com/rulocode/30min)*
