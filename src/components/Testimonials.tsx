@@ -1,8 +1,7 @@
 "use client";
 
-import { Avatar, Card, Column, Heading, Text, Flex } from "@/once-ui/components";
+import { Avatar, Card, Column, Heading, Text, Flex, Grid } from "@/once-ui/components";
 import { testimonials } from "@/app/resources/content";
-import styles from "./Testimonials.module.scss";
 
 interface Testimonial {
   quote: string;
@@ -15,23 +14,28 @@ export function Testimonials() {
   if (!testimonials.display) return null;
 
   return (
-    <Column gap="l" fillWidth className={styles.testimonials}>
+    <Column fillWidth gap="l" paddingX="l">
       <Heading as="h2" variant="display-strong-s">
         {testimonials.title}
       </Heading>
       
-      <div className={styles.grid}>
+      <Grid 
+        columns="3" 
+        tabletColumns="2" 
+        mobileColumns="1" 
+        gap="l" 
+        fillWidth
+      >
         {testimonials.items.map((testimonial: Testimonial, index: number) => (
           <Card 
             key={index}
-            className={styles.card}
             padding="l"
             radius="l"
           >
-            <Column gap="m">
+            <Column gap="m" fillWidth>
               <Text 
-                variant="body-default-m" 
-                className={styles.quote}
+                variant="body-default-m"
+                style={{ fontStyle: 'italic', lineHeight: 1.6 }}
               >
                 "{testimonial.quote}"
               </Text>
@@ -56,7 +60,7 @@ export function Testimonials() {
             </Column>
           </Card>
         ))}
-      </div>
+      </Grid>
     </Column>
   );
 }
