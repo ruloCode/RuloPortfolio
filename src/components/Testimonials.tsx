@@ -14,7 +14,7 @@ export function Testimonials() {
   if (!testimonials.display) return null;
 
   return (
-    <Column fillWidth gap="l" paddingX="l">
+    <Column fillWidth gap="l">
       <Heading as="h2" variant="display-strong-s">
         {testimonials.title}
       </Heading>

@@ -102,7 +102,7 @@ export default function Home() {
   };
 
   return (
-    <Column as="section" gap="xl">
+    <Column as="section" gap="xl" fillWidth horizontal="center">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -191,12 +191,12 @@ export default function Home() {
         </RevealFx>
         {routes["/blog"] && (
           <Flex fillWidth gap="24" mobileDirection="column">
-            <Flex flex={1} paddingLeft="l">
+            <Flex flex={1}>
               <Heading as="h2" variant="display-strong-xs" wrap="balance">
                 Latest from the blog
               </Heading>
             </Flex>
-            <Flex flex={3} paddingX="20">
+            <Flex flex={3}>
               <Posts range={[1, 2]} columns="2" />
             </Flex>
           </Flex>
