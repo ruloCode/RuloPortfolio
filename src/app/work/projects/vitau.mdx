@@ -1,7 +1,7 @@
 ---
 title: "Vitau: Scaling Mexico's Most Human Digital Pharmacy"
 publishedAt: "2024-12-01"
-summary: "4+ years leading frontend development for a healthcare e-commerce platform serving 50,000+ patients. From performance optimization to checkout architecture—building systems that save lives."
+summary: "4+ years leading frontend development for a healthcare fintech platform processing $2M+/month in financial transactions. Payment processing architecture, real-time pricing systems, and checkout optimization serving 50,000+ patients."
 images:
   - "/images/projects/vitau/vitau-cover.jpg"
 team:
@@ -96,15 +96,19 @@ I designed a **modular checkout system** with these components:
 - **Graceful degradation**: If insurance API fails, offer cash price
 - **State persistence**: Save checkout progress to localStorage + server
 
-### Payment Integration
+### Payment Processing & Financial Transaction Architecture
 
-Integrated **Tonder** as the payment gateway, handling:
-- Credit/debit cards (Visa, Mastercard, Amex)
-- OXXO cash payments (critical for Mexico)
-- Bank transfers (SPEI)
-- Monthly installments (MSI)
+Integrated **Tonder** as the payment gateway, building a robust financial transaction layer handling:
+- Credit/debit cards (Visa, Mastercard, Amex) with tokenized payment processing
+- OXXO cash payments (critical for Mexico's unbanked population)
+- Bank transfers (SPEI) with real-time settlement tracking
+- Monthly installments (MSI) with automated interest calculation
 
-Built a payment abstraction layer allowing easy gateway switching without checkout rewrites.
+**Financial architecture decisions:**
+- **Idempotent payment requests**: Prevent duplicate charges during network failures
+- **Payment abstraction layer**: Gateway-agnostic interface allowing provider switching without checkout rewrites
+- **Real-time pricing engine**: Dynamic pricing based on insurance coverage, promotions, and inventory levels
+- **Audit trail**: Complete transaction logging for financial compliance and reconciliation
 
 ### Next.js 15 Migration
 

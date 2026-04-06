@@ -1,0 +1,114 @@
+---
+title: "GraphQL vs REST for Financial Applications: A Frontend Perspective"
+publishedAt: "2026-04-01"
+image: "/images/projects/project-01/cover-01.jpg"
+summary: "Why GraphQL is becoming the go-to choice for fintech frontends. Type safety with codegen, real-time financial data, and the practical tradeoffs you need to consider."
+tag: "GraphQL"
+---
+
+# GraphQL vs REST for Financial Applications: A Frontend Perspective
+
+After building financial dashboards and payment systems for the past few years, I've worked extensively with both REST and GraphQL APIs. Here's my honest take on when GraphQL shines for fintech—and when REST is still the right call.
+
+## The Problem with REST in Financial UIs
+
+Financial applications have a unique data challenge: **a single screen often needs data from many related entities**. Consider a transaction dashboard that displays:
+
+- Account balances (from the accounts service)
+- Recent transactions with merchant details (from the transactions service)
+- Pending approvals (from the compliance service)
+- Real-time exchange rates (from the pricing service)
+
+With REST, this means 4+ API calls, over-fetching on each, and complex client-side data orchestration. In fintech, where milliseconds matter for user trust, this overhead adds up.
+
+## Where GraphQL Wins for Fintech
+
+### 1. Single Request, Exact Data
+
+GraphQL lets the frontend request exactly what it needs in one round trip:
+
+```graphql
+query DashboardView {
+  account(id: $accountId) {
+    balance
+    currency
+    lastUpdated
+  }
+  transactions(first: 10, filter: { status: COMPLETED }) {
+    edges {
+      node {
+        amount
+        merchant { name, category }
+        timestamp
+      }
+    }
+  }
+  pendingApprovals {
+    count
+  }
+}
+```
+
+One request. No over-fetching. The frontend controls the shape of the response.
+
+### 2. TypeScript + GraphQL Codegen = Type Safety
+
+This is where GraphQL really shines in fintech. Financial applications cannot afford type mismatches—a `string` where you expected a `number` could display the wrong balance.
+
+With **GraphQL Code Generator**, your queries produce fully typed TypeScript hooks:
+
+```typescript
+// Auto-generated from your .graphql files
+const { data, loading } = useDashboardViewQuery({
+  variables: { accountId: "acc_123" },
+});
+
+// data.account.balance is typed as number
+// data.transactions.edges[0].node.amount is typed as number
+// No runtime surprises
+```
+
+The schema becomes your contract. If the backend changes a field type, your build breaks before it reaches production. For financial data, this safety net is invaluable.
+
+### 3. Real-Time Financial Data with Subscriptions
+
+GraphQL subscriptions are purpose-built for the real-time requirements fintech demands:
+
+```graphql
+subscription PriceUpdates($symbols: [String!]!) {
+  priceUpdate(symbols: $symbols) {
+    symbol
+    price
+    change
+    timestamp
+  }
+}
+```
+
+Live portfolio values, real-time transaction notifications, instant balance updates—all through a single WebSocket connection with the same type safety as queries.
+
+## When REST Still Wins
+
+GraphQL isn't always the answer:
+
+- **Simple CRUD operations**: If your API is straightforward, REST's simplicity wins
+- **File uploads**: REST handles multipart uploads more naturally
+- **Caching at the edge**: REST's URL-based caching with CDNs is simpler than GraphQL's cache management
+- **Team familiarity**: If your backend team is REST-native, the migration cost is real
+
+## The Practical Migration Path
+
+You don't have to go all-in. The approach I've seen work best:
+
+1. **Start with read-heavy screens**: Dashboards and reporting views benefit most from GraphQL
+2. **Keep mutations in REST**: Payment processing and sensitive writes can stay as REST endpoints
+3. **Use Apollo Client's `RestLink`**: Gradually migrate endpoints without rewriting everything
+4. **Add codegen from day one**: The type safety payoff is immediate
+
+## Bottom Line
+
+For financial frontends with complex data requirements, GraphQL + TypeScript + codegen is a powerful combination. The upfront investment in schema design pays dividends in developer velocity, type safety, and user experience.
+
+The key insight: **GraphQL isn't about the technology—it's about giving the frontend team autonomy to build fast, type-safe financial UIs without waiting for backend changes.**
+
+If you're building fintech applications and haven't explored GraphQL yet, start with a single dashboard view. The difference in developer experience will speak for itself.

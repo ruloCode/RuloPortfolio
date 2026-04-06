@@ -6,7 +6,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Senior Frontend Engineer | React & Next.js | E-commerce",
+  role: "Senior Frontend Engineer | React & Next.js | Fintech & Scalable Applications",
   avatar: "/images/avatar.jpg",
   location: "America/Bogota",
   languages: ["Spanish (Native)", "English (Professional)"],
@@ -51,12 +51,13 @@ const social = [
 
 const home = {
   label: "Home",
-  title: `Andrés Santana | Senior React & Next.js Developer | E-commerce Specialist`,
-  description: `Senior Frontend Engineer specializing in React.js, Next.js, and high-performance e-commerce platforms. 4+ years building scalable solutions for healthcare and digital products.`,
-  headline: <>Your e-commerce is losing money. I fix that.</>,
+  title: `Andrés Santana | Senior React & Next.js Developer | Fintech & Scalable Applications`,
+  description: `Senior Frontend Engineer specializing in React, Next.js & TypeScript. 5+ years building scalable applications for healthcare and financial platforms. $2M+/month in transactions processed.`,
+  headline: <>I build high-performance frontends that handle millions in transactions.</>,
+  openToWork: true,
   subline: (
     <>
-      I turned a 5.8s load time into 2.5s—and <strong>+23% conversions</strong> followed. Senior Frontend Engineer specializing in React, Next.js & high-performance e-commerce. <strong>$2M+/month</strong> in transactions. <strong>50K+ users</strong>. <strong>Zero downtime</strong> migrations.
+      Senior Frontend Engineer specializing in React, Next.js & TypeScript. 5+ years building scalable applications for healthcare and financial platforms. <strong>$2M+/month</strong> in transactions processed. <strong>50K+ users</strong> served. <strong>Zero downtime</strong> migrations.
     </>
   ),
 };
@@ -175,49 +176,36 @@ const about = {
     title: "Technical Skills",
     skills: [
       {
-        title: "Next.js",
-        description: <>Proficient in developing high-performance, server-rendered, and static web applications using Next.js. Experienced with API routes, ISR, SSR, and seamless integration with backend services like Supabase and Firebase.</>,
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Next.js Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "React / Next.js",
+        description: <>Building production applications with React 18+ and Next.js App Router. Experienced with Server Components, Streaming, Parallel Routes, and ISR for high-performance, SEO-optimized frontends.</>,
       },
       {
-        title: "Figma",
-        description: <>Experienced in UI/UX design and prototyping with Figma, creating high-fidelity mockups, interactive prototypes, and design systems to enhance collaboration between designers and developers.</>,
-        images: [
-          {
-            src: "/images/projects/project-01/figma-2.jpg",
-            alt: "Figma Prototype",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "TypeScript",
+        description: <>Strict TypeScript across the full stack. Type-safe API contracts, generic utility types, and end-to-end type safety from database schemas to UI components. Reduces runtime errors and accelerates team velocity.</>,
       },
-
+      {
+        title: "GraphQL",
+        description: <>Designing and consuming GraphQL APIs with Apollo Client and codegen for fully typed queries. Real-time subscriptions for live data feeds, optimistic UI updates, and efficient cache management for complex financial data.</>,
+      },
+      {
+        title: "State Management (XState)",
+        description: <>Modeling complex UI flows with finite state machines using XState. Ideal for multi-step checkout processes, payment flows, and approval workflows where predictable state transitions are critical.</>,
+      },
+      {
+        title: "AWS",
+        description: <>Deploying and scaling frontend infrastructure on AWS. Experience with S3 + CloudFront for static assets, Lambda@Edge for dynamic rendering, and Amplify for full-stack deployments with CI/CD integration.</>,
+      },
       {
         title: "Performance Optimization",
-        description: <>Expert in optimizing frontend performance through code-splitting, lazy loading, image optimization, caching strategies, and reducing render-blocking resources to improve Lighthouse scores.</>,
-        images: [
-          {
-            src: "/images/projects/project-01/performance.jpg",
-            alt: "Performance Optimization",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        title: "Testing & QA",
-        description: <>Skilled in implementing robust testing strategies using Jest, React Testing Library, and Cypress for unit, integration, and end-to-end testing, ensuring code reliability and maintainability.</>,
+        description: <>Systematic approach to Core Web Vitals: code-splitting, lazy loading, image optimization (WebP/AVIF), critical CSS inlining, and caching strategies. Proven track record reducing LCP by 56% on high-traffic platforms.</>,
       },
       {
         title: "CI/CD & DevOps",
-        description: <>Experienced in setting up CI/CD pipelines with GitHub Actions, Vercel, and Netlify to automate deployments, enforce code quality, and enhance development efficiency.</>,
+        description: <>Automated pipelines with GitHub Actions, Vercel, and AWS. Feature branch previews, automated testing gates, Lighthouse CI budgets, and zero-downtime deployments for production applications.</>,
+      },
+      {
+        title: "Tailwind CSS",
+        description: <>Utility-first styling with Tailwind CSS for rapid, consistent UI development. Custom design system tokens, responsive layouts, and component-level theming integrated with design tools like Figma.</>,
       },
     ],
   }
@@ -226,20 +214,20 @@ const about = {
 
 const blog = {
   label: "Blog",
-  title: "Writing about frontend, performance & e-commerce",
-  description: `Technical articles and insights on React, Next.js, and building high-converting web applications.`,
+  title: "Writing about frontend, performance & fintech",
+  description: `Technical articles and insights on React, Next.js, GraphQL, and building scalable financial applications.`,
 };
 
 const work = {
   label: "Work",
   title: "Selected Projects",
-  description: `E-commerce platforms, SaaS dashboards, and high-performance web applications I've built.`,
+  description: `Fintech dashboards, healthcare platforms, and high-performance web applications I've built.`,
 };
 
 const services = {
   label: "Services",
   title: "Work With Me",
-  description: `Frontend development, performance optimization, and e-commerce solutions. Let's build something great together.`,
+  description: `Frontend development, performance optimization, and scalable fintech solutions. Let's build something great together.`,
 };
 
 const gallery = {

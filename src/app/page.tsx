@@ -1,10 +1,12 @@
 import React from "react";
 import {
+  Badge,
   Button,
   Column,
   Flex,
   Heading,
   Row,
+  StatusIndicator,
   Text,
   Avatar,
   RevealFx,
@@ -135,6 +137,24 @@ export default function Home() {
         />
         <Column fillWidth paddingY="l" gap="m">
           <Column maxWidth="s">
+            {home.openToWork && (
+              <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="s">
+                <Badge arrow={false} effect={true}>
+                  <Flex gap="8" vertical="center">
+                    <StatusIndicator
+                      size="s"
+                      color="green"
+                      style={{
+                        animation: "pulse 2s ease-in-out infinite",
+                      }}
+                    />
+                    <Text variant="label-strong-s" onBackground="brand-strong">
+                      Open to opportunities
+                    </Text>
+                  </Flex>
+                </Badge>
+              </RevealFx>
+            )}
             <RevealFx
               translateY="4"
               fillWidth
