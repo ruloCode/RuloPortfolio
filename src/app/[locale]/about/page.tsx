@@ -236,8 +236,12 @@ export default async function About({ params: { locale } }: PageParams) {
           </Column>
 
           {about.intro.display && (
-            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
-              {about.intro.description}
+            <Column fillWidth gap="m" marginBottom="xl">
+              {/* Single inline-flow block so rich-text <strong> spans don't
+                  become separate flex items */}
+              <Text as="div" variant="body-default-l">
+                {about.intro.description}
+              </Text>
             </Column>
           )}
 
