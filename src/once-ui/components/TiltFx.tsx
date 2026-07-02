@@ -15,6 +15,7 @@ const TiltFx: React.FC<TiltFxProps> = ({ children, ...rest }) => {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if ("ontouchstart" in window) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     clearTimeout(resetTimeout);
 

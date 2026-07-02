@@ -208,7 +208,7 @@ export default async function Services({ params: { locale } }: PageParams) {
       >
         <Column gap="8">
           <Text variant="body-default-m" style={{ fontStyle: "italic", lineHeight: 1.6 }}>
-            "{consultingTestimonial.quote}"
+            &ldquo;{consultingTestimonial.quote}&rdquo;
           </Text>
           <Text variant="body-strong-s">
             {consultingTestimonial.name}{" "}

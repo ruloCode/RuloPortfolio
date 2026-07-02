@@ -32,7 +32,7 @@ export function Testimonials() {
                 variant="body-default-m"
                 style={{ fontStyle: 'italic', lineHeight: 1.6 }}
               >
-                "{t(`items.${key}.quote`)}"
+                &ldquo;{t(`items.${key}.quote`)}&rdquo;
               </Text>
 
               <Flex gap="s" vertical="center">
