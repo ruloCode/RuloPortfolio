@@ -117,7 +117,6 @@ export function generateMetadata({ params: { locale, slug } }: BlogParams) {
       description: optimizedDescription,
       images: [ogImage],
     },
-    viewport: "width=device-width, initial-scale=1.0",
     creator: person.name,
     publisher: person.name,
   };
