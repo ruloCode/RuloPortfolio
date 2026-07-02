@@ -16,6 +16,7 @@ import { createI18nContent } from "@/app/resources/content-i18n";
 import { routing } from "@/i18n/routing";
 
 import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { Source_Code_Pro } from "next/font/google";
 
 import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
@@ -69,14 +70,15 @@ type FontConfig = {
   variable: string;
 };
 
-/*
-	Replace with code for secondary and tertiary fonts
-	from https://once-ui.com/customize
-*/
-const secondary: FontConfig | undefined = undefined;
+// Space Grotesk drives every heading via --font-family-heading -> --font-secondary.
+// Latin subset covers Spanish diacritics (á é í ó ú ñ ü).
+const secondary: FontConfig | undefined = Space_Grotesk({
+  variable: "--font-secondary",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
 const tertiary: FontConfig | undefined = undefined;
-/*
- */
 
 const code = Source_Code_Pro({
   variable: "--font-code",
@@ -102,6 +104,7 @@ export default async function RootLayout({ children, params: { locale } }: RootL
     <Flex
       as="html"
       lang={locale}
+      suppressHydrationWarning
       background="page"
       data-neutral={style.neutral}
       data-brand={style.brand}
@@ -119,6 +122,14 @@ export default async function RootLayout({ children, params: { locale } }: RootL
         code.variable,
       )}
     >
+      <head>
+        <script
+          // Applies the persisted theme before first paint to avoid a flash
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`,
+          }}
+        />
+      </head>
       <ToastProvider>
         <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
           <NextIntlClientProvider messages={messages}>

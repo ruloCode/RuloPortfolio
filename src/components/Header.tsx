@@ -9,6 +9,7 @@ import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
 import { localizeHref, routing, usePathname, useRouter } from "@/i18n/routing";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -204,6 +205,7 @@ export const Header = () => {
             gap="20"
           >
             <LanguageSwitcher />
+            <ThemeToggle />
             <Flex hide="s">{display.time && <TimeDisplay timeZone="America/Bogota" />}</Flex>
           </Flex>
         </Flex>

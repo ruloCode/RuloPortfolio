@@ -1,0 +1,179 @@
+---
+title: "Vitau: Escalando la farmacia digital más humana de México"
+publishedAt: "2024-12-01"
+summary: "Más de 4 años liderando el desarrollo frontend de una plataforma fintech de salud que procesa más de $2M USD mensuales en transacciones financieras. Arquitectura de procesamiento de pagos, sistemas de precios en tiempo real y optimización del checkout para más de 50,000 pacientes."
+images:
+  - "/images/projects/vitau/vitau-cover.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Senior Frontend Engineer & Tech Lead"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://vitau.mx"
+---
+
+## Overview
+
+**Vitau** es la farmacia digital de mayor crecimiento en México, enfocada en atender pacientes con condiciones crónicas: diabetes, hipertensión y enfermedades cardiovasculares. A diferencia de las farmacias tradicionales, Vitau combina e-commerce con servicios de salud: validación de recetas, procesamiento de seguros y entrega de medicamentos.
+
+Como **Senior Frontend Engineer & Tech Lead**, he sido responsable de toda la arquitectura frontend desde 2020, escalando la plataforma desde una startup en etapa temprana hasta procesar **más de $2M USD mensuales** en transacciones.
+
+## El reto
+
+Cuando entré a Vitau, la plataforma tenía problemas críticos que frenaban el crecimiento:
+
+- **Performance lento**: un LCP de 5.8s que mataba las conversiones en móvil
+- **Checkout complejo**: los medicamentos con receta requieren validación, autorización del seguro y compliance
+- **Dolores de escalamiento**: el codebase legacy en React no aguantaba los picos de tráfico
+- **Mala DX**: builds de más de 8 minutos que retrasaban la entrega de features
+
+El negocio necesitaba un frontend capaz de **convertir visitantes en pacientes**, manejando al mismo tiempo las restricciones únicas del sector salud.
+
+## Resultados clave
+
+| Métrica | Antes | Después | Impacto |
+|--------|--------|-------|--------|
+| **LCP (Largest Contentful Paint)** | 5.8s | 2.5s | -56% |
+| **Tasa de conversión** | 2.1% | 2.6% | +23% |
+| **Transacciones mensuales** | — | $2M+ | — |
+| **Tiempo de build** | 8 min | 2.5 min | -69% |
+| **Tamaño del bundle** | 1.2 MB | 720 KB | -40% |
+| **Lighthouse Score** | 54 | 92 | +70% |
+
+## Análisis técnico a fondo
+
+### Optimización de performance
+
+La mejora del LCP de 5.8s a 2.5s salió de un enfoque sistemático:
+
+**Optimización de imágenes**
+- Migré más de 2,000 imágenes de producto a Next.js Image con WebP/AVIF automático
+- Implementé blur placeholders para mejorar la percepción de velocidad
+- Lazy loading para el contenido below the fold
+
+**Estrategia de code splitting**
+- Splitting por rutas con dynamic imports
+- Vendor chunks separados para un mejor caching
+- JavaScript no crítico diferido (analytics, widgets de chat)
+
+**Critical rendering path**
+- CSS crítico inline para el contenido above the fold
+- Preconnect a los dominios de terceros esenciales
+- Font subsetting y `font-display: swap`
+
+### Arquitectura del checkout
+
+El e-commerce de salud tiene requerimientos únicos. Una sola orden puede incluir:
+- Productos OTC (sin validación necesaria)
+- Medicamentos con receta (requieren subir la receta + validación)
+- Productos cubiertos por seguro (requieren autorización en tiempo real con las aseguradoras)
+
+Diseñé un **sistema de checkout modular** con estos componentes:
+
+```
+┌─────────────────────────────────────────────────┐
+│                  Checkout Flow                   │
+├─────────────────────────────────────────────────┤
+│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
+│  │   Cart   │→ │ Address  │→ │   Payment    │  │
+│  │  Module  │  │  Module  │  │    Module    │  │
+│  └──────────┘  └──────────┘  └──────────────┘  │
+│       ↓              ↓              ↓          │
+│  ┌──────────────────────────────────────────┐  │
+│  │         Prescription Validator           │  │
+│  │    (async, non-blocking for OTC)         │  │
+│  └──────────────────────────────────────────┘  │
+│       ↓                                        │
+│  ┌──────────────────────────────────────────┐  │
+│  │       Insurance Authorization            │  │
+│  │     (Sura, GNP, MetLife integrations)    │  │
+│  └──────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────┘
+```
+
+**Decisiones clave:**
+- **UI optimista**: mostrar estados de éxito mientras se procesa en segundo plano
+- **Degradación elegante**: si la API del seguro falla, ofrecemos el precio de contado
+- **Persistencia de estado**: guardar el progreso del checkout en localStorage + servidor
+
+### Procesamiento de pagos y arquitectura de transacciones financieras
+
+Integré **Tonder** como pasarela de pagos, construyendo una capa robusta de transacciones financieras que maneja:
+- Tarjetas de crédito/débito (Visa, Mastercard, Amex) con procesamiento de pagos tokenizado
+- Pagos en efectivo vía OXXO (crítico para la población no bancarizada de México)
+- Transferencias bancarias (SPEI) con seguimiento de liquidación en tiempo real
+- Meses sin intereses (MSI) con cálculo automatizado de intereses
+
+**Decisiones de arquitectura financiera:**
+- **Requests de pago idempotentes**: prevenir cargos duplicados durante fallas de red
+- **Capa de abstracción de pagos**: interfaz agnóstica a la pasarela que permite cambiar de proveedor sin reescribir el checkout
+- **Motor de precios en tiempo real**: precios dinámicos según cobertura del seguro, promociones y niveles de inventario
+- **Audit trail**: registro completo de transacciones para compliance financiero y conciliación
+
+### Migración a Next.js 15
+
+Lideré la migración de Create React App a Next.js 15 (App Router):
+
+**Estrategia de migración:**
+1. Deploy en paralelo: páginas nuevas en Next.js, legacy en CRA
+2. Migración gradual de rutas durante 3 meses
+3. Cutover sin downtime usando los preview deployments de Vercel
+
+**Beneficios obtenidos:**
+- Bundle 40% más pequeño (Server Components)
+- Builds 69% más rápidos (Turbopack)
+- Mejor SEO con metadata automática
+- Patrones de data fetching más simples
+
+## Automatización e integraciones
+
+Más allá del frontend, construí workflows de automatización con **N8N**:
+
+- **Orquestación de citas médicas**: agendar seguimientos automáticamente según los ciclos de las recetas
+- **Preautorización de seguros**: envío automatizado de documentos a las aseguradoras
+- **Alertas de inventario**: notificar a los pacientes cuando sus medicamentos crónicos vuelven a estar disponibles
+
+## Tech Stack
+
+| Capa | Tecnología |
+|-------|------------|
+| **Framework** | Next.js 15 (App Router) |
+| **Lenguaje** | TypeScript |
+| **Estilos** | Tailwind CSS, CSS Modules |
+| **Estado** | Zustand, React Query |
+| **Pagos** | Tonder |
+| **Analytics** | Mixpanel, OpenReplay |
+| **Automatización** | N8N |
+| **Deployment** | Vercel |
+| **Monitoreo** | Sentry, Vercel Analytics |
+
+## Lecciones aprendidas
+
+### 1. Salud ≠ e-commerce tradicional
+La validación de recetas, la integración con seguros y los requerimientos de compliance triplican la complejidad. Cada feature necesita revisión legal/médica.
+
+### 2. Performance = ingresos
+Nuestros datos mostraron que **cada mejora de 100ms en el tiempo de carga aumentaba la conversión en 0.8%**. Solo la optimización del LCP generó más de $400K USD estimados en ingresos anuales adicionales.
+
+### 3. La arquitectura modular paga dividendos
+Dividir el checkout en módulos independientes permitió desarrollo en paralelo y A/B testing más sencillo. Podíamos lanzar experimentos de pagos sin tocar la lógica de recetas.
+
+### 4. Invertir en developer experience
+Reducir los tiempos de build de 8 min a 2.5 min ahorró ~15 horas semanales en todo el equipo. Ciclos de feedback más rápidos = entregas más rápidas.
+
+## Impacto
+
+Vitau hoy atiende a **más de 50,000 pacientes** con condiciones crónicas, y la plataforma que construí maneja:
+
+- **Más de 15,000 órdenes mensuales**
+- **99.9% de uptime en el checkout**
+- **2.5s de carga promedio** (móvil)
+- **Calificación de 4.8★ en las app stores** (relacionada con la experiencia web)
+
+Y lo más importante: los pacientes reciben sus medicamentos a tiempo, siempre. En salud, eso es lo que cuenta.
+
+---
+
+> **¿Buscas un senior frontend engineer que entienda tanto el código como el impacto en el negocio?**
+> 
+> [Hablemos →](https://calendly.com/rulocode/30min)

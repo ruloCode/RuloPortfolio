@@ -1,0 +1,126 @@
+---
+title: "To-Pra: La app de productividad que construí porque ninguna otra me funcionaba"
+publishedAt: "2025-02-08"
+summary: "Probé todas las apps de productividad. Ninguna se ajustaba a mi forma real de trabajar. Así que construí To-Pra: un gestor de tareas con modos de enfoque y gamificación que hoy ayuda a más de 500 personas a sacar el trabajo adelante."
+images:
+  - "/images/projects/project-01/to-pra.jpg"
+  - "/images/projects/project-01/to-pra-02.jpg"
+team:
+  - name: "Rulocode"
+    role: "Lead Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+  - name: "Cielo"
+    role: "Software Engineer"
+    avatar: "/images/avatar-2.jpg"
+    linkedIn: "https://www.linkedin.com/in/heavenndew/"
+  - name: "Marlon Ramirez"
+    role: "Software Engineer"
+    avatar: "/images/avatar-3.jpg"
+    linkedIn: "https://www.linkedin.com/in/marlonramirezlizcano/"
+link: "https://to-pra.vercel.app/"
+
+---
+
+## El problema
+
+Soy un acumulador de apps de productividad. Todoist, Notion, TickTick, Things 3: las probé todas. Pero ninguna resolvía mi problema real: **armaba listas de tareas hermosas y luego las ignoraba.**
+
+El problema no eran las apps. Era yo. Necesitaba:
+- Algo que hiciera que completar tareas **se sintiera gratificante**
+- Un modo de enfoque integrado para que de verdad *hiciera* el trabajo
+- Datos reales que mostraran en qué se iba mi tiempo
+
+Nada combinaba las tres cosas. Así que lo construí.
+
+## La solución
+
+To-Pra es una app de productividad que trata el sacar tareas adelante como un juego, porque nuestro cerebro responde a las recompensas, no a la culpa.
+
+### Features principales
+
+**🎮 Completar tareas con gamificación**
+
+Cada tarea completada suma puntos. Las rachas multiplican las recompensas. Vas desbloqueando logros (Novato → Experto → Maestro). Suena bobo hasta que te das cuenta de que completaste 47 tareas esta semana solo para mantener viva tu racha.
+
+**⏱️ Modo de enfoque integrado**
+
+Se acabó eso de saltar entre una app de tareas y una app de timer. To-Pra trae Pomodoro integrado: sesiones de 25, 50 o 90 minutos. Cuando el timer está corriendo, tienes que responder por tu tiempo.
+
+**📊 Analytics honestos**
+
+La mayoría de apps te muestran tareas completadas. To-Pra te muestra el *tiempo invertido*. La diferencia importa. Completar 20 tareas pequeñitas se siente productivo hasta que te das cuenta de que gastaste 4 horas en trabajo de relleno.
+
+## Decisiones técnicas
+
+### ¿Por qué Next.js + Supabase?
+
+Necesitaba sincronización en tiempo real entre dispositivos e iterar rápido. Supabase me dio auth, base de datos y suscripciones en tiempo real en un solo paquete. El App Router de Next.js me permitió sacar features rápidamente manteniendo el bundle pequeño.
+
+### El motor de gamificación
+
+El sistema de recompensas tenía que sentirse justo pero retador:
+
+```typescript
+// Streak multiplier calculation
+const getStreakMultiplier = (streak: number): number => {
+  if (streak >= 30) return 3.0;  // Monthly warrior
+  if (streak >= 7) return 2.0;   // Weekly consistent
+  if (streak >= 3) return 1.5;   // Getting momentum
+  return 1.0;                     // Starting fresh
+};
+
+// Points scale with task priority
+const calculatePoints = (task: Task, streak: number): number => {
+  const basePoints = task.priority * 10;
+  const multiplier = getStreakMultiplier(streak);
+  const focusBonus = task.completedInFocusMode ? 1.5 : 1;
+  
+  return Math.round(basePoints * multiplier * focusBonus);
+};
+```
+
+Las tareas completadas durante sesiones de enfoque ganan un 50% de puntos extra. Esto empuja suavemente a los usuarios hacia el trabajo profundo sin forzarlo.
+
+### El reto de la sincronización en tiempo real
+
+La parte más difícil fue manejar el enfoque offline-first con consistencia eventual. Los usuarios esperan que las tareas se guarden de inmediato, incluso con conexiones inestables.
+
+La solución: updates optimistas con una cola de sincronización. Los cambios se aplican al instante en la UI y luego se reconcilian con Supabase cuando vuelve la conexión. Los conflictos se resuelven con "last write wins" comparando timestamps.
+
+## Resultados
+
+| Métrica | Resultado |
+|--------|--------|
+| **Usuarios activos** | 500+ mensuales |
+| **Tareas completadas** | 12,000+ registradas |
+| **Sesiones de enfoque/usuario (prom.)** | 4.2 al día |
+| **Retención de usuarios (30 días)** | 42% |
+| **Satisfacción de usuarios** | 4.7★ promedio |
+
+Pero el número que más me importa: **yo mismo la uso.** Todos los días. Esa es la validación de verdad.
+
+## Lo que aprendí
+
+### 1. Construye primero para ti
+Los mejores productos nacen de resolver tus propios problemas. Entiendes el dolor a fondo y eres el primer usuario en notar cuando algo no cuadra.
+
+### 2. La gamificación es un arma de doble filo
+Los puntos y las rachas funcionan... hasta que se vuelven estresantes. Agregamos el "streak freeze" después de que varios usuarios reportaron ansiedad por romper sus cadenas. Los features deben motivar, no generar culpa.
+
+### 3. Lo simple le gana a lo completo
+Las primeras versiones tenían muchos más features (seguimiento de hábitos, journaling, tableros de equipo). Recortamos el 60%. El producto enfocado retuvo usuarios mejor que el inflado.
+
+## Qué sigue
+
+- **Rankings semanales competitivos** (opt-in) para quienes se motivan con la competencia
+- **Espacios de trabajo en equipo** para grupos pequeños
+- **Sugerencias de tareas con IA** basadas en patrones de productividad
+
+---
+
+**Construido con:** Next.js 14, TypeScript, Tailwind CSS, Supabase, Vercel
+
+> *¿Quieres probarla? [to-pra.vercel.app](https://to-pra.vercel.app/) — es gratis.*
+>
+> *¿Necesitas algo similar para tu equipo? [Hablemos →](https://calendly.com/rulocode/30min)*

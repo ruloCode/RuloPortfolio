@@ -1,0 +1,159 @@
+---
+title: "InvoiceDash: Gestión moderna de facturas con Next.js 14"
+publishedAt: "2024-11-15"
+summary: "Un dashboard de gestión financiera construido con Server Components de Next.js 14, con procesamiento de datos en tiempo real, analítica financiera y reportes automatizados. Demuestra patrones de arquitectura escalable para aplicaciones fintech."
+images:
+  - "/images/projects/project-02/project-02.jpg"
+team:
+  - name: "Rulocode"
+    role: "Lead Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulo-code-invoice-dash-board.vercel.app/"
+
+---
+
+## Resumen
+
+InvoiceDash es un dashboard de gestión financiera que demuestra patrones de arquitectura escalable para aplicaciones fintech. Construido con las capacidades de renderizado más recientes de Next.js 14, ofrece procesamiento de datos financieros en tiempo real, reportes automatizados y analítica completa para hacer seguimiento de ingresos, gestionar flujos de pago y monitorear la salud financiera.
+
+## Funcionalidades clave
+
+### 🚀 Vitrina de renderizado con Next.js 14
+- **Server Components**: cero JavaScript del lado del cliente para la mayoría de los elementos de la UI
+- **Streaming**: renderizado progresivo con Suspense boundaries
+- **Partial Prerendering**: shell estático con contenido dinámico
+- **Parallel Routes**: carga simultánea de diferentes secciones
+- **Intercepting Routes**: vistas modales sin interrumpir la navegación
+
+### 📊 Dashboard de analítica financiera
+- Seguimiento de ingresos en tiempo real y proyecciones financieras
+- Monitoreo del procesamiento de pagos con alertas de detección de anomalías
+- Historial de pagos por cliente y visualización del flujo de transacciones
+- Filtros por rango de fechas personalizado con reportes financieros instantáneos
+
+### 📱 Diseño responsive
+- Layout fluido que se adapta a cualquier tamaño de pantalla
+- Flujo de creación de facturas optimizado para móviles
+- Elementos de interfaz pensados para uso táctil
+- Modo oscuro/claro con detección de la preferencia del sistema
+
+### ⚡ Optimizaciones de performance
+- Prefetching de rutas para navegación instantánea
+- Optimización de imágenes con el componente Image de Next.js
+- Server Actions para el envío de formularios
+- Deploy en edge runtime para performance global
+
+## Tecnologías utilizadas
+
+- **Next.js 14**: aprovechando el App Router más reciente, Server Components y optimizaciones de renderizado
+- **React Server Components**: para reducir el tamaño del bundle y mejorar la performance
+- **Tailwind CSS**: para estilos responsive con enfoque utility-first
+- **Drizzle ORM**: consultas a base de datos type-safe con PostgreSQL
+- **Next Auth**: autenticación segura con múltiples proveedores
+- **Vercel**: deploy en el edge para acceso global de baja latencia
+
+## Detalles de implementación del renderizado
+
+### Server Components y Streaming
+
+El dashboard implementa streaming estratégico con Suspense boundaries, lo que permite que el shell de la UI cargue al instante mientras los componentes que dependen de datos van llegando por streaming a medida que están disponibles:
+
+```jsx
+// Dashboard layout with streaming components
+export default function Dashboard() {
+  return (
+    <main>
+      <header>
+        <h1>InvoiceDash</h1>
+        <UserNav />
+      </header>
+      
+      {/* Static shell loads instantly */}
+      <DashboardShell>
+        {/* Data streams in progressively */}
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Suspense fallback={<InvoiceListSkeleton />}>
+            <LatestInvoices />
+          </Suspense>
+          
+          <Suspense fallback={<ClientsSkeleton />}>
+            <TopClients />
+          </Suspense>
+        </div>
+      </DashboardShell>
+    </main>
+  );
+}
+```
+
+### Partial Prerendering
+
+InvoiceDash implementa partial prerendering, generando un shell estático en tiempo de build mientras renderiza dinámicamente el contenido personalizado:
+
+```jsx
+// Static parts render at build time
+export const dynamic = 'force-static';
+
+// Dynamic parts use a Suspense boundary
+export default function InvoiceList() {
+  return (
+    <>
+      <StaticFilters />  {/* Prerendered */}
+      <Suspense fallback={<InvoicesTableSkeleton />}>
+        <InvoicesTable />  {/* Dynamically rendered */}
+      </Suspense>
+    </>
+  );
+}
+```
+
+### Parallel Routes
+
+La aplicación usa parallel routes para cargar varias secciones al mismo tiempo, mejorando la percepción de performance:
+
+```jsx
+// app/@stats/page.tsx and app/@invoices/page.tsx load in parallel
+// within app/layout.tsx
+export default function Layout({ stats, invoices, children }) {
+  return (
+    <div className="dashboard-layout">
+      <aside>{stats}</aside>
+      <main>{children}</main>
+      <section>{invoices}</section>
+    </div>
+  );
+}
+```
+
+## Retos y aprendizajes
+
+Implementar las funcionalidades de renderizado más recientes de Next.js 14 exigió repensar los patrones tradicionales de React. Pasar de renderizado del lado del cliente a un enfoque server-first requirió considerar con cuidado el manejo de estado, el data fetching y los límites entre componentes.
+
+Fue particularmente retador optimizar la implementación de streaming para garantizar una experiencia de usuario fluida incluso con fuentes de datos lentas. Desarrollamos un enfoque por niveles para el streaming, priorizando los elementos críticos de la UI mientras los datos menos importantes cargan de forma progresiva.
+
+Otro reto importante fue implementar correctamente los server actions para el envío de formularios manteniendo type safety en toda la aplicación. Esto requirió un diseño cuidadoso del flujo de datos entre componentes de cliente y de servidor.
+
+## Resultado
+
+InvoiceDash entrega métricas de performance impresionantes:
+
+| Métrica | Resultado |
+|--------|--------|
+| **Time to First Byte** | 100ms |
+| **Payload inicial de JS** | 0KB (Server Components) |
+| **Reducción del bundle** | -60% vs renderizado en cliente |
+| **Lighthouse Performance** | 99/100 |
+| **Lighthouse Accessibility** | 100/100 |
+
+La aplicación demuestra con éxito cómo las funcionalidades de renderizado más recientes de Next.js 14 se pueden combinar para crear aplicaciones web excepcionalmente performantes sin sacrificar interactividad ni experiencia de desarrollo.
+
+**Este proyecto demuestra:** Server Components, Streaming, Partial Prerendering, Parallel Routes y Server Actions — todos patrones que aplico en proyectos de e-commerce en producción.
+
+---
+
+> *¿Quieres este nivel de performance en tu proyecto? [Hablemos →](https://calendly.com/rulocode/30min)*

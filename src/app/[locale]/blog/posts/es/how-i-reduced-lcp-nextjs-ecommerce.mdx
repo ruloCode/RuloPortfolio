@@ -1,0 +1,352 @@
+---
+title: "Cómo reduje el LCP de 5.8s a 2.5s en un e-commerce con Next.js"
+publishedAt: "2026-01-15"
+image: "/images/projects/project-01/cover-02.jpg"
+summary: "Una guía práctica para mejorar los Core Web Vitals en producción. Técnicas reales que usé para reducir los tiempos de carga en un 56% y aumentar la tasa de conversión."
+tag: "Performance"
+---
+
+# Cómo reduje el LCP de 5.8s a 2.5s en un e-commerce con Next.js
+
+El año pasado, nuestra plataforma de e-commerce tenía un problema: **5.8 segundos para mostrar el contenido principal en móvil**. Los usuarios se estaban yendo. La conversión sufría. Google nos estaba penalizando en los rankings de búsqueda.
+
+Seis meses después, llegamos a **2.5 segundos**: una mejora del 56%. En este post les cuento exactamente qué hicimos.
+
+## Por qué importa el LCP (más allá de Google)
+
+El LCP (Largest Contentful Paint) mide cuándo el contenido principal se vuelve visible. En e-commerce, normalmente es:
+- La imagen del hero
+- La imagen del producto en las PDPs
+- Las primeras tarjetas de producto visibles en las páginas de categoría
+
+Nuestros datos mostraban una correlación clara:
+
+| LCP | Tasa de rebote | Conversión |
+|-----|-------------|------------|
+| 5.8s | 62% | 1.8% |
+| 4.0s | 48% | 2.1% |
+| 2.5s | 34% | 2.6% |
+
+**Cada mejora de 100ms sumaba aproximadamente 0.1% a la conversión.** Con nuestro volumen de transacciones, eso es ingreso significativo.
+
+## La auditoría: encontrando a los culpables
+
+Antes de optimizar, hice una auditoría completa usando:
+- **Lighthouse** (Chrome DevTools)
+- **WebPageTest** (para pruebas en dispositivos reales)
+- **Vercel Analytics** (datos de usuarios reales)
+
+Los problemas principales:
+
+1. **Imágenes sin optimizar** - Las imágenes del hero eran PNGs de más de 2MB
+2. **JavaScript que bloqueaba el render** - 800KB de JS antes del primer paint
+3. **Sin priorización de imágenes** - La imagen del LCP cargaba después de otros recursos
+4. **Scripts de terceros** - Analytics y widgets de chat cargando de forma síncrona
+5. **Sin estrategia de cache** - Cada visita descargaba todo de nuevo
+
+## Fix #1: Optimización de imágenes (la mayor ganancia)
+
+### Antes
+```jsx
+// ❌ Raw img tag with massive PNG
+<img src="/hero-banner.png" alt="Sale" />
+```
+
+### Después
+```jsx
+// ✅ Next.js Image with priority
+import Image from 'next/image'
+
+<Image
+  src="/hero-banner.png"
+  alt="Sale"
+  width={1200}
+  height={600}
+  priority // Tells Next.js this is the LCP image
+  placeholder="blur"
+  blurDataURL={blurDataUrl}
+/>
+```
+
+**Resultados:**
+- Conversión automática a WebP/AVIF (-70% en el tamaño de archivo)
+- Srcset responsive (el tamaño correcto para cada dispositivo)
+- Lazy loading para las imágenes debajo del fold
+- Placeholder con blur para mejorar la performance percibida
+
+**Impacto: -1.2s en el LCP**
+
+### Imágenes de producto a escala
+
+Teníamos más de 10,000 imágenes de producto. Optimizarlas manualmente no era opción.
+
+```jsx
+// next.config.js
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+  },
+}
+```
+
+Para las tarjetas de producto, implementé carga progresiva:
+
+```jsx
+function ProductCard({ product }) {
+  return (
+    <div className="product-card">
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={300}
+        height={300}
+        loading="lazy" // Not priority - these are below fold
+        placeholder="blur"
+        blurDataURL={product.blurHash}
+      />
+    </div>
+  )
+}
+```
+
+## Fix #2: Code splitting y optimización del bundle
+
+Nuestro bundle inicial de JS pesaba **800KB**. Demasiado para el primer paint.
+
+### Imports dinámicos para componentes pesados
+
+```jsx
+// ❌ Before: Everything loads upfront
+import { HeavyChart } from '@/components/HeavyChart'
+import { ReviewsCarousel } from '@/components/ReviewsCarousel'
+
+// ✅ After: Load when needed
+import dynamic from 'next/dynamic'
+
+const HeavyChart = dynamic(() => import('@/components/HeavyChart'), {
+  loading: () => <ChartSkeleton />,
+  ssr: false // Client-only component
+})
+
+const ReviewsCarousel = dynamic(() => import('@/components/ReviewsCarousel'), {
+  loading: () => <ReviewsSkeleton />
+})
+```
+
+### Splitting por rutas
+
+Next.js lo hace automáticamente, pero lo hicimos explícito:
+
+```jsx
+// pages/product/[slug].tsx
+// Only loads product page code when visiting /product/*
+
+// pages/checkout/index.tsx  
+// Checkout code separate from product browsing
+```
+
+### Analizando el bundle
+
+```bash
+# Add to package.json scripts
+"analyze": "ANALYZE=true next build"
+```
+
+```jsx
+// next.config.js
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer({
+  // config
+})
+```
+
+Esto reveló que estábamos importando librerías completas cuando solo necesitábamos partes:
+
+```jsx
+// ❌ Imports entire lodash (70KB)
+import _ from 'lodash'
+
+// ✅ Imports only what we need (4KB)
+import debounce from 'lodash/debounce'
+```
+
+**Impacto: -0.8s en el LCP** (el bundle pasó de 800KB a 320KB)
+
+## Fix #3: Critical rendering path
+
+### Preconnect a los orígenes esenciales
+
+```jsx
+// app/layout.tsx or pages/_document.tsx
+<Head>
+  <link rel="preconnect" href="https://cdn.example.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://analytics.example.com" />
+</Head>
+```
+
+### Optimización de fuentes
+
+```jsx
+// ❌ Before: Fonts block rendering
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+// ✅ After: Next.js font optimization
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap', // Show fallback while loading
+  preload: true,
+})
+```
+
+### CSS crítico inline
+
+Para el contenido above-the-fold, pusimos los estilos críticos inline:
+
+```jsx
+// Critical CSS for hero section
+<style dangerouslySetInnerHTML={{ __html: `
+  .hero { min-height: 60vh; }
+  .hero-image { object-fit: cover; }
+`}} />
+```
+
+**Impacto: -0.4s en el LCP**
+
+## Fix #4: Gestión de scripts de terceros
+
+Analytics, widgets de chat y píxeles de marketing cargaban de forma síncrona y bloqueaban el render.
+
+### Diferir los scripts no esenciales
+
+```jsx
+// ❌ Before: Blocks rendering
+<script src="https://chat-widget.com/loader.js"></script>
+
+// ✅ After: Load after page is interactive
+<Script 
+  src="https://chat-widget.com/loader.js"
+  strategy="lazyOnload" // Loads after everything else
+/>
+```
+
+### Cargar analytics como debe ser
+
+```jsx
+import Script from 'next/script'
+
+// Google Analytics - load after hydration
+<Script
+  src="https://www.googletagmanager.com/gtag/js?id=GA_ID"
+  strategy="afterInteractive"
+/>
+```
+
+### Patrón facade para widgets pesados
+
+En lugar de cargar el widget de chat completo de inmediato:
+
+```jsx
+function ChatWidget() {
+  const [loaded, setLoaded] = useState(false)
+  
+  if (!loaded) {
+    return (
+      <button onClick={() => setLoaded(true)}>
+        💬 Chat with us
+      </button>
+    )
+  }
+  
+  return <ActualChatWidget />
+}
+```
+
+**Impacto: -0.5s en el LCP**
+
+## Fix #5: Estrategia de caching
+
+### Generación estática donde sea posible
+
+```jsx
+// Product pages: ISR with 60-second revalidation
+export async function generateStaticParams() {
+  const products = await getTopProducts(100)
+  return products.map(p => ({ slug: p.slug }))
+}
+
+export const revalidate = 60 // Regenerate every 60 seconds
+```
+
+### Headers de cache para assets
+
+```jsx
+// next.config.js
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  },
+}
+```
+
+**Impacto: -0.3s en visitas recurrentes**
+
+## Los resultados
+
+Después de implementar todos los fixes a lo largo de 3 meses:
+
+| Métrica | Antes | Después | Cambio |
+|--------|--------|-------|--------|
+| **LCP** | 5.8s | 2.5s | -56% |
+| **FCP** | 3.2s | 1.4s | -56% |
+| **TTI** | 8.1s | 4.2s | -48% |
+| **Tamaño del bundle** | 800KB | 320KB | -60% |
+| **Lighthouse** | 54 | 92 | +70% |
+
+Y el impacto en el negocio:
+
+| Métrica | Antes | Después | Cambio |
+|--------|--------|-------|--------|
+| **Tasa de rebote** | 62% | 34% | -45% |
+| **Conversión** | 1.8% | 2.6% | +44% |
+| **Sesión promedio** | 1:45 | 3:12 | +83% |
+
+## Aprendizajes clave
+
+1. **Mide primero** - No adivines. Usa datos de usuarios reales de Vercel Analytics o similar.
+
+2. **Las imágenes suelen ser la mayor ganancia** - El componente Image de Next.js es tu mejor aliado.
+
+3. **El JavaScript es costoso** - Cada KB de JS tiene un costo. Haz code splitting de forma agresiva.
+
+4. **Los scripts de terceros se acumulan** - Audita todo lo que carga en tu página.
+
+5. **Performance = Ingresos** - En e-commerce, la velocidad impacta directamente el resultado del negocio.
+
+## Herramientas que uso
+
+- **Lighthouse** - Auditorías rápidas durante el desarrollo
+- **WebPageTest** - Pruebas en dispositivos reales con vista de filmstrip
+- **Vercel Analytics** - Métricas de usuarios reales en producción
+- **Bundle Analyzer** - Para entender qué hay dentro de tu bundle de JS
+
+---
+
+*¿Necesitas ayuda optimizando tu aplicación de Next.js? [Hablemos →](https://calendly.com/rulocode/30min)*

@@ -6,3 +6,4 @@ export { TeamAvatars } from "@/components/TeamAvatars";
 export { HeadingLink } from "@/components/HeadingLink";
 export { RouteGuard } from "@/components/RouteGuard";
 export { Testimonials } from "@/components/Testimonials";
+export { ThemeToggle } from "@/components/ThemeToggle";

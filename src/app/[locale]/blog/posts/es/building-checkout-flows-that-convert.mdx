@@ -1,0 +1,415 @@
+---
+title: "Construyendo flujos de checkout que convierten: lecciones del e-commerce de salud"
+publishedAt: "2026-01-20"
+image: "/images/projects/project-01/cover-03.jpg"
+summary: "Lo que aprendí construyendo sistemas de checkout para una farmacia digital. Manejar recetas, seguros y pagos mientras se maximiza la conversión."
+tag: "E-commerce"
+---
+
+# Construyendo flujos de checkout que convierten: lecciones del e-commerce de salud
+
+La mayoría de los consejos para optimizar el checkout asumen que vendes camisetas o gadgets. Agregar al carrito → Ingresar dirección → Pagar → Listo.
+
+Pero, ¿qué pasa si tu checkout necesita:
+- Validar recetas médicas antes de permitir la compra
+- Verificar la cobertura del seguro en tiempo real
+- Manejar múltiples métodos de pago, incluyendo efectivo
+- Cumplir con regulaciones del sector salud
+
+Durante los últimos 4 años he estado construyendo sistemas de checkout para una farmacia digital en México. Esto es lo que aprendí sobre construir flujos que convierten, incluso con requerimientos complejos.
+
+## La complejidad del checkout en salud
+
+Un pedido típico en nuestra farmacia puede incluir:
+
+1. **Productos OTC** (vitaminas, vendas) - Sin requerimientos especiales
+2. **Medicamentos con receta** - Requieren subir una receta válida + revisión de un farmacéutico
+3. **Sustancias controladas** - Verificación adicional + límites de cantidad
+4. **Productos cubiertos por seguro** - Autorización en tiempo real con las aseguradoras
+
+Cada categoría tiene reglas distintas, y un solo carrito puede contener todas a la vez.
+
+El reto: **¿cómo construyes un checkout que maneje esta complejidad sin destruir la conversión?**
+
+## Principio #1: Revelación progresiva
+
+No muestres la complejidad hasta que sea necesaria.
+
+### Mal: Todo por adelantado
+```
+Step 1: Upload prescriptions for ALL items
+Step 2: Enter insurance info
+Step 3: Verify identity
+Step 4: Enter address
+Step 5: Pay
+```
+
+Los usuarios ven 5 pasos y se van.
+
+### Bien: Mostrar según se necesite
+```
+Step 1: Enter address (everyone does this)
+Step 2: [IF prescription items] Upload Rx
+Step 3: [IF insured] Enter insurance
+Step 4: Pay
+```
+
+Para un pedido simple de productos OTC, el usuario solo ve 2 pasos. La complejidad solo aparece cuando es relevante.
+
+### Implementación
+
+```tsx
+function CheckoutFlow({ cart }) {
+  const steps = useMemo(() => {
+    const baseSteps = ['address', 'payment']
+    
+    if (cart.hasPrescriptionItems) {
+      baseSteps.splice(1, 0, 'prescription')
+    }
+    
+    if (cart.hasInsurableItems && user.hasInsurance) {
+      baseSteps.splice(-1, 0, 'insurance')
+    }
+    
+    return baseSteps
+  }, [cart, user])
+  
+  return <StepWizard steps={steps} />
+}
+```
+
+**Resultado:** El promedio de pasos por checkout bajó de 4.2 a 2.8. La conversión aumentó 18%.
+
+## Principio #2: Validación asíncrona, UI optimista
+
+La validación de recetas toma tiempo (revisión del farmacéutico). La autorización del seguro puede tardar de 10 a 30 segundos. No hagas esperar a los usuarios.
+
+### Mal: Flujo bloqueante
+```
+User uploads Rx → Spinner for 2 minutes → Continue
+```
+
+### Bien: Progreso no bloqueante
+```
+User uploads Rx → "We're reviewing this" → Continue to address
+→ Background: Validation happens
+→ At payment: Show result
+```
+
+### Implementación
+
+```tsx
+function PrescriptionStep({ onNext }) {
+  const [uploadState, setUploadState] = useState('idle')
+  
+  const handleUpload = async (file) => {
+    setUploadState('uploading')
+    
+    // Upload and start background validation
+    const { validationId } = await uploadPrescription(file)
+    
+    // Store validation ID, don't wait for result
+    setValidationPending(validationId)
+    setUploadState('pending-review')
+    
+    // Let user continue immediately
+    onNext()
+  }
+  
+  return (
+    <div>
+      <FileUpload onUpload={handleUpload} />
+      {uploadState === 'pending-review' && (
+        <Banner type="info">
+          ✓ Uploaded! Our pharmacist is reviewing. 
+          You can continue while we verify.
+        </Banner>
+      )}
+    </div>
+  )
+}
+```
+
+Luego, en el paso de pago:
+
+```tsx
+function PaymentStep() {
+  const validationResult = useValidationStatus(validationPending)
+  
+  if (validationResult === 'rejected') {
+    return <PrescriptionIssue reason={validationResult.reason} />
+  }
+  
+  if (validationResult === 'pending') {
+    return (
+      <div>
+        <PaymentForm disabled />
+        <Banner>
+          Almost ready! Prescription review in progress...
+        </Banner>
+      </div>
+    )
+  }
+  
+  return <PaymentForm />
+}
+```
+
+**Resultado:** El tiempo en el checkout bajó 40%. Los usuarios no se sintieron "atascados" esperando.
+
+## Principio #3: Defaults inteligentes
+
+Cada punto de decisión es un posible abandono. Reduce las decisiones usando defaults inteligentes.
+
+### Defaults de dirección
+
+```tsx
+function AddressStep({ user }) {
+  // Pre-fill with last used address
+  const defaultAddress = user.addresses.find(a => a.isDefault) 
+    || user.addresses[0]
+  
+  const [address, setAddress] = useState(defaultAddress)
+  
+  return (
+    <div>
+      {user.addresses.length > 0 ? (
+        // Show saved addresses as selectable cards
+        <AddressSelector 
+          addresses={user.addresses}
+          selected={address}
+          onSelect={setAddress}
+        />
+      ) : (
+        // Only show form if no saved addresses
+        <AddressForm onChange={setAddress} />
+      )}
+    </div>
+  )
+}
+```
+
+### Defaults de pago
+
+```tsx
+function PaymentStep({ user, cart }) {
+  // Default to last used payment method
+  const defaultMethod = user.paymentMethods[0]
+  
+  // But suggest installments for large orders
+  const suggestInstallments = cart.total > 2000
+  
+  return (
+    <div>
+      <PaymentMethodSelector 
+        methods={user.paymentMethods}
+        default={defaultMethod}
+      />
+      
+      {suggestInstallments && (
+        <InstallmentsBanner>
+          💡 Pay in 3 months interest-free with select cards
+        </InstallmentsBanner>
+      )}
+    </div>
+  )
+}
+```
+
+**Resultado:** El tiempo de checkout para usuarios recurrentes bajó 60%.
+
+## Principio #4: Recuperación de errores, no bloqueo por errores
+
+Cuando algo falla (autorización del seguro, pago, validación), no dejes al usuario en un callejón sin salida.
+
+### Mal: Bloqueo total
+```
+❌ Insurance authorization failed. 
+Please contact support.
+[Dead end]
+```
+
+### Bien: Ofrecer alternativas
+```
+⚠️ Insurance authorization failed for this item.
+
+You can:
+○ Pay full price ($45.00) and submit for reimbursement
+○ Try a different insurance
+○ Remove this item and continue
+
+[Continue with selected option]
+```
+
+### Implementación
+
+```tsx
+function InsuranceFailure({ item, error, onResolve }) {
+  const options = [
+    {
+      id: 'pay-cash',
+      label: `Pay full price (${formatCurrency(item.cashPrice)})`,
+      sublabel: 'You can submit for reimbursement later',
+    },
+    {
+      id: 'retry-insurance',
+      label: 'Try different insurance',
+      sublabel: 'If you have another policy',
+    },
+    {
+      id: 'remove-item',
+      label: 'Remove from cart',
+      sublabel: 'Continue with other items',
+    },
+  ]
+  
+  return (
+    <div>
+      <Alert type="warning">
+        Insurance authorization failed: {error.message}
+      </Alert>
+      
+      <RadioGroup 
+        options={options} 
+        onChange={(option) => onResolve(option)}
+      />
+    </div>
+  )
+}
+```
+
+**Resultado:** El abandono del checkout por errores bajó 70%.
+
+## Principio #5: Señales de confianza en los puntos de decisión
+
+Las compras de salud implican confianza. Muestra señales donde los usuarios dudan.
+
+### En el carrito
+```tsx
+<CartSummary>
+  <TrustBadge icon="shield">
+    Licensed pharmacy · COFEPRIS certified
+  </TrustBadge>
+  <TrustBadge icon="lock">
+    Your health data is encrypted
+  </TrustBadge>
+</CartSummary>
+```
+
+### En el pago
+```tsx
+<PaymentForm>
+  <SecureIndicator>
+    🔒 256-bit SSL encryption
+  </SecureIndicator>
+  
+  <PaymentLogos>
+    <img src="/visa.svg" alt="Visa" />
+    <img src="/mastercard.svg" alt="Mastercard" />
+    <img src="/oxxo.svg" alt="OXXO" />
+  </PaymentLogos>
+</PaymentForm>
+```
+
+### Después del pedido
+```tsx
+<OrderConfirmation>
+  <Timeline>
+    <TimelineItem status="complete">
+      Order received
+    </TimelineItem>
+    <TimelineItem status="active">
+      Pharmacist review (usually 30 min)
+    </TimelineItem>
+    <TimelineItem status="pending">
+      Ready for delivery
+    </TimelineItem>
+  </Timeline>
+</OrderConfirmation>
+```
+
+## La arquitectura
+
+Así estructuramos el sistema de checkout:
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  Checkout Context                    │
+│  (cart, user, validation states, payment states)    │
+└─────────────────────────────────────────────────────┘
+                          │
+        ┌─────────────────┼─────────────────┐
+        ▼                 ▼                 ▼
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│   Address    │  │ Prescription │  │   Payment    │
+│    Module    │  │    Module    │  │    Module    │
+└──────────────┘  └──────────────┘  └──────────────┘
+        │                 │                 │
+        ▼                 ▼                 ▼
+┌──────────────────────────────────────────────────────┐
+│              Background Services                      │
+│  • Address validation    • Rx verification           │
+│  • Shipping calculation  • Insurance auth            │
+│  • Inventory check       • Payment processing        │
+└──────────────────────────────────────────────────────┘
+```
+
+Cada módulo es independiente:
+- Se puede agregar o quitar según el contenido del carrito
+- Tiene sus propios estados de carga y error
+- No bloquea a los demás módulos innecesariamente
+
+## Métricas que importan
+
+Mide estas métricas para optimizar tu checkout:
+
+| Métrica | Qué te dice |
+|--------|------------------|
+| **Tasa de finalización por paso** | Dónde abandonan los usuarios |
+| **Tiempo por paso** | Dónde batallan los usuarios |
+| **Tasa de recuperación de errores** | Qué tan bien manejas las fallas |
+| **Distribución de métodos de pago** | Qué opciones priorizar |
+| **Conversión de usuarios recurrentes** | Qué tan buenos son tus defaults |
+
+Construimos un dashboard que muestra:
+```
+Checkout Funnel (Last 7 Days)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cart        ████████████████████ 100% (8,420)
+Address     █████████████████░░░  85% (7,157)  
+Rx Upload   ████████████████░░░░  78% (6,567)
+Payment     ██████████████░░░░░░  72% (6,062)
+Complete    █████████████░░░░░░░  68% (5,725)
+
+Biggest drop: Cart → Address (15%)
+Action: Added guest checkout option
+```
+
+## Resultados
+
+Después de 18 meses de iteración:
+
+| Métrica | Antes | Después | Cambio |
+|--------|--------|-------|--------|
+| **Conversión del checkout** | 52% | 68% | +31% |
+| **Tiempo promedio en checkout** | 8:45 | 4:20 | -50% |
+| **Abandono por errores** | 34% | 10% | -70% |
+| **Conversión de usuarios recurrentes** | 61% | 82% | +34% |
+
+## Aprendizajes clave
+
+1. **Oculta la complejidad hasta que sea necesaria** - La revelación progresiva mantiene a los usuarios avanzando
+
+2. **No bloquees por operaciones asíncronas** - Deja que los usuarios continúen mientras los procesos corren en background
+
+3. **Los defaults inteligentes reducen la fricción** - Cada decisión es un posible abandono
+
+4. **Los errores deben ofrecer caminos hacia adelante** - Nunca dejes a tus usuarios en un callejón sin salida
+
+5. **Las señales de confianza importan en compras sensibles** - Muestra seguridad donde los usuarios dudan
+
+6. **Mide paso a paso** - La conversión agregada esconde dónde estás perdiendo gente
+
+---
+
+*¿Estás construyendo un sistema de checkout complejo? Llevo años resolviendo estos problemas. [Hablemos →](https://calendly.com/rulocode/30min)*
