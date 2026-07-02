@@ -103,6 +103,8 @@
     "availableInSpanishOnly": "Este artículo está disponible solo en español por ahora.",
     "description": "Artículos técnicos sobre React, Next.js, GraphQL y la construcción de aplicaciones financieras escalables.",
     "label": "Blog",
+    "readingTime": "{minutes} min de lectura",
+    "related": "Artículos relacionados",
     "title": "Escribo sobre frontend, performance y fintech"
   },
   "footer": {

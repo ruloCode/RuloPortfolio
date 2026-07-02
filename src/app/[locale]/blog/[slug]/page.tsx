@@ -14,6 +14,8 @@ import { baseURL, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { CtaBanner } from "@/components";
 import { formatDate } from "@/app/utils/formatDate";
+import { readingTime } from "@/app/utils/readingTime";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import ScrollToHash from "@/components/ScrollToHash";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
@@ -201,6 +203,9 @@ export default async function Blog({ params }: BlogParams) {
         <Text variant="body-default-s" onBackground="neutral-weak">
           {formatDate(post.metadata.publishedAt, false, params.locale)}
         </Text>
+        <Text variant="body-default-s" onBackground="neutral-weak">
+          · {t("blog.readingTime", { minutes: readingTime(post.content) })}
+        </Text>
       </Row>
       {post.isFallback && (
         <Feedback icon variant="info" description={t("blog.availableInEnglishOnly")} />
@@ -208,6 +213,11 @@ export default async function Blog({ params }: BlogParams) {
       <Column as="article" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
+      <RelatedPosts
+        currentSlug={post.slug}
+        tag={typeof post.metadata.tag === "string" ? post.metadata.tag : undefined}
+        locale={params.locale}
+      />
       <CtaBanner
         title={t("services.cta.title")}
         description={t("services.cta.description")}

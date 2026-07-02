@@ -80,8 +80,9 @@ export default async function Blog({ params: { locale } }: PageParams) {
         {blog.title}
       </Heading>
       <Column fillWidth flex={1}>
-        <Posts range={[1, 3]} thumbnail locale={locale} />
-        <Posts range={[4]} columns="2" locale={locale} />
+        <Posts range={[1, 1]} variant="featured" locale={locale} />
+        <Posts range={[2, 4]} thumbnail locale={locale} />
+        <Posts range={[5]} columns="2" locale={locale} />
       </Column>
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>

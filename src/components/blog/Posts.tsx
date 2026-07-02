@@ -7,9 +7,16 @@ interface PostsProps {
   columns?: "1" | "2" | "3";
   thumbnail?: boolean;
   locale?: string;
+  variant?: "default" | "featured";
 }
 
-export function Posts({ range, columns = "1", thumbnail = false, locale = "en" }: PostsProps) {
+export function Posts({
+  range,
+  columns = "1",
+  thumbnail = false,
+  locale = "en",
+  variant = "default",
+}: PostsProps) {
   let allBlogs = getPosts(["src", "app", "[locale]", "blog", "posts"], locale);
 
   const sortedBlogs = allBlogs.sort((a, b) => {
@@ -25,7 +32,13 @@ export function Posts({ range, columns = "1", thumbnail = false, locale = "en" }
       {displayedBlogs.length > 0 && (
         <Grid columns={columns} mobileColumns="1" fillWidth marginBottom="40" gap="m">
           {displayedBlogs.map((post) => (
-            <Post key={post.slug} post={post} thumbnail={thumbnail} locale={locale} />
+            <Post
+              key={post.slug}
+              post={post}
+              thumbnail={thumbnail}
+              locale={locale}
+              variant={variant}
+            />
           ))}
         </Grid>
       )}
