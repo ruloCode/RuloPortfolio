@@ -1,10 +1,23 @@
-import { Column, Flex, Heading } from "@/once-ui/components";
+import { Column, Heading } from "@/once-ui/components";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources";
-import { blog, person, newsletter } from "@/app/resources/content";
+import { createI18nContent } from "@/app/resources/content-i18n";
+import { localeAlternates } from "@/app/utils/seo";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export async function generateMetadata() {
+interface PageParams {
+  params: { locale: string };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params: { locale } }: PageParams) {
+  const t = await getTranslations({ locale });
+  const { blog } = createI18nContent(t);
   const title = blog.title;
   const description = blog.description;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -12,6 +25,7 @@ export async function generateMetadata() {
   return {
     title,
     description,
+    alternates: localeAlternates(locale, "/blog"),
     openGraph: {
       title,
       description,
@@ -33,7 +47,11 @@ export async function generateMetadata() {
   };
 }
 
-export default function Blog() {
+export default async function Blog({ params: { locale } }: PageParams) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations();
+  const { blog, person, newsletter } = createI18nContent(t);
+
   return (
     <Column maxWidth="s">
       <script
@@ -46,13 +64,13 @@ export default function Blog() {
             headline: blog.title,
             description: blog.description,
             url: `https://${baseURL}/blog`,
-            image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
+            image: `https://${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
             author: {
               "@type": "Person",
               name: person.name,
               image: {
                 "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+                url: `https://${baseURL}${person.avatar}`,
               },
             },
           }),
@@ -62,8 +80,8 @@ export default function Blog() {
         {blog.title}
       </Heading>
       <Column fillWidth flex={1}>
-        <Posts range={[1, 3]} thumbnail />
-        <Posts range={[4]} columns="2" />
+        <Posts range={[1, 3]} thumbnail locale={locale} />
+        <Posts range={[4]} columns="2" locale={locale} />
       </Column>
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>

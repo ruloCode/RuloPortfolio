@@ -1,0 +1,272 @@
+{
+  "about": {
+    "calendar": "Agenda una llamada",
+    "description": "Conoce a Andrés Santana, Senior Frontend Engineer de Colombia",
+    "intro": {
+      "p1": "La mayoría de los desarrolladores construyen features. <strong>Yo construyo ingresos.</strong>",
+      "p2": "Durante más de 4 años he sido el líder de frontend de la farmacia digital de mayor crecimiento en México. Cuando llegué, el sitio tardaba 5.8 segundos en cargar. Los usuarios se iban. Las ventas se estancaban. Lo arreglé: reduje el tiempo de carga en un 56% y logré un <strong>aumento del 23% en conversiones</strong>.",
+      "p3": "Hoy, la plataforma que diseñé procesa <strong>más de $2M mensuales</strong>, atiende a más de 50,000 pacientes y mantiene un uptime del 99.9%. Lideré la migración a Next.js 15 sin downtime mientras el equipo seguía lanzando features en paralelo.",
+      "p4": "Trabajo mejor con equipos que valoran <strong>la velocidad, las conversiones y el código que escala</strong>. Si ese es tu caso, hablemos.",
+      "title": "Introducción"
+    },
+    "label": "Sobre mí",
+    "studies": {
+      "institutions": {
+        "google": {
+          "description": "Estudié ciberseguridad.",
+          "name": "Google & MinTic"
+        },
+        "platzi": {
+          "description": "Estudié ingeniería de software.",
+          "name": "Platzi"
+        }
+      },
+      "title": "Estudios"
+    },
+    "technical": {
+      "skills": {
+        "aws": {
+          "description": "Despliegue y escalamiento de infraestructura frontend en AWS. Experiencia con S3 + CloudFront para assets estáticos, Lambda@Edge para renderizado dinámico y Amplify para despliegues full-stack con integración CI/CD.",
+          "title": "AWS"
+        },
+        "cicd": {
+          "description": "Pipelines automatizados con GitHub Actions, Vercel y AWS. Previews por feature branch, gates de testing automatizado, presupuestos de Lighthouse CI y despliegues sin downtime para aplicaciones en producción.",
+          "title": "CI/CD & DevOps"
+        },
+        "graphql": {
+          "description": "Diseño y consumo de APIs GraphQL con Apollo Client y codegen para queries completamente tipadas. Suscripciones en tiempo real, actualizaciones optimistas de UI y gestión eficiente de caché para datos financieros complejos.",
+          "title": "GraphQL"
+        },
+        "performance": {
+          "description": "Enfoque sistemático de Core Web Vitals: code-splitting, lazy loading, optimización de imágenes (WebP/AVIF), CSS crítico inline y estrategias de caché. Historial comprobado reduciendo el LCP en 56% en plataformas de alto tráfico.",
+          "title": "Optimización de Performance"
+        },
+        "react": {
+          "description": "Construcción de aplicaciones en producción con React 18+ y Next.js App Router. Experiencia con Server Components, Streaming, Parallel Routes e ISR para frontends de alto rendimiento optimizados para SEO.",
+          "title": "React / Next.js"
+        },
+        "tailwind": {
+          "description": "Estilos utility-first con Tailwind CSS para desarrollo de UI rápido y consistente. Tokens de design system personalizados, layouts responsivos y theming a nivel de componente integrado con herramientas como Figma.",
+          "title": "Tailwind CSS"
+        },
+        "typescript": {
+          "description": "TypeScript estricto en todo el stack. Contratos de API type-safe, utility types genéricos y seguridad de tipos de extremo a extremo, desde los esquemas de base de datos hasta los componentes de UI. Reduce errores en runtime y acelera la velocidad del equipo.",
+          "title": "TypeScript"
+        },
+        "xstate": {
+          "description": "Modelado de flujos de UI complejos con máquinas de estados finitos usando XState. Ideal para procesos de checkout multi-paso, flujos de pago y workflows de aprobación donde las transiciones de estado predecibles son críticas.",
+          "title": "Manejo de Estado (XState)"
+        }
+      },
+      "title": "Habilidades Técnicas"
+    },
+    "title": "Sobre mí",
+    "work": {
+      "experiences": {
+        "freelance": {
+          "achievements": {
+            "1": "Entregué más de 10 proyectos para startups y pymes en e-commerce, SaaS y bienes raíces.",
+            "2": "Construí plataformas web de extremo a extremo, desde diseños en Figma hasta despliegue en producción con Vercel."
+          },
+          "company": "Freelance",
+          "role": "Desarrollador Frontend & Consultor",
+          "timeframe": "2019 - Presente"
+        },
+        "vitau": {
+          "achievements": {
+            "1": "Lideré la arquitectura frontend de la farmacia digital de mayor crecimiento en México, atendiendo a <strong>más de 50,000 pacientes</strong> con condiciones crónicas.",
+            "2": "Reduje el LCP de 5.8s a 2.5s (<strong>-56%</strong>), mejorando directamente la tasa de conversión en un <strong>23%</strong>.",
+            "3": "Diseñé un sistema de checkout modular que procesa <strong>más de $2M mensuales</strong> en transacciones con 99.9% de uptime.",
+            "4": "Lideré la migración de React legacy a Next.js 15 <strong>sin downtime</strong>, reduciendo el tamaño del bundle en 40%."
+          },
+          "company": "Vitau",
+          "role": "Senior Frontend Engineer & Tech Lead",
+          "timeframe": "2020 - Presente"
+        }
+      },
+      "title": "Experiencia Laboral"
+    }
+  },
+  "blog": {
+    "availableInEnglishOnly": "Este artículo está disponible solo en inglés por ahora.",
+    "availableInSpanishOnly": "Este artículo está disponible solo en español por ahora.",
+    "description": "Artículos técnicos sobre React, Next.js, GraphQL y la construcción de aplicaciones financieras escalables.",
+    "label": "Blog",
+    "title": "Escribo sobre frontend, performance y fintech"
+  },
+  "footer": {
+    "bookCall": "Agenda una llamada"
+  },
+  "gallery": {
+    "description": "Una colección de fotos de Andrés Santana",
+    "label": "Galería",
+    "title": "Mi galería de fotos"
+  },
+  "home": {
+    "badge": "Abierto a oportunidades",
+    "blogHeading": "Lo último del blog",
+    "description": "Senior Frontend Engineer especializado en React, Next.js y TypeScript. Más de 5 años construyendo aplicaciones escalables para plataformas de salud y financieras. Más de $2M/mes en transacciones procesadas.",
+    "headline": "Construyo frontends de alto rendimiento que procesan millones en transacciones.",
+    "label": "Inicio",
+    "subline": "Senior Frontend Engineer especializado en React, Next.js y TypeScript. Más de 5 años construyendo aplicaciones escalables para plataformas de salud y financieras. <strong>+$2M/mes</strong> en transacciones procesadas. <strong>+50K usuarios</strong> atendidos. Migraciones <strong>sin downtime</strong>.",
+    "title": "Andrés Santana | Desarrollador Senior React & Next.js | Fintech y Aplicaciones Escalables"
+  },
+  "nav": {
+    "about": "Sobre mí",
+    "blog": "Blog",
+    "gallery": "Galería",
+    "home": "Inicio",
+    "ia": "IA",
+    "services": "Servicios",
+    "work": "Proyectos"
+  },
+  "newsletter": {
+    "button": "Suscribirme",
+    "description": "Escribo ocasionalmente sobre desarrollo web, tecnología y la intersección entre creatividad e ingeniería.",
+    "placeholder": "Email",
+    "title": "Suscríbete al newsletter de Andrés"
+  },
+  "notFound": {
+    "heading": "Página no encontrada",
+    "text": "La página que buscas no existe."
+  },
+  "person": {
+    "languages": {
+      "english": "Inglés (Profesional)",
+      "spanish": "Español (Nativo)"
+    },
+    "role": "Senior Frontend Engineer | React & Next.js | Fintech y Aplicaciones Escalables"
+  },
+  "projectCard": {
+    "caseStudy": "Leer case study",
+    "viewProject": "Ver proyecto"
+  },
+  "projectPage": {
+    "viewCode": "Ver código",
+    "viewLive": "Ver en vivo"
+  },
+  "services": {
+    "cta": {
+      "button": "Agenda una llamada",
+      "description": "Cuéntame de tu proyecto en una llamada gratuita de 30 minutos. Sin compromiso y sin discurso de ventas: solo una conversación honesta sobre si puedo ayudarte.",
+      "title": "¿Listo para construir algo grande?"
+    },
+    "description": "Desarrollo frontend, optimización de performance y soluciones fintech escalables. Construyamos algo grande juntos.",
+    "engagement": {
+      "consulting": {
+        "description": "Revisiones de arquitectura, auditorías de código y sesiones de estrategia técnica. Facturación por hora o por día.",
+        "title": "Consultoría"
+      },
+      "project": {
+        "description": "Alcance fijo, precio fijo. Ideal para proyectos bien definidos: landing pages, dashboards, features de e-commerce.",
+        "title": "Por proyecto"
+      },
+      "retainer": {
+        "badge": "Más popular",
+        "description": "Desarrollo y soporte continuo con disponibilidad garantizada. La mejor opción para trabajo de producto constante.",
+        "title": "Retainer mensual"
+      },
+      "title": "Modelos de Trabajo"
+    },
+    "faq": {
+      "items": {
+        "1": {
+          "answer": "Me especializo en frontends con React, Next.js y TypeScript, especialmente plataformas de e-commerce, fintech y salud donde el performance y las conversiones importan.",
+          "question": "¿Qué tipo de proyectos tomas?"
+        },
+        "2": {
+          "answer": "Sí. Llevo más de 5 años trabajando en remoto con equipos de México, Colombia y Estados Unidos, en inglés y español, y me adapto bien a distintas zonas horarias.",
+          "question": "¿Trabajas con equipos internacionales?"
+        },
+        "3": {
+          "answer": "Una landing page suele tomar de 1 a 2 semanas; un build o migración completa de e-commerce, de 6 a 12 semanas. Después de la llamada de descubrimiento recibes una propuesta escrita con un cronograma concreto.",
+          "question": "¿Cuánto tarda un proyecto típico?"
+        },
+        "4": {
+          "answer": "Ambos. Puedo encargarme del frontend de extremo a extremo o integrarme con tu equipo de ingeniería, incluyendo mentoría y code reviews.",
+          "question": "¿Trabajas solo o con equipos?"
+        },
+        "5": {
+          "answer": "El trabajo por proyecto tiene un precio fijo acordado desde el inicio. Los retainers y la consultoría se facturan por mes o por hora. Todo empieza con una llamada de descubrimiento gratuita.",
+          "question": "¿Cómo funciona el pricing?"
+        }
+      },
+      "title": "Preguntas frecuentes"
+    },
+    "hero": {
+      "intro": "Ayudo a empresas a lanzar frontends rápidos y confiables que convierten. Elige el modelo que te sirva, o agenda una llamada y lo definimos juntos.",
+      "title": "Trabaja Conmigo"
+    },
+    "label": "Servicios",
+    "offerings": {
+      "consulting": {
+        "bestFor": "Equipos que necesitan guía senior",
+        "description": "Revisiones de arquitectura, auditorías de código, mentoría de equipos y estrategia técnica.",
+        "title": "Consultoría Técnica"
+      },
+      "ecommerce": {
+        "bestFor": "Tiendas que necesitan convertir",
+        "description": "Flujos de checkout, catálogos de producto, integraciones de pago y optimización de conversión.",
+        "title": "Soluciones E-commerce"
+      },
+      "frontend": {
+        "bestFor": "Equipos de producto que lanzan rápido",
+        "description": "Aplicaciones React y Next.js de nivel producción, desde la arquitectura hasta el despliegue.",
+        "title": "Desarrollo Frontend"
+      },
+      "performance": {
+        "bestFor": "Sitios que pierden usuarios por lentitud",
+        "description": "Auditorías y fixes de Core Web Vitals. He reducido el LCP en 56% en plataformas de alto tráfico.",
+        "title": "Optimización de Performance"
+      },
+      "title": "Qué Hago"
+    },
+    "process": {
+      "steps": {
+        "1": {
+          "description": "Una llamada gratuita de 30 minutos para entender tu proyecto, objetivos y restricciones.",
+          "title": "Llamada de Descubrimiento"
+        },
+        "2": {
+          "description": "Una propuesta escrita con alcance, cronograma y precio fijo. Sin sorpresas.",
+          "title": "Propuesta"
+        },
+        "3": {
+          "description": "Desarrollo iterativo con demos semanales y visibilidad total del progreso.",
+          "title": "Desarrollo"
+        },
+        "4": {
+          "description": "Despliegue, documentación y una sesión de handover con tu equipo.",
+          "title": "Entrega"
+        }
+      },
+      "title": "Cómo Trabajo"
+    },
+    "title": "Trabaja Conmigo"
+  },
+  "testimonials": {
+    "items": {
+      "alvaro": {
+        "name": "Álvaro Pérez",
+        "quote": "La experiencia con Andrés ha sido excelente. Transformó nuestro branding y nos ayudó a crecer las ventas un 75% en tres meses. Seguimos trabajando de la mano en cada proyecto.",
+        "role": "Founder, Clandestine"
+      },
+      "carolina": {
+        "name": "Carolina Reyes",
+        "quote": "Trabajar con Andrés fue un antes y un después. Tomó nuestra app de React desactualizada y la migró a Next.js sin downtime. La productividad de nuestro equipo se duplicó gracias a la nueva arquitectura.",
+        "role": "Product Manager, Startup de Salud"
+      },
+      "diego": {
+        "name": "Diego Martínez",
+        "quote": "Andrés transformó nuestro flujo de checkout y redujo los tiempos de carga en 56%. El impacto en conversiones fue inmediato: vimos un aumento del 23% en semanas. No solo escribe código, entiende el negocio.",
+        "role": "CTO, Vitau"
+      }
+    },
+    "title": "Lo Que Dicen"
+  },
+  "work": {
+    "description": "Dashboards fintech, plataformas de salud y aplicaciones web de alto rendimiento que he construido.",
+    "label": "Proyectos",
+    "title": "Proyectos Seleccionados"
+  }
+}

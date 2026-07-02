@@ -8,6 +8,7 @@ import {
   SmartLink,
   Text,
 } from "@/once-ui/components";
+import { useTranslations } from "next-intl";
 import { TeamAvatars } from "./TeamAvatars";
 
 interface TeamMember {
@@ -37,6 +38,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   team,
   link,
 }) => {
+  const t = useTranslations("projectCard");
+
   return (
     <Column fillWidth gap="m">
       <Carousel
@@ -77,7 +80,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant="body-default-s">{t("caseStudy")}</Text>
                 </SmartLink>
               )}
               {link && (
@@ -86,7 +89,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant="body-default-s">{t("viewProject")}</Text>
                 </SmartLink>
               )}
             </Flex>

@@ -1,13 +1,14 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
 import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
-import { person, home, about, blog, work, gallery } from "@/app/resources/content";
+import { localizeHref, routing, usePathname, useRouter } from "@/i18n/routing";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -42,8 +43,39 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
 
 export default TimeDisplay;
 
+const LanguageSwitcher = () => {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
+
+  const switchTo = (nextLocale: (typeof routing.locales)[number]) => {
+    if (nextLocale === locale) return;
+    // Same-slug convention across locales keeps detail pages stable on switch
+    router.replace(pathname, { locale: nextLocale });
+  };
+
+  return (
+    <Flex gap="2" vertical="center" aria-label="Language">
+      {routing.locales.map((code) => (
+        <ToggleButton
+          key={code}
+          selected={locale === code}
+          onClick={() => switchTo(code)}
+          aria-label={code === "en" ? "Switch to English" : "Cambiar a español"}
+          label={code.toUpperCase()}
+        />
+      ))}
+    </Flex>
+  );
+};
+
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const locale = useLocale();
+  const t = useTranslations("nav");
+
+  const href = (path: string) => localizeHref(locale, path);
 
   return (
     <>
@@ -59,7 +91,7 @@ export const Header = () => {
         horizontal="center"
       >
         <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Flex hide="s">{person.location}</Flex>}
+          {display.location && <Flex hide="s">America/Bogota</Flex>}
         </Flex>
         <Flex fillWidth horizontal="center">
           <Flex
@@ -72,7 +104,7 @@ export const Header = () => {
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
-                <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
+                <ToggleButton prefixIcon="home" href={href("/")} selected={pathname === "/"} />
               )}
               <Line vert maxHeight="24" />
               {routes["/about"] && (
@@ -80,14 +112,14 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="person"
-                    href="/about"
-                    label={about.label}
+                    href={href("/about")}
+                    label={t("about")}
                     selected={pathname === "/about"}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="person"
-                    href="/about"
+                    href={href("/about")}
                     selected={pathname === "/about"}
                   />
                 </>
@@ -97,15 +129,32 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="grid"
-                    href="/work"
-                    label={work.label}
+                    href={href("/work")}
+                    label={t("work")}
                     selected={pathname.startsWith("/work")}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="grid"
-                    href="/work"
+                    href={href("/work")}
                     selected={pathname.startsWith("/work")}
+                  />
+                </>
+              )}
+              {routes["/services"] && (
+                <>
+                  <ToggleButton
+                    className="s-flex-hide"
+                    prefixIcon="briefcase"
+                    href={href("/services")}
+                    label={t("services")}
+                    selected={pathname.startsWith("/services")}
+                  />
+                  <ToggleButton
+                    className="s-flex-show"
+                    prefixIcon="briefcase"
+                    href={href("/services")}
+                    selected={pathname.startsWith("/services")}
                   />
                 </>
               )}
@@ -114,14 +163,14 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="book"
-                    href="/blog"
-                    label={blog.label}
+                    href={href("/blog")}
+                    label={t("blog")}
                     selected={pathname.startsWith("/blog")}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="book"
-                    href="/blog"
+                    href={href("/blog")}
                     selected={pathname.startsWith("/blog")}
                   />
                 </>
@@ -131,14 +180,14 @@ export const Header = () => {
                   <ToggleButton
                     className="s-flex-hide"
                     prefixIcon="gallery"
-                    href="/gallery"
-                    label={gallery.label}
+                    href={href("/gallery")}
+                    label={t("gallery")}
                     selected={pathname.startsWith("/gallery")}
                   />
                   <ToggleButton
                     className="s-flex-show"
                     prefixIcon="gallery"
-                    href="/gallery"
+                    href={href("/gallery")}
                     selected={pathname.startsWith("/gallery")}
                   />
                 </>
@@ -154,7 +203,8 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex hide="s">{display.time && <TimeDisplay timeZone={person.location} />}</Flex>
+            <LanguageSwitcher />
+            <Flex hide="s">{display.time && <TimeDisplay timeZone="America/Bogota" />}</Flex>
           </Flex>
         </Flex>
       </Flex>

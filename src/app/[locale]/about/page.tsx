@@ -13,9 +13,21 @@ import {
 import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
-import { person, about, social } from "@/app/resources/content";
+import { createI18nContent } from "@/app/resources/content-i18n";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export async function generateMetadata() {
+interface PageParams {
+  params: { locale: string };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params: { locale } }: PageParams) {
+  const t = await getTranslations({ locale });
+  const { about } = createI18nContent(t);
   const title = about.title;
   const description = about.description;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -23,6 +35,17 @@ export async function generateMetadata() {
   return {
     title,
     description,
+    alternates: {
+      canonical:
+        locale === routing.defaultLocale
+          ? `https://${baseURL}/about`
+          : `https://${baseURL}/${locale}/about`,
+      languages: {
+        en: `https://${baseURL}/about`,
+        es: `https://${baseURL}/es/about`,
+        "x-default": `https://${baseURL}/about`,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -44,7 +67,10 @@ export async function generateMetadata() {
   };
 }
 
-export default function About() {
+export default async function About({ params: { locale } }: PageParams) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations();
+  const { person, about, social } = createI18nContent(t);
   const structure = [
     {
       title: about.intro.title,
@@ -154,7 +180,7 @@ export default function About() {
                 vertical="center"
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Flex paddingX="8">Schedule a call</Flex>
+                <Flex paddingX="8">{about.calendar.text}</Flex>
                 <IconButton
                   href={about.calendar.link}
                   data-border="rounded"

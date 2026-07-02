@@ -31,6 +31,17 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiBriefcaseDuotone,
+  PiSparkleDuotone,
+  PiTrophyDuotone,
+  PiSunDuotone,
+  PiMoonDuotone,
+  PiRocketLaunchDuotone,
+  PiGaugeDuotone,
+  PiShoppingCartDuotone,
+  PiChartLineUpDuotone,
+  PiUsersThreeDuotone,
+  PiLightbulbDuotone,
 } from "react-icons/pi";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
@@ -68,4 +79,15 @@ export const iconLibrary: Record<string, IconType> = {
   x: FaXTwitter,
   clipboard: HiClipboard,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
+  briefcase: PiBriefcaseDuotone,
+  sparkle: PiSparkleDuotone,
+  trophy: PiTrophyDuotone,
+  sun: PiSunDuotone,
+  moon: PiMoonDuotone,
+  rocket: PiRocketLaunchDuotone,
+  gauge: PiGaugeDuotone,
+  cart: PiShoppingCartDuotone,
+  chartUp: PiChartLineUpDuotone,
+  team: PiUsersThreeDuotone,
+  lightbulb: PiLightbulbDuotone,
 };

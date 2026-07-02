@@ -1,27 +1,41 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
+import { getAllSlugs, getPost } from "@/app/utils/utils";
+import {
+  AvatarGroup,
+  Button,
+  Column,
+  Feedback,
+  Heading,
+  Row,
+  Text,
+} from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { localizeHref, routing } from "@/i18n/routing";
+
+const BLOG_PATH = ["src", "app", "[locale]", "blog", "posts"];
 
 interface BlogParams {
   params: {
+    locale: string;
     slug: string;
   };
 }
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+export async function generateStaticParams(): Promise<{ locale: string; slug: string }[]> {
+  // Union of slugs per locale so fallback (EN-only) posts still render under /es
+  const slugs = new Set(getAllSlugs(BLOG_PATH).map(({ slug }) => slug));
+  return routing.locales.flatMap((locale) =>
+    Array.from(slugs).map((slug) => ({ locale, slug })),
+  );
 }
 
-export function generateMetadata({ params: { slug } }: BlogParams) {
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
+export function generateMetadata({ params: { locale, slug } }: BlogParams) {
+  let post = getPost(BLOG_PATH, locale, slug);
 
   if (!post) {
     return;
@@ -31,21 +45,20 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
     title,
     publishedAt: publishedTime,
     summary: description,
-    images,
     image,
     team,
   } = post.metadata;
-  
+
   // Optimize title length (30-65 characters)
   const optimizedTitle = title.length > 60 ? `${title.substring(0, 57)}...` : title;
-  
+
   // Optimize description length (120-320 characters)
-  const optimizedDescription = description.length > 320 
-    ? `${description.substring(0, 317)}...` 
-    : description.length < 120 
+  const optimizedDescription = description.length > 320
+    ? `${description.substring(0, 317)}...`
+    : description.length < 120
       ? `${description} Read more about ${person.firstName}'s insights on this topic.`
       : description;
-      
+
   let ogImage = image
     ? `https://${baseURL}${image}`
     : `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -64,21 +77,29 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
     'design'
   ].filter(Boolean).join(', ');
 
+  const enUrl = `https://${baseURL}/blog/${post.slug}`;
+  const esUrl = `https://${baseURL}/es/blog/${post.slug}`;
+
   return {
     title: optimizedTitle,
     description: optimizedDescription,
     keywords,
     alternates: {
-      canonical: `https://${baseURL}/blog/${post.slug}`,
+      canonical: locale === routing.defaultLocale ? enUrl : esUrl,
+      languages: {
+        en: enUrl,
+        es: esUrl,
+        "x-default": enUrl,
+      },
     },
     openGraph: {
       title: optimizedTitle,
       description: optimizedDescription,
       type: "article",
       publishedTime,
-      url: `https://${baseURL}/blog/${post.slug}`,
+      url: locale === routing.defaultLocale ? enUrl : esUrl,
       siteName: `${person.firstName}'s Portfolio`,
-      locale: "en_US",
+      locale: locale === "es" ? "es_CO" : "en_US",
       images: [
         {
           url: ogImage,
@@ -92,11 +113,9 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
     },
     twitter: {
       card: "summary_large_image",
-      site: person.twitter,
       title: optimizedTitle,
       description: optimizedDescription,
       images: [ogImage],
-      creator: person.twitter,
     },
     viewport: "width=device-width, initial-scale=1.0",
     creator: person.name,
@@ -104,8 +123,11 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
   };
 }
 
-export default function Blog({ params }: BlogParams) {
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === params.slug);
+export default async function Blog({ params }: BlogParams) {
+  unstable_setRequestLocale(params.locale);
+
+  const t = await getTranslations();
+  let post = getPost(BLOG_PATH, params.locale, params.slug);
 
   if (!post) {
     notFound();
@@ -126,13 +148,12 @@ export default function Blog({ params }: BlogParams) {
     description: post.metadata.summary,
     image: post.metadata.image
       ? `https://${baseURL}${post.metadata.image}`
-      : `https://${baseURL}/og?title=${post.metadata.title}`,
-    url: `https://${baseURL}/blog/${post.slug}`,
+      : `https://${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`,
+    url: `https://${baseURL}${localizeHref(params.locale, `/blog/${post.slug}`)}`,
     author: {
       "@type": "Person",
       name: person.name,
       url: `https://${baseURL}`,
-      ...(person.twitter && { sameAs: `https://twitter.com/${person.twitter.replace('@', '')}` }),
     },
     publisher: {
       "@type": "Organization",
@@ -144,7 +165,7 @@ export default function Blog({ params }: BlogParams) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://${baseURL}/blog/${post.slug}`,
+      "@id": `https://${baseURL}${localizeHref(params.locale, `/blog/${post.slug}`)}`,
     },
     keywords: [
       post.metadata.title,
@@ -165,16 +186,25 @@ export default function Blog({ params }: BlogParams) {
           __html: JSON.stringify(structuredData),
         }}
       />
-      <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
+      <Button
+        href={localizeHref(params.locale, "/blog")}
+        weight="default"
+        variant="tertiary"
+        size="s"
+        prefixIcon="chevronLeft"
+      >
         Posts
       </Button>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
       <Row gap="12" vertical="center">
         {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
         <Text variant="body-default-s" onBackground="neutral-weak">
-          {formatDate(post.metadata.publishedAt)}
+          {formatDate(post.metadata.publishedAt, false, params.locale)}
         </Text>
       </Row>
+      {post.isFallback && (
+        <Feedback icon variant="info" description={t("blog.availableInEnglishOnly")} />
+      )}
       <Column as="article" fillWidth>
         <CustomMDX source={post.content} />
       </Column>

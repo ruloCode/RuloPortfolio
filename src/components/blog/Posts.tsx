@@ -6,10 +6,11 @@ interface PostsProps {
   range?: [number] | [number, number];
   columns?: "1" | "2" | "3";
   thumbnail?: boolean;
+  locale?: string;
 }
 
-export function Posts({ range, columns = "1", thumbnail = false }: PostsProps) {
-  let allBlogs = getPosts(["src", "app", "blog", "posts"]);
+export function Posts({ range, columns = "1", thumbnail = false, locale = "en" }: PostsProps) {
+  let allBlogs = getPosts(["src", "app", "[locale]", "blog", "posts"], locale);
 
   const sortedBlogs = allBlogs.sort((a, b) => {
     return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
@@ -24,7 +25,7 @@ export function Posts({ range, columns = "1", thumbnail = false }: PostsProps) {
       {displayedBlogs.length > 0 && (
         <Grid columns={columns} mobileColumns="1" fillWidth marginBottom="40" gap="m">
           {displayedBlogs.map((post) => (
-            <Post key={post.slug} post={post} thumbnail={thumbnail} />
+            <Post key={post.slug} post={post} thumbnail={thumbnail} locale={locale} />
           ))}
         </Grid>
       )}

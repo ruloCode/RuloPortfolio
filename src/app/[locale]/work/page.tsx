@@ -2,9 +2,22 @@ import { getPosts } from "@/app/utils/utils";
 import { Column } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
-import { person, work } from "@/app/resources/content";
+import { createI18nContent } from "@/app/resources/content-i18n";
+import { localeAlternates } from "@/app/utils/seo";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export async function generateMetadata() {
+interface PageParams {
+  params: { locale: string };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params: { locale } }: PageParams) {
+  const t = await getTranslations({ locale });
+  const { work } = createI18nContent(t);
   const title = work.title;
   const description = work.description;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -12,6 +25,7 @@ export async function generateMetadata() {
   return {
     title,
     description,
+    alternates: localeAlternates(locale, "/work"),
     openGraph: {
       title,
       description,
@@ -33,8 +47,12 @@ export async function generateMetadata() {
   };
 }
 
-export default function Work() {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+export default async function Work({ params: { locale } }: PageParams) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations();
+  const { person, work } = createI18nContent(t);
+
+  let allProjects = getPosts(["src", "app", "[locale]", "work", "projects"], locale);
 
   return (
     <Column maxWidth="m">
@@ -47,8 +65,8 @@ export default function Work() {
             "@type": "CollectionPage",
             headline: work.title,
             description: work.description,
-            url: `https://${baseURL}/projects`,
-            image: `${baseURL}/og?title=Design%20Projects`,
+            url: `https://${baseURL}/work`,
+            image: `https://${baseURL}/og?title=${encodeURIComponent(work.title)}`,
             author: {
               "@type": "Person",
               name: person.name,
@@ -57,13 +75,15 @@ export default function Work() {
               "@type": "CreativeWork",
               headline: project.metadata.title,
               description: project.metadata.summary,
-              url: `https://${baseURL}/projects/${project.slug}`,
-              image: `${baseURL}/${project.metadata.image}`,
+              url: `https://${baseURL}/work/${project.slug}`,
+              image: project.metadata.images?.[0]
+                ? `https://${baseURL}${project.metadata.images[0]}`
+                : undefined,
             })),
           }),
         }}
       />
-      <Projects />
+      <Projects locale={locale} />
     </Column>
   );
 }

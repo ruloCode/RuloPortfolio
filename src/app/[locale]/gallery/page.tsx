@@ -1,9 +1,22 @@
 import { Flex } from "@/once-ui/components";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
 import { baseURL } from "@/app/resources";
-import { gallery, person } from "@/app/resources/content";
+import { createI18nContent } from "@/app/resources/content-i18n";
+import { localeAlternates } from "@/app/utils/seo";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export async function generateMetadata() {
+interface PageParams {
+  params: { locale: string };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params: { locale } }: PageParams) {
+  const t = await getTranslations({ locale });
+  const { gallery } = createI18nContent(t);
   const title = gallery.title;
   const description = gallery.description;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -11,6 +24,7 @@ export async function generateMetadata() {
   return {
     title,
     description,
+    alternates: localeAlternates(locale, "/gallery"),
     openGraph: {
       title,
       description,
@@ -32,7 +46,11 @@ export async function generateMetadata() {
   };
 }
 
-export default function Gallery() {
+export default async function Gallery({ params: { locale } }: PageParams) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations();
+  const { gallery, person } = createI18nContent(t);
+
   return (
     <Flex fillWidth>
       <script
@@ -47,7 +65,7 @@ export default function Gallery() {
             url: `https://${baseURL}/gallery`,
             image: gallery.images.map((image) => ({
               "@type": "ImageObject",
-              url: `${baseURL}${image.src}`,
+              url: `https://${baseURL}${image.src}`,
               description: image.alt,
             })),
             author: {
@@ -55,7 +73,7 @@ export default function Gallery() {
               name: person.name,
               image: {
                 "@type": "ImageObject",
-                url: `${baseURL}${person.avatar}`,
+                url: `https://${baseURL}${person.avatar}`,
               },
             },
           }),

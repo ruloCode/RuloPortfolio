@@ -5,34 +5,56 @@ import {
   Column,
   Flex,
   Heading,
-  Row,
   StatusIndicator,
   Text,
   Avatar,
   RevealFx,
-  Arrow,
 } from "@/once-ui/components";
 import { baseURL, routes } from "@/app/resources";
-import { person, home, about, newsletter } from "@/app/resources/content";
+import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
 import { Mailchimp, Testimonials } from "@/components";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { localizeHref, routing } from "@/i18n/routing";
 
-export async function generateMetadata() {
+interface PageParams {
+  params: { locale: string };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params: { locale } }: PageParams) {
+  const t = await getTranslations({ locale });
+  const { person } = createI18nContent(t);
+
   // Optimized title (30-65 characters)
   const title = `${person.firstName}'s Portfolio | ${person.role}`;
   // Optimized description (120-320 characters)
-  const description = `Explore ${person.firstName}'s professional portfolio showcasing innovative projects, case studies, and insights about ${person.role.toLowerCase()}. Discover creative solutions, technical expertise, and professional achievements.`;
+  const description = t("home.description");
   const ogImage = `/images/gallery/og_img.jpg`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical:
+        locale === routing.defaultLocale
+          ? `https://${baseURL}`
+          : `https://${baseURL}/${locale}`,
+      languages: {
+        en: `https://${baseURL}`,
+        es: `https://${baseURL}/es`,
+        "x-default": `https://${baseURL}`,
+      },
+    },
     openGraph: {
       title,
       description,
       type: "website",
-      url: `https://${baseURL}`,
+      url: `https://${baseURL}${locale === routing.defaultLocale ? "" : `/${locale}`}`,
       images: [
         {
           url: ogImage,
@@ -51,7 +73,12 @@ export async function generateMetadata() {
   };
 }
 
-export default function Home() {
+export default async function Home({ params: { locale } }: PageParams) {
+  unstable_setRequestLocale(locale);
+
+  const t = await getTranslations();
+  const { person, home, about, newsletter } = createI18nContent(t);
+
   // Generate structured data for homepage
   const structuredData = {
     "@context": "https://schema.org",
@@ -73,7 +100,6 @@ export default function Home() {
         "@id": `https://${baseURL}/#person`,
         name: person.name,
         jobTitle: person.role,
-        description: person.headline,
         email: person.email,
         url: `https://${baseURL}`,
         sameAs: [
@@ -146,7 +172,7 @@ export default function Home() {
                       }}
                     />
                     <Text variant="label-strong-s" onBackground="brand-strong">
-                      Open to opportunities
+                      {home.badge}
                     </Text>
                   </Flex>
                 </Badge>
@@ -181,7 +207,7 @@ export default function Home() {
               <Button
                 id="about"
                 data-border="rounded"
-                href="/about"
+                href={localizeHref(locale, "/about")}
                 variant="secondary"
                 size="m"
                 arrowIcon
@@ -201,7 +227,7 @@ export default function Home() {
           </Column>
         </Column>
         <RevealFx translateY="16" delay={0.6}>
-          <Projects range={[1, 1]} />
+          <Projects range={[1, 1]} locale={locale} />
         </RevealFx>
         <RevealFx translateY="16" delay={0.8}>
           <Testimonials />
@@ -210,15 +236,15 @@ export default function Home() {
           <Flex fillWidth gap="24" mobileDirection="column">
             <Flex flex={1}>
               <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
+                {home.blogHeading}
               </Heading>
             </Flex>
             <Flex flex={3}>
-              <Posts range={[1, 2]} columns="2" />
+              <Posts range={[1, 2]} columns="2" locale={locale} />
             </Flex>
           </Flex>
         )}
-        <Projects range={[2]} />
+        <Projects range={[2]} locale={locale} />
         {newsletter.display && <Mailchimp newsletter={newsletter} />}
       </Column>
     </Column>

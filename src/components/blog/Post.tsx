@@ -3,20 +3,22 @@
 import { Column, Flex, Heading, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
 import styles from "./Posts.module.scss";
 import { formatDate } from "@/app/utils/formatDate";
+import { localizeHref } from "@/i18n/routing";
 
 interface PostProps {
   post: any;
   thumbnail: boolean;
+  locale?: string;
 }
 
-export default function Post({ post, thumbnail }: PostProps) {
+export default function Post({ post, thumbnail, locale = "en" }: PostProps) {
   return (
     <SmartLink
       fillWidth
       className={styles.hover}
       unstyled
       key={post.slug}
-      href={`/blog/${post.slug}`}
+      href={localizeHref(locale, `/blog/${post.slug}`)}
     >
       <Flex
         position="relative"
@@ -45,7 +47,7 @@ export default function Post({ post, thumbnail }: PostProps) {
             {post.metadata.title}
           </Heading>
           <Text variant="label-default-s" onBackground="neutral-weak">
-            {formatDate(post.metadata.publishedAt, false)}
+            {formatDate(post.metadata.publishedAt, false, locale)}
           </Text>
           {post.metadata.tag && (
             <Tag className="mt-8" label={post.metadata.tag} variant="neutral" />

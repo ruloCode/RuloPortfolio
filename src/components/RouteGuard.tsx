@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { routes, protectedRoutes } from "@/app/resources";
-import { Flex, Spinner, Input, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
-import NotFound from "@/app/not-found";
+import { Flex, Spinner, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
+import { usePathname } from "@/i18n/routing";
+import NotFound from "@/app/[locale]/not-found";
 
 interface RouteGuardProps {
 	children: React.ReactNode;
 }
 
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
+  // next-intl's usePathname strips the locale prefix, so checks against
+  // the `routes` config work for both /work and /es/work
   const pathname = usePathname();
   const [isRouteEnabled, setIsRouteEnabled] = useState(false);
   const [isPasswordRequired, setIsPasswordRequired] = useState(false);

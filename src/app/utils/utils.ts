@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 type Team = {
   name: string;
@@ -21,20 +23,26 @@ type Metadata = {
   repository?: string;
 };
 
-import { notFound } from 'next/navigation';
+export type Post = {
+  metadata: Metadata;
+  slug: string;
+  content: string;
+  locale: string;
+  isFallback: boolean;
+};
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
-    notFound();
+    return [];
   }
 
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 function readMDXFile(filePath: string) {
-    if (!fs.existsSync(filePath)) {
-        notFound();
-    }
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
 
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);
@@ -54,7 +62,7 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
+function getMDXData(dir: string, locale: string, isFallback = false): Post[] {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
@@ -64,11 +72,51 @@ function getMDXData(dir: string) {
       metadata,
       slug,
       content,
+      locale,
+      isFallback,
     };
   });
 }
 
-export function getPosts(customPath = ["", "", "", ""]) {
-  const postsDir = path.join(process.cwd(), ...customPath);
-  return getMDXData(postsDir);
+/**
+ * Reads MDX posts for a locale from `<customPath>/<locale>/*.mdx`.
+ * Content that only exists in the default locale is not listed for other
+ * locales; use getPost() to resolve a single slug with fallback.
+ */
+export function getPosts(customPath: string[], locale: string = routing.defaultLocale): Post[] {
+  const postsDir = path.join(process.cwd(), ...customPath, locale);
+  return getMDXData(postsDir, locale);
+}
+
+/**
+ * Resolves a single post by slug for a locale, falling back to the default
+ * locale when no translation exists (marked with isFallback for the UI).
+ */
+export function getPost(
+  customPath: string[],
+  locale: string,
+  slug: string,
+): Post | undefined {
+  const localized = getPosts(customPath, locale).find((post) => post.slug === slug);
+  if (localized) {
+    return localized;
+  }
+
+  if (locale !== routing.defaultLocale) {
+    const fallback = getPosts(customPath, routing.defaultLocale).find(
+      (post) => post.slug === slug,
+    );
+    if (fallback) {
+      return { ...fallback, isFallback: true };
+    }
+  }
+
+  return undefined;
+}
+
+/** Union of slugs available across all locales (for generateStaticParams). */
+export function getAllSlugs(customPath: string[]): { locale: string; slug: string }[] {
+  return routing.locales.flatMap((locale) =>
+    getPosts(customPath, locale).map((post) => ({ locale, slug: post.slug })),
+  );
 }
