@@ -10,8 +10,9 @@ import {
   Row,
   Text,
 } from "@/once-ui/components";
-import { baseURL } from "@/app/resources";
+import { baseURL, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
+import { CtaBanner } from "@/components";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -207,6 +208,12 @@ export default async function Blog({ params }: BlogParams) {
       <Column as="article" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
+      <CtaBanner
+        title={t("services.cta.title")}
+        description={t("services.cta.description")}
+        button={t("services.cta.button")}
+        href={scheduling.link}
+      />
       <ScrollToHash />
     </Column>
   );

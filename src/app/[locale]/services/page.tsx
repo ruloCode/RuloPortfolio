@@ -1,26 +1,46 @@
 import {
-  Avatar,
-  Button,
+  Accordion,
   Column,
   Flex,
+  Grid,
   Heading,
   Icon,
+  Tag,
   Text,
-  Card,
-  Grid,
 } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
-import { person } from "@/app/resources/content";
+import { createI18nContent } from "@/app/resources/content-i18n";
+import { CtaBanner } from "@/components";
+import { localeAlternates } from "@/app/utils/seo";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export async function generateMetadata() {
-  const title = "Services | Work With Me";
-  const description =
-    "Senior Frontend Engineer specializing in React, Next.js, and e-commerce. Project-based development, performance optimization, and technical consulting.";
+const OFFERING_ICONS: Record<string, string> = {
+  frontend: "rocket",
+  performance: "gauge",
+  ecommerce: "cart",
+  consulting: "lightbulb",
+};
+
+interface PageParams {
+  params: { locale: string };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params: { locale } }: PageParams) {
+  const t = await getTranslations({ locale });
+  const { services } = createI18nContent(t);
+  const title = services.title;
+  const description = services.description;
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
     description,
+    alternates: localeAlternates(locale, "/services"),
     openGraph: {
       title,
       description,
@@ -42,220 +62,186 @@ export async function generateMetadata() {
   };
 }
 
-const services = [
-  {
-    icon: "code",
-    title: "Frontend Development",
-    description:
-      "Building scalable React & Next.js applications with focus on performance, accessibility, and user experience.",
-    bestFor: "Startups shipping MVPs, companies modernizing legacy frontends",
-  },
-  {
-    icon: "lightning",
-    title: "Performance Optimization",
-    description:
-      "Auditing and optimizing existing applications for speed, Core Web Vitals, SEO, and conversion rates.",
-    bestFor: "E-commerce sites losing sales to slow load times",
-  },
-  {
-    icon: "cart",
-    title: "E-commerce Solutions",
-    description:
-      "End-to-end checkout flows, payment integrations, and conversion optimization for online stores.",
-    bestFor: "Companies selling online who need higher conversion rates",
-  },
-  {
-    icon: "users",
-    title: "Technical Consulting",
-    description:
-      "Architecture reviews, code audits, team mentoring, and technical strategy for growing teams.",
-    bestFor: "Startups scaling their engineering team",
-  },
-];
+export default async function Services({ params: { locale } }: PageParams) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations();
+  const { person, services, testimonials } = createI18nContent(t);
 
-const engagementModels = [
-  {
-    model: "Project-based",
-    duration: "2-8 weeks",
-    bestFor: "Defined scope, fixed budget",
-    description: "Clear deliverables with milestone-based payments",
-  },
-  {
-    model: "Monthly Retainer",
-    duration: "Ongoing",
-    bestFor: "Continuous development needs",
-    description: "Dedicated hours each month, flexible priorities",
-  },
-  {
-    model: "Consulting",
-    duration: "Hours/Days",
-    bestFor: "Architecture review, team mentoring",
-    description: "Expert guidance without long-term commitment",
-  },
-];
+  const consultingTestimonial = testimonials.items[2];
 
-const process = [
-  {
-    step: "01",
-    title: "Discovery Call",
-    description: "30 min free call to understand your needs, goals, and timeline.",
-  },
-  {
-    step: "02",
-    title: "Proposal",
-    description: "Detailed scope, timeline, and fixed price. No surprises.",
-  },
-  {
-    step: "03",
-    title: "Development",
-    description: "Weekly updates, async communication, iterative delivery.",
-  },
-  {
-    step: "04",
-    title: "Delivery",
-    description: "Deployed, documented, with proper handoff and support.",
-  },
-];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: services.title,
+    description: services.description,
+    provider: {
+      "@type": "Person",
+      name: person.name,
+      jobTitle: person.role,
+      url: `https://${baseURL}`,
+    },
+    areaServed: "Worldwide",
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: services.cta.link,
+    },
+  };
 
-export default function Services() {
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: services.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
-    <Column maxWidth="m">
+    <Column maxWidth="m" gap="xl">
       <script
         type="application/ld+json"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            provider: {
-              "@type": "Person",
-              name: person.name,
-              jobTitle: person.role,
-            },
-            serviceType: "Frontend Development",
-            areaServed: "Worldwide",
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
 
-      {/* Hero Section */}
-      <Flex direction="column" gap="l" marginBottom="xl">
-        <Heading variant="display-strong-l">Work With Me</Heading>
-        <Text variant="heading-default-l" onBackground="neutral-weak">
-          I help companies build high-performance web applications that convert visitors into customers. 
-          From startups shipping their first MVP to enterprises optimizing existing platforms.
+      {/* Hero */}
+      <Column gap="m" maxWidth="s">
+        <Heading variant="display-strong-l" wrap="balance">
+          {services.hero.title}
+        </Heading>
+        <Text variant="heading-default-l" onBackground="neutral-weak" wrap="balance">
+          {services.hero.intro}
         </Text>
-      </Flex>
+      </Column>
 
-      {/* Services Section */}
-      <Flex direction="column" gap="l" marginBottom="xl">
-        <Heading as="h2" variant="heading-strong-l">
-          What I Do
+      {/* Offerings */}
+      <Column gap="l">
+        <Heading as="h2" variant="display-strong-s">
+          {services.offerings.title}
         </Heading>
-        <Flex direction="column" gap="m">
-          {services.map((service, index) => (
-            <Card key={index} padding="l" radius="l">
-              <Flex direction="column" gap="s">
-                <Heading as="h3" variant="heading-strong-m">
-                  {service.title}
-                </Heading>
-                <Text variant="body-default-m" onBackground="neutral-weak">
-                  {service.description}
-                </Text>
-                <Text variant="body-default-s" onBackground="brand-weak">
-                  <strong>Best for:</strong> {service.bestFor}
-                </Text>
-              </Flex>
-            </Card>
-          ))}
-        </Flex>
-      </Flex>
-
-      {/* Process Section */}
-      <Flex direction="column" gap="l" marginBottom="xl">
-        <Heading as="h2" variant="heading-strong-l">
-          How I Work
-        </Heading>
-        <Flex direction="column" gap="m">
-          {process.map((item, index) => (
-            <Flex key={index} gap="m">
-              <Text
-                variant="heading-strong-l"
-                onBackground="brand-weak"
-                style={{ minWidth: "48px" }}
-              >
-                {item.step}
+        <Grid columns="2" mobileColumns="1" gap="12" fillWidth>
+          {services.offerings.items.map((offering) => (
+            <Column
+              key={offering.key}
+              fillWidth
+              gap="12"
+              padding="l"
+              radius="l"
+              border="neutral-alpha-weak"
+              background="surface"
+            >
+              <Icon name={OFFERING_ICONS[offering.key] ?? "sparkle"} onBackground="brand-weak" />
+              <Text variant="heading-strong-l">{offering.title}</Text>
+              <Text variant="body-default-m" onBackground="neutral-weak">
+                {offering.description}
               </Text>
-              <Flex direction="column" gap="xs">
-                <Heading as="h3" variant="heading-strong-s">
-                  {item.title}
-                </Heading>
-                <Text variant="body-default-m" onBackground="neutral-weak">
-                  {item.description}
-                </Text>
-              </Flex>
-            </Flex>
+              <Tag size="m" variant="neutral" label={offering.bestFor} />
+            </Column>
           ))}
-        </Flex>
-      </Flex>
+        </Grid>
+      </Column>
 
-      {/* Engagement Models */}
-      <Flex direction="column" gap="l" marginBottom="xl">
-        <Heading as="h2" variant="heading-strong-l">
-          Engagement Models
+      {/* Process */}
+      <Column gap="l">
+        <Heading as="h2" variant="display-strong-s">
+          {services.process.title}
         </Heading>
-        <Flex direction="column" gap="m">
-          {engagementModels.map((model, index) => (
-            <Card key={index} padding="l" radius="l">
-              <Flex direction="column" gap="xs">
-                <Flex horizontal="space-between">
-                  <Heading as="h3" variant="heading-strong-m">
-                    {model.model}
-                  </Heading>
-                  <Text variant="body-default-s" onBackground="neutral-weak">
-                    {model.duration}
-                  </Text>
-                </Flex>
-                <Text variant="body-default-m" onBackground="neutral-weak">
-                  {model.description}
-                </Text>
-                <Text variant="body-default-s" onBackground="brand-weak">
-                  <strong>Best for:</strong> {model.bestFor}
-                </Text>
-              </Flex>
-            </Card>
+        <Grid columns="4" tabletColumns="2" mobileColumns="1" gap="12" fillWidth>
+          {services.process.steps.map((step, index) => (
+            <Column key={step.title} fillWidth gap="8" padding="m">
+              <Text variant="display-strong-s" onBackground="brand-weak">
+                {String(index + 1).padStart(2, "0")}
+              </Text>
+              <Text variant="heading-strong-m">{step.title}</Text>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                {step.description}
+              </Text>
+            </Column>
           ))}
-        </Flex>
-      </Flex>
+        </Grid>
+      </Column>
 
-      {/* CTA Section */}
+      {/* Engagement models */}
+      <Column gap="l">
+        <Heading as="h2" variant="display-strong-s">
+          {services.engagement.title}
+        </Heading>
+        <Grid columns="3" tabletColumns="3" mobileColumns="1" gap="12" fillWidth>
+          {services.engagement.items.map((model) => (
+            <Column
+              key={model.key}
+              fillWidth
+              gap="12"
+              padding="l"
+              radius="l"
+              border={model.highlight ? "brand-medium" : "neutral-alpha-weak"}
+              background={model.highlight ? "brand-alpha-weak" : "surface"}
+            >
+              {model.badge && <Tag size="s" variant="brand" label={model.badge} />}
+              <Text variant="heading-strong-l">{model.title}</Text>
+              <Text variant="body-default-m" onBackground="neutral-weak">
+                {model.description}
+              </Text>
+            </Column>
+          ))}
+        </Grid>
+      </Column>
+
+      {/* Social proof */}
       <Flex
-        direction="column"
+        fillWidth
         gap="m"
-        padding="xl"
+        padding="l"
         radius="l"
-        background="brand-weak"
-        horizontal="center"
-        style={{ textAlign: "center" }}
+        border="neutral-alpha-weak"
+        background="surface"
+        mobileDirection="column"
       >
-        <Heading as="h2" variant="heading-strong-l">
-          Let's Talk
-        </Heading>
-        <Text
-          variant="body-default-l"
-          onBackground="neutral-weak"
-          style={{ maxWidth: "500px" }}
-        >
-          Book a free 30-minute call. No commitment—just a conversation to see if we're a good fit for your project.
-        </Text>
-        <Button
-          href="https://calendly.com/rulocode/30min"
-          variant="primary"
-          size="l"
-        >
-          Book a Call
-        </Button>
+        <Column gap="8">
+          <Text variant="body-default-m" style={{ fontStyle: "italic", lineHeight: 1.6 }}>
+            "{consultingTestimonial.quote}"
+          </Text>
+          <Text variant="body-strong-s">
+            {consultingTestimonial.name}{" "}
+            <Text as="span" variant="body-default-s" onBackground="neutral-weak">
+              — {consultingTestimonial.role}
+            </Text>
+          </Text>
+        </Column>
       </Flex>
+
+      {/* FAQ */}
+      <Column gap="l">
+        <Heading as="h2" variant="display-strong-s">
+          {services.faq.title}
+        </Heading>
+        <Column fillWidth radius="l" border="neutral-alpha-weak" overflow="hidden">
+          {services.faq.items.map((item) => (
+            <Accordion key={item.question} title={item.question}>
+              <Text variant="body-default-m" onBackground="neutral-weak">
+                {item.answer}
+              </Text>
+            </Accordion>
+          ))}
+        </Column>
+      </Column>
+
+      {/* CTA */}
+      <CtaBanner
+        title={services.cta.title}
+        description={services.cta.description}
+        button={services.cta.button}
+        href={services.cta.link}
+      />
     </Column>
   );
 }

@@ -11,7 +11,8 @@ import {
   Text,
 } from "@/once-ui/components";
 import { TeamAvatars } from "@/components/TeamAvatars";
-import { baseURL } from "@/app/resources";
+import { CtaBanner } from "@/components";
+import { baseURL, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
@@ -259,6 +260,14 @@ export default async function Project({ params }: WorkParams) {
           </Flex>
         )}
         <CustomMDX source={post.content} />
+        <Column marginTop="40">
+          <CtaBanner
+            title={t("services.cta.title")}
+            description={t("services.cta.description")}
+            button={t("services.cta.button")}
+            href={scheduling.link}
+          />
+        </Column>
       </Column>
       <ScrollToHash />
     </Column>
