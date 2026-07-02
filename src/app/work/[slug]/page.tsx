@@ -47,7 +47,9 @@ export function generateMetadata({ params: { slug } }: WorkParams) {
       ? `${description} View this project by ${person.firstName}.`
       : description;
       
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/@og_img.jpg`;
+  let ogImage = image
+    ? `https://${baseURL}${image}`
+    : `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   // Generate keywords based on project metadata
   const keywords = [

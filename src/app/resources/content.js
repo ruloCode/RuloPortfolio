@@ -1,4 +1,5 @@
 import { InlineCode } from "@/once-ui/components";
+import { scheduling } from "./config";
 
 const person = {
   firstName: "Andrés",
@@ -10,6 +11,9 @@ const person = {
   avatar: "/images/avatar.jpg",
   location: "America/Bogota",
   languages: ["Spanish (Native)", "English (Professional)"],
+  email: "drew.lizcano@gmail.com",
+  github: "ruloCode",
+  linkedin: "https://www.linkedin.com/in/rulocode/",
 };
 
 const newsletter = {
@@ -100,7 +104,7 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://calendly.com/rulocode/30min",
+    link: scheduling.link,
   },
   intro: {
     display: true,

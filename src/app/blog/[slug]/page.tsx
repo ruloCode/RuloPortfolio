@@ -46,7 +46,9 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
       ? `${description} Read more about ${person.firstName}'s insights on this topic.`
       : description;
       
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/@og_img.jpg`;
+  let ogImage = image
+    ? `https://${baseURL}${image}`
+    : `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   // Generate keywords based on post metadata
   const keywords = [

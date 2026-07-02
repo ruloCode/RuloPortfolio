@@ -32,7 +32,7 @@ export async function generateMetadata() {
       title,
       description,
       type: "website",
-      url: ogImage,
+      url: `https://${baseURL}`,
       images: [
         {
           url: ogImage,
@@ -47,7 +47,6 @@ export async function generateMetadata() {
       title,
       description,
       images: [ogImage],
-      creator: person.twitter,
     },
   };
 }
@@ -78,8 +77,6 @@ export default function Home() {
         email: person.email,
         url: `https://${baseURL}`,
         sameAs: [
-          person.twitter &&
-            `https://twitter.com/${person.twitter.replace("@", "")}`,
           person.github && `https://github.com/${person.github}`,
           person.linkedin && person.linkedin,
         ].filter(Boolean),
@@ -123,13 +120,13 @@ export default function Home() {
               name: home.title,
               description: home.description,
               url: `https://${baseURL}`,
-              image: `https://${baseURL}/@og_img.jpg`,
+              image: `https://${baseURL}/images/gallery/og_img.jpg`,
               publisher: {
                 "@type": "Person",
                 name: person.name,
                 image: {
                   "@type": "ImageObject",
-                  url: `${baseURL}${person.avatar}`,
+                  url: `https://${baseURL}${person.avatar}`,
                 },
               },
             }),

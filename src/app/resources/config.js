@@ -12,8 +12,12 @@ const routes = {
 
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
-const protectedRoutes = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
+const protectedRoutes = {};
+
+// Scheduling link for consulting CTAs (about, services, home, footer).
+// Set NEXT_PUBLIC_CAL_LINK (e.g. https://cal.com/<username>/30min) to switch to Cal.com.
+const scheduling = {
+  link: process.env.NEXT_PUBLIC_CAL_LINK || "https://calendly.com/rulocode/30min",
 };
 
 const style = {
@@ -111,6 +115,7 @@ const mailchimp = {
 export {
   routes,
   protectedRoutes,
+  scheduling,
   effects,
   style,
   display,
