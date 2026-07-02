@@ -6,15 +6,16 @@ import {
   Flex,
   Heading,
   StatusIndicator,
+  Tag,
   Text,
   Avatar,
   RevealFx,
 } from "@/once-ui/components";
-import { baseURL, routes } from "@/app/resources";
+import { baseURL, routes, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
-import { Mailchimp, Testimonials } from "@/components";
+import { CtaBanner, Mailchimp, ServicesTeaser, Stats, Testimonials } from "@/components";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -77,7 +78,7 @@ export default async function Home({ params: { locale } }: PageParams) {
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations();
-  const { person, home, about, newsletter } = createI18nContent(t);
+  const { person, home, about, newsletter, services } = createI18nContent(t);
 
   // Generate structured data for homepage
   const structuredData = {
@@ -204,47 +205,126 @@ export default async function Home({ params: { locale } }: PageParams) {
               </Text>
             </RevealFx>
             <RevealFx translateY="12" delay={0.4} horizontal="start">
-              <Button
-                id="about"
-                data-border="rounded"
-                href={localizeHref(locale, "/about")}
-                variant="secondary"
-                size="m"
-                arrowIcon
-              >
-                <Flex gap="8" vertical="center">
-                  {about.avatar.display && (
-                    <Avatar
-                      style={{ marginLeft: "-0.75rem", marginRight: "0.25rem" }}
-                      src={person.avatar}
-                      size="m"
-                    />
-                  )}
-                  {about.title}
-                </Flex>
-              </Button>
+              <Flex gap="12" wrap>
+                <Button
+                  id="cta-work"
+                  href={localizeHref(locale, "/work")}
+                  variant="primary"
+                  size="m"
+                  arrowIcon
+                >
+                  {home.ctaWork}
+                </Button>
+                <Button
+                  id="cta-call"
+                  data-border="rounded"
+                  href={scheduling.link}
+                  variant="secondary"
+                  size="m"
+                  prefixIcon="calendar"
+                >
+                  {home.ctaCall}
+                </Button>
+                <Button
+                  id="about"
+                  data-border="rounded"
+                  href={localizeHref(locale, "/about")}
+                  variant="tertiary"
+                  size="m"
+                >
+                  <Flex gap="8" vertical="center">
+                    {about.avatar.display && (
+                      <Avatar
+                        style={{ marginLeft: "-0.5rem", marginRight: "0.25rem" }}
+                        src={person.avatar}
+                        size="s"
+                      />
+                    )}
+                    {about.title}
+                  </Flex>
+                </Button>
+              </Flex>
             </RevealFx>
           </Column>
         </Column>
-        <RevealFx translateY="16" delay={0.6}>
+        <RevealFx translateY="12" delay={0.6}>
+          <Stats />
+        </RevealFx>
+        <RevealFx translateY="16" inView>
           <Projects range={[1, 1]} locale={locale} />
         </RevealFx>
-        <RevealFx translateY="16" delay={0.8}>
+        {routes["/services"] && (
+          <RevealFx translateY="16" inView>
+            <ServicesTeaser
+              services={services}
+              viewAllLabel={t("services.viewAll")}
+              locale={locale}
+            />
+          </RevealFx>
+        )}
+        {routes["/ia"] && (
+          <RevealFx translateY="16" inView>
+            <Flex
+              fillWidth
+              gap="l"
+              padding="l"
+              radius="l"
+              border="accent-alpha-medium"
+              background="accent-alpha-weak"
+              mobileDirection="column"
+              vertical="center"
+              horizontal="space-between"
+            >
+              <Column gap="8" flex={8}>
+                <Flex gap="8" vertical="center">
+                  <Tag variant="accent" size="m" label={t("ia.teaser.eyebrow")} />
+                </Flex>
+                <Heading as="h2" variant="display-strong-xs" wrap="balance">
+                  {t("ia.teaser.title")}
+                </Heading>
+                <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+                  {t("ia.teaser.description")}
+                </Text>
+              </Column>
+              <Flex flex={4} horizontal="end">
+                <Button
+                  href={localizeHref(locale, "/ia")}
+                  variant="secondary"
+                  size="m"
+                  suffixIcon="sparkle"
+                >
+                  {t("ia.teaser.cta")}
+                </Button>
+              </Flex>
+            </Flex>
+          </RevealFx>
+        )}
+        <RevealFx translateY="16" inView>
           <Testimonials />
         </RevealFx>
         {routes["/blog"] && (
-          <Flex fillWidth gap="24" mobileDirection="column">
-            <Flex flex={1}>
-              <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                {home.blogHeading}
-              </Heading>
+          <RevealFx translateY="16" inView>
+            <Flex fillWidth gap="24" mobileDirection="column">
+              <Flex flex={1}>
+                <Heading as="h2" variant="display-strong-xs" wrap="balance">
+                  {home.blogHeading}
+                </Heading>
+              </Flex>
+              <Flex flex={3}>
+                <Posts range={[1, 2]} columns="2" locale={locale} />
+              </Flex>
             </Flex>
-            <Flex flex={3}>
-              <Posts range={[1, 2]} columns="2" locale={locale} />
-            </Flex>
-          </Flex>
+          </RevealFx>
         )}
         <Projects range={[2]} locale={locale} />
+        <RevealFx translateY="16" inView>
+          <CtaBanner
+            title={services.cta.title}
+            description={services.cta.description}
+            button={services.cta.button}
+            href={scheduling.link}
+          />
+        </RevealFx>
         {newsletter.display && <Mailchimp newsletter={newsletter} />}
       </Column>
     </Column>

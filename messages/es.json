@@ -95,7 +95,9 @@
     "title": "Escribo sobre frontend, performance y fintech"
   },
   "footer": {
-    "bookCall": "Agenda una llamada"
+    "bookCall": "Agenda una llamada",
+    "navTitle": "Explora",
+    "tagline": "Frontends rápidos y confiables — construidos desde Colombia para el mundo."
   },
   "gallery": {
     "description": "Una colección de fotos de Andrés Santana",
@@ -105,11 +107,21 @@
   "home": {
     "badge": "Abierto a oportunidades",
     "blogHeading": "Lo último del blog",
+    "ctaCall": "Agenda una llamada",
+    "ctaWork": "Ver mis proyectos",
     "description": "Senior Frontend Engineer especializado en React, Next.js y TypeScript. Más de 5 años construyendo aplicaciones escalables para plataformas de salud y financieras. Más de $2M/mes en transacciones procesadas.",
-    "headline": "Construyo frontends de alto rendimiento que procesan millones en transacciones.",
+    "headline": "Construyo frontends de <fx>alto rendimiento</fx> que procesan millones en transacciones.",
     "label": "Inicio",
     "subline": "Senior Frontend Engineer especializado en React, Next.js y TypeScript. Más de 5 años construyendo aplicaciones escalables para plataformas de salud y financieras. <strong>+$2M/mes</strong> en transacciones procesadas. <strong>+50K usuarios</strong> atendidos. Migraciones <strong>sin downtime</strong>.",
     "title": "Andrés Santana | Desarrollador Senior React & Next.js | Fintech y Aplicaciones Escalables"
+  },
+  "ia": {
+    "teaser": {
+      "cta": "Únete a la lista de espera",
+      "description": "Un programa práctico para profesionales no técnicos que quieren aplicar la IA a su trabajo real — y dejar de temer quedarse atrás.",
+      "eyebrow": "Nuevo",
+      "title": "IA para no quedarte atrás"
+    }
   },
   "nav": {
     "about": "Sobre mí",
@@ -146,6 +158,7 @@
     "viewLive": "Ver en vivo"
   },
   "services": {
+    "viewAll": "Ver todos los servicios",
     "cta": {
       "button": "Agenda una llamada",
       "description": "Cuéntame de tu proyecto en una llamada gratuita de 30 minutos. Sin compromiso y sin discurso de ventas: solo una conversación honesta sobre si puedo ayudarte.",
@@ -243,6 +256,26 @@
       "title": "Cómo Trabajo"
     },
     "title": "Trabaja Conmigo"
+  },
+  "stats": {
+    "items": {
+      "hackathon": {
+        "label": "puesto · Hackatón Samatech",
+        "value": "3er"
+      },
+      "lcp": {
+        "label": "reducción de LCP a escala",
+        "value": "-56%"
+      },
+      "transactions": {
+        "label": "en transacciones mensuales",
+        "value": "$2M+"
+      },
+      "users": {
+        "label": "usuarios atendidos",
+        "value": "50K+"
+      }
+    }
   },
   "testimonials": {
     "items": {

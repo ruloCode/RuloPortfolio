@@ -1,6 +1,22 @@
+import { LetterFx } from "@/once-ui/components";
 import { scheduling } from "./config";
 
 const strong = (chunks) => <strong>{chunks}</strong>;
+
+// <fx>keyword</fx> in messages renders as a one-word scramble effect.
+// LetterFx needs a plain string child, so flatten the rich-text chunks.
+const fx = (chunks) => {
+  const text = Array.isArray(chunks)
+    ? chunks.filter((c) => typeof c === "string").join("")
+    : typeof chunks === "string"
+      ? chunks
+      : "";
+  return (
+    <LetterFx trigger="instant" speed="fast">
+      {text}
+    </LetterFx>
+  );
+};
 
 const createI18nContent = (t) => {
   const person = {
@@ -55,9 +71,11 @@ const createI18nContent = (t) => {
     label: t("home.label"),
     title: t("home.title"),
     description: t("home.description"),
-    headline: t("home.headline"),
+    headline: t.rich("home.headline", { fx }),
     badge: t("home.badge"),
     blogHeading: t("home.blogHeading"),
+    ctaWork: t("home.ctaWork"),
+    ctaCall: t("home.ctaCall"),
     openToWork: true,
     subline: t.rich("home.subline", { strong }),
   };

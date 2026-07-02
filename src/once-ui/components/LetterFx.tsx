@@ -118,6 +118,13 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
         originalText.current = children;
 
         if (trigger === "instant" && !hasAnimated) {
+          if (
+            typeof window !== "undefined" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ) {
+            setHasAnimated(true);
+            return;
+          }
           eventHandler();
         }
       }

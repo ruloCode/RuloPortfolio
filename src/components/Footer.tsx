@@ -1,9 +1,23 @@
-import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
+import { Column, Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
+import { getLocale, getTranslations } from "next-intl/server";
 import { person, social } from "@/app/resources/content";
+import { routes, scheduling } from "@/app/resources";
+import { localizeHref } from "@/i18n/routing";
 import styles from "./Footer.module.scss";
 
-export const Footer = () => {
+const NAV_ITEMS: { route: string; key: string }[] = [
+  { route: "/about", key: "about" },
+  { route: "/work", key: "work" },
+  { route: "/services", key: "services" },
+  { route: "/ia", key: "ia" },
+  { route: "/blog", key: "blog" },
+  { route: "/gallery", key: "gallery" },
+];
+
+export const Footer = async () => {
   const currentYear = new Date().getFullYear();
+  const locale = await getLocale();
+  const t = await getTranslations();
 
   return (
     <Flex
@@ -14,39 +28,59 @@ export const Footer = () => {
       horizontal="center"
       mobileDirection="column"
     >
-      <Flex
-        className={styles.mobile}
-        maxWidth="m"
-        paddingY="8"
-        paddingX="16"
-        gap="16"
-        horizontal="space-between"
-        vertical="center"
-      >
-        <Text variant="body-default-s" onBackground="neutral-strong">
-          <Text onBackground="neutral-weak">© {currentYear} /</Text>
-          <Text paddingX="4">{person.name}</Text>
-          <Text onBackground="neutral-weak">
-           
-         
-          </Text>
-        </Text>
-        <Flex gap="16">
-          {social.map(
-            (item) =>
-              item.link && (
-                <IconButton
-                  key={item.name}
-                  href={item.link}
-                  icon={item.icon}
-                  tooltip={item.name}
-                  size="s"
-                  variant="ghost"
-                />
-              ),
-          )}
+      <Column maxWidth="m" paddingY="24" paddingX="16" gap="24" fillWidth>
+        <Flex
+          className={styles.mobile}
+          fillWidth
+          gap="24"
+          horizontal="space-between"
+          mobileDirection="column"
+        >
+          <Column gap="8" maxWidth={24}>
+            <Text variant="heading-strong-s">{person.name}</Text>
+            <Text variant="body-default-s" onBackground="neutral-weak" wrap="balance">
+              {t("footer.tagline")}
+            </Text>
+            <SmartLink suffixIcon="arrowRight" href={scheduling.link}>
+              <Text variant="body-default-s">{t("footer.bookCall")}</Text>
+            </SmartLink>
+          </Column>
+          <Column gap="8">
+            <Text variant="label-strong-s" onBackground="neutral-weak">
+              {t("footer.navTitle")}
+            </Text>
+            <Flex gap="16" wrap>
+              {NAV_ITEMS.filter(({ route }) => routes[route as keyof typeof routes]).map(
+                ({ route, key }) => (
+                  <SmartLink key={route} href={localizeHref(locale, route)}>
+                    <Text variant="body-default-s">{t(`nav.${key}`)}</Text>
+                  </SmartLink>
+                ),
+              )}
+            </Flex>
+          </Column>
+          <Flex gap="16" fitHeight>
+            {social.map(
+              (item) =>
+                item.link && (
+                  <IconButton
+                    key={item.name}
+                    href={item.link}
+                    icon={item.icon}
+                    tooltip={item.name}
+                    size="s"
+                    variant="ghost"
+                  />
+                ),
+            )}
+          </Flex>
         </Flex>
-      </Flex>
+        <Flex fillWidth horizontal="center">
+          <Text variant="body-default-xs" onBackground="neutral-weak">
+            © {currentYear} / {person.name}
+          </Text>
+        </Flex>
+      </Column>
       <Flex height="80" show="s"></Flex>
     </Flex>
   );

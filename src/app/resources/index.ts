@@ -2,6 +2,7 @@
 export {
   routes,
   protectedRoutes,
+  scheduling,
   effects,
   style,
   display,

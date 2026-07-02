@@ -95,7 +95,9 @@
     "title": "Writing about frontend, performance & fintech"
   },
   "footer": {
-    "bookCall": "Book a call"
+    "bookCall": "Book a call",
+    "navTitle": "Explore",
+    "tagline": "Fast, reliable frontends — built from Colombia for the world."
   },
   "gallery": {
     "description": "A photo collection by Andrés Santana",
@@ -105,11 +107,21 @@
   "home": {
     "badge": "Open to opportunities",
     "blogHeading": "Latest from the blog",
+    "ctaCall": "Book a call",
+    "ctaWork": "View my work",
     "description": "Senior Frontend Engineer specializing in React, Next.js & TypeScript. 5+ years building scalable applications for healthcare and financial platforms. $2M+/month in transactions processed.",
-    "headline": "I build high-performance frontends that handle millions in transactions.",
+    "headline": "I build <fx>high-performance</fx> frontends that handle millions in transactions.",
     "label": "Home",
     "subline": "Senior Frontend Engineer specializing in React, Next.js & TypeScript. 5+ years building scalable applications for healthcare and financial platforms. <strong>$2M+/month</strong> in transactions processed. <strong>50K+ users</strong> served. <strong>Zero downtime</strong> migrations.",
     "title": "Andrés Santana | Senior React & Next.js Developer | Fintech & Scalable Applications"
+  },
+  "ia": {
+    "teaser": {
+      "cta": "Join the waitlist",
+      "description": "A hands-on program for non-technical professionals who want to apply AI to their real work — and stop fearing they'll fall behind.",
+      "eyebrow": "New",
+      "title": "AI so you don't fall behind"
+    }
   },
   "nav": {
     "about": "About",
@@ -146,6 +158,7 @@
     "viewLive": "View Live"
   },
   "services": {
+    "viewAll": "View all services",
     "cta": {
       "button": "Book a call",
       "description": "Tell me about your project in a free 30-minute discovery call. No commitment, no sales pitch—just an honest conversation about whether I can help.",
@@ -243,6 +256,26 @@
       "title": "How I Work"
     },
     "title": "Work With Me"
+  },
+  "stats": {
+    "items": {
+      "hackathon": {
+        "label": "place · Samatech Hackathon",
+        "value": "3rd"
+      },
+      "lcp": {
+        "label": "LCP reduction at scale",
+        "value": "-56%"
+      },
+      "transactions": {
+        "label": "monthly transactions processed",
+        "value": "$2M+"
+      },
+      "users": {
+        "label": "users served",
+        "value": "50K+"
+      }
+    }
   },
   "testimonials": {
     "items": {
