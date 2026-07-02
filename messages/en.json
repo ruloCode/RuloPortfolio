@@ -116,11 +116,89 @@
     "title": "Andrés Santana | Senior React & Next.js Developer | Fintech & Scalable Applications"
   },
   "ia": {
+    "audience": {
+      "items": {
+        "1": {
+          "description": "You use a computer all day — spreadsheets, documents, email, reports — and suspect half of it could be automated, but don't know where to start.",
+          "title": "Non-technical professionals"
+        },
+        "2": {
+          "description": "You've tried ChatGPT a few times, got mediocre results, and concluded 'it's not for my job'. It is — you just need working workflows, not prompts from Twitter.",
+          "title": "Curious but burned"
+        },
+        "3": {
+          "description": "You lead a team and feel the pressure to 'do something with AI' without hiring engineers or buying enterprise tools you won't use.",
+          "title": "Team leads & managers"
+        }
+      },
+      "title": "Who this is for"
+    },
+    "faq": {
+      "items": {
+        "1": {
+          "answer": "No. This program is designed for people who don't write code. Everything is built with tools you already know how to click through.",
+          "question": "Do I need to know how to code?"
+        },
+        "2": {
+          "answer": "The first cohort is in validation. Joining the waitlist costs nothing, gets you first access, and early members get launch pricing.",
+          "question": "When does it start and how much does it cost?"
+        },
+        "3": {
+          "answer": "Concrete workflows applied to YOUR work: automating repetitive tasks, producing content faster, and a repeatable system to evaluate new AI tools without drowning in hype.",
+          "question": "What will I walk away with?"
+        }
+      },
+      "title": "Frequently asked questions"
+    },
+    "format": {
+      "badge": "Coming soon",
+      "items": {
+        "cohort": {
+          "description": "Live, hands-on sessions in small groups. You leave each session with something working, not just notes.",
+          "title": "Live cohort"
+        },
+        "community": {
+          "description": "A space to share what works, ask questions and keep up as tools change — because they will.",
+          "title": "Community"
+        },
+        "templates": {
+          "description": "Ready-to-use workflows and templates: video → automation → publishing, tested end-to-end in real work.",
+          "title": "Templates & workflows"
+        }
+      },
+      "title": "The format"
+    },
+    "hero": {
+      "badge": "First cohort in validation — waitlist open",
+      "subtitle": "A hands-on program for non-technical professionals who want to apply AI to their real work, recover hours every week, and stop fearing they'll fall behind.",
+      "title": "AI so you don't fall behind"
+    },
+    "meta": {
+      "description": "A hands-on AI program for non-technical professionals: apply AI to your real work, recover time, and stop fearing obsolescence. Join the waitlist.",
+      "title": "AI so you don't fall behind | Program for non-technical professionals"
+    },
+    "problem": {
+      "p1": "Every week there's a new AI tool 'you can't miss', another thread promising you'll be left behind if you don't master it today. The noise is real — and so is the fear.",
+      "p2": "The truth: you don't need to learn 50 tools or become an engineer. You need a handful of working flows applied to your actual job, and the criteria to ignore the rest.",
+      "title": "The fear is real. The noise doesn't help."
+    },
     "teaser": {
       "cta": "Join the waitlist",
       "description": "A hands-on program for non-technical professionals who want to apply AI to their real work — and stop fearing they'll fall behind.",
       "eyebrow": "New",
       "title": "AI so you don't fall behind"
+    },
+    "waitlist": {
+      "button": "Join the waitlist",
+      "description": "No spam. One email when the first cohort opens — waitlist members get first access and launch pricing.",
+      "placeholder": "Your email",
+      "title": "Be first in line"
+    },
+    "whyMe": {
+      "p1": "I build end-to-end AI workflows for a living — video to automation to publishing — and I'm the person my colleagues come to when they need AI translated into something they can actually execute.",
+      "p2": "I also know the fear of being left behind first-hand: I left music behind for stability in tech. That decision taught me to teach from empathy, not from technical arrogance.",
+      "p3": "This program is what I wish had existed then: practical, honest about what works, and built for people whose job is not technology.",
+      "title": "Why learn this with me"
     }
   },
   "nav": {

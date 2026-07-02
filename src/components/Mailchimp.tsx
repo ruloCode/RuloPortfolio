@@ -13,9 +13,11 @@ function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T
 }
 
 type NewsletterProps = {
-  display: boolean;
+  display?: boolean;
   title: string | JSX.Element;
   description: string | JSX.Element;
+  button?: string;
+  placeholder?: string;
 };
 
 export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
@@ -144,7 +146,7 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
             id="mce-EMAIL"
             name="EMAIL"
             type="email"
-            label="Email"
+            label={newsletter.placeholder ?? "Email"}
             required
             onChange={(e) => {
               if (error) {
@@ -182,7 +184,7 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
           <div className="clear">
             <Flex height="48" vertical="center">
               <Button id="mc-embedded-subscribe" value="Subscribe" size="m" fillWidth>
-                Subscribe
+                {newsletter.button ?? "Subscribe"}
               </Button>
             </Flex>
           </div>

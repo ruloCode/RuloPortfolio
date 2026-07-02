@@ -116,11 +116,89 @@
     "title": "Andrés Santana | Desarrollador Senior React & Next.js | Fintech y Aplicaciones Escalables"
   },
   "ia": {
+    "audience": {
+      "items": {
+        "1": {
+          "description": "Usas el computador todo el día — hojas de cálculo, documentos, correo, informes — y sospechas que la mitad se podría automatizar, pero no sabes por dónde empezar.",
+          "title": "Profesionales no técnicos"
+        },
+        "2": {
+          "description": "Probaste ChatGPT un par de veces, obtuviste resultados mediocres y concluiste que 'no sirve para mi trabajo'. Sí sirve — te faltan flujos que funcionan, no prompts de Twitter.",
+          "title": "Curiosos pero quemados"
+        },
+        "3": {
+          "description": "Lideras un equipo y sientes la presión de 'hacer algo con IA' sin contratar ingenieros ni comprar herramientas enterprise que nadie va a usar.",
+          "title": "Líderes de equipo"
+        }
+      },
+      "title": "Para quién es"
+    },
+    "faq": {
+      "items": {
+        "1": {
+          "answer": "No. Este programa está diseñado para personas que no escriben código. Todo se construye con herramientas que ya sabes usar con clics.",
+          "question": "¿Necesito saber programar?"
+        },
+        "2": {
+          "answer": "La primera cohorte está en validación. Unirte a la lista de espera no cuesta nada, te da acceso prioritario y los primeros tendrán precio de lanzamiento.",
+          "question": "¿Cuándo empieza y cuánto cuesta?"
+        },
+        "3": {
+          "answer": "Flujos concretos aplicados a TU trabajo: automatizar tareas repetitivas, producir contenido más rápido y un sistema repetible para evaluar herramientas nuevas sin ahogarte en el hype.",
+          "question": "¿Con qué me voy a quedar?"
+        }
+      },
+      "title": "Preguntas frecuentes"
+    },
+    "format": {
+      "badge": "Próximamente",
+      "items": {
+        "cohort": {
+          "description": "Sesiones en vivo y prácticas en grupos pequeños. Sales de cada sesión con algo funcionando, no solo con apuntes.",
+          "title": "Cohorte en vivo"
+        },
+        "community": {
+          "description": "Un espacio para compartir lo que funciona, resolver dudas y mantenerte al día cuando las herramientas cambien — porque van a cambiar.",
+          "title": "Comunidad"
+        },
+        "templates": {
+          "description": "Flujos y plantillas listos para usar: video → automatización → publicación, probados de extremo a extremo en trabajo real.",
+          "title": "Plantillas y flujos"
+        }
+      },
+      "title": "El formato"
+    },
+    "hero": {
+      "badge": "Primera cohorte en validación — lista de espera abierta",
+      "subtitle": "Un programa práctico para profesionales no técnicos que quieren aplicar la IA a su trabajo real, recuperar horas cada semana y dejar de temer quedarse atrás.",
+      "title": "IA para no quedarte atrás"
+    },
+    "meta": {
+      "description": "Un programa práctico de IA para profesionales no técnicos: aplica la IA a tu trabajo real, recupera tiempo y deja de temer quedarte atrás. Únete a la lista de espera.",
+      "title": "IA para no quedarte atrás | Programa para profesionales no técnicos"
+    },
+    "problem": {
+      "p1": "Cada semana aparece una herramienta de IA 'imperdible', otro hilo que promete que te vas a quedar atrás si no la dominas hoy. El ruido es real — y el miedo también.",
+      "p2": "La verdad: no necesitas aprender 50 herramientas ni volverte ingeniero. Necesitas un puñado de flujos que funcionan, aplicados a tu trabajo de verdad, y el criterio para ignorar el resto.",
+      "title": "El miedo es real. El ruido no ayuda."
+    },
     "teaser": {
       "cta": "Únete a la lista de espera",
       "description": "Un programa práctico para profesionales no técnicos que quieren aplicar la IA a su trabajo real — y dejar de temer quedarse atrás.",
       "eyebrow": "Nuevo",
       "title": "IA para no quedarte atrás"
+    },
+    "waitlist": {
+      "button": "Unirme a la lista",
+      "description": "Cero spam. Un correo cuando abra la primera cohorte — la lista de espera tiene acceso prioritario y precio de lanzamiento.",
+      "placeholder": "Tu email",
+      "title": "Sé de los primeros"
+    },
+    "whyMe": {
+      "p1": "Construyo flujos de IA de extremo a extremo como parte de mi trabajo — de video a automatización a publicación — y soy la persona a la que mis colegas acuden cuando necesitan traducir la IA en algo que puedan ejecutar.",
+      "p2": "También conozco de primera mano el miedo a quedarse atrás: dejé la música por la estabilidad de la tecnología. Esa decisión me enseñó a enseñar desde la empatía, no desde la arrogancia técnica.",
+      "p3": "Este programa es lo que me hubiera gustado que existiera entonces: práctico, honesto sobre lo que funciona y hecho para personas cuyo trabajo no es la tecnología.",
+      "title": "Por qué aprender esto conmigo"
     }
   },
   "nav": {
