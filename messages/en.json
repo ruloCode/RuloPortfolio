@@ -87,6 +87,17 @@
       "title": "Work Experience"
     }
   },
+  "achievements": {
+    "items": {
+      "hackathon": {
+        "cta": "Read the case study",
+        "description": "5-person team, 30 non-stop hours, 70 builders competing — at the first hackathon in Santa Marta's history.",
+        "meta": "Santa Marta, Colombia · 2026",
+        "title": "3rd place — Primera Hackatón Samatech"
+      }
+    },
+    "title": "Achievements"
+  },
   "blog": {
     "availableInEnglishOnly": "This post is currently available in English only.",
     "availableInSpanishOnly": "This post is currently available in Spanish only.",

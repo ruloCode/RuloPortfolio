@@ -87,6 +87,17 @@
       "title": "Experiencia Laboral"
     }
   },
+  "achievements": {
+    "items": {
+      "hackathon": {
+        "cta": "Leer el case study",
+        "description": "Equipo de 5, 30 horas sin parar, 70 builders compitiendo — en la primera hackatón de la historia de Santa Marta.",
+        "meta": "Santa Marta, Colombia · 2026",
+        "title": "3er puesto — Primera Hackatón Samatech"
+      }
+    },
+    "title": "Logros"
+  },
   "blog": {
     "availableInEnglishOnly": "Este artículo está disponible solo en inglés por ahora.",
     "availableInSpanishOnly": "Este artículo está disponible solo en español por ahora.",

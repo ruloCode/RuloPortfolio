@@ -11,6 +11,7 @@ import {
   Text,
 } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
+import { Achievements } from "@/components";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import { createI18nContent } from "@/app/resources/content-i18n";
@@ -81,6 +82,11 @@ export default async function About({ params: { locale } }: PageParams) {
       title: about.work.title,
       display: about.work.display,
       items: about.work.experiences.map((experience) => experience.company),
+    },
+    {
+      title: about.achievements.title,
+      display: about.achievements.display,
+      items: [],
     },
     {
       title: about.studies.title,
@@ -293,6 +299,22 @@ export default async function About({ params: { locale } }: PageParams) {
                     )}
                   </Column>
                 ))}
+              </Column>
+            </>
+          )}
+
+          {about.achievements.display && (
+            <>
+              <Heading
+                as="h2"
+                id={about.achievements.title}
+                variant="display-strong-s"
+                marginBottom="m"
+              >
+                {about.achievements.title}
+              </Heading>
+              <Column fillWidth marginBottom="40">
+                <Achievements />
               </Column>
             </>
           )}

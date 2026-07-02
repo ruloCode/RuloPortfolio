@@ -4,6 +4,7 @@ export { Mailchimp } from "@/components/Mailchimp";
 export { ProjectCard } from "@/components/ProjectCard";
 export { TeamAvatars } from "@/components/TeamAvatars";
 export { HeadingLink } from "@/components/HeadingLink";
+export { Achievements } from "@/components/Achievements";
 export { CtaBanner } from "@/components/CtaBanner";
 export { RouteGuard } from "@/components/RouteGuard";
 export { ServicesTeaser } from "@/components/ServicesTeaser";

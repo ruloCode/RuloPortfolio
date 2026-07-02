@@ -125,6 +125,10 @@ const createI18nContent = (t) => {
         </>
       ),
     },
+    achievements: {
+      display: true,
+      title: t("achievements.title"),
+    },
     work: {
       display: true,
       title: t("about.work.title"),
