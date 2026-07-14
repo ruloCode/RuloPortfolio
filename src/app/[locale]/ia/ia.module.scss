@@ -1,0 +1,87 @@
+// /ia consultancy landing.
+// Animates transform / opacity / border-color / box-shadow only (compositor-friendly);
+// the global `prefers-reduced-motion` reset in once-ui/styles/global.scss neutralizes
+// these transitions automatically, so no per-rule guard is needed.
+
+// Oversized hero statement — scales from mobile to a full editorial display size.
+.heroTitle {
+  font-size: clamp(2.5rem, 7vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heroTitleAccent {
+  background: linear-gradient(
+    100deg,
+    var(--brand-on-background-strong),
+    var(--accent-on-background-weak)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.heroSubtitle {
+  max-width: 36rem;
+}
+
+// Alternating feature rows: image side swaps on desktop, stacks on mobile.
+@media (min-width: 769px) {
+  .reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.card {
+  transition:
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-border-strong);
+    box-shadow:
+      var(--shadow-l),
+      0 0 0 1px var(--accent-alpha-medium);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+// Use-case gallery cards — soft gradient wash over the surface, alternating hue.
+.useCase {
+  background:
+    radial-gradient(120% 120% at 0% 0%, var(--accent-alpha-weak), transparent 70%),
+    var(--page-background);
+
+  &:nth-child(even) {
+    background:
+      radial-gradient(120% 120% at 100% 0%, var(--brand-alpha-weak), transparent 70%),
+      var(--page-background);
+  }
+}
+
+// Diagnostic offer card — elevated surface with a brand glow.
+.pricingCard {
+  position: relative;
+  background:
+    radial-gradient(140% 90% at 50% 0%, var(--brand-alpha-weak), transparent 60%),
+    var(--surface-background);
+  box-shadow: var(--shadow-l);
+}
+
+// Subtle editorial zoom on decorative imagery (wrapper already clips overflow).
+.media {
+  img {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+}

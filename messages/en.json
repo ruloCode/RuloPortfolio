@@ -1,13 +1,14 @@
 {
   "about": {
     "calendar": "Schedule a call",
-    "description": "Meet Andrés Santana, Senior Frontend Engineer from Colombia",
+    "description": "The story of Andrés Santana: from musician to Software Developer. Automation, development and AI training from Colombia.",
     "intro": {
-      "p1": "Most developers build features. <strong>I build revenue.</strong>",
-      "p2": "For 4+ years, I've been the frontend lead at Mexico's fastest-growing digital pharmacy. When I joined, the site took 5.8 seconds to load. Users bounced. Sales stalled. I fixed that—cutting load time by 56% and driving a <strong>23% conversion lift</strong>.",
-      "p3": "Today, the platform I architected processes <strong>$2M+ monthly</strong>, serves 50,000+ patients, and maintains 99.9% uptime. I led the Next.js 15 migration with zero downtime while the team shipped features in parallel.",
-      "p4": "I work best with teams who care about <strong>speed, conversions, and code that scales</strong>. If that's you, let's talk.",
-      "title": "Introduction"
+      "p1": "Before writing code, I wrote songs. Music was the life plan — until technology transformed the industry and forced me to choose between what I loved and what let me make a living. <strong>I chose to survive.</strong>",
+      "p2": "I learned to code from scratch and took it seriously: for over 4 years I was the frontend lead at Mexico's fastest-growing digital pharmacy. I cut load time by <strong>56%</strong>, lifted conversions <strong>23%</strong>, and the platform I architected processes <strong>$2M+ monthly</strong> for 50,000+ patients with 99.9% uptime.",
+      "p3": "Along the way I found my unfair advantage: I can do the technical work <strong>and I can translate it</strong>. Because I lived the fear of falling behind, I learned to teach technology from empathy, not arrogance.",
+      "p4": "Today I work on three fronts: AI <strong>automation</strong> for companies, custom software <strong>development</strong>, and <strong>AI training</strong> for non-technical professionals.",
+      "p5": "My north star is simple: help professionals use AI to level up <strong>before the world forces them to choose</strong>. It forced me. It doesn't have to force you.",
+      "title": "My story"
     },
     "label": "About",
     "studies": {
@@ -110,7 +111,7 @@
   "footer": {
     "bookCall": "Book a call",
     "navTitle": "Explore",
-    "tagline": "Fast, reliable frontends — built from Colombia for the world."
+    "tagline": "Automation, development and AI training — from Colombia for the world."
   },
   "gallery": {
     "description": "A photo collection by Andrés Santana",
@@ -118,82 +119,152 @@
     "title": "My photo gallery"
   },
   "home": {
-    "badge": "Open to opportunities",
     "blogHeading": "Latest from the blog",
-    "ctaCall": "Book a call",
-    "ctaWork": "View my work",
-    "description": "Senior Frontend Engineer specializing in React, Next.js & TypeScript. 5+ years building scalable applications for healthcare and financial platforms. $2M+/month in transactions processed.",
-    "headline": "I build <fx>high-performance</fx> frontends that handle millions in transactions.",
+    "ctaCompanies": "Companies: book a call",
+    "ctaProfessionals": "Professionals: AI program",
+    "ctaStory": "My story",
+    "description": "Software Developer. I help companies automate and build revenue-generating software, and professionals use AI to level up before the world forces them to choose. $2M+/month processed, 50K+ users.",
+    "finalCta": {
+      "button": "Book a call",
+      "description": "If you run a company, tell me about your project in a free 30-minute call. If you're a professional who wants to level up with AI, the program is waiting for you.",
+      "title": "Shall we build something together?"
+    },
+    "headline": "Technology forced me to choose. Today I help others <fx>level up</fx> before it forces them.",
+    "heroAlt": "An electric guitar dissolving into emerald code particles flowing toward a laptop",
     "label": "Home",
-    "subline": "Senior Frontend Engineer specializing in React, Next.js & TypeScript. 5+ years building scalable applications for healthcare and financial platforms. <strong>$2M+/month</strong> in transactions processed. <strong>50K+ users</strong> served. <strong>Zero downtime</strong> migrations.",
-    "title": "Andrés Santana | Senior React & Next.js Developer | Fintech & Scalable Applications"
+    "pillars": {
+      "items": {
+        "automation": {
+          "cta": "View services",
+          "description": "AI-powered flows and automations that win back hours of work every week. From repetitive tasks to systems that run on their own.",
+          "title": "Automation"
+        },
+        "development": {
+          "cta": "View case studies",
+          "description": "Custom software with React, Next.js and TypeScript. The same engineering behind a platform processing $2M+/month.",
+          "title": "Development"
+        },
+        "training": {
+          "cta": "Explore the program",
+          "description": "Hands-on programs for non-technical professionals. AI applied to your real work — no hype, no intimidation.",
+          "title": "AI Training"
+        }
+      },
+      "title": "How I can help you"
+    },
+    "proofCta": "View all projects",
+    "proofHeading": "The proof: real case studies",
+    "story": {
+      "cta": "Read the full story",
+      "eyebrow": "My story",
+      "imageAlt": "Guitar strings transforming into threads of light and code",
+      "p1": "Before writing code, I wrote songs. Technology changed the rules of the music industry and forced me to choose between what I loved and what gave me stability. I chose to survive — and learned to code.",
+      "p2": "That choice gave me something no bootcamp teaches: I know exactly what falling behind feels like. That's why today I build technology and teach AI without intimidation — so others can level up before they're forced to choose.",
+      "title": "I left music to survive. Today I teach how to level up."
+    },
+    "subline": "I'm Andrés Santana, Software Developer. I left music to survive technologically; today I build <strong>automations</strong>, <strong>custom software</strong> and <strong>AI training</strong> — backed by a platform that processes <strong>$2M+/month</strong> and serves <strong>50K+ users</strong>.",
+    "title": "Andrés Santana | Automation, Development & AI Training"
   },
   "ia": {
-    "audience": {
-      "items": {
-        "1": {
-          "description": "You use a computer all day — spreadsheets, documents, email, reports — and suspect half of it could be automated, but don't know where to start.",
-          "title": "Non-technical professionals"
-        },
-        "2": {
-          "description": "You've tried ChatGPT a few times, got mediocre results, and concluded 'it's not for my job'. It is — you just need working workflows, not prompts from Twitter.",
-          "title": "Curious but burned"
-        },
-        "3": {
-          "description": "You lead a team and feel the pressure to 'do something with AI' without hiring engineers or buying enterprise tools you won't use.",
-          "title": "Team leads & managers"
-        }
-      },
-      "title": "Who this is for"
-    },
     "faq": {
+      "title": "Frequently asked questions",
       "items": {
         "1": {
-          "answer": "No. This program is designed for people who don't write code. Everything is built with tools you already know how to click through.",
-          "question": "Do I need to know how to code?"
+          "question": "Do I need to know how to code?",
+          "answer": "No. Everything is built with click-based tools you already know how to use. The program is designed for people whose job is not technology."
         },
         "2": {
-          "answer": "The first cohort is in validation. Joining the waitlist costs nothing, gets you first access, and early members get launch pricing.",
-          "question": "When does it start and how much does it cost?"
+          "question": "Does it work for my field?",
+          "answer": "If your work runs through a computer — marketing, finance, HR, legal, healthcare, education, operations, sales — yes. Everything is applied to your real tasks, not generic examples."
         },
         "3": {
-          "answer": "Concrete workflows applied to YOUR work: automating repetitive tasks, producing content faster, and a repeatable system to evaluate new AI tools without drowning in hype.",
-          "question": "What will I walk away with?"
+          "question": "When does it start and how much does it cost?",
+          "answer": "The first cohort is in validation. Joining the waitlist is free, gives you priority access, and the first members get launch pricing."
+        },
+        "4": {
+          "question": "What if the tools change next month?",
+          "answer": "They will — that's why the program isn't married to any of them. You leave with workflows running today and a repeatable judgment system to evaluate whatever ships tomorrow."
         }
-      },
-      "title": "Frequently asked questions"
+      }
     },
-    "format": {
-      "badge": "Coming soon",
+    "features": {
+      "cta": "Join the waitlist",
       "items": {
-        "cohort": {
-          "description": "Live, hands-on sessions in small groups. You leave each session with something working, not just notes.",
-          "title": "Live cohort"
+        "rol": {
+          "eyebrow": "01 · Your role first",
+          "title": "We start with your job, not the tools",
+          "description": "We map your real week and spot, for your specific role, where the hidden hours are. No generic tours of 50 tools.",
+          "imageAlt": "Abstract landscape of dark circuit blocks with emerald light flowing between them"
         },
-        "community": {
-          "description": "A space to share what works, ask questions and keep up as tools change — because they will.",
-          "title": "Community"
+        "copiloto": {
+          "eyebrow": "02 · Daily copilot",
+          "title": "Beyond ChatGPT: workflows, not loose prompts",
+          "description": "From using AI ‘sometimes, sort of’ to a daily system: analyze information, write, decide and produce at professional quality in your field.",
+          "imageAlt": "Work studio where an idea turns into finished pieces"
         },
-        "templates": {
-          "description": "Ready-to-use workflows and templates: video → automation → publishing, tested end-to-end in real work.",
-          "title": "Templates & workflows"
+        "automatizacion": {
+          "eyebrow": "03 · Automation",
+          "title": "Your repetitive tasks, on autopilot",
+          "description": "You build your first automations with click-based tools — email, spreadsheets, documents — and free up hours every week. No code involved.",
+          "imageAlt": "Luminous gears and connections representing processes that run on their own"
+        },
+        "reto": {
+          "eyebrow": "04 · The challenge",
+          "title": "4 weeks, small groups, one working flow",
+          "description": "The AI Shift Challenge: live sessions, practice on your real work, and by the end a complete flow running — not notes forgotten within a week.",
+          "imageAlt": "Group of people learning to apply AI in a hands-on session"
+        },
+        "posicionamiento": {
+          "eyebrow": "05 · Position yourself",
+          "title": "Become your team's AI go-to",
+          "description": "You close with a ‘tech pitch’ to present what you built with confidence — at your company or in your own project. The professional who masters AI stands out.",
+          "imageAlt": "Professional presenting their work with confidence"
+        },
+        "criterio": {
+          "eyebrow": "06 · Judgment",
+          "title": "A system so the hype never drowns you",
+          "description": "The tools will change. You leave with a repeatable method to evaluate what's new in minutes and adopt only what serves your work — for good.",
+          "imageAlt": "In-person community gathering with talks and networking"
         }
-      },
-      "title": "The format"
+      }
     },
     "hero": {
-      "badge": "First cohort in validation — waitlist open",
-      "subtitle": "A hands-on program for non-technical professionals who want to apply AI to their real work, recover hours every week, and stop fearing they'll fall behind.",
-      "title": "AI so you don't fall behind"
+      "badge": "First cohort in validation · waitlist open",
+      "titleA": "Your profession, augmented with AI.",
+      "titleB": "Whatever your field.",
+      "subtitle": "A hands-on program to apply AI to the work you already do — win back hours every week, produce better work and become your team's AI go-to. No code required.",
+      "primaryCta": "I want to join the challenge",
+      "secondaryCta": "Book a free call"
     },
     "meta": {
-      "description": "A hands-on AI program for non-technical professionals: apply AI to your real work, recover time, and stop fearing obsolescence. Join the waitlist.",
-      "title": "AI so you don't fall behind | Program for non-technical professionals"
+      "title": "Augment yourself with AI | Hands-on program for professionals in any field",
+      "description": "A hands-on program for professionals in any field: apply AI to the work you already do, win back hours every week and become your team's AI go-to. No code required."
     },
-    "problem": {
-      "p1": "Every week there's a new AI tool 'you can't miss', another thread promising you'll be left behind if you don't master it today. The noise is real — and so is the fear.",
-      "p2": "The truth: you don't need to learn 50 tools or become an engineer. You need a handful of working flows applied to your actual job, and the criteria to ignore the rest.",
-      "title": "The fear is real. The noise doesn't help."
+    "pricing": {
+      "title": "Join the AI Shift Challenge 👇",
+      "card": {
+        "name": "First cohort · limited spots",
+        "price": "Launch pricing",
+        "unit": "reserved for the waitlist",
+        "note": "The first cohort is in validation: joining the list costs nothing and commits you to nothing.",
+        "button": "Join the waitlist",
+        "features": {
+          "1": "4 weeks of live sessions, in small groups",
+          "2": "Workflows applied to YOUR role — no generic examples",
+          "3": "Ready-to-use templates and automations",
+          "4": "A real working flow + your ‘tech pitch’ at the end",
+          "5": "A community to keep you current when everything changes"
+        }
+      }
+    },
+    "proof": {
+      "label": "Built for professionals in any field — if your work lives on a computer, it applies",
+      "chips": {
+        "1": "Marketing · Finance · HR",
+        "2": "Legal · Healthcare · Education",
+        "3": "Operations · Sales · Creatives"
+      },
+      "bannerAlt": "AI interfaces and workflows applied to a professional's daily work"
     },
     "teaser": {
       "cta": "Join the waitlist",
@@ -201,17 +272,32 @@
       "eyebrow": "New",
       "title": "AI so you don't fall behind"
     },
-    "waitlist": {
-      "button": "Join the waitlist",
-      "description": "No spam. One email when the first cohort opens — waitlist members get first access and launch pricing.",
-      "placeholder": "Your email",
-      "title": "Be first in line"
+    "useCases": {
+      "title": "What professionals like you can already automate",
+      "items": {
+        "1": {
+          "title": "Marketing → content",
+          "description": "Campaigns and pieces that go from idea to published in hours, not weeks."
+        },
+        "2": {
+          "title": "Finance → reports",
+          "description": "Weekly reports assembled and sent without opening the spreadsheet."
+        },
+        "3": {
+          "title": "HR → processes",
+          "description": "Job descriptions, screening and onboarding prepared in minutes."
+        },
+        "4": {
+          "title": "Operations → inbox",
+          "description": "Emails that classify, log and nearly answer themselves."
+        }
+      }
     },
-    "whyMe": {
-      "p1": "I build end-to-end AI workflows for a living — video to automation to publishing — and I'm the person my colleagues come to when they need AI translated into something they can actually execute.",
-      "p2": "I also know the fear of being left behind first-hand: I left music behind for stability in tech. That decision taught me to teach from empathy, not from technical arrogance.",
-      "p3": "This program is what I wish had existed then: practical, honest about what works, and built for people whose job is not technology.",
-      "title": "Why learn this with me"
+    "waitlist": {
+      "title": "Be among the first",
+      "description": "Zero spam. One email when the first cohort opens — the waitlist gets priority access and launch pricing.",
+      "button": "Join the list",
+      "placeholder": "Your email"
     }
   },
   "nav": {
@@ -238,7 +324,7 @@
       "english": "English (Professional)",
       "spanish": "Spanish (Native)"
     },
-    "role": "Senior Frontend Engineer | React & Next.js | Fintech & Scalable Applications"
+    "role": "Software Developer | Automation, Development & AI Training"
   },
   "projectCard": {
     "caseStudy": "Read case study",
@@ -298,7 +384,8 @@
       "title": "Frequently asked questions"
     },
     "hero": {
-      "intro": "I help companies ship fast, reliable frontends that convert. Pick the engagement that fits—or book a call and we'll figure it out together.",
+      "imageAlt": "Abstract landscape of dark circuit blocks with emerald light flowing between them",
+      "intro": "I help companies automate processes with AI and ship fast, reliable frontends that convert. Pick the engagement that fits—or book a call and we'll figure it out together.",
       "title": "Work With Me"
     },
     "label": "Services",
