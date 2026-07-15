@@ -52,7 +52,7 @@ export default async function Work({ params: { locale } }: PageParams) {
   const t = await getTranslations();
   const { person, work } = createI18nContent(t);
 
-  let allProjects = getPosts(["src", "app", "[locale]", "work", "projects"], locale);
+  let allProjects = getPosts(["work", "projects"], locale);
 
   return (
     <Column maxWidth="m">

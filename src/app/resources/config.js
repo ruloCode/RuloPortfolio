@@ -11,11 +11,10 @@ const routes = {
   "/blog": false,
   // Hidden until there are real photos (e.g. from the Bogotá pilot event) — flip to true to bring it back.
   "/gallery": false,
+  // Gated study platform. Access is enforced by the session check in
+  // dashboard/layout.tsx — this flag only decides whether the route exists.
+  "/dashboard": true,
 };
-
-// Enable password protection on selected routes
-// Set password in the .env file, refer to .env.example
-const protectedRoutes = {};
 
 // Scheduling link for consulting CTAs (about, services, home, footer).
 // Set NEXT_PUBLIC_CAL_LINK (e.g. https://cal.com/<username>/30min) to switch to Cal.com.
@@ -116,7 +115,6 @@ const waitlistEffects = {
 
 export {
   routes,
-  protectedRoutes,
   scheduling,
   effects,
   style,
