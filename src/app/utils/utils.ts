@@ -79,12 +79,16 @@ function getMDXData(dir: string, locale: string, isFallback = false): Post[] {
 }
 
 /**
- * Reads MDX posts for a locale from `<customPath>/<locale>/*.mdx`.
+ * Reads MDX posts for a locale from `src/app/[locale]/<customPath>/<locale>/*.mdx`.
  * Content that only exists in the default locale is not listed for other
  * locales; use getPost() to resolve a single slug with fallback.
  */
 export function getPosts(customPath: string[], locale: string = routing.defaultLocale): Post[] {
-  const postsDir = path.join(process.cwd(), ...customPath, locale);
+  // The static "src/app/[locale]" prefix must stay inline in this call: the
+  // file tracer resolves fs reads by partially evaluating path.join, and a
+  // fully dynamic path makes it bundle the entire project dir into every
+  // serverless function (575MB+, over Vercel's 250MB limit).
+  const postsDir = path.join(process.cwd(), "src", "app", "[locale]", ...customPath, locale);
   return getMDXData(postsDir, locale);
 }
 

@@ -12,19 +12,12 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   experimental: {
-    // getPosts() reads MDX with fs from a path built at runtime, so the file
-    // tracer can't narrow it down and drags the whole project dir into every
-    // serverless function (644MB+ on Vercel, over its 250MB limit). Only the
-    // src/ MDX content is actually read at runtime; exclude the rest.
-    outputFileTracingExcludes: {
-      "*": [
-        ".next/cache/**",
-        ".git/**",
-        "public/**",
-        ".playwright-mcp/**",
-        ".agents/**",
-        ".claude/**",
-      ],
+    // getPosts() reads MDX with fs at request time for any path that isn't
+    // prerendered. The tracer misses those files on its own because the
+    // literal "[locale]" directory parses as a glob character class, so the
+    // content is included explicitly ("*" matches the [locale] segment).
+    outputFileTracingIncludes: {
+      "*": ["src/app/*/blog/posts/**", "src/app/*/work/projects/**"],
     },
   },
 };

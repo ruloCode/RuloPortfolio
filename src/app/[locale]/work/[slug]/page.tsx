@@ -19,7 +19,7 @@ import ScrollToHash from "@/components/ScrollToHash";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
-const WORK_PATH = ["src", "app", "[locale]", "work", "projects"];
+const WORK_PATH = ["work", "projects"];
 
 interface WorkParams {
   params: {

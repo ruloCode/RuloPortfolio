@@ -13,7 +13,7 @@ interface RelatedPostsProps {
 export async function RelatedPosts({ currentSlug, tag, locale }: RelatedPostsProps) {
   const t = await getTranslations("blog");
 
-  const others = getPosts(["src", "app", "[locale]", "blog", "posts"], locale)
+  const others = getPosts(["blog", "posts"], locale)
     .filter((post) => post.slug !== currentSlug)
     .sort(
       (a, b) =>

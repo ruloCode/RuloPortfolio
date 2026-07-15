@@ -20,7 +20,7 @@ import ScrollToHash from "@/components/ScrollToHash";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
-const BLOG_PATH = ["src", "app", "[locale]", "blog", "posts"];
+const BLOG_PATH = ["blog", "posts"];
 
 interface BlogParams {
   params: {

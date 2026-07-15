@@ -12,7 +12,7 @@ export default async function sitemap() {
   const blogs = !routesConfig["/blog"]
     ? []
     : routing.locales.flatMap((locale) =>
-        getPosts(["src", "app", "[locale]", "blog", "posts"], locale).map((post) => ({
+        getPosts(["blog", "posts"], locale).map((post) => ({
           url: localeUrl(locale, `/blog/${post.slug}`),
           lastModified: post.metadata.publishedAt,
           alternates: {
@@ -27,7 +27,7 @@ export default async function sitemap() {
   const works = !routesConfig["/work"]
     ? []
     : routing.locales.flatMap((locale) =>
-        getPosts(["src", "app", "[locale]", "work", "projects"], locale).map((post) => ({
+        getPosts(["work", "projects"], locale).map((post) => ({
           url: localeUrl(locale, `/work/${post.slug}`),
           lastModified: post.metadata.publishedAt,
           alternates: {
