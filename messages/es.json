@@ -123,15 +123,15 @@
     "blogHeading": "Lo último del blog",
     "ctaCompanies": "Empresas: agenda una llamada",
     "ctaProfessionals": "Conoce el AI Shift Challenge",
-    "ctaStory": "Mi historia",
-    "description": "Enseño a profesionales no técnicos a automatizar su trabajo con IA (AI Shift Challenge) y ayudo a empresas con consultoría de IA y software a la medida. +$2M/mes procesados, +50K usuarios.",
+    "ctaStory": "Sobre mí",
+    "description": "Experto en IA aplicada con más de 6 años construyendo software. Enseño a profesionales no técnicos a automatizar su trabajo con IA (AI Shift Challenge) y ayudo a empresas con consultoría y software a la medida.",
     "finalCta": {
       "button": "Reservar mi cupo",
       "description": "El AI Shift Challenge abre pronto: déjame tu correo y entérate primero, con precio de lanzamiento. ¿Tienes una empresa? La consultoría sigue abierta en Servicios.",
       "title": "Reserva tu cupo en la primera cohorte"
     },
-    "headline": "La tecnología me obligó a empezar de cero. Hoy enseño a profesionales a <fx>dominar la IA</fx> antes de que los obligue.",
-    "heroAlt": "Un desarrollador trabaja de noche iluminado por la luz esmeralda de su portátil, con su guitarra eléctrica descansando en primer plano",
+    "headline": "Más de 6 años construyendo software. Hoy enseño a profesionales a <fx>dominar la IA</fx>.",
+    "heroAlt": "Un experto en IA trabaja de noche frente a varias pantallas que bañan su escritorio en luz esmeralda",
     "label": "Inicio",
     "pillars": {
       "items": {
@@ -156,14 +156,14 @@
     "proofCta": "Ver todos los proyectos",
     "proofHeading": "La prueba: casos reales",
     "story": {
-      "cta": "Lee la historia completa",
-      "eyebrow": "Mi historia",
-      "imageAlt": "Cuerdas de guitarra transformándose en hilos de luz y código",
-      "p1": "Antes de escribir código escribía canciones. La tecnología cambió las reglas de la industria musical y me obligó a elegir entre lo que amaba y lo que me daba estabilidad. Elegí sobrevivir — y aprendí a programar.",
-      "p2": "Esa elección me dio algo que ningún bootcamp enseña: sé exactamente lo que se siente quedarse atrás. Por eso hoy construyo tecnología y enseño IA sin intimidar — para que otros la dominen antes de que los obligue a elegir.",
-      "title": "Dejé la música para sobrevivir. Hoy enseño a dominar la IA."
+      "cta": "Conóceme más",
+      "eyebrow": "Trayectoria",
+      "imageAlt": "Ingeniero revisando paneles de sistemas en producción en un espacio oscuro iluminado por luz esmeralda",
+      "p1": "Lideré el frontend de la farmacia digital de mayor crecimiento en México: una plataforma que procesa más de $2M al mes para 50.000 pacientes, con 99.9% de uptime. Ingeniería real, en producción, durante más de 6 años.",
+      "p2": "Esa base es la diferencia cuando hablo de IA: no vendo demos ni humo — llevo flujos a producción y enseño con la empatía de quien sabe lo que cuesta mantenerse al día. Por eso mi programa funciona para gente no técnica.",
+      "title": "Más de 6 años llevando software a producción. Ahora, IA."
     },
-    "subline": "Soy Andrés Santana. Construí software que procesa <strong>+$2M/mes</strong> para <strong>+50K usuarios</strong>. Hoy enseño IA aplicada a profesionales no técnicos con el <strong>AI Shift Challenge</strong> y automatizo procesos para empresas.",
+    "subline": "Soy Andrés Santana, experto en IA aplicada. Llevo más de 6 años construyendo software en producción — una plataforma que procesa <strong>+$2M/mes</strong> para <strong>+50K usuarios</strong> — y hoy enseño a profesionales no técnicos a automatizar su trabajo con el <strong>AI Shift Challenge</strong>.",
     "title": "Andrés Santana — Experto en IA aplicada · AI Shift Challenge"
   },
   "ia": {
@@ -449,9 +449,9 @@
   },
   "stats": {
     "items": {
-      "hackathon": {
-        "label": "puesto · Hackatón Samatech",
-        "value": "3er"
+      "experience": {
+        "label": "años construyendo software",
+        "value": "6+"
       },
       "lcp": {
         "label": "reducción de LCP a escala",

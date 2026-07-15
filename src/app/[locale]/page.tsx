@@ -277,7 +277,7 @@ export default async function Home({ params: { locale } }: PageParams) {
             <Flex flex={5} vertical="center">
               <SmartImage
                 className={brand.media}
-                src="/images/home/story.jpg"
+                src="/images/home/experience.jpg"
                 alt={home.story.imageAlt}
                 aspectRatio="4 / 3"
                 radius="l"
