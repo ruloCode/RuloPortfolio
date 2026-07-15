@@ -67,6 +67,8 @@ const createI18nContent = (t) => {
     placeholder: t("ia.waitlist.placeholder"),
     invalidEmail: t("ia.waitlist.invalidEmail"),
     success: t("ia.waitlist.success"),
+    successDescription: t("ia.waitlist.successDescription"),
+    successCta: t("ia.waitlist.successCta"),
     error: t("ia.waitlist.error"),
     note: t("ia.waitlist.note"),
   };

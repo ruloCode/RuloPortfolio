@@ -177,7 +177,7 @@
     "bookCall": "Agenda una llamada",
     "navTitle": "Explora",
     "tagline": "Formación y consultoría en IA — desde Colombia para el mundo.",
-    "waitlistCta": "Únete a la lista de espera del curso"
+    "waitlistCta": "Empieza el curso: Semana 0 gratis"
   },
   "gallery": {
     "description": "Una colección de fotos de Andrés Santana",
@@ -191,9 +191,9 @@
     "ctaStory": "Sobre mí",
     "description": "Experto en IA aplicada con más de 6 años construyendo software. Enseño a profesionales no técnicos a automatizar su trabajo con IA (AI Shift Challenge) y ayudo a empresas con consultoría y software a la medida.",
     "finalCta": {
-      "button": "Reservar mi cupo",
-      "description": "El AI Shift Challenge abre pronto: déjame tu correo y entérate primero, con precio de lanzamiento. ¿Tienes una empresa? La consultoría sigue abierta en Servicios.",
-      "title": "Reserva tu cupo en la primera cohorte"
+      "button": "Entrar y empezar",
+      "description": "Déjame tu correo y entras hoy a tu Semana 0: tres lecciones gratis para dejar tu primera automatización corriendo. Cuando abra el AI Shift Challenge, entras primero y con precio de lanzamiento. ¿Tienes una empresa? La consultoría sigue abierta en Servicios.",
+      "title": "Empieza hoy. La cohorte llega después."
     },
     "headline": "Más de 6 años construyendo software. Hoy enseño a profesionales a <fx>dominar la IA</fx>.",
     "heroAlt": "Un experto en IA trabaja de noche frente a varias pantallas que bañan su escritorio en luz esmeralda",
@@ -249,7 +249,7 @@
         },
         "4": {
           "question": "¿Cuándo empieza y cuánto cuesta?",
-          "answer": "La primera cohorte abre pronto y son solo 6 cupos — con sesiones privadas no da para más. Reservar en la lista de espera es gratis, te da acceso prioritario y precio de lanzamiento."
+          "answer": "La primera cohorte abre pronto y son solo 6 cupos — con sesiones privadas no da para más. Entrar es gratis: arrancas hoy con la Semana 0, y cuando abra la cohorte entras primero y con precio de lanzamiento."
         },
         "5": {
           "question": "¿Y si las herramientas cambian el próximo mes?",
@@ -258,7 +258,7 @@
       }
     },
     "features": {
-      "cta": "Reservar mi cupo",
+      "cta": "Empezar hoy",
       "items": {
         "rol": {
           "eyebrow": "01 · Tu rol primero",
@@ -299,26 +299,26 @@
       }
     },
     "hero": {
-      "badge": "AI Shift Challenge · Lista de espera abierta — solo 6 cupos",
+      "badge": "AI Shift Challenge · Semana 0 abierta — empiezas hoy",
       "titleA": "Automatiza tu trabajo con IA en 4 semanas.",
       "titleB": "Sin escribir código.",
       "subtitle": "Un programa en vivo para profesionales no técnicos: 4 sesiones privadas conmigo sobre tus tareas reales, 2 sesiones grupales y, al final, una automatización tuya funcionando — no apuntes.",
-      "primaryCta": "Reservar mi cupo",
+      "primaryCta": "Empezar hoy",
       "secondaryCta": "Ver el programa",
-      "ctaNote": "Gratis · Sin compromiso · Un solo correo cuando abra la cohorte"
+      "ctaNote": "Gratis · Sin tarjeta · Empiezas hoy"
     },
     "meta": {
       "title": "AI Shift Challenge — Automatiza tu trabajo con IA en 4 semanas, sin código",
-      "description": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas 1:1 sobre tus tareas reales, 2 grupales, y tu primera automatización funcionando. Únete a la lista de espera de la primera cohorte — solo 6 cupos."
+      "description": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas 1:1 sobre tus tareas reales, 2 grupales, y tu primera automatización funcionando. Entra hoy y empieza con la Semana 0 gratis — solo 6 cupos en la cohorte."
     },
     "pricing": {
       "title": "Qué incluye el AI Shift Challenge",
       "card": {
         "name": "Primera cohorte · solo 6 cupos",
         "price": "Precio de lanzamiento",
-        "unit": "solo para la lista de espera",
-        "note": "Unirte a la lista es gratis y no te compromete. Cuando abra la cohorte, la lista entra primero y paga menos.",
-        "button": "Reservar mi cupo",
+        "unit": "solo para la lista fundadora",
+        "note": "Entrar es gratis y no te compromete: arrancas hoy con tu Semana 0. Cuando abra la cohorte, la lista fundadora entra primero y paga menos.",
+        "button": "Empezar hoy",
         "features": {
           "1": "4 sesiones privadas 1:1 conmigo — tu rol, tus tareas, tu caso",
           "2": "2 sesiones grupales para ver cómo lo resuelven otros roles y no perder el ritmo",
@@ -339,8 +339,8 @@
       "bannerAlt": "Interfaces y flujos de IA aplicados al trabajo diario de un profesional"
     },
     "teaser": {
-      "cta": "Unirme a la lista de espera",
-      "description": "4 sesiones privadas conmigo, sin código y sobre tu trabajo real. Solo 6 cupos en la primera cohorte.",
+      "cta": "Empezar mi Semana 0",
+      "description": "4 sesiones privadas conmigo, sin código y sobre tu trabajo real. Entras hoy con la Semana 0 gratis — solo 6 cupos en la primera cohorte.",
       "eyebrow": "Curso",
       "title": "AI Shift Challenge: tu primera automatización con IA en 4 semanas"
     },
@@ -366,14 +366,16 @@
       }
     },
     "waitlist": {
-      "title": "¿Te guardo un cupo en la primera cohorte?",
-      "description": "Déjame tu correo y te escribo cuando abra el AI Shift Challenge. La lista de espera entra primero y con precio de lanzamiento. Cero spam: un solo correo.",
-      "button": "Reservar mi cupo",
+      "title": "No esperes a la cohorte — empieza esta semana.",
+      "description": "Déjame tu correo y entras hoy a tu Semana 0: tres lecciones gratis para diagnosticar tu semana, montar tu copiloto y dejar tu primera automatización corriendo. Cuando abra la cohorte, entras primero y con precio de lanzamiento. Cero spam: te escribo cuando hay algo que puedas usar.",
+      "button": "Entrar y empezar",
       "placeholder": "Tu email",
-      "note": "Cohorte fundadora · Solo 6 cupos",
+      "note": "Semana 0 gratis · Solo 6 cupos en la cohorte",
       "invalidEmail": "Ingresa un correo válido.",
-      "success": "¡Listo! Tu cupo está reservado — te escribo cuando abra la cohorte.",
-      "error": "Algo falló al registrarte. Intenta de nuevo en un momento."
+      "success": "Estás dentro.",
+      "error": "Algo falló al registrarte. Intenta de nuevo en un momento.",
+      "successDescription": "Te acabo de escribir. Y tu Semana 0 ya está abierta — no tienes que esperar a la cohorte.",
+      "successCta": "Entrar a mi Semana 0"
     }
   },
   "login": {
@@ -395,7 +397,7 @@
     "home": "Inicio",
     "ia": "Curso de IA",
     "services": "Servicios",
-    "waitlistCta": "Únete a la lista",
+    "waitlistCta": "Empezar gratis",
     "work": "Proyectos"
   },
   "newsletter": {

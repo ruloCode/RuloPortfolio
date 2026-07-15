@@ -1,6 +1,7 @@
 "use client";
 
 import { waitlistEffects } from "@/app/resources";
+import { localizeHref } from "@/i18n/routing";
 import {
   Background,
   Button,
@@ -25,6 +26,8 @@ type WaitlistCopy = {
   placeholder?: string;
   invalidEmail: string;
   success: string;
+  successDescription?: string;
+  successCta?: string;
   error: string;
   note?: string;
 };
@@ -143,10 +146,32 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         {newsletter.description}
       </Text>
       {status === "success" ? (
-        <Flex gap="12" vertical="center" style={{ position: "relative" }}>
-          <Icon name="checkCircle" onBackground="brand-weak" />
-          <Text variant="body-strong-m">{newsletter.success}</Text>
-        </Flex>
+        // The highest-intent moment on the site: they just converted and are
+        // looking for the next step. Hand them the dashboard, not a dead end.
+        <Column gap="16" horizontal="center" align="center" style={{ position: "relative" }}>
+          <Icon name="checkCircle" size="l" onBackground="brand-weak" />
+          <Heading variant="heading-strong-m">{newsletter.success}</Heading>
+          {newsletter.successDescription && (
+            <Text
+              variant="body-default-m"
+              onBackground="neutral-medium"
+              wrap="balance"
+              style={{ maxWidth: "var(--responsive-width-xs)" }}
+            >
+              {newsletter.successDescription}
+            </Text>
+          )}
+          {newsletter.successCta && (
+            <Button
+              href={`${localizeHref(locale, "/dashboard")}?email=${encodeURIComponent(email.trim())}`}
+              size="m"
+              arrowIcon
+              className={variant === "signature" ? brand.signatureCta : undefined}
+            >
+              {newsletter.successCta}
+            </Button>
+          )}
+        </Column>
       ) : (
         <form
           style={{

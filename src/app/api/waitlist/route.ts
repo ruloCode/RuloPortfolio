@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { buildWelcomeEmail, resolveWelcomeLocale } from "./welcome-email";
+import { buildWelcomeEmail, CONTACT_EMAIL, resolveWelcomeLocale } from "./welcome-email";
 
 // Signups land in the `waitlist` table (Supabase), the source of truth.
 // The welcome email (Resend) and the audience sync are best-effort: if they
@@ -94,14 +94,24 @@ async function sendWelcomeEmail(
     return;
   }
 
-  const { subject, html, text } = buildWelcomeEmail(locale);
+  const { subject, html, text } = buildWelcomeEmail(locale, { email });
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ from, to: [email], subject, html, text }),
+    body: JSON.stringify({
+      from,
+      to: [email],
+      subject,
+      html,
+      text,
+      // Spam-folder insurance for a domain with little sending reputation.
+      // No List-Unsubscribe-Post: that advertises one-click, and Gmail would
+      // POST to nothing. Add both together with a real HTTP endpoint later.
+      headers: { "List-Unsubscribe": `<mailto:${CONTACT_EMAIL}?subject=unsubscribe>` },
+    }),
   });
 
   if (!response.ok) {

@@ -177,7 +177,7 @@
     "bookCall": "Book a call",
     "navTitle": "Explore",
     "tagline": "AI training and consulting — from Colombia for the world.",
-    "waitlistCta": "Join the course waitlist"
+    "waitlistCta": "Start the course: Week 0 free"
   },
   "gallery": {
     "description": "A photo collection by Andrés Santana",
@@ -191,9 +191,9 @@
     "ctaStory": "About me",
     "description": "Applied AI expert with 6+ years building software. I teach non-technical professionals to automate their work with AI (AI Shift Challenge) and help companies with consulting and custom software.",
     "finalCta": {
-      "button": "Reserve my spot",
-      "description": "The AI Shift Challenge opens soon: leave your email to hear first, with launch pricing. Run a company? Consulting is open in Services.",
-      "title": "Reserve your spot in the first cohort"
+      "button": "Get in and start",
+      "description": "Leave your email and you're in your Week 0 today: three free lessons to get your first automation running. When the AI Shift Challenge opens, you get in first, at launch pricing. Run a company? Consulting is open in Services.",
+      "title": "Start today. The cohort comes after."
     },
     "headline": "6+ years building software. Today I teach professionals to <fx>master AI</fx>.",
     "heroAlt": "An AI expert works at night in front of several screens bathing his desk in emerald light",
@@ -247,7 +247,7 @@
           "question": "Does it work for my field?"
         },
         "4": {
-          "answer": "The first cohort opens soon and there are only 6 spots — private sessions don't stretch further than that. Reserving on the waitlist is free and gives you priority access and launch pricing.",
+          "answer": "The first cohort opens soon and there are only 6 spots — private sessions don't allow for more. Getting in is free: you start today with Week 0, and when the cohort opens you get in first, at launch pricing.",
           "question": "When does it start and how much does it cost?"
         },
         "5": {
@@ -258,7 +258,7 @@
       "title": "Frequently asked questions"
     },
     "features": {
-      "cta": "Reserve my spot",
+      "cta": "Start today",
       "items": {
         "automatizacion": {
           "description": "You build your first automations with click-based tools — email, spreadsheets, documents — and free up hours every week. No code involved.",
@@ -299,21 +299,21 @@
       }
     },
     "hero": {
-      "badge": "AI Shift Challenge · Waitlist open — only 6 spots",
-      "ctaNote": "Free · No commitment · One email when the cohort opens",
-      "primaryCta": "Reserve my spot",
+      "badge": "AI Shift Challenge · Week 0 open — you start today",
+      "ctaNote": "Free · No card · You start today",
+      "primaryCta": "Start today",
       "secondaryCta": "See the program",
       "subtitle": "A live program for non-technical professionals: 4 private sessions with me on your real tasks, 2 group sessions, and by the end an automation of your own running — not notes.",
       "titleA": "Automate your work with AI in 4 weeks.",
       "titleB": "No code required."
     },
     "meta": {
-      "description": "A live program for non-technical professionals: 4 private 1:1 sessions on your real tasks, 2 group sessions, and your first automation running. Join the waitlist for the first cohort — only 6 spots.",
+      "description": "A live program for non-technical professionals: 4 private 1:1 sessions on your real tasks, 2 group sessions, and your first automation running. Get in today and start with Week 0, free — only 6 spots in the cohort.",
       "title": "AI Shift Challenge — Automate your work with AI in 4 weeks, no code"
     },
     "pricing": {
       "card": {
-        "button": "Reserve my spot",
+        "button": "Start today",
         "features": {
           "1": "4 private 1:1 sessions with me — your role, your tasks, your case",
           "2": "2 group sessions to see how other roles solve it and keep your momentum",
@@ -323,9 +323,9 @@
           "6": "A community to keep you current when the tools change"
         },
         "name": "First cohort · only 6 spots",
-        "note": "Joining the list is free and commits you to nothing. When the cohort opens, the list gets in first and pays less.",
+        "note": "Getting in is free and commits you to nothing: you start today with your Week 0. When the cohort opens, the founding list gets in first and pays less.",
         "price": "Launch pricing",
-        "unit": "waitlist only"
+        "unit": "founding list only"
       },
       "title": "What's inside the AI Shift Challenge"
     },
@@ -339,8 +339,8 @@
       "label": "Built for professionals in any field — if your work lives on a computer, it applies"
     },
     "teaser": {
-      "cta": "Join the waitlist",
-      "description": "4 private sessions with me, no code, and built on your real work. Only 6 spots in the first cohort.",
+      "cta": "Start my Week 0",
+      "description": "4 private sessions with me, no code, on your real work. You're in today with Week 0, free — only 6 spots in the first cohort.",
       "eyebrow": "Course",
       "title": "AI Shift Challenge: your first AI automation in 4 weeks"
     },
@@ -366,14 +366,16 @@
       "title": "What you'll be able to automate"
     },
     "waitlist": {
-      "button": "Reserve my spot",
-      "description": "Leave your email and I'll write when the AI Shift Challenge opens. The waitlist gets in first, with launch pricing. Zero spam: one email.",
+      "button": "Get in and start",
+      "description": "Leave your email and you're in your Week 0 today: three free lessons to diagnose your week, build your copilot and get your first automation running. When the cohort opens, you get in first, at launch pricing. Zero spam: I write when there's something you can use.",
       "error": "Something went wrong. Try again in a moment.",
       "invalidEmail": "Enter a valid email.",
-      "note": "Founding cohort · Only 6 spots",
+      "note": "Week 0 free · Only 6 spots in the cohort",
       "placeholder": "Your email",
-      "success": "Done! Your spot is reserved — I'll write when the cohort opens.",
-      "title": "Want me to save you a spot in the first cohort?"
+      "success": "You're in.",
+      "title": "Don't wait for the cohort — start this week.",
+      "successDescription": "I just wrote to you. And your Week 0 is already open — no need to wait for the cohort.",
+      "successCta": "Open my Week 0"
     }
   },
   "login": {
@@ -395,7 +397,7 @@
     "home": "Home",
     "ia": "AI Course",
     "services": "Services",
-    "waitlistCta": "Join the waitlist",
+    "waitlistCta": "Start free",
     "work": "Work"
   },
   "newsletter": {

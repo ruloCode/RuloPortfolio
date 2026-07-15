@@ -126,6 +126,8 @@ export default async function Ia({ params: { locale } }: PageParams) {
     placeholder: t("waitlist.placeholder"),
     invalidEmail: t("waitlist.invalidEmail"),
     success: t("waitlist.success"),
+    successDescription: t("waitlist.successDescription"),
+    successCta: t("waitlist.successCta"),
     error: t("waitlist.error"),
     note: t("waitlist.note"),
   };
