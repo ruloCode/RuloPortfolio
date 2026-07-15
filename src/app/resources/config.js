@@ -4,11 +4,13 @@ const baseURL = "rulocode.com";
 const routes = {
   "/": true,
   "/about": true,
-  "/work": true,
+  // Hidden while the site focuses on the /ia funnel — flip to true to bring them back.
+  "/work": false,
   "/services": true,
   "/ia": true,
-  "/blog": true,
-  "/gallery": true,
+  "/blog": false,
+  // Hidden until there are real photos (e.g. from the Bogotá pilot event) — flip to true to bring it back.
+  "/gallery": false,
 };
 
 // Enable password protection on selected routes

@@ -1,21 +1,22 @@
 import React from "react";
 import {
-  Badge,
   Button,
   Column,
   Flex,
   Heading,
-  StatusIndicator,
+  SmartImage,
+  SmartLink,
   Tag,
   Text,
   Avatar,
   RevealFx,
 } from "@/once-ui/components";
+import styles from "./home.module.scss";
 import { baseURL, routes, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
-import { CtaBanner, Mailchimp, ServicesTeaser, Stats, Testimonials } from "@/components";
+import { CtaBanner, HomePillars, Mailchimp, Stats, Testimonials } from "@/components";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -32,7 +33,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   const { person } = createI18nContent(t);
 
   // Optimized title (30-65 characters)
-  const title = `${person.firstName}'s Portfolio | ${person.role}`;
+  const title = t("home.title");
   // Optimized description (120-320 characters)
   const description = t("home.description");
   const ogImage = `/images/gallery/og_img.jpg`;
@@ -78,7 +79,7 @@ export default async function Home({ params: { locale } }: PageParams) {
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations();
-  const { person, home, about, newsletter, services } = createI18nContent(t);
+  const { person, home, about, newsletter } = createI18nContent(t);
 
   // Generate structured data for homepage
   const structuredData = {
@@ -161,24 +162,6 @@ export default async function Home({ params: { locale } }: PageParams) {
         />
         <Column fillWidth paddingY="l" gap="m">
           <Column maxWidth="s">
-            {home.openToWork && (
-              <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="s">
-                <Badge arrow={false} effect={true}>
-                  <Flex gap="8" vertical="center">
-                    <StatusIndicator
-                      size="s"
-                      color="green"
-                      style={{
-                        animation: "pulse 2s ease-in-out infinite",
-                      }}
-                    />
-                    <Text variant="label-strong-s" onBackground="brand-strong">
-                      {home.badge}
-                    </Text>
-                  </Flex>
-                </Badge>
-              </RevealFx>
-            )}
             <RevealFx
               translateY="4"
               fillWidth
@@ -207,23 +190,23 @@ export default async function Home({ params: { locale } }: PageParams) {
             <RevealFx translateY="12" delay={0.4} horizontal="start">
               <Flex gap="12" wrap>
                 <Button
-                  id="cta-work"
-                  href={localizeHref(locale, "/work")}
-                  variant="primary"
-                  size="m"
-                  arrowIcon
-                >
-                  {home.ctaWork}
-                </Button>
-                <Button
-                  id="cta-call"
-                  data-border="rounded"
+                  id="cta-companies"
                   href={scheduling.link}
-                  variant="secondary"
+                  variant="primary"
                   size="m"
                   prefixIcon="calendar"
                 >
-                  {home.ctaCall}
+                  {home.ctaCompanies}
+                </Button>
+                <Button
+                  id="cta-professionals"
+                  data-border="rounded"
+                  href={localizeHref(locale, "/ia")}
+                  variant="secondary"
+                  size="m"
+                  prefixIcon="sparkle"
+                >
+                  {home.ctaProfessionals}
                 </Button>
                 <Button
                   id="about"
@@ -240,25 +223,79 @@ export default async function Home({ params: { locale } }: PageParams) {
                         size="s"
                       />
                     )}
-                    {about.title}
+                    {home.ctaStory}
                   </Flex>
                 </Button>
               </Flex>
             </RevealFx>
           </Column>
         </Column>
+        <RevealFx translateY="16" delay={0.5} fillWidth>
+          <SmartImage
+            className={styles.heroMedia}
+            src="/images/home/hero.jpg"
+            alt={home.heroAlt}
+            aspectRatio="21 / 9"
+            radius="l"
+            sizes="(max-width: 768px) 100vw, 1024px"
+            priority
+            border="neutral-alpha-weak"
+          />
+        </RevealFx>
         <RevealFx translateY="12" delay={0.6}>
           <Stats />
         </RevealFx>
         <RevealFx translateY="16" inView>
-          <Projects range={[1, 1]} locale={locale} />
+          <Flex
+            className={styles.card}
+            fillWidth
+            gap="l"
+            padding="l"
+            radius="l"
+            border="neutral-alpha-medium"
+            background="surface"
+            mobileDirection="column"
+          >
+            <Column gap="12" flex={7}>
+              <Flex gap="8" vertical="center">
+                <Tag variant="brand" size="m" label={home.story.eyebrow} />
+              </Flex>
+              <Heading as="h2" variant="display-strong-xs" wrap="balance">
+                {home.story.title}
+              </Heading>
+              <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+                {home.story.p1}
+              </Text>
+              <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+                {home.story.p2}
+              </Text>
+              <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/about")}>
+                <Text variant="body-default-s">{home.story.cta}</Text>
+              </SmartLink>
+            </Column>
+            <Flex flex={5} vertical="center">
+              <SmartImage
+                className={styles.media}
+                src="/images/home/story.jpg"
+                alt={home.story.imageAlt}
+                aspectRatio="4 / 3"
+                radius="l"
+                sizes="(max-width: 768px) 100vw, 480px"
+                border="neutral-alpha-weak"
+              />
+            </Flex>
+          </Flex>
         </RevealFx>
         {routes["/services"] && (
           <RevealFx translateY="16" inView>
-            <ServicesTeaser
-              services={services}
+            <HomePillars
+              title={home.pillars.title}
+              items={home.pillars.items.map((item) => ({
+                ...item,
+                href: localizeHref(locale, item.route),
+              }))}
               viewAllLabel={t("services.viewAll")}
-              locale={locale}
+              viewAllHref={localizeHref(locale, "/services")}
             />
           </RevealFx>
         )}
@@ -302,6 +339,21 @@ export default async function Home({ params: { locale } }: PageParams) {
         <RevealFx translateY="16" inView>
           <Testimonials />
         </RevealFx>
+        {routes["/work"] && (
+          <RevealFx translateY="16" inView>
+            <Column fillWidth gap="l">
+              <Flex fillWidth horizontal="space-between" vertical="center" wrap gap="12">
+                <Heading as="h2" variant="display-strong-xs" wrap="balance">
+                  {home.proofHeading}
+                </Heading>
+                <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/work")}>
+                  <Text variant="body-default-s">{home.proofCta}</Text>
+                </SmartLink>
+              </Flex>
+              <Projects range={[1, 2]} locale={locale} />
+            </Column>
+          </RevealFx>
+        )}
         {routes["/blog"] && (
           <RevealFx translateY="16" inView>
             <Flex fillWidth gap="24" mobileDirection="column">
@@ -316,12 +368,11 @@ export default async function Home({ params: { locale } }: PageParams) {
             </Flex>
           </RevealFx>
         )}
-        <Projects range={[2]} locale={locale} />
         <RevealFx translateY="16" inView>
           <CtaBanner
-            title={services.cta.title}
-            description={services.cta.description}
-            button={services.cta.button}
+            title={home.finalCta.title}
+            description={home.finalCta.description}
+            button={home.finalCta.button}
             href={scheduling.link}
           />
         </RevealFx>
