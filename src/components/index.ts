@@ -7,7 +7,7 @@ export { HeadingLink } from "@/components/HeadingLink";
 export { Achievements } from "@/components/Achievements";
 export { CtaBanner } from "@/components/CtaBanner";
 export { RouteGuard } from "@/components/RouteGuard";
-export { ServicesTeaser } from "@/components/ServicesTeaser";
+export { HomePillars } from "@/components/HomePillars";
 export { Stats } from "@/components/Stats";
 export { Testimonials } from "@/components/Testimonials";
 export { ThemeToggle } from "@/components/ThemeToggle";

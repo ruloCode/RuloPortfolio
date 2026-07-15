@@ -72,12 +72,43 @@ const createI18nContent = (t) => {
     title: t("home.title"),
     description: t("home.description"),
     headline: t.rich("home.headline", { fx }),
-    badge: t("home.badge"),
+    heroAlt: t("home.heroAlt"),
     blogHeading: t("home.blogHeading"),
-    ctaWork: t("home.ctaWork"),
-    ctaCall: t("home.ctaCall"),
-    openToWork: true,
+    proofHeading: t("home.proofHeading"),
+    proofCta: t("home.proofCta"),
+    ctaCompanies: t("home.ctaCompanies"),
+    ctaProfessionals: t("home.ctaProfessionals"),
+    ctaStory: t("home.ctaStory"),
     subline: t.rich("home.subline", { strong }),
+    story: {
+      eyebrow: t("home.story.eyebrow"),
+      title: t("home.story.title"),
+      p1: t("home.story.p1"),
+      p2: t("home.story.p2"),
+      cta: t("home.story.cta"),
+      imageAlt: t("home.story.imageAlt"),
+    },
+    pillars: {
+      title: t("home.pillars.title"),
+      items: [
+        { key: "automation", icon: "robot", route: "/services" },
+        { key: "development", icon: "rocket", route: "/work" },
+        { key: "training", icon: "graduationCap", route: "/ia" },
+      ].map(({ key, icon, route }) => ({
+        key,
+        icon,
+        route,
+        image: `/images/home/pillar-${key}.jpg`,
+        title: t(`home.pillars.items.${key}.title`),
+        description: t(`home.pillars.items.${key}.description`),
+        cta: t(`home.pillars.items.${key}.cta`),
+      })),
+    },
+    finalCta: {
+      title: t("home.finalCta.title"),
+      description: t("home.finalCta.description"),
+      button: t("home.finalCta.button"),
+    },
   };
 
   const testimonials = {
@@ -122,6 +153,9 @@ const createI18nContent = (t) => {
           <br />
           <br />
           {t.rich("about.intro.p4", { strong })}
+          <br />
+          <br />
+          {t.rich("about.intro.p5", { strong })}
         </>
       ),
     },
@@ -200,6 +234,7 @@ const createI18nContent = (t) => {
     hero: {
       title: t("services.hero.title"),
       intro: t("services.hero.intro"),
+      imageAlt: t("services.hero.imageAlt"),
     },
     offerings: {
       title: t("services.offerings.title"),

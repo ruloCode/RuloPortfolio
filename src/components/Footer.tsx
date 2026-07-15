@@ -7,9 +7,9 @@ import styles from "./Footer.module.scss";
 
 const NAV_ITEMS: { route: string; key: string }[] = [
   { route: "/about", key: "about" },
-  { route: "/work", key: "work" },
   { route: "/services", key: "services" },
   { route: "/ia", key: "ia" },
+  { route: "/work", key: "work" },
   { route: "/blog", key: "blog" },
   { route: "/gallery", key: "gallery" },
 ];

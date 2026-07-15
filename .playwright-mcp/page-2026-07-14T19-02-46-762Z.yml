@@ -1,0 +1,219 @@
+- generic [ref=e3]:
+  - generic [ref=e7]:
+    - paragraph [ref=e14]: seestem
+    - generic [ref=e15]:
+      - link [ref=e17] [cursor=pointer]:
+        - /url: ./masterclass-present-ui#content
+        - paragraph [ref=e19]: Content
+      - link [ref=e21] [cursor=pointer]:
+        - /url: ./masterclass-present-ui#pricing
+        - paragraph [ref=e23]: Pricing
+      - link [ref=e25] [cursor=pointer]:
+        - /url: ./masterclass-present-ui#templates
+        - paragraph [ref=e27]: Templates
+    - link [ref=e29] [cursor=pointer]:
+      - /url: ./masterclass-present-ui#pricing
+      - paragraph [ref=e37]: Join Now
+  - generic [ref=e39]:
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - heading "Present UI as a PRO." [level=1] [ref=e43]
+          - heading "Masterclass + Templates." [level=1] [ref=e44]
+        - paragraph [ref=e46]: Shift boring presentation to sleek master-pieces & attract new leads with unconventional approach.
+      - generic [ref=e47]:
+        - link [ref=e50] [cursor=pointer]:
+          - /url: ./masterclass-present-ui#pricing
+          - paragraph [ref=e58]: Join Masterclass
+        - link "Get Templates" [ref=e62] [cursor=pointer]:
+          - /url: ./masterclass-present-ui#templates
+          - paragraph [ref=e65]: Get Templates
+    - generic [ref=e67]:
+      - paragraph [ref=e73]: Trusted by 6,000+ designers
+      - paragraph [ref=e83]: 5.0 out of 5.0
+  - generic [ref=e96]:
+    - generic [ref=e100] [cursor=pointer]:
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - paragraph [ref=e107]: Tablet ✨
+          - paragraph [ref=e108]: Mockup
+        - generic [ref=e109]:
+          - paragraph [ref=e111]: Present UI as a PRO
+          - paragraph [ref=e116]: .fig templates
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - paragraph [ref=e123]: MacBook
+          - paragraph [ref=e124]: Mockup ✨
+        - generic [ref=e125]:
+          - paragraph [ref=e127]: Present UI as a PRO
+          - paragraph [ref=e132]: .fig templates
+      - generic [ref=e138]:
+        - generic [ref=e139]:
+          - paragraph [ref=e140]: Iphone ✨
+          - paragraph [ref=e141]: Mockup
+        - generic [ref=e142]:
+          - paragraph [ref=e144]: Present UI as a PRO
+          - paragraph [ref=e149]: .fig templates
+      - generic [ref=e154]:
+        - paragraph [ref=e155]: Watch ✨
+        - paragraph [ref=e156]: Mockup
+    - generic [ref=e158]:
+      - generic [ref=e159]:
+        - paragraph [ref=e162]: 🎁 NEW BONUS LESSONS
+        - heading "Master Premium-Style mockups" [level=2] [ref=e164]
+        - paragraph [ref=e166]: "Bonus lessons: Create top-notch scenes super-fast 🔥"
+        - paragraph [ref=e171]: Beautiful visuals for a website
+        - paragraph [ref=e176]: Make 2D look 3D
+        - paragraph [ref=e181]: Power up your creativity
+      - link [ref=e184] [cursor=pointer]:
+        - /url: ./masterclass-present-ui#pricing
+        - paragraph [ref=e192]: Join Masterclass
+  - generic [ref=e195]:
+    - generic [ref=e196]:
+      - heading "Be seen on all Social Media platforms 💎" [level=2] [ref=e198]
+      - paragraph [ref=e200]: Want to get projects? Post your works! Everywhere!
+      - paragraph [ref=e202]: "Time consuming? Speed up this process with Premade Templates: create once & post, post, post..."
+      - paragraph [ref=e207]: Dribbble
+      - paragraph [ref=e212]: Instagram
+      - paragraph [ref=e217]: Linkedin
+      - paragraph [ref=e222]: Twitter
+    - link [ref=e225] [cursor=pointer]:
+      - /url: ./masterclass-present-ui#pricing
+      - paragraph [ref=e233]: Join Masterclass
+  - generic [ref=e246]:
+    - generic [ref=e247]:
+      - heading "Master Isometric Presentation 🔥" [level=2] [ref=e249]
+      - paragraph [ref=e251]: Shift boring presentation to sleek master-pieces & attract new leads with unconventional approach.
+      - paragraph [ref=e256]: Shadow Work
+      - paragraph [ref=e261]: Components Usage
+      - paragraph [ref=e266]: Figma tips & tricks
+      - paragraph [ref=e271]: Plugins & Techniques
+    - link [ref=e274] [cursor=pointer]:
+      - /url: ./masterclass-present-ui#pricing
+      - paragraph [ref=e282]: Join Masterclass
+  - generic [ref=e285]:
+    - generic [ref=e286]:
+      - heading "Use AI to your advantage 🤝" [level=2] [ref=e288]
+      - paragraph [ref=e290]: Create unique & free-to-use scenes and mockups using MidJourney.
+      - paragraph [ref=e295]: Inspiration sources
+      - paragraph [ref=e300]: Prompts examples
+      - paragraph [ref=e305]: Working with Midjourney
+      - paragraph [ref=e310]: Scenes & Mockups
+    - link [ref=e313] [cursor=pointer]:
+      - /url: ./masterclass-present-ui#pricing
+      - paragraph [ref=e321]: Join Masterclass
+  - generic [ref=e343]:
+    - generic [ref=e344]:
+      - heading "Graphic Design techniques in Figma" [level=2] [ref=e346]
+      - paragraph [ref=e348]: Edit created scenes and turn them into ready to use mockups.
+      - paragraph [ref=e353]: Image editing
+      - paragraph [ref=e358]: Masks
+      - paragraph [ref=e363]: Distortion
+      - paragraph [ref=e368]: Realistic Shadow & Light
+    - link [ref=e371] [cursor=pointer]:
+      - /url: ./masterclass-present-ui#pricing
+      - paragraph [ref=e379]: Join Masterclass
+  - generic [ref=e382]:
+    - generic [ref=e383]:
+      - heading "Create Devices Mockups in Figma 🖥️" [level=2] [ref=e385]
+      - paragraph [ref=e387]: Instead of searching for perfect mockup - create it yourself. It’s fast & will be tailored to your needs.
+      - paragraph [ref=e392]: Vector Shapes
+      - paragraph [ref=e397]: Shadow Work
+      - paragraph [ref=e402]: Simple Devices
+    - link [ref=e405] [cursor=pointer]:
+      - /url: ./masterclass-present-ui#pricing
+      - paragraph [ref=e413]: Join Masterclass
+  - generic [ref=e431]:
+    - heading "Join “Present UI as a Pro” Masterclass Today & Get Templates for Free 🎁" [level=2] [ref=e433]
+    - generic [ref=e436]:
+      - generic [ref=e437]:
+        - paragraph [ref=e440]: Present UI as a Pro
+        - generic [ref=e441]:
+          - heading "$" [level=3] [ref=e443]
+          - heading "39" [level=2] [ref=e445]
+          - heading ".00" [level=3] [ref=e447]
+        - paragraph [ref=e449]: An individual license for 1 person only.
+        - link "Access Now" [ref=e451] [cursor=pointer]:
+          - /url: https://school.budarina.design/product/present-ui-as-a-pro-masterclass/?add-to-cart=12791
+          - paragraph [ref=e454]: Access Now
+      - generic [ref=e456]:
+        - paragraph [ref=e463]: Life-time access
+        - paragraph [ref=e466]: Masterclass Video Recording
+        - paragraph [ref=e473]: Future updates
+        - paragraph [ref=e480]: 400+ UI Presentation templates
+        - generic [ref=e482]:
+          - paragraph [ref=e485]: Insights on tools & resources
+          - paragraph [ref=e492]: "Insights on AI: Midjourney in use"
+          - paragraph [ref=e499]: Figma tips & tricks
+  - generic [ref=e504]:
+    - heading "400+ Templates or your UI presentations Included 👇" [level=2] [ref=e508]
+    - list [ref=e512]:
+      - listitem [ref=e513]
+      - listitem [ref=e516]
+      - listitem [ref=e519]
+      - listitem [ref=e522]
+      - listitem [ref=e525]
+      - listitem [ref=e528]
+      - listitem [ref=e531]
+      - listitem [ref=e534]
+      - listitem [ref=e537]
+      - listitem [ref=e540]
+      - listitem [ref=e543]
+      - listitem [ref=e546]
+      - listitem [ref=e549]
+      - listitem [ref=e552]
+      - listitem [ref=e555]
+      - listitem [ref=e558]
+      - listitem [ref=e561]
+      - listitem [ref=e564]
+      - listitem [ref=e567]
+      - listitem [ref=e570]
+      - listitem [ref=e573]
+      - listitem [ref=e576]
+      - listitem [ref=e579]
+      - listitem [ref=e582]
+      - listitem [ref=e585]
+      - listitem [ref=e588]
+      - listitem [ref=e591]
+      - listitem [ref=e594]
+      - listitem [ref=e597]
+      - listitem [ref=e600]
+      - listitem [ref=e603]
+      - listitem [ref=e606]
+      - listitem [ref=e609]
+      - listitem [ref=e612]
+      - listitem [ref=e615]
+      - listitem [ref=e618]
+      - listitem [ref=e621]
+      - listitem [ref=e624]
+      - listitem [ref=e627]
+  - generic [ref=e632]:
+    - generic [ref=e633]:
+      - generic [ref=e640]:
+        - paragraph [ref=e642]: Marina Budarina
+        - paragraph [ref=e644]: Designer, Founder
+      - generic [ref=e645]:
+        - link [ref=e647] [cursor=pointer]:
+          - /url: https://twitter.com/marina_uiux
+        - link [ref=e657] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/marina-budarina/
+        - link [ref=e667] [cursor=pointer]:
+          - /url: https://www.instagram.com/marina_uiux/
+        - link [ref=e677] [cursor=pointer]:
+          - /url: https://dribbble.com/marina_uiux
+    - generic [ref=e685]:
+      - link [ref=e687] [cursor=pointer]:
+        - /url: ./
+        - paragraph [ref=e689]: Home
+      - link [ref=e691] [cursor=pointer]:
+        - /url: ./course-ui-design-&-systems
+        - paragraph [ref=e693]: UI/UX Course
+      - link [ref=e695] [cursor=pointer]:
+        - /url: ./ebook-ui-design-systems
+        - paragraph [ref=e697]: UI/UX eBook
+      - link [ref=e699] [cursor=pointer]:
+        - /url: ./masterclass-present-ui
+        - paragraph [ref=e701]: Masterclass
+      - link [ref=e703] [cursor=pointer]:
+        - /url: ./webdesignmastery
+        - paragraph [ref=e705]: Web Design eBook

@@ -1,0 +1,4 @@
+{
+  "output_dir": "~/Documents/Media Gen",
+  "_comment": "Output root for generations (provenance: prompt.md per folder). Final picks for the portfolio get copied into public/images/. Tilde expansion supported."
+}

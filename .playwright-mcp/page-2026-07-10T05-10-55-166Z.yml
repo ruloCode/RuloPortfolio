@@ -1,0 +1,235 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e5]:
+    - generic [ref=f2e9]:
+      - link [ref=f2e10] [cursor=pointer]:
+        - /url: /es
+      - link [ref=f2e16] [cursor=pointer]:
+        - /url: /es/about
+      - link [ref=f2e21] [cursor=pointer]:
+        - /url: /es/services
+      - link [ref=f2e26] [cursor=pointer]:
+        - /url: /es/ia
+      - link [ref=f2e31] [cursor=pointer]:
+        - /url: /es/work
+      - link [ref=f2e36] [cursor=pointer]:
+        - /url: /es/blog
+    - generic [ref=f2e42]:
+      - generic "Language" [ref=f2e43]:
+        - button "Switch to English" [ref=f2e44] [cursor=pointer]:
+          - generic [ref=f2e45]: EN
+        - button "Cambiar a español" [ref=f2e46] [cursor=pointer]:
+          - generic [ref=f2e47]: ES
+      - button "Switch to dark theme" [ref=f2e48] [cursor=pointer]
+  - generic [ref=f2e57]:
+    - generic [ref=f2e59]:
+      - heading "La tecnología me obligó a elegir. Hoy ayudo a otros a z$1$0X+ao*0 antes de que los obligue." [level=1] [ref=f2e61]
+      - generic [ref=f2e63]:
+        - text: Soy Andrés Santana, Software Developer. Dejé la música para sobrevivir tecnológicamente; hoy construyo
+        - strong [ref=f2e64]: automatizaciones
+        - text: ","
+        - strong [ref=f2e65]: software a la medida
+        - text: "y"
+        - strong [ref=f2e66]: formación en IA
+        - text: — con la solidez de una plataforma que procesa
+        - strong [ref=f2e67]: +$2M/mes
+        - text: y atiende a
+        - strong [ref=f2e68]: +50K usuarios
+        - text: .
+      - generic [ref=f2e70]:
+        - 'link "Empresas: agenda una llamada" [ref=f2e71] [cursor=pointer]':
+          - /url: https://calendly.com/rulocode/30min
+        - 'link "Profesionales: programa de IA" [ref=f2e77] [cursor=pointer]':
+          - /url: /es/ia
+        - link [ref=f2e83] [cursor=pointer]:
+          - /url: /es/about
+          - generic [ref=f2e85]:
+            - img [ref=f2e86]:
+              - img "Avatar" [ref=f2e88]
+            - text: Mi historia
+    - img "Una guitarra eléctrica se disuelve en partículas de código esmeralda que fluyen hacia un portátil" [ref=f2e91]
+    - generic [ref=f2e93]:
+      - generic [ref=f2e94]:
+        - generic [ref=f2e95]: $2M+
+        - generic [ref=f2e96]: en transacciones mensuales
+      - generic [ref=f2e97]:
+        - generic [ref=f2e98]: 50K+
+        - generic [ref=f2e99]: usuarios atendidos
+      - generic [ref=f2e100]:
+        - generic [ref=f2e101]: "-56%"
+        - generic [ref=f2e102]: reducción de LCP a escala
+      - link "3er puesto · Hackatón Samatech" [ref=f2e103] [cursor=pointer]:
+        - /url: /es/work/hackathon-samatech
+        - generic [ref=f2e104]:
+          - generic [ref=f2e105]: 3er
+          - generic [ref=f2e110]: puesto · Hackatón Samatech
+    - generic [ref=f2e112]:
+      - generic [ref=f2e113]:
+        - generic [ref=f2e114]: Mi historia
+        - heading "Dejé la música para sobrevivir. Hoy enseño a potenciarse." [level=2] [ref=f2e118]
+        - generic [ref=f2e119]: Antes de escribir código escribía canciones. La tecnología cambió las reglas de la industria musical y me obligó a elegir entre lo que amaba y lo que me daba estabilidad. Elegí sobrevivir — y aprendí a programar.
+        - generic [ref=f2e120]: "Esa elección me dio algo que ningún bootcamp enseña: sé exactamente lo que se siente quedarse atrás. Por eso hoy construyo tecnología y enseño IA sin intimidar — para que otros se potencien antes de que los obliguen a elegir."
+        - link "Lee la historia completa" [ref=f2e121] [cursor=pointer]:
+          - /url: /es/about
+      - img "Cuerdas de guitarra transformándose en hilos de luz y código" [ref=f2e128]
+    - generic [ref=f2e130]:
+      - generic [ref=f2e131]:
+        - heading "En qué te puedo ayudar" [level=2] [ref=f2e132]
+        - link "Ver todos los servicios" [ref=f2e133] [cursor=pointer]:
+          - /url: /es/services
+      - generic [ref=f2e138]:
+        - generic [ref=f2e139]:
+          - generic [ref=f2e141]: Automatización
+          - generic [ref=f2e147]: Flujos con IA y automatizaciones que recuperan horas de trabajo cada semana. De tareas repetitivas a sistemas que corren solos.
+          - link "Ver servicios" [ref=f2e148] [cursor=pointer]:
+            - /url: /es/services
+        - generic [ref=f2e153]:
+          - generic [ref=f2e155]: Desarrollo
+          - generic [ref=f2e161]: Software a la medida con React, Next.js y TypeScript. La misma ingeniería detrás de una plataforma que procesa +$2M/mes.
+          - link "Ver casos" [ref=f2e162] [cursor=pointer]:
+            - /url: /es/work
+        - generic [ref=f2e167]:
+          - generic [ref=f2e169]: Formación en IA
+          - generic [ref=f2e175]: Programas prácticos para profesionales no técnicos. IA aplicada a tu trabajo real, sin humo y sin intimidar.
+          - link "Conoce el programa" [ref=f2e176] [cursor=pointer]:
+            - /url: /es/ia
+    - generic [ref=f2e182]:
+      - generic [ref=f2e183]:
+        - generic [ref=f2e184]: Nuevo
+        - heading "IA para no quedarte atrás" [level=2] [ref=f2e188]
+        - generic [ref=f2e189]: Un programa práctico para profesionales no técnicos que quieren aplicar la IA a su trabajo real — y dejar de temer quedarse atrás.
+      - link "Únete a la lista de espera" [ref=f2e191] [cursor=pointer]:
+        - /url: /es/ia
+    - generic [ref=f2e198]:
+      - heading "Lo Que Dicen" [level=2] [ref=f2e199]
+      - generic [ref=f2e200]:
+        - generic [ref=f2e202] [cursor=pointer]:
+          - generic [ref=f2e203]: "“Andrés transformó nuestro flujo de checkout y redujo los tiempos de carga en 56%. El impacto en conversiones fue inmediato: vimos un aumento del 23% en semanas. No solo escribe código, entiende el negocio.”"
+          - generic [ref=f2e204]:
+            - img [ref=f2e205]:
+              - img "Avatar" [ref=f2e207]
+            - generic [ref=f2e208]:
+              - generic [ref=f2e209]: Diego Martínez
+              - generic [ref=f2e210]: CTO, Vitau
+        - generic [ref=f2e212] [cursor=pointer]:
+          - generic [ref=f2e213]: “Trabajar con Andrés fue un antes y un después. Tomó nuestra app de React desactualizada y la migró a Next.js sin downtime. La productividad de nuestro equipo se duplicó gracias a la nueva arquitectura.”
+          - generic [ref=f2e214]:
+            - img [ref=f2e215]:
+              - img "Avatar" [ref=f2e217]
+            - generic [ref=f2e218]:
+              - generic [ref=f2e219]: Carolina Reyes
+              - generic [ref=f2e220]: Product Manager, Startup de Salud
+        - generic [ref=f2e222] [cursor=pointer]:
+          - generic [ref=f2e223]: “La experiencia con Andrés ha sido excelente. Transformó nuestro branding y nos ayudó a crecer las ventas un 75% en tres meses. Seguimos trabajando de la mano en cada proyecto.”
+          - generic [ref=f2e224]:
+            - img [ref=f2e225]:
+              - img "Avatar" [ref=f2e227]
+            - generic [ref=f2e228]:
+              - generic [ref=f2e229]: Álvaro Pérez
+              - generic [ref=f2e230]: Founder, Clandestine
+    - generic [ref=f2e232]:
+      - generic [ref=f2e233]:
+        - 'heading "La prueba: casos reales" [level=2] [ref=f2e234]'
+        - link "Ver todos los proyectos" [ref=f2e235] [cursor=pointer]:
+          - /url: /es/work
+      - generic [ref=f2e240]:
+        - generic [ref=f2e241]:
+          - generic [ref=f2e242]:
+            - img "3er puesto — Primera Hackatón Samatech" [ref=f2e245] [cursor=pointer]
+            - generic [ref=f2e247]:
+              - img "3er puesto — Primera Hackatón Samatech" [ref=f2e250] [cursor=pointer]
+              - img "3er puesto — Primera Hackatón Samatech" [ref=f2e253] [cursor=pointer]
+          - generic [ref=f2e254]:
+            - heading "3er puesto — Primera Hackatón Samatech" [level=2] [ref=f2e256]
+            - generic [ref=f2e257]:
+              - link "Andrés Santana - Frontend Engineer" [ref=f2e259] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/rulocode/
+                - img [ref=f2e260]:
+                  - img "Avatar" [ref=f2e262]
+              - generic [ref=f2e263]: "Cómo nuestro equipo de 5 logró el 3er puesto en la primera hackatón de la historia de Santa Marta: 70 builders, 30 horas de construcción y +50M COP en premios en juego."
+              - link "Leer case study" [ref=f2e265] [cursor=pointer]:
+                - /url: /es/work/hackathon-samatech
+        - generic [ref=f2e270]:
+          - generic [ref=f2e271]:
+            - img "Bambu Coliving" [ref=f2e274] [cursor=pointer]
+            - generic [ref=f2e275]:
+              - generic [ref=f2e276]:
+                - img "Bambu Coliving" [ref=f2e279] [cursor=pointer]
+                - img "Bambu Coliving" [ref=f2e282] [cursor=pointer]
+                - img "Bambu Coliving" [ref=f2e285] [cursor=pointer]
+                - img "Bambu Coliving" [ref=f2e288] [cursor=pointer]
+                - img "Bambu Coliving" [ref=f2e291] [cursor=pointer]
+              - button "Scroll Next" [ref=f2e293] [cursor=pointer]
+          - generic [ref=f2e298]:
+            - heading "Bambu Coliving" [level=2] [ref=f2e300]
+            - generic [ref=f2e301]:
+              - generic [ref=f2e302]:
+                - link "heavenndew - Frontend Developer" [ref=f2e303] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/heavenndew/
+                  - img [ref=f2e304]:
+                    - img "Avatar" [ref=f2e306]
+                - link "Rulocode - Full Stack Developer & Product Designer" [ref=f2e307] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/rulocode/
+                  - img [ref=f2e308]:
+                    - img "Avatar" [ref=f2e310]
+              - generic [ref=f2e311]: Desarrollo end-to-end de una plataforma moderna de coliving en Bogotá, pensada para nómadas digitales y profesionales. Construida con Next.js 14 y Tailwind CSS, con enfoque en performance, UX y diseño orientado a la conversión.
+              - generic [ref=f2e312]:
+                - link "Leer case study" [ref=f2e313] [cursor=pointer]:
+                  - /url: /es/work/bambu-coliving
+                - link "Ver proyecto" [ref=f2e318] [cursor=pointer]:
+                  - /url: https://bambucoliving.com/
+    - generic [ref=f2e324]:
+      - heading "Lo último del blog" [level=2] [ref=f2e326]
+      - generic [ref=f2e328]:
+        - 'link "30 horas en Santa Marta: así fue la Primera Hackatón Samatech 2 de julio de 2026 · 2 min de lectura Hackathon" [ref=f2e329] [cursor=pointer]':
+          - /url: /es/blog/30-hours-in-santa-marta-samatech-hackathon
+          - generic [ref=f2e331]:
+            - 'heading "30 horas en Santa Marta: así fue la Primera Hackatón Samatech" [level=2] [ref=f2e332]'
+            - generic [ref=f2e333]:
+              - generic [ref=f2e334]: 2 de julio de 2026
+              - generic [ref=f2e335]: · 2 min de lectura
+              - generic [ref=f2e336]: Hackathon
+        - 'link "GraphQL vs REST para aplicaciones financieras: una perspectiva desde el frontend 1 de abril de 2026 · 4 min de lectura GraphQL" [ref=f2e339] [cursor=pointer]':
+          - /url: /es/blog/graphql-vs-rest-fintech
+          - generic [ref=f2e341]:
+            - 'heading "GraphQL vs REST para aplicaciones financieras: una perspectiva desde el frontend" [level=2] [ref=f2e342]'
+            - generic [ref=f2e343]:
+              - generic [ref=f2e344]: 1 de abril de 2026
+              - generic [ref=f2e345]: · 4 min de lectura
+              - generic [ref=f2e346]: GraphQL
+    - generic [ref=f2e350]:
+      - heading "¿Construimos algo juntos?" [level=2] [ref=f2e351]
+      - generic [ref=f2e352]: Si tienes una empresa, cuéntame tu proyecto en una llamada gratuita de 30 minutos. Si eres profesional y quieres potenciarte con IA, el programa te está esperando.
+      - link "Agenda una llamada" [ref=f2e353] [cursor=pointer]:
+        - /url: https://calendly.com/rulocode/30min
+  - contentinfo [ref=f2e355]:
+    - generic [ref=f2e356]:
+      - generic [ref=f2e357]:
+        - generic [ref=f2e358]:
+          - generic [ref=f2e359]: Andrés Santana
+          - generic [ref=f2e360]: Automatización, desarrollo y formación en IA — desde Colombia para el mundo.
+          - link "Agenda una llamada" [ref=f2e361] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - generic [ref=f2e366]:
+          - generic [ref=f2e367]: Explora
+          - generic [ref=f2e368]:
+            - link "Sobre mí" [ref=f2e369] [cursor=pointer]:
+              - /url: /es/about
+            - link "Servicios" [ref=f2e371] [cursor=pointer]:
+              - /url: /es/services
+            - link "IA" [ref=f2e373] [cursor=pointer]:
+              - /url: /es/ia
+            - link "Proyectos" [ref=f2e375] [cursor=pointer]:
+              - /url: /es/work
+            - link "Blog" [ref=f2e377] [cursor=pointer]:
+              - /url: /es/blog
+        - generic [ref=f2e379]:
+          - link "GitHub" [ref=f2e380] [cursor=pointer]:
+            - /url: https://github.com/ruloCode
+          - link "LinkedIn" [ref=f2e385] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/rulocode/
+          - link "Email" [ref=f2e390] [cursor=pointer]:
+            - /url: mailto:drew.lizcano@gmail.com
+          - link "YouTube" [ref=f2e396] [cursor=pointer]:
+            - /url: https://www.youtube.com/@ruloCode
+      - generic [ref=f2e401]: © 2026 / Andrés Santana
+  - alert [ref=f2e404]

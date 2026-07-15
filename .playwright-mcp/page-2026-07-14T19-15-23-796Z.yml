@@ -1,0 +1,174 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e5]:
+    - generic [ref=f2e9]:
+      - link [ref=f2e10] [cursor=pointer]:
+        - /url: /es
+      - link "Sobre mí" [ref=f2e16] [cursor=pointer]:
+        - /url: /es/about
+      - link "Servicios" [ref=f2e22] [cursor=pointer]:
+        - /url: /es/services
+      - link "IA" [ref=f2e28] [cursor=pointer]:
+        - /url: /es/ia
+      - link "Proyectos" [ref=f2e34] [cursor=pointer]:
+        - /url: /es/work
+      - link "Blog" [ref=f2e40] [cursor=pointer]:
+        - /url: /es/blog
+    - generic [ref=f2e47]:
+      - generic "Language" [ref=f2e48]:
+        - button "Switch to English" [ref=f2e49] [cursor=pointer]:
+          - generic [ref=f2e50]: EN
+        - button "Cambiar a español" [ref=f2e51] [cursor=pointer]:
+          - generic [ref=f2e52]: ES
+      - button "Switch to dark theme" [ref=f2e53] [cursor=pointer]
+  - generic [ref=f2e61]:
+    - generic [ref=f2e62]:
+      - generic [ref=f2e63]: Consultoría de IA · cupos limitados por mes
+      - heading "IA que trabaja por tu negocio. Consultoría + automatización." [level=1] [ref=f2e67]: IA que trabaja por tu negocio.Consultoría + automatización.
+      - generic [ref=f2e68]: Convierto procesos manuales en flujos automatizados y equipos con miedo a quedarse atrás en equipos que dominan la IA — sin humo y sin contratar ingenieros.
+      - generic [ref=f2e71]:
+        - link "Agenda una llamada" [ref=f2e72] [cursor=pointer]:
+          - /url: https://calendly.com/rulocode/30min
+        - link "Empieza con el diagnóstico" [ref=f2e74] [cursor=pointer]:
+          - /url: "#diagnostico"
+    - generic [ref=f2e77]:
+      - generic [ref=f2e78]:
+        - generic [ref=f2e79]: Flujos de IA construidos de extremo a extremo, aplicados en e-commerce, fintech y salud
+        - generic [ref=f2e80]:
+          - generic [ref=f2e81]: +5 años construyendo software
+          - generic [ref=f2e84]: De video a automatización a publicación
+          - generic [ref=f2e87]: Remoto · Español e inglés
+      - img "Interfaces y flujos de automatización con IA sobre un escritorio de trabajo real" [ref=f2e91]
+    - generic [ref=f2e92]:
+      - generic [ref=f2e94]:
+        - generic [ref=f2e95]:
+          - generic [ref=f2e96]: 01 · Diagnóstico
+          - heading "Encuentra las horas escondidas en tu semana" [level=2] [ref=f2e102]
+          - generic [ref=f2e103]: Mapeamos tu operación real — no la teórica — y detectamos qué tareas repetitivas se pueden automatizar primero. Sales con un mapa de oportunidades priorizado por impacto.
+          - link "Agenda una llamada" [ref=f2e105] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - img "Paisaje abstracto de bloques de circuito oscuros con luz esmeralda fluyendo entre ellos" [ref=f2e109]
+      - generic [ref=f2e111]:
+        - generic [ref=f2e112]:
+          - generic [ref=f2e113]: 02 · Automatización
+          - heading "Flujos a medida, sin contratar ingenieros" [level=2] [ref=f2e119]
+          - generic [ref=f2e120]: "Construyo automatizaciones sobre las herramientas que tu equipo ya usa: correo, hojas de cálculo, CRM. Nada de plataformas enterprise que nadie va a abrir."
+          - link "Agenda una llamada" [ref=f2e122] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - img "Engranajes y conexiones luminosas representando procesos que corren solos" [ref=f2e126]
+      - generic [ref=f2e128]:
+        - generic [ref=f2e129]:
+          - generic [ref=f2e130]: 03 · Contenido
+          - heading "De una idea a contenido publicado, en piloto automático" [level=2] [ref=f2e136]
+          - generic [ref=f2e137]: "Flujos probados de extremo a extremo en trabajo real: video → edición → automatización → publicación. Produce más y mejor sin duplicar tu equipo."
+          - link "Agenda una llamada" [ref=f2e139] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - img "Estudio creativo donde una idea se transforma en piezas de contenido" [ref=f2e143]
+      - generic [ref=f2e145]:
+        - generic [ref=f2e146]:
+          - generic [ref=f2e147]: 04 · Equipos
+          - heading "Tu equipo dominando la IA en 4 semanas" [level=2] [ref=f2e153]
+          - generic [ref=f2e154]: "El AI Shift Challenge: grupos pequeños, práctica sobre el trabajo real de cada rol y un flujo funcionando al final — no apuntes que se olvidan a la semana."
+          - link "Agenda una llamada" [ref=f2e156] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - img "Grupo de personas aprendiendo a aplicar IA en una sesión práctica" [ref=f2e160]
+      - generic [ref=f2e162]:
+        - generic [ref=f2e163]:
+          - generic [ref=f2e164]: 05 · Desarrollo
+          - heading "Cuando hace falta código, también lo construyo" [level=2] [ref=f2e170]
+          - generic [ref=f2e171]: Frontends con React y Next.js, integraciones y producto de nivel producción. Tu automatización no se queda a medias por límites técnicos.
+          - link "Agenda una llamada" [ref=f2e173] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - img "Editor de código con una interfaz web en construcción" [ref=f2e177]
+      - generic [ref=f2e179]:
+        - generic [ref=f2e180]:
+          - generic [ref=f2e181]: 06 · Criterio
+          - heading "Acompañamiento para ignorar el hype" [level=2] [ref=f2e187]
+          - generic [ref=f2e188]: Cada semana aparece una herramienta ‘imperdible’. Te dejo un sistema repetible para evaluar lo nuevo y adoptar solo lo que le sirve a tu negocio.
+          - link "Agenda una llamada" [ref=f2e190] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - img "Encuentro presencial de la comunidad con charlas y networking" [ref=f2e194]
+    - generic [ref=f2e196]:
+      - heading "Empieza con un diagnóstico gratuito 👇" [level=2] [ref=f2e197]
+      - generic [ref=f2e198]:
+        - generic [ref=f2e199]: Diagnóstico exprés
+        - generic [ref=f2e202]:
+          - heading "Gratis" [level=3] [ref=f2e203]
+          - generic [ref=f2e204]: 30 minutos · videollamada
+        - generic [ref=f2e205]: "Sin compromiso y sin discurso de ventas: una conversación honesta sobre tu operación."
+        - link "Reservar mi diagnóstico" [ref=f2e206] [cursor=pointer]:
+          - /url: https://calendly.com/rulocode/30min
+        - generic [ref=f2e208]:
+          - generic [ref=f2e209]: Mapa de oportunidades de automatización en tu negocio
+          - generic [ref=f2e214]: Un quick win para aplicar esa misma semana
+          - generic [ref=f2e219]: "Criterio honesto: si no te puedo ayudar, te lo digo"
+          - generic [ref=f2e224]: Propuesta escrita con alcance y cronograma si hay fit
+          - generic [ref=f2e229]: Resumen por correo con los recursos de la llamada
+    - generic [ref=f2e235]:
+      - heading "Automatizaciones que ya construyo para negocios como el tuyo" [level=2] [ref=f2e236]
+      - generic [ref=f2e237]:
+        - generic [ref=f2e238]:
+          - generic [ref=f2e243]: Inbox → CRM
+          - generic [ref=f2e244]: Correos que se clasifican, se registran y se responden solos.
+        - generic [ref=f2e245]:
+          - generic [ref=f2e250]: Datos → reporte
+          - generic [ref=f2e251]: Reportes semanales que se escriben y se envían sin abrir una hoja de cálculo.
+        - generic [ref=f2e252]:
+          - generic [ref=f2e257]: Idea → contenido
+          - generic [ref=f2e258]: De un video largo a clips, posts y newsletter publicados.
+        - generic [ref=f2e259]:
+          - generic [ref=f2e264]: Soporte → respuestas
+          - generic [ref=f2e265]: Preguntas frecuentes respondidas al instante con el conocimiento de tu negocio.
+    - generic [ref=f2e267]:
+      - heading "¿Vienes por el programa personal?" [level=1] [ref=f2e269]
+      - generic [ref=f2e270]: "‘IA para no quedarte atrás’ — la cohorte para profesionales no técnicos — está en validación. Déjanos tu correo: acceso prioritario y precio de lanzamiento."
+      - generic [ref=f2e272]:
+        - textbox "Tu email" [ref=f2e276]
+        - textbox [ref=f2e278]
+        - button "Unirme a la lista" [ref=f2e281] [cursor=pointer]
+    - generic [ref=f2e284]:
+      - heading "Preguntas frecuentes" [level=2] [ref=f2e285]
+      - generic [ref=f2e286]:
+        - generic [ref=f2e287]:
+          - heading "¿Necesito un equipo técnico para trabajar contigo?" [level=3] [ref=f2e289] [cursor=pointer]
+          - generic [ref=f2e293]: No. Las automatizaciones se construyen sobre herramientas que tu equipo ya usa, y cuando hace falta código, lo escribo yo. Tú pones el conocimiento del negocio.
+        - generic [ref=f2e295]:
+          - heading "¿Con qué tipo de negocios trabajas?" [level=3] [ref=f2e297] [cursor=pointer]
+          - generic [ref=f2e301]: Sobre todo e-commerce, fintech, salud y equipos de contenido — en español e inglés, 100% remoto. Si tu operación vive en correos y hojas de cálculo, hay oportunidad.
+        - generic [ref=f2e303]:
+          - heading "¿Cuánto cuesta la consultoría?" [level=3] [ref=f2e305] [cursor=pointer]
+          - generic [ref=f2e309]: "Depende del alcance: hay proyectos cerrados, retainer mensual y sesiones por hora. Todo empieza con el diagnóstico gratuito de 30 minutos; de ahí sale una propuesta escrita con precio fijo."
+        - generic [ref=f2e311]:
+          - heading "¿Y el programa ‘IA para no quedarte atrás’?" [level=3] [ref=f2e313] [cursor=pointer]
+          - generic [ref=f2e317]: "Sigue vivo: es la cohorte para profesionales no técnicos y está en validación. Únete a la lista de espera y te aviso al abrir la primera edición."
+  - contentinfo [ref=f2e319]:
+    - generic [ref=f2e320]:
+      - generic [ref=f2e321]:
+        - generic [ref=f2e322]:
+          - generic [ref=f2e323]: Andrés Santana
+          - generic [ref=f2e324]: Automatización, desarrollo y formación en IA — desde Colombia para el mundo.
+          - link "Agenda una llamada" [ref=f2e325] [cursor=pointer]:
+            - /url: https://calendly.com/rulocode/30min
+        - generic [ref=f2e330]:
+          - generic [ref=f2e331]: Explora
+          - generic [ref=f2e332]:
+            - link "Sobre mí" [ref=f2e333] [cursor=pointer]:
+              - /url: /es/about
+            - link "Servicios" [ref=f2e335] [cursor=pointer]:
+              - /url: /es/services
+            - link "IA" [ref=f2e337] [cursor=pointer]:
+              - /url: /es/ia
+            - link "Proyectos" [ref=f2e339] [cursor=pointer]:
+              - /url: /es/work
+            - link "Blog" [ref=f2e341] [cursor=pointer]:
+              - /url: /es/blog
+        - generic [ref=f2e343]:
+          - link "GitHub" [ref=f2e344] [cursor=pointer]:
+            - /url: https://github.com/ruloCode
+          - link "LinkedIn" [ref=f2e349] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/rulocode/
+          - link "Email" [ref=f2e354] [cursor=pointer]:
+            - /url: mailto:drew.lizcano@gmail.com
+          - link "YouTube" [ref=f2e360] [cursor=pointer]:
+            - /url: https://www.youtube.com/@ruloCode
+      - generic [ref=f2e365]: © 2026 / Andrés Santana
+  - alert [ref=f2e367]

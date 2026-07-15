@@ -5,6 +5,7 @@ import {
   Grid,
   Heading,
   Icon,
+  SmartImage,
   Tag,
   Text,
 } from "@/once-ui/components";
@@ -122,6 +123,15 @@ export default async function Services({ params: { locale } }: PageParams) {
           {services.hero.intro}
         </Text>
       </Column>
+      <SmartImage
+        src="/images/services/hero.jpg"
+        alt={services.hero.imageAlt}
+        aspectRatio="21 / 9"
+        radius="l"
+        sizes="(max-width: 768px) 100vw, 1024px"
+        priority
+        border="neutral-alpha-weak"
+      />
 
       {/* Offerings */}
       <Column gap="l">
