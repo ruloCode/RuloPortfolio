@@ -13,6 +13,7 @@ import {
   Text,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
+import { useLocale } from "next-intl";
 import { useRef, useState } from "react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,6 +37,7 @@ type WaitlistFormProps = {
 };
 
 export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
+  const locale = useLocale();
   const [email, setEmail] = useState("");
   const [fieldError, setFieldError] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -58,6 +60,7 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         body: JSON.stringify({
           email: trimmed,
           company: honeypotRef.current?.value ?? "",
+          locale,
         }),
       });
       setStatus(response.ok ? "success" : "error");
