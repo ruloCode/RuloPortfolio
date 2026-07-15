@@ -240,14 +240,18 @@
           "answer": "No. Todo se construye con herramientas de clics que ya sabes usar. El programa está diseñado para personas cuyo trabajo no es la tecnología."
         },
         "2": {
-          "question": "¿Funciona para mi área?",
-          "answer": "Si tu trabajo pasa por un computador — marketing, finanzas, RRHH, legal, salud, educación, operaciones, ventas — sí. Todo se aplica sobre tus tareas reales, no sobre ejemplos genéricos."
+          "question": "¿Cómo son las sesiones?",
+          "answer": "Cuatro son privadas: tú y yo, sobre tu rol y tus tareas concretas. Las otras dos son grupales con el resto de la cohorte, para ver cómo lo están resolviendo otros roles. Todo en vivo, repartido a lo largo de las 4 semanas."
         },
         "3": {
-          "question": "¿Cuándo empieza y cuánto cuesta?",
-          "answer": "La primera cohorte abre pronto y los cupos son limitados. Reservar en la lista de espera es gratis, te da acceso prioritario y precio de lanzamiento."
+          "question": "¿Funciona para mi área?",
+          "answer": "Si tu trabajo pasa por un computador — marketing, finanzas, RRHH, legal, salud, educación, operaciones, ventas — sí. Como el grueso del programa es 1:1, todo se arma sobre tus tareas reales, no sobre ejemplos genéricos."
         },
         "4": {
+          "question": "¿Cuándo empieza y cuánto cuesta?",
+          "answer": "La primera cohorte abre pronto y son solo 6 cupos — con sesiones privadas no da para más. Reservar en la lista de espera es gratis, te da acceso prioritario y precio de lanzamiento."
+        },
+        "5": {
           "question": "¿Y si las herramientas cambian el próximo mes?",
           "answer": "Van a cambiar — por eso el programa no se casa con ninguna. Te llevas flujos funcionando hoy y un criterio repetible para evaluar lo que salga mañana."
         }
@@ -276,9 +280,9 @@
         },
         "reto": {
           "eyebrow": "04 · El reto",
-          "title": "4 semanas en vivo, grupos pequeños, un flujo funcionando",
-          "description": "El AI Shift Challenge: sesiones en vivo, práctica sobre tu trabajo real y al final un flujo completo operando — no apuntes que se olvidan a la semana.",
-          "imageAlt": "Grupo pequeño de profesionales en una sesión en vivo, iluminados por la luz esmeralda de un proyector"
+          "title": "4 sesiones privadas conmigo, 2 grupales, un flujo funcionando",
+          "description": "El AI Shift Challenge: cuatro sesiones uno a uno donde construimos sobre tu caso concreto, dos grupales para ver cómo lo resuelven otros roles, y al final un flujo completo operando — no apuntes que se olvidan a la semana.",
+          "imageAlt": "Grupo de profesionales reunidos alrededor de una mesa con portátiles, iluminados por la luz esmeralda de las pantallas"
         },
         "posicionamiento": {
           "eyebrow": "05 · Posiciónate",
@@ -295,29 +299,29 @@
       }
     },
     "hero": {
-      "badge": "AI Shift Challenge · Lista de espera abierta — primera cohorte",
+      "badge": "AI Shift Challenge · Lista de espera abierta — solo 6 cupos",
       "titleA": "Automatiza tu trabajo con IA en 4 semanas.",
       "titleB": "Sin escribir código.",
-      "subtitle": "Un programa en vivo para profesionales no técnicos: tomas tus tareas reales, montas flujos de IA que las hacen por ti y terminas con una automatización funcionando — no con apuntes.",
+      "subtitle": "Un programa en vivo para profesionales no técnicos: 4 sesiones privadas conmigo sobre tus tareas reales, 2 sesiones grupales y, al final, una automatización tuya funcionando — no apuntes.",
       "primaryCta": "Reservar mi cupo",
       "secondaryCta": "Ver el programa",
       "ctaNote": "Gratis · Sin compromiso · Un solo correo cuando abra la cohorte"
     },
     "meta": {
       "title": "AI Shift Challenge — Automatiza tu trabajo con IA en 4 semanas, sin código",
-      "description": "Programa en vivo para profesionales no técnicos: aplica la IA a tus tareas reales, monta tu primera automatización y recupera horas cada semana. Únete a la lista de espera de la primera cohorte."
+      "description": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas 1:1 sobre tus tareas reales, 2 grupales, y tu primera automatización funcionando. Únete a la lista de espera de la primera cohorte — solo 6 cupos."
     },
     "pricing": {
       "title": "Qué incluye el AI Shift Challenge",
       "card": {
-        "name": "Primera cohorte · cupos limitados",
+        "name": "Primera cohorte · solo 6 cupos",
         "price": "Precio de lanzamiento",
         "unit": "solo para la lista de espera",
         "note": "Unirte a la lista es gratis y no te compromete. Cuando abra la cohorte, la lista entra primero y paga menos.",
         "button": "Reservar mi cupo",
         "features": {
-          "1": "4 semanas de sesiones en vivo, en grupos pequeños",
-          "2": "Trabajas sobre tus tareas reales, no sobre ejemplos genéricos",
+          "1": "4 sesiones privadas 1:1 conmigo — tu rol, tus tareas, tu caso",
+          "2": "2 sesiones grupales para ver cómo lo resuelven otros roles y no perder el ritmo",
           "3": "Plantillas y flujos listos para copiar y adaptar a tu rol",
           "4": "Sales con una automatización tuya funcionando — horas recuperadas cada semana",
           "5": "Cierras sabiendo presentar lo que construiste a tu jefe, equipo o clientes",
@@ -336,7 +340,7 @@
     },
     "teaser": {
       "cta": "Unirme a la lista de espera",
-      "description": "En vivo, sin código y sobre tu trabajo real. Cupos limitados en la primera cohorte.",
+      "description": "4 sesiones privadas conmigo, sin código y sobre tu trabajo real. Solo 6 cupos en la primera cohorte.",
       "eyebrow": "Curso",
       "title": "AI Shift Challenge: tu primera automatización con IA en 4 semanas"
     },
@@ -366,7 +370,7 @@
       "description": "Déjame tu correo y te escribo cuando abra el AI Shift Challenge. La lista de espera entra primero y con precio de lanzamiento. Cero spam: un solo correo.",
       "button": "Reservar mi cupo",
       "placeholder": "Tu email",
-      "note": "Cohorte fundadora · Cupos limitados",
+      "note": "Cohorte fundadora · Solo 6 cupos",
       "invalidEmail": "Ingresa un correo válido.",
       "success": "¡Listo! Tu cupo está reservado — te escribo cuando abra la cohorte.",
       "error": "Algo falló al registrarte. Intenta de nuevo en un momento."

@@ -21,6 +21,15 @@ type Metadata = {
   team: Team[];
   link?: string;
   repository?: string;
+  // Dashboard lessons only (src/app/[locale]/dashboard/lessons). Undefined for
+  // blog and work.
+  module?: string;
+  order?: number;
+  duration?: number;
+  /** YouTube id. Absent while the lesson isn't recorded yet. */
+  videoId?: string;
+  /** Fails closed: a lesson with a typo'd value is treated as student-only. */
+  requiresRole?: "waitlist" | "student";
 };
 
 export type Post = {
@@ -57,6 +66,12 @@ function readMDXFile(filePath: string) {
     team: data.team || [],
     link: data.link || "",
     repository: data.repository || "",
+    module: data.module || undefined,
+    order: typeof data.order === "number" ? data.order : undefined,
+    duration: typeof data.duration === "number" ? data.duration : undefined,
+    // "" (not recorded yet) collapses to undefined -> the placeholder state.
+    videoId: data.videoId || undefined,
+    requiresRole: data.requiresRole || undefined,
   };
 
   return { metadata, content };

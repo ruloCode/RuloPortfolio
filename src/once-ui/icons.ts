@@ -44,6 +44,9 @@ import {
   PiLightbulbDuotone,
   PiRobotDuotone,
   PiGraduationCapDuotone,
+  PiLockSimpleDuotone,
+  PiClockDuotone,
+  PiPlayCircleDuotone,
 } from "react-icons/pi";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
@@ -94,4 +97,7 @@ export const iconLibrary: Record<string, IconType> = {
   lightbulb: PiLightbulbDuotone,
   robot: PiRobotDuotone,
   graduationCap: PiGraduationCapDuotone,
+  lock: PiLockSimpleDuotone,
+  clock: PiClockDuotone,
+  playCircle: PiPlayCircleDuotone,
 };

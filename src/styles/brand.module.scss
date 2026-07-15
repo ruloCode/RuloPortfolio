@@ -2,8 +2,10 @@
 // Rules: emerald (brand) is THE single-color UI accent; cyan (accent) never
 // appears alone — it only exists as the far stop of the signature gradient,
 // which is reserved for conversion moments: the H1 keyword (.gradientText),
-// the waitlist CTA (.signatureCta) and the halo of conversion blocks
-// (.signatureGlow). Everything else uses brand tokens.
+// the waitlist CTA (.signatureCta), the halo of conversion blocks
+// (.signatureGlow) and the Week 0 progress fill (.progressFill) — finishing the
+// free track is what ladders into the paid cohort, so it earns the gradient and
+// nothing else inside /dashboard does. Everything else uses brand tokens.
 // All tokens are theme-aware ([data-theme]) so light mode keeps working.
 // Animates transform / opacity / border-color / box-shadow only
 // (compositor-friendly); the global `prefers-reduced-motion` reset in
@@ -155,4 +157,12 @@ $signature: linear-gradient(
   &:hover {
     filter: brightness(1.08);
   }
+}
+
+// ——— Dashboard ———
+
+// Week 0 progress fill. Theme-aware $signature (not the fixed 600 stops that
+// .signatureCta pins for AA text contrast) — the bar carries no text.
+.progressFill {
+  background: $signature;
 }

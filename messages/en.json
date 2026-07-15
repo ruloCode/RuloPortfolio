@@ -239,14 +239,18 @@
           "question": "Do I need to know how to code?"
         },
         "2": {
-          "answer": "If your work runs through a computer — marketing, finance, HR, legal, healthcare, education, operations, sales — yes. Everything is applied to your real tasks, not generic examples.",
-          "question": "Does it work for my field?"
+          "answer": "Four are private: you and me, on your role and your specific tasks. The other two are group sessions with the rest of the cohort, to see how other roles are solving it. All live, spread across the 4 weeks.",
+          "question": "What are the sessions like?"
         },
         "3": {
-          "answer": "The first cohort opens soon and spots are limited. Reserving on the waitlist is free and gives you priority access and launch pricing.",
-          "question": "When does it start and how much does it cost?"
+          "answer": "If your work runs through a computer — marketing, finance, HR, legal, healthcare, education, operations, sales — yes. Since most of the program is 1:1, everything is built on your real tasks, not generic examples.",
+          "question": "Does it work for my field?"
         },
         "4": {
+          "answer": "The first cohort opens soon and there are only 6 spots — private sessions don't stretch further than that. Reserving on the waitlist is free and gives you priority access and launch pricing.",
+          "question": "When does it start and how much does it cost?"
+        },
+        "5": {
           "answer": "They will — that's why the program isn't married to any of them. You leave with workflows running today and a repeatable judgment system to evaluate whatever ships tomorrow.",
           "question": "What if the tools change next month?"
         }
@@ -281,10 +285,10 @@
           "title": "Be your team's AI person"
         },
         "reto": {
-          "description": "The AI Shift Challenge: live sessions, practice on your real work, and by the end a complete flow running — not notes forgotten within a week.",
+          "description": "The AI Shift Challenge: four one-on-one sessions where we build on your specific case, two group sessions to see how other roles solve it, and by the end a complete flow running — not notes forgotten within a week.",
           "eyebrow": "04 · The challenge",
-          "imageAlt": "Small group of professionals in a live session, lit by the emerald light of a projector",
-          "title": "4 weeks live, small groups, one working flow"
+          "imageAlt": "Group of professionals gathered around a table with laptops, lit by the emerald light of the screens",
+          "title": "4 private sessions with me, 2 group ones, one working flow"
         },
         "rol": {
           "description": "We map your real week and spot, for your specific role, where the hidden hours are. No generic tours of 50 tools.",
@@ -295,30 +299,30 @@
       }
     },
     "hero": {
-      "badge": "AI Shift Challenge · Waitlist open — first cohort",
+      "badge": "AI Shift Challenge · Waitlist open — only 6 spots",
       "ctaNote": "Free · No commitment · One email when the cohort opens",
       "primaryCta": "Reserve my spot",
       "secondaryCta": "See the program",
-      "subtitle": "A live program for non-technical professionals: you take your real tasks, build AI workflows that do them for you, and finish with a working automation — not notes.",
+      "subtitle": "A live program for non-technical professionals: 4 private sessions with me on your real tasks, 2 group sessions, and by the end an automation of your own running — not notes.",
       "titleA": "Automate your work with AI in 4 weeks.",
       "titleB": "No code required."
     },
     "meta": {
-      "description": "A live program for non-technical professionals: apply AI to your real tasks, build your first automation and win back hours every week. Join the waitlist for the first cohort.",
+      "description": "A live program for non-technical professionals: 4 private 1:1 sessions on your real tasks, 2 group sessions, and your first automation running. Join the waitlist for the first cohort — only 6 spots.",
       "title": "AI Shift Challenge — Automate your work with AI in 4 weeks, no code"
     },
     "pricing": {
       "card": {
         "button": "Reserve my spot",
         "features": {
-          "1": "4 weeks of live sessions, in small groups",
-          "2": "You work on your real tasks, not generic examples",
+          "1": "4 private 1:1 sessions with me — your role, your tasks, your case",
+          "2": "2 group sessions to see how other roles solve it and keep your momentum",
           "3": "Templates and workflows ready to copy and adapt to your role",
           "4": "You leave with your own automation running — hours back every week",
           "5": "You finish knowing how to present what you built to your boss, team or clients",
           "6": "A community to keep you current when the tools change"
         },
-        "name": "First cohort · limited spots",
+        "name": "First cohort · only 6 spots",
         "note": "Joining the list is free and commits you to nothing. When the cohort opens, the list gets in first and pays less.",
         "price": "Launch pricing",
         "unit": "waitlist only"
@@ -336,7 +340,7 @@
     },
     "teaser": {
       "cta": "Join the waitlist",
-      "description": "Live, no code, and built on your real work. Limited spots in the first cohort.",
+      "description": "4 private sessions with me, no code, and built on your real work. Only 6 spots in the first cohort.",
       "eyebrow": "Course",
       "title": "AI Shift Challenge: your first AI automation in 4 weeks"
     },
@@ -366,7 +370,7 @@
       "description": "Leave your email and I'll write when the AI Shift Challenge opens. The waitlist gets in first, with launch pricing. Zero spam: one email.",
       "error": "Something went wrong. Try again in a moment.",
       "invalidEmail": "Enter a valid email.",
-      "note": "Founding cohort · Limited spots",
+      "note": "Founding cohort · Only 6 spots",
       "placeholder": "Your email",
       "success": "Done! Your spot is reserved — I'll write when the cohort opens.",
       "title": "Want me to save you a spot in the first cohort?"

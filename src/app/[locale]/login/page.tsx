@@ -35,7 +35,8 @@ export default async function Login({ params: { locale } }: PageParams) {
           invalidEmail: t("invalidEmail"),
           error: t("error"),
           sentTitle: t("sentTitle"),
-          sentDescription: t("sentDescription"),
+          // raw: {email} is interpolated on the client, where the address is known.
+          sentDescription: t.raw("sentDescription"),
           resend: t("resend"),
           note: t("note"),
         }}

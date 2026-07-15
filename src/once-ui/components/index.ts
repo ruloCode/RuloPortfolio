@@ -38,6 +38,7 @@ export * from "./NavIcon";
 export * from "./NumberInput";
 export * from "./Option";
 export * from "./PasswordInput";
+export * from "./ProgressBar";
 export * from "./RadioButton";
 export * from "./RevealFx";
 export * from "./Row";

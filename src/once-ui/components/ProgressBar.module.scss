@@ -1,0 +1,21 @@
+.track {
+  position: relative;
+}
+
+.s {
+  height: 4px;
+}
+
+.m {
+  height: 8px;
+}
+
+.l {
+  height: 12px;
+}
+
+.fill {
+  height: 100%;
+  background: var(--brand-solid-strong);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

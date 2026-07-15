@@ -17,7 +17,11 @@ const nextConfig = {
     // literal "[locale]" directory parses as a glob character class, so the
     // content is included explicitly ("*" matches the [locale] segment).
     outputFileTracingIncludes: {
-      "*": ["src/app/*/blog/posts/**", "src/app/*/work/projects/**"],
+      "*": [
+        "src/app/*/blog/posts/**",
+        "src/app/*/work/projects/**",
+        "src/app/*/dashboard/lessons/**",
+      ],
     },
   },
 };
