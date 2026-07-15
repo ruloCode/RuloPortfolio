@@ -108,6 +108,71 @@
     "related": "Artículos relacionados",
     "title": "Escribo sobre frontend, performance y fintech"
   },
+  "dashboard": {
+    "meta": {
+      "title": "Tu Semana 0 — AI Shift Challenge",
+      "description": "Tus lecciones del AI Shift Challenge."
+    },
+    "nav": {
+      "overview": "Inicio",
+      "semana0": "Semana 0",
+      "cohorte": "La cohorte",
+      "comingSoon": "Pronto",
+      "backToSite": "Volver al sitio",
+      "signOut": "Cerrar sesión",
+      "menu": "Menú"
+    },
+    "greeting": {
+      "title": "Hola, {name}.",
+      "subtitle": "Semana 0 son tres lecciones cortas que haces antes de que abra la cohorte. Empiezas por la primera — no por la herramienta de moda.",
+      "subtitleDone": "Terminaste la Semana 0 y tienes una automatización tuya corriendo. La cohorte es esto mismo sobre tus tres tareas, en vivo."
+    },
+    "progress": {
+      "label": "Progreso de Semana 0",
+      "summary": "{completed} de {total} lecciones completadas"
+    },
+    "modules": {
+      "semana0": {
+        "title": "Semana 0",
+        "badge": "Gratis",
+        "description": "Tres lecciones para llegar a la cohorte con trabajo hecho, no con expectativas."
+      },
+      "cohorte": {
+        "title": "La cohorte",
+        "badge": "Bloqueado",
+        "description": "Las cuatro semanas en vivo se abren cuando arranque tu cohorte. Estás en la lista fundadora: entras primero y con precio de lanzamiento.",
+        "cta": "Ver el programa"
+      }
+    },
+    "lesson": {
+      "number": "Lección {order}",
+      "duration": "{minutes} min",
+      "markComplete": "Marcar como completada",
+      "marked": "Completada",
+      "toastComplete": "Lección completada",
+      "toastIncomplete": "Lección sin marcar",
+      "toastError": "No pude guardar. Intenta de nuevo.",
+      "prev": "Anterior",
+      "next": "Siguiente",
+      "backToOverview": "Volver",
+      "availableInEnglishOnly": "Esta lección todavía no está traducida — la estás viendo en inglés."
+    },
+    "video": {
+      "pendingTitle": "El video está en camino",
+      "pendingDescription": "Todavía lo estoy grabando. La guía escrita de abajo está completa: haces la lección hoy y el video suma cuando llegue.",
+      "pendingBadge": "Próximamente",
+      "play": "Reproducir el video"
+    },
+    "empty": {
+      "title": "Todavía no hay lecciones acá",
+      "description": "Estoy terminando de escribirlas. Te aviso apenas estén — no antes."
+    },
+    "error": {
+      "title": "Algo se rompió",
+      "description": "No pude cargar tus lecciones. Suele ser pasajero.",
+      "retry": "Reintentar"
+    }
+  },
   "footer": {
     "bookCall": "Agenda una llamada",
     "navTitle": "Explora",
@@ -306,6 +371,18 @@
       "success": "¡Listo! Tu cupo está reservado — te escribo cuando abra la cohorte.",
       "error": "Algo falló al registrarte. Intenta de nuevo en un momento."
     }
+  },
+  "login": {
+    "title": "Entra a tu Semana 0",
+    "description": "Te mando un enlace al correo y entras. Sin contraseñas que recordar.",
+    "placeholder": "Tu correo",
+    "button": "Enviarme el enlace",
+    "invalidEmail": "Ingresa un correo válido.",
+    "error": "No pude enviar el enlace. Intenta de nuevo en un momento.",
+    "sentTitle": "Revisa tu correo",
+    "sentDescription": "Te mandé un enlace a {email}. Ábrelo y entras directo — vence en una hora y solo funciona una vez.",
+    "resend": "Usar otro correo",
+    "note": "Sin contraseñas · El enlace es de un solo uso"
   },
   "nav": {
     "about": "Sobre mí",

@@ -14,6 +14,7 @@ const routes = {
   // Gated study platform. Access is enforced by the session check in
   // dashboard/layout.tsx — this flag only decides whether the route exists.
   "/dashboard": true,
+  "/login": true,
 };
 
 // Scheduling link for consulting CTAs (about, services, home, footer).

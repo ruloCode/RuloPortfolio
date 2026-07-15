@@ -108,6 +108,71 @@
     "related": "Related posts",
     "title": "Writing about frontend, performance & fintech"
   },
+  "dashboard": {
+    "meta": {
+      "title": "Your Week 0 — AI Shift Challenge",
+      "description": "Your AI Shift Challenge lessons."
+    },
+    "nav": {
+      "overview": "Home",
+      "semana0": "Week 0",
+      "cohorte": "The cohort",
+      "comingSoon": "Soon",
+      "backToSite": "Back to the site",
+      "signOut": "Sign out",
+      "menu": "Menu"
+    },
+    "greeting": {
+      "title": "Hey, {name}.",
+      "subtitle": "Week 0 is three short lessons you do before the cohort opens. You start with the first one — not with the tool everyone's talking about.",
+      "subtitleDone": "You finished Week 0 and you have an automation of your own running. The cohort is this same thing on your three tasks, live."
+    },
+    "progress": {
+      "label": "Week 0 progress",
+      "summary": "{completed} of {total} lessons completed"
+    },
+    "modules": {
+      "semana0": {
+        "title": "Week 0",
+        "badge": "Free",
+        "description": "Three lessons to reach the cohort with work done, not with expectations."
+      },
+      "cohorte": {
+        "title": "The cohort",
+        "badge": "Locked",
+        "description": "The four live weeks open when your cohort starts. You're on the founding list: you get in first, at launch pricing.",
+        "cta": "See the program"
+      }
+    },
+    "lesson": {
+      "number": "Lesson {order}",
+      "duration": "{minutes} min",
+      "markComplete": "Mark as completed",
+      "marked": "Completed",
+      "toastComplete": "Lesson completed",
+      "toastIncomplete": "Lesson unmarked",
+      "toastError": "I couldn't save that. Try again.",
+      "prev": "Previous",
+      "next": "Next",
+      "backToOverview": "Back",
+      "availableInEnglishOnly": "This lesson isn't translated yet — you're seeing it in English."
+    },
+    "video": {
+      "pendingTitle": "The video is on its way",
+      "pendingDescription": "I'm still recording it. The written guide below is complete: you do the lesson today and the video adds to it when it lands.",
+      "pendingBadge": "Coming soon",
+      "play": "Play the video"
+    },
+    "empty": {
+      "title": "No lessons here yet",
+      "description": "I'm finishing writing them. I'll tell you the moment they're ready — not before."
+    },
+    "error": {
+      "title": "Something broke",
+      "description": "I couldn't load your lessons. It's usually temporary.",
+      "retry": "Retry"
+    }
+  },
   "footer": {
     "bookCall": "Book a call",
     "navTitle": "Explore",
@@ -306,6 +371,18 @@
       "success": "Done! Your spot is reserved — I'll write when the cohort opens.",
       "title": "Want me to save you a spot in the first cohort?"
     }
+  },
+  "login": {
+    "title": "Open your Week 0",
+    "description": "I'll send a link to your email and you're in. No passwords to remember.",
+    "placeholder": "Your email",
+    "button": "Send me the link",
+    "invalidEmail": "Enter a valid email.",
+    "error": "I couldn't send the link. Try again in a moment.",
+    "sentTitle": "Check your email",
+    "sentDescription": "I sent a link to {email}. Open it and you're straight in — it expires in an hour and works once.",
+    "resend": "Use another email",
+    "note": "No passwords · The link works once"
   },
   "nav": {
     "about": "About",

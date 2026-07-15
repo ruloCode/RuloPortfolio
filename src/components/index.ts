@@ -1,6 +1,7 @@
 export { Header } from "@/components/Header";
 export { Footer } from "@/components/Footer";
 export { WaitlistForm } from "@/components/WaitlistForm";
+export { LoginForm } from "@/components/LoginForm";
 export { ProjectCard } from "@/components/ProjectCard";
 export { TeamAvatars } from "@/components/TeamAvatars";
 export { HeadingLink } from "@/components/HeadingLink";
