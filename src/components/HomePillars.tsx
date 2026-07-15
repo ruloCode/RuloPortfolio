@@ -1,5 +1,5 @@
 import { Column, Flex, Grid, Heading, Icon, SmartImage, SmartLink, Text } from "@/once-ui/components";
-import styles from "./HomePillars.module.scss";
+import brand from "@/styles/brand.module.scss";
 
 export interface HomePillarItem {
   key: string;
@@ -33,7 +33,7 @@ export function HomePillars({ title, items, viewAllLabel, viewAllHref }: HomePil
         {items.map((item) => (
           <Column
             key={item.key}
-            className={styles.card}
+            className={brand.card}
             fillWidth
             gap="12"
             padding="l"
@@ -43,7 +43,7 @@ export function HomePillars({ title, items, viewAllLabel, viewAllHref }: HomePil
           >
             {item.image && (
               <SmartImage
-                className={styles.media}
+                className={brand.media}
                 src={item.image}
                 alt=""
                 aspectRatio="16 / 9"

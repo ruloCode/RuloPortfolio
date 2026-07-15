@@ -1,22 +1,11 @@
-import { LetterFx } from "@/once-ui/components";
 import { scheduling } from "./config";
+import brand from "@/styles/brand.module.scss";
 
 const strong = (chunks) => <strong>{chunks}</strong>;
 
-// <fx>keyword</fx> in messages renders as a one-word scramble effect.
-// LetterFx needs a plain string child, so flatten the rich-text chunks.
-const fx = (chunks) => {
-  const text = Array.isArray(chunks)
-    ? chunks.filter((c) => typeof c === "string").join("")
-    : typeof chunks === "string"
-      ? chunks
-      : "";
-  return (
-    <LetterFx trigger="instant" speed="fast">
-      {text}
-    </LetterFx>
-  );
-};
+// <fx>keyword</fx> in messages renders as the brand-signature gradient word —
+// the single visual signature shared by every page's H1.
+const fx = (chunks) => <span className={brand.gradientText}>{chunks}</span>;
 
 const createI18nContent = (t) => {
   const person = {
@@ -65,6 +54,21 @@ const createI18nContent = (t) => {
     description: t("newsletter.description"),
     button: t("newsletter.button"),
     placeholder: t("newsletter.placeholder"),
+    invalidEmail: t("ia.waitlist.invalidEmail"),
+    success: t("ia.waitlist.success"),
+    error: t("ia.waitlist.error"),
+  };
+
+  // The site-wide waitlist block (primary conversion) — same copy everywhere.
+  const waitlist = {
+    title: t("ia.waitlist.title"),
+    description: t("ia.waitlist.description"),
+    button: t("ia.waitlist.button"),
+    placeholder: t("ia.waitlist.placeholder"),
+    invalidEmail: t("ia.waitlist.invalidEmail"),
+    success: t("ia.waitlist.success"),
+    error: t("ia.waitlist.error"),
+    note: t("ia.waitlist.note"),
   };
 
   const home = {
@@ -91,9 +95,9 @@ const createI18nContent = (t) => {
     pillars: {
       title: t("home.pillars.title"),
       items: [
-        { key: "automation", icon: "robot", route: "/services" },
-        { key: "development", icon: "rocket", route: "/work" },
         { key: "training", icon: "graduationCap", route: "/ia" },
+        { key: "automation", icon: "robot", route: "/services" },
+        { key: "development", icon: "rocket", route: "/services" },
       ].map(({ key, icon, route }) => ({
         key,
         icon,
@@ -232,13 +236,13 @@ const createI18nContent = (t) => {
     title: t("services.title"),
     description: t("services.description"),
     hero: {
-      title: t("services.hero.title"),
+      title: t.rich("services.hero.title", { fx }),
       intro: t("services.hero.intro"),
       imageAlt: t("services.hero.imageAlt"),
     },
     offerings: {
       title: t("services.offerings.title"),
-      items: ["frontend", "performance", "ecommerce", "consulting"].map((key) => ({
+      items: ["automation", "frontend", "performance", "consulting"].map((key) => ({
         key,
         title: t(`services.offerings.${key}.title`),
         description: t(`services.offerings.${key}.description`),
@@ -269,6 +273,11 @@ const createI18nContent = (t) => {
         answer: t(`services.faq.items.${i}.answer`),
       })),
     },
+    bridge: {
+      title: t("services.bridge.title"),
+      description: t("services.bridge.description"),
+      cta: t("services.bridge.cta"),
+    },
     cta: {
       title: t("services.cta.title"),
       description: t("services.cta.description"),
@@ -298,6 +307,7 @@ const createI18nContent = (t) => {
     person,
     social,
     newsletter,
+    waitlist,
     home,
     about,
     blog,

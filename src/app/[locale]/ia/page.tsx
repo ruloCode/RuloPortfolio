@@ -14,21 +14,22 @@ import {
 } from "@/once-ui/components";
 import { baseURL, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
-import { Mailchimp } from "@/components";
+import { WaitlistForm } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import brand from "@/styles/brand.module.scss";
 import styles from "./ia.module.scss";
 
 const PROOF_CHIP_KEYS = ["1", "2", "3"] as const;
 
 const FEATURES: { key: string; icon: string; image: string }[] = [
-  { key: "rol", icon: "gauge", image: "/images/services/hero.jpg" },
-  { key: "copiloto", icon: "sparkle", image: "/images/home/story.jpg" },
-  { key: "automatizacion", icon: "robot", image: "/images/home/pillar-automation.jpg" },
-  { key: "reto", icon: "graduationCap", image: "/images/home/pillar-training.jpg" },
-  { key: "posicionamiento", icon: "trophy", image: "/images/home/pillar-development.jpg" },
-  { key: "criterio", icon: "lightbulb", image: "/images/ia/event.jpg" },
+  { key: "rol", icon: "gauge", image: "/images/ia/feature-rol.jpg" },
+  { key: "copiloto", icon: "sparkle", image: "/images/ia/feature-copiloto.jpg" },
+  { key: "automatizacion", icon: "robot", image: "/images/ia/feature-automatizacion.jpg" },
+  { key: "reto", icon: "graduationCap", image: "/images/ia/feature-reto.jpg" },
+  { key: "posicionamiento", icon: "trophy", image: "/images/ia/feature-posicionamiento.jpg" },
+  { key: "criterio", icon: "lightbulb", image: "/images/ia/feature-criterio.jpg" },
 ];
 
 const PRICING_FEATURE_KEYS = ["1", "2", "3", "4", "5"] as const;
@@ -118,13 +119,15 @@ export default async function Ia({ params: { locale } }: PageParams) {
     })),
   };
 
-  // TODO(rulo): create the Mailchimp audience (or alternative) for the waitlist
-  // and set config.mailchimp.action to its real POST URL.
   const waitlist = {
     title: t("waitlist.title"),
     description: t("waitlist.description"),
     button: t("waitlist.button"),
     placeholder: t("waitlist.placeholder"),
+    invalidEmail: t("waitlist.invalidEmail"),
+    success: t("waitlist.success"),
+    error: t("waitlist.error"),
+    note: t("waitlist.note"),
   };
 
   return (
@@ -144,16 +147,16 @@ export default async function Ia({ params: { locale } }: PageParams) {
       <Column gap="l" fillWidth horizontal="center" paddingTop="l">
         <RevealFx translateY="4" fillWidth horizontal="center">
           <Badge arrow={false} effect={true}>
-            <Text variant="label-strong-s" onBackground="accent-strong">
+            <Text variant="label-strong-s" onBackground="brand-strong">
               {t("hero.badge")}
             </Text>
           </Badge>
         </RevealFx>
         <RevealFx translateY="8" delay={0.1} fillWidth horizontal="center">
-          <Heading className={styles.heroTitle} variant="display-strong-l" align="center" wrap="balance">
+          <Heading className={brand.heroTitle} variant="display-strong-l" align="center" wrap="balance">
             {t("hero.titleA")}
             <br />
-            <span className={styles.heroTitleAccent}>{t("hero.titleB")}</span>
+            <span className={brand.gradientText}>{t("hero.titleB")}</span>
           </Heading>
         </RevealFx>
         <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center">
@@ -168,14 +171,19 @@ export default async function Ia({ params: { locale } }: PageParams) {
           </Text>
         </RevealFx>
         <RevealFx translateY="8" delay={0.3} fillWidth horizontal="center">
-          <Flex gap="12" wrap horizontal="center">
-            <Button href="#reto" variant="primary" size="l" arrowIcon>
-              {t("hero.primaryCta")}
-            </Button>
-            <Button href={scheduling.link} variant="secondary" size="l">
-              {t("hero.secondaryCta")}
-            </Button>
-          </Flex>
+          <Column gap="12" horizontal="center">
+            <Flex gap="12" wrap horizontal="center">
+              <Button href="#lista" variant="primary" size="l" arrowIcon className={brand.signatureCta}>
+                {t("hero.primaryCta")}
+              </Button>
+              <Button href="#reto" variant="secondary" size="l">
+                {t("hero.secondaryCta")}
+              </Button>
+            </Flex>
+            <Text variant="label-default-s" onBackground="neutral-weak" align="center">
+              {t("hero.ctaNote")}
+            </Text>
+          </Column>
         </RevealFx>
       </Column>
 
@@ -193,7 +201,7 @@ export default async function Ia({ params: { locale } }: PageParams) {
             </Flex>
           </Column>
           <SmartImage
-            className={styles.media}
+            className={brand.mediaGlow}
             src="/images/ia/hero.jpg"
             alt={t("proof.bannerAlt")}
             aspectRatio="21 / 9"
@@ -218,8 +226,8 @@ export default async function Ia({ params: { locale } }: PageParams) {
             >
               <Column flex={1} gap="m" fillWidth>
                 <Flex gap="8" vertical="center">
-                  <Icon name={icon} onBackground="accent-weak" />
-                  <Text variant="label-strong-s" onBackground="accent-strong">
+                  <Icon name={icon} onBackground="brand-weak" />
+                  <Text variant="label-strong-s" onBackground="brand-strong">
                     {t(`features.items.${key}.eyebrow`)}
                   </Text>
                 </Flex>
@@ -237,7 +245,7 @@ export default async function Ia({ params: { locale } }: PageParams) {
               </Column>
               <Column flex={1} fillWidth>
                 <SmartImage
-                  className={styles.media}
+                  className={brand.media}
                   src={image}
                   alt={t(`features.items.${key}.imageAlt`)}
                   aspectRatio="4 / 3"
@@ -258,13 +266,12 @@ export default async function Ia({ params: { locale } }: PageParams) {
             {t("pricing.title")}
           </Heading>
           <Column
-            className={styles.pricingCard}
+            className={`${brand.featuredCard} ${brand.signatureGlow}`}
             maxWidth="s"
             fillWidth
             gap="m"
             padding="xl"
             radius="l"
-            border="brand-alpha-medium"
           >
             <Tag size="s" variant="brand" label={t("pricing.card.name")} />
             <Flex gap="12" vertical="end" wrap>
@@ -278,7 +285,7 @@ export default async function Ia({ params: { locale } }: PageParams) {
             <Text variant="body-default-m" onBackground="neutral-weak">
               {t("pricing.card.note")}
             </Text>
-            <Button href="#lista" variant="primary" size="l" fillWidth arrowIcon>
+            <Button href="#lista" variant="primary" size="l" fillWidth arrowIcon className={brand.signatureCta}>
               {t("pricing.card.button")}
             </Button>
             <Column gap="12" paddingTop="s">
@@ -303,14 +310,14 @@ export default async function Ia({ params: { locale } }: PageParams) {
             {USE_CASES.map(({ key, icon }) => (
               <Column
                 key={key}
-                className={`${styles.card} ${styles.useCase}`}
+                className={`${brand.card} ${brand.cardWash}`}
                 fillWidth
                 gap="12"
                 padding="l"
                 radius="l"
                 border="neutral-alpha-weak"
               >
-                <Icon name={icon} onBackground="accent-weak" />
+                <Icon name={icon} onBackground="brand-weak" />
                 <Text variant="heading-strong-m">{t(`useCases.items.${key}.title`)}</Text>
                 <Text variant="body-default-s" onBackground="neutral-weak">
                   {t(`useCases.items.${key}.description`)}
@@ -324,7 +331,7 @@ export default async function Ia({ params: { locale } }: PageParams) {
       {/* Waitlist — the primary conversion */}
       <RevealFx translateY="16" inView>
         <Column id="lista" fillWidth>
-          <Mailchimp newsletter={waitlist} />
+          <WaitlistForm newsletter={waitlist} variant="signature" />
         </Column>
       </RevealFx>
 

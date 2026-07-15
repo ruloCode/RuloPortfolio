@@ -11,12 +11,12 @@ import {
   Avatar,
   RevealFx,
 } from "@/once-ui/components";
-import styles from "./home.module.scss";
+import brand from "@/styles/brand.module.scss";
 import { baseURL, routes, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
-import { CtaBanner, HomePillars, Mailchimp, Stats, Testimonials } from "@/components";
+import { HomePillars, Stats, Testimonials, WaitlistForm } from "@/components";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -79,7 +79,7 @@ export default async function Home({ params: { locale } }: PageParams) {
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations();
-  const { person, home, about, newsletter } = createI18nContent(t);
+  const { person, home, about, waitlist } = createI18nContent(t);
 
   // Generate structured data for homepage
   const structuredData = {
@@ -168,7 +168,7 @@ export default async function Home({ params: { locale } }: PageParams) {
               horizontal="start"
               paddingBottom="m"
             >
-              <Heading wrap="balance" variant="display-strong-l">
+              <Heading className={brand.heroTitleSub} wrap="balance" variant="display-strong-l">
                 {home.headline}
               </Heading>
             </RevealFx>
@@ -190,23 +190,24 @@ export default async function Home({ params: { locale } }: PageParams) {
             <RevealFx translateY="12" delay={0.4} horizontal="start">
               <Flex gap="12" wrap>
                 <Button
-                  id="cta-companies"
-                  href={scheduling.link}
+                  id="cta-professionals"
+                  href={localizeHref(locale, "/ia")}
                   variant="primary"
+                  size="m"
+                  prefixIcon="sparkle"
+                  className={brand.signatureCta}
+                >
+                  {home.ctaProfessionals}
+                </Button>
+                <Button
+                  id="cta-companies"
+                  data-border="rounded"
+                  href={scheduling.link}
+                  variant="secondary"
                   size="m"
                   prefixIcon="calendar"
                 >
                   {home.ctaCompanies}
-                </Button>
-                <Button
-                  id="cta-professionals"
-                  data-border="rounded"
-                  href={localizeHref(locale, "/ia")}
-                  variant="secondary"
-                  size="m"
-                  prefixIcon="sparkle"
-                >
-                  {home.ctaProfessionals}
                 </Button>
                 <Button
                   id="about"
@@ -232,7 +233,7 @@ export default async function Home({ params: { locale } }: PageParams) {
         </Column>
         <RevealFx translateY="16" delay={0.5} fillWidth>
           <SmartImage
-            className={styles.heroMedia}
+            className={brand.mediaGlow}
             src="/images/home/hero.jpg"
             alt={home.heroAlt}
             aspectRatio="21 / 9"
@@ -247,7 +248,7 @@ export default async function Home({ params: { locale } }: PageParams) {
         </RevealFx>
         <RevealFx translateY="16" inView>
           <Flex
-            className={styles.card}
+            className={brand.card}
             fillWidth
             gap="l"
             padding="l"
@@ -275,7 +276,7 @@ export default async function Home({ params: { locale } }: PageParams) {
             </Column>
             <Flex flex={5} vertical="center">
               <SmartImage
-                className={styles.media}
+                className={brand.media}
                 src="/images/home/story.jpg"
                 alt={home.story.imageAlt}
                 aspectRatio="4 / 3"
@@ -302,19 +303,18 @@ export default async function Home({ params: { locale } }: PageParams) {
         {routes["/ia"] && (
           <RevealFx translateY="16" inView>
             <Flex
+              className={`${brand.featuredCard} ${brand.signatureGlow}`}
               fillWidth
               gap="l"
               padding="l"
               radius="l"
-              border="accent-alpha-medium"
-              background="accent-alpha-weak"
               mobileDirection="column"
               vertical="center"
               horizontal="space-between"
             >
               <Column gap="8" flex={8}>
                 <Flex gap="8" vertical="center">
-                  <Tag variant="accent" size="m" label={t("ia.teaser.eyebrow")} />
+                  <Tag variant="brand" size="m" label={t("ia.teaser.eyebrow")} />
                 </Flex>
                 <Heading as="h2" variant="display-strong-xs" wrap="balance">
                   {t("ia.teaser.title")}
@@ -325,10 +325,11 @@ export default async function Home({ params: { locale } }: PageParams) {
               </Column>
               <Flex flex={4} horizontal="end">
                 <Button
-                  href={localizeHref(locale, "/ia")}
-                  variant="secondary"
+                  href={`${localizeHref(locale, "/ia")}#lista`}
+                  variant="primary"
                   size="m"
                   suffixIcon="sparkle"
+                  className={brand.signatureCta}
                 >
                   {t("ia.teaser.cta")}
                 </Button>
@@ -368,15 +369,18 @@ export default async function Home({ params: { locale } }: PageParams) {
             </Flex>
           </RevealFx>
         )}
+        {/* Primary conversion: the course waitlist, inline (no extra hop). */}
         <RevealFx translateY="16" inView>
-          <CtaBanner
-            title={home.finalCta.title}
-            description={home.finalCta.description}
-            button={home.finalCta.button}
-            href={scheduling.link}
+          <WaitlistForm
+            variant="signature"
+            newsletter={{
+              ...waitlist,
+              title: home.finalCta.title,
+              description: home.finalCta.description,
+              button: home.finalCta.button,
+            }}
           />
         </RevealFx>
-        {newsletter.display && <Mailchimp newsletter={newsletter} />}
       </Column>
     </Column>
   );

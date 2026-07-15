@@ -6,7 +6,7 @@ export {
   effects,
   style,
   display,
-  mailchimp,
+  waitlistEffects,
   baseURL,
 } from "@/app/resources/config.js";
 export { person, social, gallery } from "@/app/resources/content";

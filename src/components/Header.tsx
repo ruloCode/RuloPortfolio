@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
-import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
+import { Button, Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
+import brand from "@/styles/brand.module.scss";
 import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
@@ -223,6 +224,20 @@ export const Header = () => {
           >
             <LanguageSwitcher />
             <ThemeToggle />
+            {/* Persistent conversion CTA — hidden on /ia (you're already there)
+                and on small screens, where the sparkle nav item covers it. */}
+            {routes["/ia"] && !pathname.startsWith("/ia") && (
+              <Flex hide="s">
+                <Button
+                  href={href("/ia#lista")}
+                  size="s"
+                  className={brand.signatureCta}
+                  prefixIcon="sparkle"
+                >
+                  {t("waitlistCta")}
+                </Button>
+              </Flex>
+            )}
             <Flex hide="s">{display.time && <TimeDisplay timeZone="America/Bogota" />}</Flex>
           </Flex>
         </Flex>

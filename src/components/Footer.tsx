@@ -41,6 +41,11 @@ export const Footer = async () => {
             <Text variant="body-default-s" onBackground="neutral-weak" wrap="balance">
               {t("footer.tagline")}
             </Text>
+            {routes["/ia"] && (
+              <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/ia#lista")}>
+                <Text variant="body-strong-s">{t("footer.waitlistCta")}</Text>
+              </SmartLink>
+            )}
             <SmartLink suffixIcon="arrowRight" href={scheduling.link}>
               <Text variant="body-default-s">{t("footer.bookCall")}</Text>
             </SmartLink>

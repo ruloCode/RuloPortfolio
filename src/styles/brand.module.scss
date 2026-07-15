@@ -1,0 +1,158 @@
+// "AI-expert dark" brand system — single source of the visual signature.
+// Rules: emerald (brand) is THE single-color UI accent; cyan (accent) never
+// appears alone — it only exists as the far stop of the signature gradient,
+// which is reserved for conversion moments: the H1 keyword (.gradientText),
+// the waitlist CTA (.signatureCta) and the halo of conversion blocks
+// (.signatureGlow). Everything else uses brand tokens.
+// All tokens are theme-aware ([data-theme]) so light mode keeps working.
+// Animates transform / opacity / border-color / box-shadow only
+// (compositor-friendly); the global `prefers-reduced-motion` reset in
+// once-ui/styles/global.scss neutralizes these transitions automatically.
+
+$signature: linear-gradient(
+  100deg,
+  var(--brand-on-background-strong),
+  var(--accent-on-background-weak)
+);
+
+// ——— Heroes ———
+
+// Oversized hero statement — scales from mobile to a full editorial display size.
+.heroTitle {
+  font-size: clamp(2.5rem, 7vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+// Secondary-page variant (services/about): still oversized, one step down.
+.heroTitleSub {
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+// Signature use 1: the keyword of each page's H1, clipped to the gradient.
+.gradientText {
+  background: $signature;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+// ——— Cards ———
+
+// Unified hover: gentle lift + emerald edge, same on every page.
+.card {
+  transition:
+    transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-border-strong);
+    box-shadow:
+      var(--shadow-l),
+      0 0 0 1px var(--brand-alpha-medium);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &:hover .media img {
+    transform: scale(1.05);
+  }
+}
+
+// Gallery cards — single brand wash over the page background.
+.cardWash {
+  background:
+    radial-gradient(120% 120% at 0% 0%, var(--brand-alpha-weak), transparent 70%),
+    var(--page-background);
+}
+
+// Highlighted offer card (pricing on /ia, retainer on /services) — elevated
+// surface with a brand glow.
+.featuredCard {
+  position: relative;
+  background:
+    radial-gradient(140% 90% at 50% 0%, var(--brand-alpha-weak), transparent 60%),
+    var(--surface-background);
+  box-shadow: var(--shadow-l);
+}
+
+// ——— Media ———
+
+// Page-hero visual: soft emerald glow anchors the brand light.
+.mediaGlow {
+  box-shadow:
+    0 24px 80px -32px var(--brand-alpha-medium),
+    0 0 0 1px var(--brand-alpha-weak);
+
+  img {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+// Subtle editorial zoom on decorative imagery (wrapper already clips overflow).
+.media {
+  img {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  &:hover img {
+    transform: scale(1.04);
+  }
+}
+
+// ——— Conversion (signature uses 2 and 3) ———
+
+// 1px gradient halo for the waitlist block and featured cards. The mask
+// composite keeps only the padding ring, so it works over any background.
+.signatureGlow {
+  position: relative;
+  border-radius: var(--radius-l);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: $signature;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}
+
+// Waitlist CTA button. Uses the fixed 600-stops so white text keeps AA
+// contrast in light mode too (the theme-aware stops get too light there).
+.signatureCta {
+  border: none;
+  background: linear-gradient(
+    100deg,
+    var(--function-brand-600),
+    var(--function-accent-600)
+  ) !important;
+  color: var(--static-white) !important;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+}

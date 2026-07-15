@@ -7,7 +7,7 @@
       "p2": "I learned to code from scratch and took it seriously: for over 4 years I was the frontend lead at Mexico's fastest-growing digital pharmacy. I cut load time by <strong>56%</strong>, lifted conversions <strong>23%</strong>, and the platform I architected processes <strong>$2M+ monthly</strong> for 50,000+ patients with 99.9% uptime.",
       "p3": "Along the way I found my unfair advantage: I can do the technical work <strong>and I can translate it</strong>. Because I lived the fear of falling behind, I learned to teach technology from empathy, not arrogance.",
       "p4": "Today I work on three fronts: AI <strong>automation</strong> for companies, custom software <strong>development</strong>, and <strong>AI training</strong> for non-technical professionals.",
-      "p5": "My north star is simple: help professionals use AI to level up <strong>before the world forces them to choose</strong>. It forced me. It doesn't have to force you.",
+      "p5": "My north star is simple: help professionals master AI <strong>before the world forces them to choose</strong>. It forced me. It doesn't have to force you.",
       "title": "My story"
     },
     "label": "About",
@@ -111,7 +111,8 @@
   "footer": {
     "bookCall": "Book a call",
     "navTitle": "Explore",
-    "tagline": "Automation, development and AI training — from Colombia for the world."
+    "tagline": "AI training and consulting — from Colombia for the world.",
+    "waitlistCta": "Join the course waitlist"
   },
   "gallery": {
     "description": "A photo collection by Andrés Santana",
@@ -121,16 +122,16 @@
   "home": {
     "blogHeading": "Latest from the blog",
     "ctaCompanies": "Companies: book a call",
-    "ctaProfessionals": "Professionals: AI program",
+    "ctaProfessionals": "Discover the AI Shift Challenge",
     "ctaStory": "My story",
-    "description": "Software Developer. I help companies automate and build revenue-generating software, and professionals use AI to level up before the world forces them to choose. $2M+/month processed, 50K+ users.",
+    "description": "I teach non-technical professionals to automate their work with AI (AI Shift Challenge) and help companies with AI consulting and custom software. $2M+/month processed, 50K+ users.",
     "finalCta": {
-      "button": "Book a call",
-      "description": "If you run a company, tell me about your project in a free 30-minute call. If you're a professional who wants to level up with AI, the program is waiting for you.",
-      "title": "Shall we build something together?"
+      "button": "Reserve my spot",
+      "description": "The AI Shift Challenge opens soon: leave your email to hear first, with launch pricing. Run a company? Consulting is open in Services.",
+      "title": "Reserve your spot in the first cohort"
     },
-    "headline": "Technology forced me to choose. Today I help others <fx>level up</fx> before it forces them.",
-    "heroAlt": "An electric guitar dissolving into emerald code particles flowing toward a laptop",
+    "headline": "Technology forced me to start over. Today I teach professionals to <fx>master AI</fx> before it forces them.",
+    "heroAlt": "A developer works at night lit by the emerald glow of his laptop, his electric guitar resting in the foreground",
     "label": "Home",
     "pillars": {
       "items": {
@@ -140,14 +141,14 @@
           "title": "Automation"
         },
         "development": {
-          "cta": "View case studies",
+          "cta": "How I work",
           "description": "Custom software with React, Next.js and TypeScript. The same engineering behind a platform processing $2M+/month.",
           "title": "Development"
         },
         "training": {
-          "cta": "Explore the program",
-          "description": "Hands-on programs for non-technical professionals. AI applied to your real work — no hype, no intimidation.",
-          "title": "AI Training"
+          "cta": "See the program",
+          "description": "4 weeks live for non-technical professionals. You apply AI to your real work and leave with a working automation.",
+          "title": "Course: AI Shift Challenge"
         }
       },
       "title": "How I can help you"
@@ -159,145 +160,150 @@
       "eyebrow": "My story",
       "imageAlt": "Guitar strings transforming into threads of light and code",
       "p1": "Before writing code, I wrote songs. Technology changed the rules of the music industry and forced me to choose between what I loved and what gave me stability. I chose to survive — and learned to code.",
-      "p2": "That choice gave me something no bootcamp teaches: I know exactly what falling behind feels like. That's why today I build technology and teach AI without intimidation — so others can level up before they're forced to choose.",
-      "title": "I left music to survive. Today I teach how to level up."
+      "p2": "That choice gave me something no bootcamp teaches: I know exactly what falling behind feels like. That's why today I build technology and teach AI without intimidation — so others can master it before they're forced to choose.",
+      "title": "I left music to survive. Today I teach how to master AI."
     },
-    "subline": "I'm Andrés Santana, Software Developer. I left music to survive technologically; today I build <strong>automations</strong>, <strong>custom software</strong> and <strong>AI training</strong> — backed by a platform that processes <strong>$2M+/month</strong> and serves <strong>50K+ users</strong>.",
-    "title": "Andrés Santana | Automation, Development & AI Training"
+    "subline": "I'm Andrés Santana. I built software that processes <strong>$2M+/month</strong> for <strong>50K+ users</strong>. Today I teach applied AI to non-technical professionals through the <strong>AI Shift Challenge</strong> and automate processes for companies.",
+    "title": "Andrés Santana — Applied AI Expert · AI Shift Challenge"
   },
   "ia": {
     "faq": {
-      "title": "Frequently asked questions",
       "items": {
         "1": {
-          "question": "Do I need to know how to code?",
-          "answer": "No. Everything is built with click-based tools you already know how to use. The program is designed for people whose job is not technology."
+          "answer": "No. Everything is built with click-based tools you already know how to use. The program is designed for people whose job is not technology.",
+          "question": "Do I need to know how to code?"
         },
         "2": {
-          "question": "Does it work for my field?",
-          "answer": "If your work runs through a computer — marketing, finance, HR, legal, healthcare, education, operations, sales — yes. Everything is applied to your real tasks, not generic examples."
+          "answer": "If your work runs through a computer — marketing, finance, HR, legal, healthcare, education, operations, sales — yes. Everything is applied to your real tasks, not generic examples.",
+          "question": "Does it work for my field?"
         },
         "3": {
-          "question": "When does it start and how much does it cost?",
-          "answer": "The first cohort is in validation. Joining the waitlist is free, gives you priority access, and the first members get launch pricing."
+          "answer": "The first cohort opens soon and spots are limited. Reserving on the waitlist is free and gives you priority access and launch pricing.",
+          "question": "When does it start and how much does it cost?"
         },
         "4": {
-          "question": "What if the tools change next month?",
-          "answer": "They will — that's why the program isn't married to any of them. You leave with workflows running today and a repeatable judgment system to evaluate whatever ships tomorrow."
+          "answer": "They will — that's why the program isn't married to any of them. You leave with workflows running today and a repeatable judgment system to evaluate whatever ships tomorrow.",
+          "question": "What if the tools change next month?"
         }
-      }
+      },
+      "title": "Frequently asked questions"
     },
     "features": {
-      "cta": "Join the waitlist",
+      "cta": "Reserve my spot",
       "items": {
-        "rol": {
-          "eyebrow": "01 · Your role first",
-          "title": "We start with your job, not the tools",
-          "description": "We map your real week and spot, for your specific role, where the hidden hours are. No generic tours of 50 tools.",
-          "imageAlt": "Abstract landscape of dark circuit blocks with emerald light flowing between them"
+        "automatizacion": {
+          "description": "You build your first automations with click-based tools — email, spreadsheets, documents — and free up hours every week. No code involved.",
+          "eyebrow": "03 · Automation",
+          "imageAlt": "A professional's hands pulling back from the keyboard while the emerald-green screen keeps working",
+          "title": "Your repetitive tasks, on autopilot"
         },
         "copiloto": {
-          "eyebrow": "02 · Daily copilot",
-          "title": "Beyond ChatGPT: workflows, not loose prompts",
           "description": "From using AI ‘sometimes, sort of’ to a daily system: analyze information, write, decide and produce at professional quality in your field.",
-          "imageAlt": "Work studio where an idea turns into finished pieces"
-        },
-        "automatizacion": {
-          "eyebrow": "03 · Automation",
-          "title": "Your repetitive tasks, on autopilot",
-          "description": "You build your first automations with click-based tools — email, spreadsheets, documents — and free up hours every week. No code involved.",
-          "imageAlt": "Luminous gears and connections representing processes that run on their own"
-        },
-        "reto": {
-          "eyebrow": "04 · The challenge",
-          "title": "4 weeks, small groups, one working flow",
-          "description": "The AI Shift Challenge: live sessions, practice on your real work, and by the end a complete flow running — not notes forgotten within a week.",
-          "imageAlt": "Group of people learning to apply AI in a hands-on session"
-        },
-        "posicionamiento": {
-          "eyebrow": "05 · Position yourself",
-          "title": "Become your team's AI go-to",
-          "description": "You close with a ‘tech pitch’ to present what you built with confidence — at your company or in your own project. The professional who masters AI stands out.",
-          "imageAlt": "Professional presenting their work with confidence"
+          "eyebrow": "02 · Daily copilot",
+          "imageAlt": "Focused professional working at night with two screens casting cyan light on her face",
+          "title": "From loose prompts to workflows that deliver finished work"
         },
         "criterio": {
-          "eyebrow": "06 · Judgment",
-          "title": "A system so the hype never drowns you",
           "description": "The tools will change. You leave with a repeatable method to evaluate what's new in minutes and adopt only what serves your work — for good.",
-          "imageAlt": "In-person community gathering with talks and networking"
+          "eyebrow": "06 · Judgment",
+          "imageAlt": "Professional comparing options on a monitor in a dark space, the interface reflected in their glasses",
+          "title": "A method to evaluate new tools in minutes"
+        },
+        "posicionamiento": {
+          "description": "You close with a ‘tech pitch’ to present what you built with confidence — at your company or in your own project. The professional who masters AI stands out.",
+          "eyebrow": "05 · Position yourself",
+          "imageAlt": "Professional presenting to their team, standing in front of a screen that bathes the room in cyan light",
+          "title": "Be your team's AI person"
+        },
+        "reto": {
+          "description": "The AI Shift Challenge: live sessions, practice on your real work, and by the end a complete flow running — not notes forgotten within a week.",
+          "eyebrow": "04 · The challenge",
+          "imageAlt": "Small group of professionals in a live session, lit by the emerald light of a projector",
+          "title": "4 weeks live, small groups, one working flow"
+        },
+        "rol": {
+          "description": "We map your real week and spot, for your specific role, where the hidden hours are. No generic tours of 50 tools.",
+          "eyebrow": "01 · Your role first",
+          "imageAlt": "Professional reviewing their work week on a monitor that lights the desk with emerald light",
+          "title": "We start with your job, not the tools"
         }
       }
     },
     "hero": {
-      "badge": "First cohort in validation · waitlist open",
-      "titleA": "Your profession, augmented with AI.",
-      "titleB": "Whatever your field.",
-      "subtitle": "A hands-on program to apply AI to the work you already do — win back hours every week, produce better work and become your team's AI go-to. No code required.",
-      "primaryCta": "I want to join the challenge",
-      "secondaryCta": "Book a free call"
+      "badge": "AI Shift Challenge · Waitlist open — first cohort",
+      "ctaNote": "Free · No commitment · One email when the cohort opens",
+      "primaryCta": "Reserve my spot",
+      "secondaryCta": "See the program",
+      "subtitle": "A live program for non-technical professionals: you take your real tasks, build AI workflows that do them for you, and finish with a working automation — not notes.",
+      "titleA": "Automate your work with AI in 4 weeks.",
+      "titleB": "No code required."
     },
     "meta": {
-      "title": "Augment yourself with AI | Hands-on program for professionals in any field",
-      "description": "A hands-on program for professionals in any field: apply AI to the work you already do, win back hours every week and become your team's AI go-to. No code required."
+      "description": "A live program for non-technical professionals: apply AI to your real tasks, build your first automation and win back hours every week. Join the waitlist for the first cohort.",
+      "title": "AI Shift Challenge — Automate your work with AI in 4 weeks, no code"
     },
     "pricing": {
-      "title": "Join the AI Shift Challenge 👇",
       "card": {
-        "name": "First cohort · limited spots",
-        "price": "Launch pricing",
-        "unit": "reserved for the waitlist",
-        "note": "The first cohort is in validation: joining the list costs nothing and commits you to nothing.",
-        "button": "Join the waitlist",
+        "button": "Reserve my spot",
         "features": {
           "1": "4 weeks of live sessions, in small groups",
           "2": "Workflows applied to YOUR role — no generic examples",
           "3": "Ready-to-use templates and automations",
           "4": "A real working flow + your ‘tech pitch’ at the end",
           "5": "A community to keep you current when everything changes"
-        }
-      }
+        },
+        "name": "First cohort · limited spots",
+        "note": "Joining the list is free and commits you to nothing. When the cohort opens, the list gets in first and pays less.",
+        "price": "Launch pricing",
+        "unit": "waitlist only"
+      },
+      "title": "What's inside the AI Shift Challenge"
     },
     "proof": {
-      "label": "Built for professionals in any field — if your work lives on a computer, it applies",
+      "bannerAlt": "AI interfaces and workflows applied to a professional's daily work",
       "chips": {
         "1": "Marketing · Finance · HR",
         "2": "Legal · Healthcare · Education",
         "3": "Operations · Sales · Creatives"
       },
-      "bannerAlt": "AI interfaces and workflows applied to a professional's daily work"
+      "label": "Built for professionals in any field — if your work lives on a computer, it applies"
     },
     "teaser": {
       "cta": "Join the waitlist",
-      "description": "A hands-on program for non-technical professionals who want to apply AI to their real work — and stop fearing they'll fall behind.",
-      "eyebrow": "New",
-      "title": "AI so you don't fall behind"
+      "description": "Live, no code, and built on your real work. Limited spots in the first cohort.",
+      "eyebrow": "Course",
+      "title": "AI Shift Challenge: your first AI automation in 4 weeks"
     },
     "useCases": {
-      "title": "What professionals like you can already automate",
       "items": {
         "1": {
-          "title": "Marketing → content",
-          "description": "Campaigns and pieces that go from idea to published in hours, not weeks."
+          "description": "Campaigns and pieces that go from idea to published in hours, not weeks.",
+          "title": "Marketing → content"
         },
         "2": {
-          "title": "Finance → reports",
-          "description": "Weekly reports assembled and sent without opening the spreadsheet."
+          "description": "Weekly reports assembled and sent without opening the spreadsheet.",
+          "title": "Finance → reports"
         },
         "3": {
-          "title": "HR → processes",
-          "description": "Job descriptions, screening and onboarding prepared in minutes."
+          "description": "Job descriptions, screening and onboarding prepared in minutes.",
+          "title": "HR → processes"
         },
         "4": {
-          "title": "Operations → inbox",
-          "description": "Emails that classify, log and nearly answer themselves."
+          "description": "Emails that classify, log and nearly answer themselves.",
+          "title": "Operations → inbox"
         }
-      }
+      },
+      "title": "What you'll be able to automate"
     },
     "waitlist": {
-      "title": "Be among the first",
-      "description": "Zero spam. One email when the first cohort opens — the waitlist gets priority access and launch pricing.",
-      "button": "Join the list",
-      "placeholder": "Your email"
+      "button": "Reserve my spot",
+      "description": "Leave your email and I'll write when the AI Shift Challenge opens. The waitlist gets in first, with launch pricing. Zero spam: one email.",
+      "error": "Something went wrong. Try again in a moment.",
+      "invalidEmail": "Enter a valid email.",
+      "note": "Founding cohort · Limited spots",
+      "placeholder": "Your email",
+      "success": "Done! Your spot is reserved — I'll write when the cohort opens.",
+      "title": "Want me to save you a spot in the first cohort?"
     }
   },
   "nav": {
@@ -305,8 +311,9 @@
     "blog": "Blog",
     "gallery": "Gallery",
     "home": "Home",
-    "ia": "AI",
+    "ia": "AI Course",
     "services": "Services",
+    "waitlistCta": "Join the waitlist",
     "work": "Work"
   },
   "newsletter": {
@@ -324,7 +331,7 @@
       "english": "English (Professional)",
       "spanish": "Spanish (Native)"
     },
-    "role": "Software Developer | Automation, Development & AI Training"
+    "role": "Applied AI Expert · Training & Consulting"
   },
   "projectCard": {
     "caseStudy": "Read case study",
@@ -335,13 +342,17 @@
     "viewLive": "View Live"
   },
   "services": {
-    "viewAll": "View all services",
+    "bridge": {
+      "cta": "See the program",
+      "description": "The AI Shift Challenge is my program for non-technical professionals: 4 weeks live, no code.",
+      "title": "Looking for training for yourself, not your company?"
+    },
     "cta": {
       "button": "Book a call",
-      "description": "Tell me about your project in a free 30-minute discovery call. No commitment, no sales pitch—just an honest conversation about whether I can help.",
-      "title": "Ready to build something great?"
+      "description": "A free 30-minute call, no sales pitch: we review your operation and I tell you whether I can help — and how.",
+      "title": "Tell me what's stealing hours from your team"
     },
-    "description": "Frontend development, performance optimization, and scalable fintech solutions. Let's build something great together.",
+    "description": "AI process automation, adoption consulting and high-performance web development for companies. First 30-minute call is free.",
     "engagement": {
       "consulting": {
         "description": "Architecture reviews, code audits, and technical strategy sessions. Billed by the hour or day.",
@@ -361,7 +372,7 @@
     "faq": {
       "items": {
         "1": {
-          "answer": "I specialize in React, Next.js and TypeScript frontends—especially e-commerce, fintech and healthcare platforms where performance and conversions matter.",
+          "answer": "AI process automation, adoption consulting and development with React, Next.js and TypeScript — especially platforms where performance and conversions matter.",
           "question": "What kind of projects do you take on?"
         },
         "2": {
@@ -384,21 +395,21 @@
       "title": "Frequently asked questions"
     },
     "hero": {
-      "imageAlt": "Abstract landscape of dark circuit blocks with emerald light flowing between them",
-      "intro": "I help companies automate processes with AI and ship fast, reliable frontends that convert. Pick the engagement that fits—or book a call and we'll figure it out together.",
-      "title": "Work With Me"
+      "imageAlt": "Two professionals review a process map in a dark room; one card on the wall is lit emerald",
+      "intro": "I automate processes with AI, integrate tools into your operation and build the software that sustains it. The first call is free: you leave with 2-3 automation opportunities identified, whether we work together or not.",
+      "title": "<fx>AI</fx> consulting and software for your company"
     },
     "label": "Services",
     "offerings": {
-      "consulting": {
-        "bestFor": "Teams that need senior guidance",
-        "description": "Architecture reviews, code audits, team mentoring, and technical strategy.",
-        "title": "Technical Consulting"
+      "automation": {
+        "bestFor": "Teams drowning in repetitive tasks",
+        "description": "I find the processes eating the most hours — email, reports, data, support — and set them running on their own. Results in weeks, not months.",
+        "title": "AI Automation"
       },
-      "ecommerce": {
-        "bestFor": "Stores that need to convert",
-        "description": "Checkout flows, product catalogs, payment integrations, and conversion optimization.",
-        "title": "E-commerce Solutions"
+      "consulting": {
+        "bestFor": "Companies that want to adopt AI with judgment",
+        "description": "Adoption diagnosis, tool selection and team training. From strategy to a working flow.",
+        "title": "AI Consulting & Implementation"
       },
       "frontend": {
         "bestFor": "Product teams shipping fast",
@@ -410,12 +421,12 @@
         "description": "Core Web Vitals audits and fixes. I've cut LCP by 56% on high-traffic platforms.",
         "title": "Performance Optimization"
       },
-      "title": "What I Do"
+      "title": "How I help your company"
     },
     "process": {
       "steps": {
         "1": {
-          "description": "A free 30-minute call to understand your project, goals, and constraints.",
+          "description": "A free 30-minute call. You leave with 2-3 automation opportunities identified — no commitment.",
           "title": "Discovery Call"
         },
         "2": {
@@ -433,7 +444,8 @@
       },
       "title": "How I Work"
     },
-    "title": "Work With Me"
+    "title": "AI consulting and custom development — Andrés Santana",
+    "viewAll": "View all services"
   },
   "stats": {
     "items": {
