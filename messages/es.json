@@ -218,7 +218,7 @@
         "posicionamiento": {
           "eyebrow": "05 · Posiciónate",
           "title": "Sé la persona de IA de tu equipo",
-          "description": "Cierras con un ‘pitch tech’ para presentar lo que construiste con confianza — en tu empresa o en tu propio proyecto. El profesional que domina la IA se nota.",
+          "description": "No basta con construirlo: cierras sabiendo explicar y demostrar tu automatización — a tu jefe, a tu equipo o a tus clientes. El profesional que resuelve con IA se nota.",
           "imageAlt": "Profesional presentando ante su equipo, de pie frente a una pantalla que baña la sala en luz cian"
         },
         "criterio": {
@@ -252,10 +252,11 @@
         "button": "Reservar mi cupo",
         "features": {
           "1": "4 semanas de sesiones en vivo, en grupos pequeños",
-          "2": "Flujos aplicados a TU rol — no ejemplos genéricos",
-          "3": "Plantillas y automatizaciones listas para usar",
-          "4": "Un flujo real funcionando + tu ‘pitch tech’ al cierre",
-          "5": "Comunidad para mantenerte al día cuando todo cambie"
+          "2": "Trabajas sobre tus tareas reales, no sobre ejemplos genéricos",
+          "3": "Plantillas y flujos listos para copiar y adaptar a tu rol",
+          "4": "Sales con una automatización tuya funcionando — horas recuperadas cada semana",
+          "5": "Cierras sabiendo presentar lo que construiste a tu jefe, equipo o clientes",
+          "6": "Comunidad para mantenerte al día cuando las herramientas cambien"
         }
       }
     },

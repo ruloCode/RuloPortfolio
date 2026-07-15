@@ -32,7 +32,7 @@ const FEATURES: { key: string; icon: string; image: string }[] = [
   { key: "criterio", icon: "lightbulb", image: "/images/ia/feature-criterio.jpg" },
 ];
 
-const PRICING_FEATURE_KEYS = ["1", "2", "3", "4", "5"] as const;
+const PRICING_FEATURE_KEYS = ["1", "2", "3", "4", "5", "6"] as const;
 
 const USE_CASES: { key: string; icon: string }[] = [
   { key: "1", icon: "email" },

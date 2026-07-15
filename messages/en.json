@@ -210,7 +210,7 @@
           "title": "A method to evaluate new tools in minutes"
         },
         "posicionamiento": {
-          "description": "You close with a ‘tech pitch’ to present what you built with confidence — at your company or in your own project. The professional who masters AI stands out.",
+          "description": "Building it isn't enough: you finish knowing how to explain and demo your automation — to your boss, your team or your clients. The professional who solves with AI stands out.",
           "eyebrow": "05 · Position yourself",
           "imageAlt": "Professional presenting to their team, standing in front of a screen that bathes the room in cyan light",
           "title": "Be your team's AI person"
@@ -247,10 +247,11 @@
         "button": "Reserve my spot",
         "features": {
           "1": "4 weeks of live sessions, in small groups",
-          "2": "Workflows applied to YOUR role — no generic examples",
-          "3": "Ready-to-use templates and automations",
-          "4": "A real working flow + your ‘tech pitch’ at the end",
-          "5": "A community to keep you current when everything changes"
+          "2": "You work on your real tasks, not generic examples",
+          "3": "Templates and workflows ready to copy and adapt to your role",
+          "4": "You leave with your own automation running — hours back every week",
+          "5": "You finish knowing how to present what you built to your boss, team or clients",
+          "6": "A community to keep you current when the tools change"
         },
         "name": "First cohort · limited spots",
         "note": "Joining the list is free and commits you to nothing. When the cohort opens, the list gets in first and pays less.",
