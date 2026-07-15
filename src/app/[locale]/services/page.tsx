@@ -1,10 +1,12 @@
 import {
   Accordion,
+  Button,
   Column,
   Flex,
   Grid,
   Heading,
   Icon,
+  SmartImage,
   Tag,
   Text,
 } from "@/once-ui/components";
@@ -13,12 +15,13 @@ import { createI18nContent } from "@/app/resources/content-i18n";
 import { CtaBanner } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { routing } from "@/i18n/routing";
+import { localizeHref, routing } from "@/i18n/routing";
+import brand from "@/styles/brand.module.scss";
 
 const OFFERING_ICONS: Record<string, string> = {
+  automation: "robot",
   frontend: "rocket",
   performance: "gauge",
-  ecommerce: "cart",
   consulting: "lightbulb",
 };
 
@@ -115,13 +118,23 @@ export default async function Services({ params: { locale } }: PageParams) {
 
       {/* Hero */}
       <Column gap="m" maxWidth="s">
-        <Heading variant="display-strong-l" wrap="balance">
+        <Heading className={brand.heroTitleSub} variant="display-strong-l" wrap="balance">
           {services.hero.title}
         </Heading>
         <Text variant="heading-default-l" onBackground="neutral-weak" wrap="balance">
           {services.hero.intro}
         </Text>
       </Column>
+      <SmartImage
+        className={brand.mediaGlow}
+        src="/images/services/hero.jpg"
+        alt={services.hero.imageAlt}
+        aspectRatio="21 / 9"
+        radius="l"
+        sizes="(max-width: 768px) 100vw, 1024px"
+        priority
+        border="neutral-alpha-weak"
+      />
 
       {/* Offerings */}
       <Column gap="l">
@@ -132,6 +145,7 @@ export default async function Services({ params: { locale } }: PageParams) {
           {services.offerings.items.map((offering) => (
             <Column
               key={offering.key}
+              className={brand.card}
               fillWidth
               gap="12"
               padding="l"
@@ -179,12 +193,15 @@ export default async function Services({ params: { locale } }: PageParams) {
           {services.engagement.items.map((model) => (
             <Column
               key={model.key}
+              className={
+                model.highlight ? `${brand.featuredCard} ${brand.signatureGlow}` : brand.card
+              }
               fillWidth
               gap="12"
               padding="l"
               radius="l"
-              border={model.highlight ? "brand-medium" : "neutral-alpha-weak"}
-              background={model.highlight ? "brand-alpha-weak" : "surface"}
+              border={model.highlight ? undefined : "neutral-alpha-weak"}
+              background={model.highlight ? undefined : "surface"}
             >
               {model.badge && <Tag size="s" variant="brand" label={model.badge} />}
               <Text variant="heading-strong-l">{model.title}</Text>
@@ -235,7 +252,35 @@ export default async function Services({ params: { locale } }: PageParams) {
         </Column>
       </Column>
 
-      {/* CTA */}
+      {/* Bridge to the course for individual professionals */}
+      <Flex
+        className={brand.card}
+        fillWidth
+        gap="l"
+        padding="l"
+        radius="l"
+        border="neutral-alpha-weak"
+        background="surface"
+        mobileDirection="column"
+        vertical="center"
+        horizontal="space-between"
+      >
+        <Column gap="8" flex={8}>
+          <Heading as="h2" variant="display-strong-xs" wrap="balance">
+            {services.bridge.title}
+          </Heading>
+          <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+            {services.bridge.description}
+          </Text>
+        </Column>
+        <Flex flex={4} horizontal="end">
+          <Button href={localizeHref(locale, "/ia")} variant="secondary" size="m" suffixIcon="sparkle">
+            {services.bridge.cta}
+          </Button>
+        </Flex>
+      </Flex>
+
+      {/* CTA — consulting is this page's own conversion */}
       <CtaBanner
         title={services.cta.title}
         description={services.cta.description}

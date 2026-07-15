@@ -4,11 +4,13 @@ const baseURL = "rulocode.com";
 const routes = {
   "/": true,
   "/about": true,
-  "/work": true,
+  // Hidden while the site focuses on the /ia funnel — flip to true to bring them back.
+  "/work": false,
   "/services": true,
   "/ia": true,
-  "/blog": true,
-  "/gallery": true,
+  "/blog": false,
+  // Hidden until there are real photos (e.g. from the Bogotá pilot event) — flip to true to bring it back.
+  "/gallery": false,
 };
 
 // Enable password protection on selected routes
@@ -74,42 +76,41 @@ const display = {
   time: false,
 };
 
-const mailchimp = {
-  action: "https://url/subscribe/post?parameters",
-  effects: {
-    mask: {
-      cursor: false,
-      x: 100,
-      y: 0,
-      radius: 100,
-    },
-    gradient: {
-      display: true,
-      x: 100,
-      y: 50,
-      width: 100,
-      height: 100,
-      tilt: -45,
-      colorStart: "accent-background-strong",
-      colorEnd: "static-transparent",
-      opacity: 100,
-    },
-    dots: {
-      display: false,
-      size: 24,
-      color: "brand-on-background-weak",
-      opacity: 100,
-    },
-    lines: {
-      display: false,
-      color: "neutral-alpha-weak",
-      opacity: 100,
-    },
-    grid: {
-      display: true,
-      color: "neutral-alpha-weak",
-      opacity: 100,
-    },
+// Decorative background of the waitlist block (WaitlistForm). Submissions go
+// to /api/waitlist (Resend) — see .env.example for the required keys.
+const waitlistEffects = {
+  mask: {
+    cursor: false,
+    x: 100,
+    y: 0,
+    radius: 100,
+  },
+  gradient: {
+    display: true,
+    x: 100,
+    y: 50,
+    width: 100,
+    height: 100,
+    tilt: -45,
+    colorStart: "brand-background-strong",
+    colorEnd: "static-transparent",
+    opacity: 100,
+  },
+  dots: {
+    display: false,
+    size: 24,
+    color: "brand-on-background-weak",
+    opacity: 100,
+  },
+  lines: {
+    display: false,
+    color: "neutral-alpha-weak",
+    opacity: 100,
+  },
+  grid: {
+    display: true,
+    color: "neutral-alpha-weak",
+    opacity: 100,
   },
 };
 
@@ -120,6 +121,6 @@ export {
   effects,
   style,
   display,
-  mailchimp,
+  waitlistEffects,
   baseURL,
 };

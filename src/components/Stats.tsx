@@ -1,15 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { Column, Grid, Icon, SmartLink, Text } from "@/once-ui/components";
-import { localizeHref } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { Column, Grid, Text } from "@/once-ui/components";
 import styles from "./Stats.module.scss";
 
-const STAT_KEYS = ["transactions", "users", "lcp", "hackathon"] as const;
+const STAT_KEYS = ["experience", "transactions", "users", "lcp"] as const;
 type StatKey = (typeof STAT_KEYS)[number];
-
-const HACKATHON_HREF = "/work/hackathon-samatech";
 
 /** Splits "$2M+" into { prefix: "$", target: 2, suffix: "M+" } for the count-up. */
 function parseValue(value: string) {
@@ -66,51 +63,29 @@ function CountUpValue({ value }: { value: string }) {
 
 export function Stats() {
   const t = useTranslations("stats");
-  const locale = useLocale();
 
   return (
     <Grid columns="4" tabletColumns="2" mobileColumns="2" gap="12" fillWidth>
-      {STAT_KEYS.map((key: StatKey) => {
-        const tile = (
-          <Column
-            key={key}
-            fillWidth
-            fillHeight
-            gap="4"
-            padding="m"
-            radius="l"
-            border="neutral-alpha-weak"
-            background="surface"
-            className={styles.tile}
-          >
-            <Text variant="display-strong-xs" onBackground="brand-strong">
-              {key === "hackathon" && (
-                <Icon name="trophy" size="s" marginRight="8" onBackground="brand-weak" />
-              )}
-              <CountUpValue value={t(`items.${key}.value`)} />
-            </Text>
-            <Text variant="label-default-s" onBackground="neutral-weak" wrap="balance">
-              {t(`items.${key}.label`)}
-            </Text>
-          </Column>
-        );
-
-        if (key === "hackathon") {
-          return (
-            <SmartLink
-              key={key}
-              unstyled
-              fillWidth
-              href={localizeHref(locale, HACKATHON_HREF)}
-              aria-label={`${t("items.hackathon.value")} ${t("items.hackathon.label")}`}
-            >
-              {tile}
-            </SmartLink>
-          );
-        }
-
-        return tile;
-      })}
+      {STAT_KEYS.map((key: StatKey) => (
+        <Column
+          key={key}
+          fillWidth
+          fillHeight
+          gap="4"
+          padding="m"
+          radius="l"
+          border="neutral-alpha-weak"
+          background="surface"
+          className={styles.tile}
+        >
+          <Text variant="display-strong-xs" onBackground="brand-strong">
+            <CountUpValue value={t(`items.${key}.value`)} />
+          </Text>
+          <Text variant="label-default-s" onBackground="neutral-weak" wrap="balance">
+            {t(`items.${key}.label`)}
+          </Text>
+        </Column>
+      ))}
     </Grid>
   );
 }

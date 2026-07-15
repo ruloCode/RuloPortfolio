@@ -1,0 +1,18 @@
+{
+  "last_updated": "2026-07-09",
+  "image": {
+    "default": "nano-banana-pro",
+    "models": {
+      "nano-banana-pro": {
+        "model_id": "gemini-3-pro-image-preview",
+        "best_for": "Highest quality: hero images, brand art, text-in-image, 2K/4K output. Accepts reference images for editing and character/style consistency.",
+        "notes": "Nano Banana Pro. Supports resolution 1K/2K/4K via --resolution and aspect ratios up to 21:9."
+      },
+      "nano-banana": {
+        "model_id": "gemini-2.5-flash-image",
+        "best_for": "Fast, cheap iterations and drafts. Also accepts reference images.",
+        "notes": "Nano Banana (GA). 1024px-class output; no imageSize control."
+      }
+    }
+  }
+}

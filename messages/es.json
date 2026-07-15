@@ -1,13 +1,14 @@
 {
   "about": {
     "calendar": "Agenda una llamada",
-    "description": "Conoce a Andrés Santana, Senior Frontend Engineer de Colombia",
+    "description": "La historia de Andrés Santana: de músico a Software Developer. Automatización, desarrollo y formación en IA desde Colombia.",
     "intro": {
-      "p1": "La mayoría de los desarrolladores construyen features. <strong>Yo construyo ingresos.</strong>",
-      "p2": "Durante más de 4 años he sido el líder de frontend de la farmacia digital de mayor crecimiento en México. Cuando llegué, el sitio tardaba 5.8 segundos en cargar. Los usuarios se iban. Las ventas se estancaban. Lo arreglé: reduje el tiempo de carga en un 56% y logré un <strong>aumento del 23% en conversiones</strong>.",
-      "p3": "Hoy, la plataforma que diseñé procesa <strong>más de $2M mensuales</strong>, atiende a más de 50,000 pacientes y mantiene un uptime del 99.9%. Lideré la migración a Next.js 15 sin downtime mientras el equipo seguía lanzando features en paralelo.",
-      "p4": "Trabajo mejor con equipos que valoran <strong>la velocidad, las conversiones y el código que escala</strong>. Si ese es tu caso, hablemos.",
-      "title": "Introducción"
+      "p1": "Antes de escribir código, escribía canciones. La música era el plan de vida — hasta que la tecnología transformó la industria y me obligó a elegir entre lo que amaba y lo que me permitía vivir. <strong>Elegí sobrevivir.</strong>",
+      "p2": "Aprendí a programar desde cero y me lo tomé en serio: durante más de 4 años fui líder de frontend de la farmacia digital de mayor crecimiento en México. Reduje el tiempo de carga en <strong>56%</strong>, subí las conversiones <strong>23%</strong> y la plataforma que diseñé procesa <strong>más de $2M mensuales</strong> para más de 50,000 pacientes con 99.9% de uptime.",
+      "p3": "En el camino descubrí mi ventaja injusta: sé hacer lo técnico <strong>y sé traducirlo</strong>. Como viví el miedo a quedarme atrás, aprendí a enseñar tecnología desde la empatía, no desde la arrogancia.",
+      "p4": "Hoy trabajo en tres frentes: <strong>automatización</strong> con IA para empresas, <strong>desarrollo</strong> de software a la medida y <strong>formación en IA</strong> para profesionales no técnicos.",
+      "p5": "Mi norte es simple: ayudar a profesionales a dominar la IA <strong>antes de que el mundo los obligue a elegir</strong>. A mí me obligó. A ti no tiene por qué.",
+      "title": "Mi historia"
     },
     "label": "Sobre mí",
     "studies": {
@@ -110,7 +111,8 @@
   "footer": {
     "bookCall": "Agenda una llamada",
     "navTitle": "Explora",
-    "tagline": "Frontends rápidos y confiables — construidos desde Colombia para el mundo."
+    "tagline": "Formación y consultoría en IA — desde Colombia para el mundo.",
+    "waitlistCta": "Únete a la lista de espera del curso"
   },
   "gallery": {
     "description": "Una colección de fotos de Andrés Santana",
@@ -118,100 +120,191 @@
     "title": "Mi galería de fotos"
   },
   "home": {
-    "badge": "Abierto a oportunidades",
     "blogHeading": "Lo último del blog",
-    "ctaCall": "Agenda una llamada",
-    "ctaWork": "Ver mis proyectos",
-    "description": "Senior Frontend Engineer especializado en React, Next.js y TypeScript. Más de 5 años construyendo aplicaciones escalables para plataformas de salud y financieras. Más de $2M/mes en transacciones procesadas.",
-    "headline": "Construyo frontends de <fx>alto rendimiento</fx> que procesan millones en transacciones.",
+    "ctaCompanies": "Empresas: agenda una llamada",
+    "ctaProfessionals": "Conoce el AI Shift Challenge",
+    "ctaStory": "Sobre mí",
+    "description": "Experto en IA aplicada con más de 6 años construyendo software. Enseño a profesionales no técnicos a automatizar su trabajo con IA (AI Shift Challenge) y ayudo a empresas con consultoría y software a la medida.",
+    "finalCta": {
+      "button": "Reservar mi cupo",
+      "description": "El AI Shift Challenge abre pronto: déjame tu correo y entérate primero, con precio de lanzamiento. ¿Tienes una empresa? La consultoría sigue abierta en Servicios.",
+      "title": "Reserva tu cupo en la primera cohorte"
+    },
+    "headline": "Más de 6 años construyendo software. Hoy enseño a profesionales a <fx>dominar la IA</fx>.",
+    "heroAlt": "Un experto en IA trabaja de noche frente a varias pantallas que bañan su escritorio en luz esmeralda",
     "label": "Inicio",
-    "subline": "Senior Frontend Engineer especializado en React, Next.js y TypeScript. Más de 5 años construyendo aplicaciones escalables para plataformas de salud y financieras. <strong>+$2M/mes</strong> en transacciones procesadas. <strong>+50K usuarios</strong> atendidos. Migraciones <strong>sin downtime</strong>.",
-    "title": "Andrés Santana | Desarrollador Senior React & Next.js | Fintech y Aplicaciones Escalables"
+    "pillars": {
+      "items": {
+        "automation": {
+          "cta": "Ver servicios",
+          "description": "Flujos con IA y automatizaciones que recuperan horas de trabajo cada semana. De tareas repetitivas a sistemas que corren solos.",
+          "title": "Automatización"
+        },
+        "development": {
+          "cta": "Cómo trabajo",
+          "description": "Software a la medida con React, Next.js y TypeScript. La misma ingeniería detrás de una plataforma que procesa +$2M/mes.",
+          "title": "Desarrollo"
+        },
+        "training": {
+          "cta": "Ver el programa",
+          "description": "4 semanas en vivo para profesionales no técnicos. Aplicas la IA a tu trabajo real y sales con una automatización funcionando.",
+          "title": "Curso: AI Shift Challenge"
+        }
+      },
+      "title": "En qué te puedo ayudar"
+    },
+    "proofCta": "Ver todos los proyectos",
+    "proofHeading": "La prueba: casos reales",
+    "story": {
+      "cta": "Conóceme más",
+      "eyebrow": "Trayectoria",
+      "imageAlt": "Ingeniero revisando paneles de sistemas en producción en un espacio oscuro iluminado por luz esmeralda",
+      "p1": "Lideré el frontend de la farmacia digital de mayor crecimiento en México: una plataforma que procesa más de $2M al mes para 50.000 pacientes, con 99.9% de uptime. Ingeniería real, en producción, durante más de 6 años.",
+      "p2": "Esa base es la diferencia cuando hablo de IA: no vendo demos ni humo — llevo flujos a producción y enseño con la empatía de quien sabe lo que cuesta mantenerse al día. Por eso mi programa funciona para gente no técnica.",
+      "title": "Más de 6 años llevando software a producción. Ahora, IA."
+    },
+    "subline": "Soy Andrés Santana, experto en IA aplicada. Llevo más de 6 años construyendo software en producción — una plataforma que procesa <strong>+$2M/mes</strong> para <strong>+50K usuarios</strong> — y hoy enseño a profesionales no técnicos a automatizar su trabajo con el <strong>AI Shift Challenge</strong>.",
+    "title": "Andrés Santana — Experto en IA aplicada · AI Shift Challenge"
   },
   "ia": {
-    "audience": {
-      "items": {
-        "1": {
-          "description": "Usas el computador todo el día — hojas de cálculo, documentos, correo, informes — y sospechas que la mitad se podría automatizar, pero no sabes por dónde empezar.",
-          "title": "Profesionales no técnicos"
-        },
-        "2": {
-          "description": "Probaste ChatGPT un par de veces, obtuviste resultados mediocres y concluiste que 'no sirve para mi trabajo'. Sí sirve — te faltan flujos que funcionan, no prompts de Twitter.",
-          "title": "Curiosos pero quemados"
-        },
-        "3": {
-          "description": "Lideras un equipo y sientes la presión de 'hacer algo con IA' sin contratar ingenieros ni comprar herramientas enterprise que nadie va a usar.",
-          "title": "Líderes de equipo"
-        }
-      },
-      "title": "Para quién es"
-    },
     "faq": {
+      "title": "Preguntas frecuentes",
       "items": {
         "1": {
-          "answer": "No. Este programa está diseñado para personas que no escriben código. Todo se construye con herramientas que ya sabes usar con clics.",
-          "question": "¿Necesito saber programar?"
+          "question": "¿Necesito saber programar?",
+          "answer": "No. Todo se construye con herramientas de clics que ya sabes usar. El programa está diseñado para personas cuyo trabajo no es la tecnología."
         },
         "2": {
-          "answer": "La primera cohorte está en validación. Unirte a la lista de espera no cuesta nada, te da acceso prioritario y los primeros tendrán precio de lanzamiento.",
-          "question": "¿Cuándo empieza y cuánto cuesta?"
+          "question": "¿Funciona para mi área?",
+          "answer": "Si tu trabajo pasa por un computador — marketing, finanzas, RRHH, legal, salud, educación, operaciones, ventas — sí. Todo se aplica sobre tus tareas reales, no sobre ejemplos genéricos."
         },
         "3": {
-          "answer": "Flujos concretos aplicados a TU trabajo: automatizar tareas repetitivas, producir contenido más rápido y un sistema repetible para evaluar herramientas nuevas sin ahogarte en el hype.",
-          "question": "¿Con qué me voy a quedar?"
+          "question": "¿Cuándo empieza y cuánto cuesta?",
+          "answer": "La primera cohorte abre pronto y los cupos son limitados. Reservar en la lista de espera es gratis, te da acceso prioritario y precio de lanzamiento."
+        },
+        "4": {
+          "question": "¿Y si las herramientas cambian el próximo mes?",
+          "answer": "Van a cambiar — por eso el programa no se casa con ninguna. Te llevas flujos funcionando hoy y un criterio repetible para evaluar lo que salga mañana."
         }
-      },
-      "title": "Preguntas frecuentes"
+      }
     },
-    "format": {
-      "badge": "Próximamente",
+    "features": {
+      "cta": "Reservar mi cupo",
       "items": {
-        "cohort": {
-          "description": "Sesiones en vivo y prácticas en grupos pequeños. Sales de cada sesión con algo funcionando, no solo con apuntes.",
-          "title": "Cohorte en vivo"
+        "rol": {
+          "eyebrow": "01 · Tu rol primero",
+          "title": "Empezamos por tu trabajo, no por las herramientas",
+          "description": "Mapeamos tu semana real y detectamos, para tu rol específico, dónde están las horas escondidas. Nada de recorridos genéricos de 50 herramientas.",
+          "imageAlt": "Profesional revisando su semana de trabajo en un monitor que ilumina el escritorio con luz esmeralda"
         },
-        "community": {
-          "description": "Un espacio para compartir lo que funciona, resolver dudas y mantenerte al día cuando las herramientas cambien — porque van a cambiar.",
-          "title": "Comunidad"
+        "copiloto": {
+          "eyebrow": "02 · Copiloto diario",
+          "title": "De prompts sueltos a flujos que entregan trabajo terminado",
+          "description": "De usar la IA ‘a veces y más o menos’ a un sistema diario: analizar información, escribir, decidir y producir con calidad profesional en tu área.",
+          "imageAlt": "Profesional concentrada trabajando de noche con dos pantallas que proyectan luz cian sobre su rostro"
         },
-        "templates": {
-          "description": "Flujos y plantillas listos para usar: video → automatización → publicación, probados de extremo a extremo en trabajo real.",
-          "title": "Plantillas y flujos"
+        "automatizacion": {
+          "eyebrow": "03 · Automatización",
+          "title": "Tus tareas repetitivas, en piloto automático",
+          "description": "Montas tus primeras automatizaciones con herramientas de clics — correo, hojas de cálculo, documentos — y liberas horas cada semana. Sin escribir código.",
+          "imageAlt": "Manos de un profesional alejándose del teclado mientras la pantalla, en verde esmeralda, sigue trabajando"
+        },
+        "reto": {
+          "eyebrow": "04 · El reto",
+          "title": "4 semanas en vivo, grupos pequeños, un flujo funcionando",
+          "description": "El AI Shift Challenge: sesiones en vivo, práctica sobre tu trabajo real y al final un flujo completo operando — no apuntes que se olvidan a la semana.",
+          "imageAlt": "Grupo pequeño de profesionales en una sesión en vivo, iluminados por la luz esmeralda de un proyector"
+        },
+        "posicionamiento": {
+          "eyebrow": "05 · Posiciónate",
+          "title": "Sé la persona de IA de tu equipo",
+          "description": "No basta con construirlo: cierras sabiendo explicar y demostrar tu automatización — a tu jefe, a tu equipo o a tus clientes. El profesional que resuelve con IA se nota.",
+          "imageAlt": "Profesional presentando ante su equipo, de pie frente a una pantalla que baña la sala en luz cian"
+        },
+        "criterio": {
+          "eyebrow": "06 · Criterio",
+          "title": "Un método para evaluar herramientas nuevas en minutos",
+          "description": "Las herramientas van a cambiar. Te llevas un método repetible para evaluar lo nuevo en minutos y adoptar solo lo que sirve a tu trabajo — para siempre.",
+          "imageAlt": "Profesional comparando opciones en un monitor en un espacio oscuro, con la interfaz reflejada en sus gafas"
         }
-      },
-      "title": "El formato"
+      }
     },
     "hero": {
-      "badge": "Primera cohorte en validación — lista de espera abierta",
-      "subtitle": "Un programa práctico para profesionales no técnicos que quieren aplicar la IA a su trabajo real, recuperar horas cada semana y dejar de temer quedarse atrás.",
-      "title": "IA para no quedarte atrás"
+      "badge": "AI Shift Challenge · Lista de espera abierta — primera cohorte",
+      "titleA": "Automatiza tu trabajo con IA en 4 semanas.",
+      "titleB": "Sin escribir código.",
+      "subtitle": "Un programa en vivo para profesionales no técnicos: tomas tus tareas reales, montas flujos de IA que las hacen por ti y terminas con una automatización funcionando — no con apuntes.",
+      "primaryCta": "Reservar mi cupo",
+      "secondaryCta": "Ver el programa",
+      "ctaNote": "Gratis · Sin compromiso · Un solo correo cuando abra la cohorte"
     },
     "meta": {
-      "description": "Un programa práctico de IA para profesionales no técnicos: aplica la IA a tu trabajo real, recupera tiempo y deja de temer quedarte atrás. Únete a la lista de espera.",
-      "title": "IA para no quedarte atrás | Programa para profesionales no técnicos"
+      "title": "AI Shift Challenge — Automatiza tu trabajo con IA en 4 semanas, sin código",
+      "description": "Programa en vivo para profesionales no técnicos: aplica la IA a tus tareas reales, monta tu primera automatización y recupera horas cada semana. Únete a la lista de espera de la primera cohorte."
     },
-    "problem": {
-      "p1": "Cada semana aparece una herramienta de IA 'imperdible', otro hilo que promete que te vas a quedar atrás si no la dominas hoy. El ruido es real — y el miedo también.",
-      "p2": "La verdad: no necesitas aprender 50 herramientas ni volverte ingeniero. Necesitas un puñado de flujos que funcionan, aplicados a tu trabajo de verdad, y el criterio para ignorar el resto.",
-      "title": "El miedo es real. El ruido no ayuda."
+    "pricing": {
+      "title": "Qué incluye el AI Shift Challenge",
+      "card": {
+        "name": "Primera cohorte · cupos limitados",
+        "price": "Precio de lanzamiento",
+        "unit": "solo para la lista de espera",
+        "note": "Unirte a la lista es gratis y no te compromete. Cuando abra la cohorte, la lista entra primero y paga menos.",
+        "button": "Reservar mi cupo",
+        "features": {
+          "1": "4 semanas de sesiones en vivo, en grupos pequeños",
+          "2": "Trabajas sobre tus tareas reales, no sobre ejemplos genéricos",
+          "3": "Plantillas y flujos listos para copiar y adaptar a tu rol",
+          "4": "Sales con una automatización tuya funcionando — horas recuperadas cada semana",
+          "5": "Cierras sabiendo presentar lo que construiste a tu jefe, equipo o clientes",
+          "6": "Comunidad para mantenerte al día cuando las herramientas cambien"
+        }
+      }
+    },
+    "proof": {
+      "label": "Pensado para profesionales de cualquier área — si tu trabajo vive en un computador, aplica",
+      "chips": {
+        "1": "Marketing · Finanzas · RRHH",
+        "2": "Legal · Salud · Educación",
+        "3": "Operaciones · Ventas · Creativos"
+      },
+      "bannerAlt": "Interfaces y flujos de IA aplicados al trabajo diario de un profesional"
     },
     "teaser": {
-      "cta": "Únete a la lista de espera",
-      "description": "Un programa práctico para profesionales no técnicos que quieren aplicar la IA a su trabajo real — y dejar de temer quedarse atrás.",
-      "eyebrow": "Nuevo",
-      "title": "IA para no quedarte atrás"
+      "cta": "Unirme a la lista de espera",
+      "description": "En vivo, sin código y sobre tu trabajo real. Cupos limitados en la primera cohorte.",
+      "eyebrow": "Curso",
+      "title": "AI Shift Challenge: tu primera automatización con IA en 4 semanas"
+    },
+    "useCases": {
+      "title": "Lo que vas a poder automatizar",
+      "items": {
+        "1": {
+          "title": "Marketing → contenido",
+          "description": "Campañas y piezas que pasan de idea a publicadas en horas, no semanas."
+        },
+        "2": {
+          "title": "Finanzas → reportes",
+          "description": "Informes semanales que se arman y se envían sin abrir la hoja de cálculo."
+        },
+        "3": {
+          "title": "RRHH → procesos",
+          "description": "Descripciones de cargo, filtros y onboarding preparados en minutos."
+        },
+        "4": {
+          "title": "Operaciones → inbox",
+          "description": "Correos que se clasifican, se registran y se responden casi solos."
+        }
+      }
     },
     "waitlist": {
-      "button": "Unirme a la lista",
-      "description": "Cero spam. Un correo cuando abra la primera cohorte — la lista de espera tiene acceso prioritario y precio de lanzamiento.",
+      "title": "¿Te guardo un cupo en la primera cohorte?",
+      "description": "Déjame tu correo y te escribo cuando abra el AI Shift Challenge. La lista de espera entra primero y con precio de lanzamiento. Cero spam: un solo correo.",
+      "button": "Reservar mi cupo",
       "placeholder": "Tu email",
-      "title": "Sé de los primeros"
-    },
-    "whyMe": {
-      "p1": "Construyo flujos de IA de extremo a extremo como parte de mi trabajo — de video a automatización a publicación — y soy la persona a la que mis colegas acuden cuando necesitan traducir la IA en algo que puedan ejecutar.",
-      "p2": "También conozco de primera mano el miedo a quedarse atrás: dejé la música por la estabilidad de la tecnología. Esa decisión me enseñó a enseñar desde la empatía, no desde la arrogancia técnica.",
-      "p3": "Este programa es lo que me hubiera gustado que existiera entonces: práctico, honesto sobre lo que funciona y hecho para personas cuyo trabajo no es la tecnología.",
-      "title": "Por qué aprender esto conmigo"
+      "note": "Cohorte fundadora · Cupos limitados",
+      "invalidEmail": "Ingresa un correo válido.",
+      "success": "¡Listo! Tu cupo está reservado — te escribo cuando abra la cohorte.",
+      "error": "Algo falló al registrarte. Intenta de nuevo en un momento."
     }
   },
   "nav": {
@@ -219,8 +312,9 @@
     "blog": "Blog",
     "gallery": "Galería",
     "home": "Inicio",
-    "ia": "IA",
+    "ia": "Curso de IA",
     "services": "Servicios",
+    "waitlistCta": "Únete a la lista",
     "work": "Proyectos"
   },
   "newsletter": {
@@ -238,7 +332,7 @@
       "english": "Inglés (Profesional)",
       "spanish": "Español (Nativo)"
     },
-    "role": "Senior Frontend Engineer | React & Next.js | Fintech y Aplicaciones Escalables"
+    "role": "Experto en IA aplicada · Formación y consultoría"
   },
   "projectCard": {
     "caseStudy": "Leer case study",
@@ -250,12 +344,17 @@
   },
   "services": {
     "viewAll": "Ver todos los servicios",
+    "bridge": {
+      "cta": "Ver el programa",
+      "description": "El AI Shift Challenge es mi programa para profesionales no técnicos: 4 semanas en vivo, sin código.",
+      "title": "¿Buscas formación para ti, no para tu empresa?"
+    },
     "cta": {
       "button": "Agenda una llamada",
-      "description": "Cuéntame de tu proyecto en una llamada gratuita de 30 minutos. Sin compromiso y sin discurso de ventas: solo una conversación honesta sobre si puedo ayudarte.",
-      "title": "¿Listo para construir algo grande?"
+      "description": "Llamada gratuita de 30 minutos, sin discurso de ventas: revisamos tu operación y te digo si puedo ayudarte — y cómo.",
+      "title": "Cuéntame qué le está quitando horas a tu equipo"
     },
-    "description": "Desarrollo frontend, optimización de performance y soluciones fintech escalables. Construyamos algo grande juntos.",
+    "description": "Automatización de procesos con IA, consultoría de adopción y desarrollo web de alto rendimiento para empresas. Primera llamada gratis de 30 minutos.",
     "engagement": {
       "consulting": {
         "description": "Revisiones de arquitectura, auditorías de código y sesiones de estrategia técnica. Facturación por hora o por día.",
@@ -275,7 +374,7 @@
     "faq": {
       "items": {
         "1": {
-          "answer": "Me especializo en frontends con React, Next.js y TypeScript, especialmente plataformas de e-commerce, fintech y salud donde el performance y las conversiones importan.",
+          "answer": "Automatización de procesos con IA, consultoría de adopción y desarrollo con React, Next.js y TypeScript — especialmente plataformas donde el performance y las conversiones importan.",
           "question": "¿Qué tipo de proyectos tomas?"
         },
         "2": {
@@ -298,20 +397,21 @@
       "title": "Preguntas frecuentes"
     },
     "hero": {
-      "intro": "Ayudo a empresas a lanzar frontends rápidos y confiables que convierten. Elige el modelo que te sirva, o agenda una llamada y lo definimos juntos.",
-      "title": "Trabaja Conmigo"
+      "imageAlt": "Dos profesionales revisan un mapa de procesos en una sala oscura; una tarjeta del muro se ilumina en esmeralda",
+      "intro": "Automatizo procesos con IA, integro herramientas en tu operación y construyo el software que lo sostiene. La primera llamada es gratis: sales con 2-3 oportunidades de automatización identificadas, trabajes conmigo o no.",
+      "title": "Consultoría de <fx>IA</fx> y software para tu empresa"
     },
     "label": "Servicios",
     "offerings": {
-      "consulting": {
-        "bestFor": "Equipos que necesitan guía senior",
-        "description": "Revisiones de arquitectura, auditorías de código, mentoría de equipos y estrategia técnica.",
-        "title": "Consultoría Técnica"
+      "automation": {
+        "bestFor": "Equipos ahogados en tareas repetitivas",
+        "description": "Detecto los procesos que más horas consumen — correo, reportes, datos, atención — y los dejo corriendo solos. Resultados en semanas, no meses.",
+        "title": "Automatización con IA"
       },
-      "ecommerce": {
-        "bestFor": "Tiendas que necesitan convertir",
-        "description": "Flujos de checkout, catálogos de producto, integraciones de pago y optimización de conversión.",
-        "title": "Soluciones E-commerce"
+      "consulting": {
+        "bestFor": "Empresas que quieren adoptar IA con criterio",
+        "description": "Diagnóstico de adopción, selección de herramientas y capacitación de tu equipo. De la estrategia al flujo funcionando.",
+        "title": "Consultoría e implementación de IA"
       },
       "frontend": {
         "bestFor": "Equipos de producto que lanzan rápido",
@@ -323,12 +423,12 @@
         "description": "Auditorías y fixes de Core Web Vitals. He reducido el LCP en 56% en plataformas de alto tráfico.",
         "title": "Optimización de Performance"
       },
-      "title": "Qué Hago"
+      "title": "En qué ayudo a tu empresa"
     },
     "process": {
       "steps": {
         "1": {
-          "description": "Una llamada gratuita de 30 minutos para entender tu proyecto, objetivos y restricciones.",
+          "description": "Llamada gratuita de 30 minutos. Sales con 2-3 oportunidades de automatización identificadas — sin compromiso.",
           "title": "Llamada de Descubrimiento"
         },
         "2": {
@@ -346,13 +446,13 @@
       },
       "title": "Cómo Trabajo"
     },
-    "title": "Trabaja Conmigo"
+    "title": "Consultoría de IA y desarrollo a la medida — Andrés Santana"
   },
   "stats": {
     "items": {
-      "hackathon": {
-        "label": "puesto · Hackatón Samatech",
-        "value": "3er"
+      "experience": {
+        "label": "años construyendo software",
+        "value": "6+"
       },
       "lcp": {
         "label": "reducción de LCP a escala",

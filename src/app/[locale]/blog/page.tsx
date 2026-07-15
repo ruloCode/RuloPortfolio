@@ -1,5 +1,5 @@
 import { Column, Heading } from "@/once-ui/components";
-import { Mailchimp } from "@/components";
+import { WaitlistForm } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
@@ -84,7 +84,7 @@ export default async function Blog({ params: { locale } }: PageParams) {
         <Posts range={[2, 4]} thumbnail locale={locale} />
         <Posts range={[5]} columns="2" locale={locale} />
       </Column>
-      {newsletter.display && <Mailchimp newsletter={newsletter} />}
+      {newsletter.display && <WaitlistForm newsletter={newsletter} />}
     </Column>
   );
 }

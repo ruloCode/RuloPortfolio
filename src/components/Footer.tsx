@@ -7,9 +7,9 @@ import styles from "./Footer.module.scss";
 
 const NAV_ITEMS: { route: string; key: string }[] = [
   { route: "/about", key: "about" },
-  { route: "/work", key: "work" },
   { route: "/services", key: "services" },
   { route: "/ia", key: "ia" },
+  { route: "/work", key: "work" },
   { route: "/blog", key: "blog" },
   { route: "/gallery", key: "gallery" },
 ];
@@ -41,6 +41,11 @@ export const Footer = async () => {
             <Text variant="body-default-s" onBackground="neutral-weak" wrap="balance">
               {t("footer.tagline")}
             </Text>
+            {routes["/ia"] && (
+              <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/ia#lista")}>
+                <Text variant="body-strong-s">{t("footer.waitlistCta")}</Text>
+              </SmartLink>
+            )}
             <SmartLink suffixIcon="arrowRight" href={scheduling.link}>
               <Text variant="body-default-s">{t("footer.bookCall")}</Text>
             </SmartLink>

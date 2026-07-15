@@ -1,0 +1,13 @@
+// /ia consultancy landing — page-specific styles only.
+// Cards, heroes, glows and the signature gradient live in src/styles/brand.module.scss.
+
+.heroSubtitle {
+  max-width: 36rem;
+}
+
+// Alternating feature rows: image side swaps on desktop, stacks on mobile.
+@media (min-width: 769px) {
+  .reverse {
+    flex-direction: row-reverse;
+  }
+}

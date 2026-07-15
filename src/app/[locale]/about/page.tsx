@@ -11,8 +11,9 @@ import {
   Text,
 } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
-import { Achievements } from "@/components";
+import { Achievements, WaitlistForm } from "@/components";
 import TableOfContents from "@/components/about/TableOfContents";
+import brand from "@/styles/brand.module.scss";
 import styles from "@/components/about/about.module.scss";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -71,7 +72,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 export default async function About({ params: { locale } }: PageParams) {
   unstable_setRequestLocale(locale);
   const t = await getTranslations();
-  const { person, about, social } = createI18nContent(t);
+  const { person, about, social, waitlist } = createI18nContent(t);
   const structure = [
     {
       title: about.intro.title,
@@ -148,7 +149,7 @@ export default async function About({ params: { locale } }: PageParams) {
           >
             <Avatar src={person.avatar} size="xl" />
             <Flex gap="8" vertical="center">
-              <Icon onBackground="accent-weak" name="globe" />
+              <Icon onBackground="brand-weak" name="globe" />
               {person.location}
             </Flex>
             {person.languages.length > 0 && (
@@ -198,12 +199,8 @@ export default async function About({ params: { locale } }: PageParams) {
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
-            <Text
-              className={styles.textAlign}
-              variant="display-default-xs"
-              onBackground="neutral-weak"
-            >
-              {person.role}
+            <Text as="div" className={styles.textAlign} variant="display-default-xs">
+              <span className={brand.gradientText}>{person.role}</span>
             </Text>
             {social.length > 0 && (
               <Flex className={styles.blockAlign} paddingTop="20" paddingBottom="8" gap="8" wrap horizontal="center" fitWidth>
@@ -391,6 +388,11 @@ export default async function About({ params: { locale } }: PageParams) {
               </Column>
             </>
           )}
+
+          {/* About is the trust page of the funnel — close with the waitlist. */}
+          <Column fillWidth paddingTop="xl">
+            <WaitlistForm newsletter={waitlist} variant="signature" />
+          </Column>
         </Column>
       </Flex>
     </Column>

@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# playwright MCP session artifacts
+.playwright-mcp/
+
+# MCP config (contiene access token de Supabase)
+.mcp.json

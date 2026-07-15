@@ -1,13 +1,13 @@
 export { Header } from "@/components/Header";
 export { Footer } from "@/components/Footer";
-export { Mailchimp } from "@/components/Mailchimp";
+export { WaitlistForm } from "@/components/WaitlistForm";
 export { ProjectCard } from "@/components/ProjectCard";
 export { TeamAvatars } from "@/components/TeamAvatars";
 export { HeadingLink } from "@/components/HeadingLink";
 export { Achievements } from "@/components/Achievements";
 export { CtaBanner } from "@/components/CtaBanner";
 export { RouteGuard } from "@/components/RouteGuard";
-export { ServicesTeaser } from "@/components/ServicesTeaser";
+export { HomePillars } from "@/components/HomePillars";
 export { Stats } from "@/components/Stats";
 export { Testimonials } from "@/components/Testimonials";
 export { ThemeToggle } from "@/components/ThemeToggle";
