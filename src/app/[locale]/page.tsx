@@ -16,7 +16,7 @@ import { baseURL, routes, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
-import { HomePillars, Stats, Testimonials, WaitlistForm } from "@/components";
+import { HomePillars, Stats, WaitlistForm } from "@/components";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -337,9 +337,6 @@ export default async function Home({ params: { locale } }: PageParams) {
             </Flex>
           </RevealFx>
         )}
-        <RevealFx translateY="16" inView>
-          <Testimonials />
-        </RevealFx>
         {routes["/work"] && (
           <RevealFx translateY="16" inView>
             <Column fillWidth gap="l">
