@@ -16,7 +16,7 @@ import {
 } from "@/once-ui/components";
 import { useEffect, useState } from "react";
 
-type NavCopy = {
+export type NavCopy = {
   overview: string;
   semana0: string;
   cohorte: string;
@@ -26,7 +26,7 @@ type NavCopy = {
   menu: string;
 };
 
-type SidebarProps = {
+type Props = {
   locale: string;
   user: { name: string; email: string };
   nav: NavCopy;
@@ -47,7 +47,15 @@ const Wordmark = ({ locale }: { locale: string }) => (
   </Link>
 );
 
-const NavItems = ({ locale, nav, onNavigate }: { locale: string; nav: NavCopy; onNavigate?: () => void }) => {
+const NavItems = ({
+  locale,
+  nav,
+  onNavigate,
+}: {
+  locale: string;
+  nav: NavCopy;
+  onNavigate?: () => void;
+}) => {
   const pathname = usePathname() ?? "";
 
   return (
@@ -80,53 +88,52 @@ const NavItems = ({ locale, nav, onNavigate }: { locale: string; nav: NavCopy; o
   );
 };
 
-export const DashboardSidebar = ({ locale, user, nav, onSignOut }: SidebarProps) => {
+const AccountMenu = ({ locale, user, nav, onSignOut }: Props) => (
+  <UserMenu
+    name={user.name}
+    subline={user.email}
+    avatarProps={{ value: user.name.charAt(0).toUpperCase() }}
+    dropdown={
+      <Column padding="4" gap="2" minWidth={10}>
+        <Option value="site" label={nav.backToSite} href={localizeHref(locale, "/")} />
+        <Option value="signout" label={nav.signOut} onClick={onSignOut} />
+      </Column>
+    }
+  />
+);
+
+/** Desktop rail. Hidden below the `s` breakpoint, where the top bar takes over. */
+export const DashboardRail = (props: Props) => (
+  <Column
+    hide="s"
+    paddingY="l"
+    paddingX="16"
+    gap="20"
+    background="surface"
+    borderRight="neutral-medium"
+    style={{ width: "16rem", position: "sticky", top: 0, height: "100vh", flexShrink: 0 }}
+  >
+    <Wordmark locale={props.locale} />
+    <Line background="neutral-alpha-weak" />
+    <NavItems locale={props.locale} nav={props.nav} />
+    <Flex flex={1} />
+    <Line background="neutral-alpha-weak" />
+    <AccountMenu {...props} />
+  </Column>
+);
+
+/**
+ * Mobile bar. Must be stacked above the content, never a flex sibling of it —
+ * inside the desktop Row it would sit beside the content and push it off-screen.
+ */
+export const DashboardTopBar = (props: Props) => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close the mobile drawer whenever navigation happens.
   useEffect(() => setMenuOpen(false), [pathname]);
-
-  const account = (
-    <UserMenu
-      name={user.name}
-      subline={user.email}
-      avatarProps={{ value: user.name.charAt(0).toUpperCase() }}
-      dropdown={
-        <Column padding="4" gap="2" minWidth={10}>
-          <Option
-            value="site"
-            label={nav.backToSite}
-            hasPrefix={<Flex paddingLeft="4" />}
-            href={localizeHref(locale, "/")}
-          />
-          <Option value="signout" label={nav.signOut} onClick={onSignOut} />
-        </Column>
-      }
-    />
-  );
 
   return (
     <>
-      {/* Desktop rail */}
-      <Column
-        hide="s"
-        paddingY="l"
-        paddingX="16"
-        gap="20"
-        background="surface"
-        borderRight="neutral-medium"
-        style={{ width: "16rem", position: "sticky", top: 0, height: "100vh", flexShrink: 0 }}
-      >
-        <Wordmark locale={locale} />
-        <Line background="neutral-alpha-weak" />
-        <NavItems locale={locale} nav={nav} />
-        <Flex flex={1} />
-        <Line background="neutral-alpha-weak" />
-        {account}
-      </Column>
-
-      {/* Mobile bar */}
       <Row
         show="s"
         fillWidth
@@ -140,13 +147,17 @@ export const DashboardSidebar = ({ locale, user, nav, onSignOut }: SidebarProps)
         style={{ position: "sticky", top: 0, zIndex: 8 }}
       >
         <Flex gap="12" vertical="center">
-          <NavIcon isActive={menuOpen} onClick={() => setMenuOpen((open) => !open)} aria-label={nav.menu} />
-          <Wordmark locale={locale} />
+          <NavIcon
+            isActive={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={props.nav.menu}
+          />
+          <Wordmark locale={props.locale} />
         </Flex>
-        {account}
+        <AccountMenu {...props} />
       </Row>
-      <Dialog isOpen={menuOpen} onClose={() => setMenuOpen(false)} title={nav.menu}>
-        <NavItems locale={locale} nav={nav} onNavigate={() => setMenuOpen(false)} />
+      <Dialog isOpen={menuOpen} onClose={() => setMenuOpen(false)} title={props.nav.menu}>
+        <NavItems locale={props.locale} nav={props.nav} onNavigate={() => setMenuOpen(false)} />
       </Dialog>
     </>
   );

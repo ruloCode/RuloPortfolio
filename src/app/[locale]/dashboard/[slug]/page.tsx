@@ -1,5 +1,4 @@
 import { getLesson, getLessons } from "@/app/[locale]/dashboard/lessons";
-import { LessonVideo } from "@/components/dashboard/LessonVideo";
 import { MarkCompleteButton } from "@/components/dashboard/MarkCompleteButton";
 import { CustomMDX } from "@/components/mdx";
 import { localizeHref } from "@/i18n/routing";
@@ -14,9 +13,11 @@ import {
   Icon,
   Line,
   Row,
+  SmartImage,
   Tag,
   Text,
 } from "@/once-ui/components";
+import brand from "@/styles/brand.module.scss";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
@@ -53,7 +54,9 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
   const completed = (await getCompletedSlugs()).has(slug);
 
   return (
-    <Column maxWidth="xs" gap="20" fillWidth>
+    // "s" rather than the blog's "xs": these lessons carry tables and prompt
+    // blocks that a pure prose measure squeezes.
+    <Column maxWidth="s" gap="20" fillWidth>
       <Flex>
         <Button
           href={localizeHref(locale, "/dashboard")}
@@ -83,16 +86,18 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
         <Feedback icon variant="info" description={t("lesson.availableInEnglishOnly")} />
       )}
 
-      <LessonVideo
-        videoId={lesson.metadata.videoId}
-        title={lesson.metadata.title}
-        copy={{
-          pendingTitle: t("video.pendingTitle"),
-          pendingDescription: t("video.pendingDescription"),
-          pendingBadge: t("video.pendingBadge"),
-          play: t("video.play"),
-        }}
-      />
+      {lesson.metadata.image && (
+        <SmartImage
+          className={brand.mediaGlow}
+          src={lesson.metadata.image}
+          alt={lesson.metadata.title}
+          aspectRatio="16 / 9"
+          radius="l"
+          sizes="(max-width: 768px) 100vw, 640px"
+          priority
+          border="neutral-alpha-weak"
+        />
+      )}
 
       <Column as="article" fillWidth>
         <CustomMDX source={lesson.content} />

@@ -1,5 +1,6 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import React, { ReactNode } from "react";
+import remarkGfm from "remark-gfm";
 
 import { SmartImage, SmartLink, Text } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
@@ -7,6 +8,7 @@ import { HeadingLink } from "@/components";
 
 import { TextProps } from "@/once-ui/interfaces";
 import { SmartImageProps } from "@/once-ui/components/SmartImage";
+import styles from "./mdx.module.scss";
 
 type TableProps = {
   data: {
@@ -128,6 +130,72 @@ function createParagraph({ children }: TextProps) {
   );
 }
 
+// Markdown emits plain HTML for tables, lists, quotes and fenced code. Without
+// entries here they render with no styling at all.
+
+function MarkdownTable({ children }: { children?: ReactNode }) {
+  return (
+    <div className={styles.tableWrap}>
+      <table className={styles.table}>{children}</table>
+    </div>
+  );
+}
+
+function MarkdownList({ children, ...props }: { children?: ReactNode }) {
+  return (
+    <ul className={styles.list} {...props}>
+      {children}
+    </ul>
+  );
+}
+
+function MarkdownOrderedList({ children, ...props }: { children?: ReactNode }) {
+  return (
+    <ol className={styles.list} {...props}>
+      {children}
+    </ol>
+  );
+}
+
+function MarkdownQuote({ children }: { children?: ReactNode }) {
+  return <blockquote className={styles.blockquote}>{children}</blockquote>;
+}
+
+function MarkdownRule() {
+  return <hr className={styles.hr} />;
+}
+
+/** Inline `code`. Fenced blocks arrive wrapped in <pre> and are handled there. */
+function MarkdownInlineCode({ children, ...props }: { children?: ReactNode }) {
+  return (
+    <code className={styles.inlineCode} {...props}>
+      {children}
+    </code>
+  );
+}
+
+/**
+ * A fenced block reaches us as <pre><code class="language-x">…</code></pre>.
+ * Unwrap it into CodeBlock so lesson prompts get syntax highlighting and a
+ * copy button instead of raw monospace text.
+ */
+function MarkdownPre({ children }: { children?: ReactNode }) {
+  const child = React.isValidElement(children) ? children : null;
+  const className: string = child?.props?.className ?? "";
+  const language = className.replace("language-", "") || "text";
+  const code = String(child?.props?.children ?? "").replace(/\n$/, "");
+
+  return (
+    <CodeBlock
+      marginTop="12"
+      marginBottom="16"
+      compact
+      copyButton
+      codeInstances={[{ code, language, label: language }]}
+    />
+  );
+}
+
 const components = {
   p: createParagraph as any,
   h1: createHeading(1) as any,
@@ -138,6 +206,13 @@ const components = {
   h6: createHeading(6) as any,
   img: createImage as any,
   a: CustomLink as any,
+  table: MarkdownTable as any,
+  ul: MarkdownList as any,
+  ol: MarkdownOrderedList as any,
+  blockquote: MarkdownQuote as any,
+  hr: MarkdownRule as any,
+  code: MarkdownInlineCode as any,
+  pre: MarkdownPre as any,
   Table,
   CodeBlock,
 };
@@ -149,6 +224,17 @@ type CustomMDXProps = MDXRemoteProps & {
 export function CustomMDX(props: CustomMDXProps) {
   return (
     // @ts-ignore: Suppressing type error for MDXRemote usage
-    <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+      options={{
+        mdxOptions: {
+          // Tables, strikethrough and task lists are GFM extensions, not core
+          // markdown. Without this they stay as literal pipe text.
+          remarkPlugins: [remarkGfm],
+        },
+        ...(props as any).options,
+      }}
+    />
   );
 }

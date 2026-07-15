@@ -15,7 +15,7 @@ const supabaseHeaders = (secretKey: string) => ({
 });
 
 export async function POST(request: Request) {
-  let body: { email?: string; company?: string; locale?: string };
+  let body: { email?: string; company?: string; locale?: string; fullName?: string };
   try {
     body = await request.json();
   } catch {
@@ -41,6 +41,9 @@ export async function POST(request: Request) {
 
   const locale = resolveWelcomeLocale(body.locale);
   const source = sourcePath(request.headers.get("referer"));
+  // Free text straight into a greeting: cap it so a pasted essay can't wreck
+  // the email layout, and drop blanks rather than storing "".
+  const fullName = body.fullName?.trim().slice(0, 80) || null;
 
   // `ignore-duplicates` + `return=representation`: a repeat signup returns an
   // empty array, so we know not to send the welcome email again.
@@ -50,7 +53,7 @@ export async function POST(request: Request) {
       ...supabaseHeaders(secretKey),
       Prefer: "resolution=ignore-duplicates,return=representation",
     },
-    body: JSON.stringify({ email, locale, source }),
+    body: JSON.stringify({ email, locale, source, full_name: fullName }),
   });
 
   if (!insertResponse.ok) {
@@ -63,8 +66,8 @@ export async function POST(request: Request) {
 
   if (isNewSignup) {
     await Promise.allSettled([
-      sendWelcomeEmail(email, locale, rows[0].id, supabaseUrl, secretKey),
-      syncResendAudience(email),
+      sendWelcomeEmail(email, locale, rows[0].id, supabaseUrl, secretKey, fullName),
+      syncResendAudience(email, fullName),
     ]);
   }
 
@@ -86,6 +89,7 @@ async function sendWelcomeEmail(
   rowId: string,
   supabaseUrl: string,
   secretKey: string,
+  fullName: string | null,
 ) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.WAITLIST_FROM_EMAIL;
@@ -94,7 +98,7 @@ async function sendWelcomeEmail(
     return;
   }
 
-  const { subject, html, text } = buildWelcomeEmail(locale, { email });
+  const { subject, html, text } = buildWelcomeEmail(locale, { email, fullName });
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -131,18 +135,24 @@ async function sendWelcomeEmail(
 
 // Keeps the Resend audience in sync so future broadcasts (course launch)
 // can go out from Resend without exporting the table.
-async function syncResendAudience(email: string) {
+async function syncResendAudience(email: string, fullName: string | null) {
   const apiKey = process.env.RESEND_API_KEY;
   const audienceId = process.env.RESEND_AUDIENCE_ID;
   if (!apiKey || !audienceId) return;
 
+  const [firstName, ...rest] = (fullName ?? "").split(/\s+/).filter(Boolean);
   const response = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, unsubscribed: false }),
+    body: JSON.stringify({
+      email,
+      unsubscribed: false,
+      ...(firstName ? { first_name: firstName } : {}),
+      ...(rest.length ? { last_name: rest.join(" ") } : {}),
+    }),
   });
 
   // 409 = contact already exists, which is fine.

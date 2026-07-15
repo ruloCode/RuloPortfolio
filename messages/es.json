@@ -109,40 +109,19 @@
     "title": "Escribo sobre frontend, performance y fintech"
   },
   "dashboard": {
-    "meta": {
-      "title": "Tu Semana 0 — AI Shift Challenge",
-      "description": "Tus lecciones del AI Shift Challenge."
+    "empty": {
+      "title": "Todavía no hay lecciones acá",
+      "description": "Estoy terminando de escribirlas. Te aviso apenas estén — no antes."
     },
-    "nav": {
-      "overview": "Inicio",
-      "semana0": "Semana 0",
-      "cohorte": "La cohorte",
-      "comingSoon": "Pronto",
-      "backToSite": "Volver al sitio",
-      "signOut": "Cerrar sesión",
-      "menu": "Menú"
+    "error": {
+      "title": "Algo se rompió",
+      "description": "No pude cargar tus lecciones. Suele ser pasajero.",
+      "retry": "Reintentar"
     },
     "greeting": {
       "title": "Hola, {name}.",
       "subtitle": "Semana 0 son tres lecciones cortas que haces antes de que abra la cohorte. Empiezas por la primera — no por la herramienta de moda.",
       "subtitleDone": "Terminaste la Semana 0 y tienes una automatización tuya corriendo. La cohorte es esto mismo sobre tus tres tareas, en vivo."
-    },
-    "progress": {
-      "label": "Progreso de Semana 0",
-      "summary": "{completed} de {total} lecciones completadas"
-    },
-    "modules": {
-      "semana0": {
-        "title": "Semana 0",
-        "badge": "Gratis",
-        "description": "Tres lecciones para llegar a la cohorte con trabajo hecho, no con expectativas."
-      },
-      "cohorte": {
-        "title": "La cohorte",
-        "badge": "Bloqueado",
-        "description": "Las cuatro semanas en vivo se abren cuando arranque tu cohorte. Estás en la lista fundadora: entras primero y con precio de lanzamiento.",
-        "cta": "Ver el programa"
-      }
     },
     "lesson": {
       "number": "Lección {order}",
@@ -157,20 +136,42 @@
       "backToOverview": "Volver",
       "availableInEnglishOnly": "Esta lección todavía no está traducida — la estás viendo en inglés."
     },
-    "video": {
-      "pendingTitle": "El video está en camino",
-      "pendingDescription": "Todavía lo estoy grabando. La guía escrita de abajo está completa: haces la lección hoy y el video suma cuando llegue.",
-      "pendingBadge": "Próximamente",
-      "play": "Reproducir el video"
+    "meta": {
+      "title": "Tu Semana 0 — AI Shift Challenge",
+      "description": "Tus lecciones del AI Shift Challenge."
     },
-    "empty": {
-      "title": "Todavía no hay lecciones acá",
-      "description": "Estoy terminando de escribirlas. Te aviso apenas estén — no antes."
+    "modules": {
+      "semana0": {
+        "title": "Semana 0",
+        "badge": "Gratis",
+        "description": "Tres lecciones para llegar a la cohorte con trabajo hecho, no con expectativas."
+      },
+      "cohorte": {
+        "title": "La cohorte",
+        "badge": "Bloqueado",
+        "description": "Las cuatro semanas en vivo se abren cuando arranque tu cohorte. Estás en la lista fundadora: entras primero y con precio de lanzamiento.",
+        "cta": "Ver el programa"
+      }
     },
-    "error": {
-      "title": "Algo se rompió",
-      "description": "No pude cargar tus lecciones. Suele ser pasajero.",
-      "retry": "Reintentar"
+    "nav": {
+      "overview": "Inicio",
+      "semana0": "Semana 0",
+      "cohorte": "La cohorte",
+      "comingSoon": "Pronto",
+      "backToSite": "Volver al sitio",
+      "signOut": "Cerrar sesión",
+      "menu": "Menú"
+    },
+    "oneOnOne": {
+      "eyebrow": "TU SESIÓN 1-1",
+      "title": "Agenda tu sesión privada conmigo",
+      "description": "Media hora, tú y yo, sobre tus tareas reales. Traes tu inventario de la lección 1 y salimos con tu primera automatización decidida — no con una lista de herramientas.",
+      "cta": "Agendar mi 1-1",
+      "note": "Cupos limitados · Sin costo para la lista fundadora"
+    },
+    "progress": {
+      "label": "Progreso de Semana 0",
+      "summary": "{completed} de {total} lecciones completadas"
     }
   },
   "footer": {
@@ -366,16 +367,19 @@
       }
     },
     "waitlist": {
-      "title": "No esperes a la cohorte — empieza esta semana.",
-      "description": "Déjame tu correo y entras hoy a tu Semana 0: tres lecciones gratis para diagnosticar tu semana, montar tu copiloto y dejar tu primera automatización corriendo. Cuando abra la cohorte, entras primero y con precio de lanzamiento. Cero spam: te escribo cuando hay algo que puedas usar.",
       "button": "Entrar y empezar",
-      "placeholder": "Tu email",
-      "note": "Semana 0 gratis · Solo 6 cupos en la cohorte",
-      "invalidEmail": "Ingresa un correo válido.",
-      "success": "Estás dentro.",
+      "description": "Déjame tu correo y entras hoy a tu Semana 0: tres lecciones gratis para diagnosticar tu semana, montar tu copiloto y dejar tu primera automatización corriendo. Cuando abra la cohorte, entras primero y con precio de lanzamiento. Cero spam: te escribo cuando hay algo que puedas usar.",
       "error": "Algo falló al registrarte. Intenta de nuevo en un momento.",
+      "invalidEmail": "Ingresa un correo válido.",
+      "invalidName": "Dime cómo te llamas.",
+      "namePlaceholder": "Tu nombre",
+      "note": "Semana 0 gratis · Solo 6 cupos en la cohorte",
+      "placeholder": "Tu email",
+      "success": "Estás dentro.",
+      "successCta": "Entrar a mi Semana 0",
       "successDescription": "Te acabo de escribir. Y tu Semana 0 ya está abierta — no tienes que esperar a la cohorte.",
-      "successCta": "Entrar a mi Semana 0"
+      "successNamed": "Estás dentro, {name}.",
+      "title": "No esperes a la cohorte — empieza esta semana."
     }
   },
   "login": {

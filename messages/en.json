@@ -109,40 +109,19 @@
     "title": "Writing about frontend, performance & fintech"
   },
   "dashboard": {
-    "meta": {
-      "title": "Your Week 0 — AI Shift Challenge",
-      "description": "Your AI Shift Challenge lessons."
+    "empty": {
+      "title": "No lessons here yet",
+      "description": "I'm finishing writing them. I'll tell you the moment they're ready — not before."
     },
-    "nav": {
-      "overview": "Home",
-      "semana0": "Week 0",
-      "cohorte": "The cohort",
-      "comingSoon": "Soon",
-      "backToSite": "Back to the site",
-      "signOut": "Sign out",
-      "menu": "Menu"
+    "error": {
+      "title": "Something broke",
+      "description": "I couldn't load your lessons. It's usually temporary.",
+      "retry": "Retry"
     },
     "greeting": {
       "title": "Hey, {name}.",
       "subtitle": "Week 0 is three short lessons you do before the cohort opens. You start with the first one — not with the tool everyone's talking about.",
       "subtitleDone": "You finished Week 0 and you have an automation of your own running. The cohort is this same thing on your three tasks, live."
-    },
-    "progress": {
-      "label": "Week 0 progress",
-      "summary": "{completed} of {total} lessons completed"
-    },
-    "modules": {
-      "semana0": {
-        "title": "Week 0",
-        "badge": "Free",
-        "description": "Three lessons to reach the cohort with work done, not with expectations."
-      },
-      "cohorte": {
-        "title": "The cohort",
-        "badge": "Locked",
-        "description": "The four live weeks open when your cohort starts. You're on the founding list: you get in first, at launch pricing.",
-        "cta": "See the program"
-      }
     },
     "lesson": {
       "number": "Lesson {order}",
@@ -157,20 +136,42 @@
       "backToOverview": "Back",
       "availableInEnglishOnly": "This lesson isn't translated yet — you're seeing it in English."
     },
-    "video": {
-      "pendingTitle": "The video is on its way",
-      "pendingDescription": "I'm still recording it. The written guide below is complete: you do the lesson today and the video adds to it when it lands.",
-      "pendingBadge": "Coming soon",
-      "play": "Play the video"
+    "meta": {
+      "title": "Your Week 0 — AI Shift Challenge",
+      "description": "Your AI Shift Challenge lessons."
     },
-    "empty": {
-      "title": "No lessons here yet",
-      "description": "I'm finishing writing them. I'll tell you the moment they're ready — not before."
+    "modules": {
+      "semana0": {
+        "title": "Week 0",
+        "badge": "Free",
+        "description": "Three lessons to reach the cohort with work done, not with expectations."
+      },
+      "cohorte": {
+        "title": "The cohort",
+        "badge": "Locked",
+        "description": "The four live weeks open when your cohort starts. You're on the founding list: you get in first, at launch pricing.",
+        "cta": "See the program"
+      }
     },
-    "error": {
-      "title": "Something broke",
-      "description": "I couldn't load your lessons. It's usually temporary.",
-      "retry": "Retry"
+    "nav": {
+      "overview": "Home",
+      "semana0": "Week 0",
+      "cohorte": "The cohort",
+      "comingSoon": "Soon",
+      "backToSite": "Back to the site",
+      "signOut": "Sign out",
+      "menu": "Menu"
+    },
+    "oneOnOne": {
+      "eyebrow": "YOUR 1-1 SESSION",
+      "title": "Book your private session with me",
+      "description": "Half an hour, you and me, on your real tasks. Bring your inventory from lesson 1 and we leave with your first automation decided — not with a list of tools.",
+      "cta": "Book my 1-1",
+      "note": "Limited slots · Free for the founding list"
+    },
+    "progress": {
+      "label": "Week 0 progress",
+      "summary": "{completed} of {total} lessons completed"
     }
   },
   "footer": {
@@ -370,12 +371,15 @@
       "description": "Leave your email and you're in your Week 0 today: three free lessons to diagnose your week, build your copilot and get your first automation running. When the cohort opens, you get in first, at launch pricing. Zero spam: I write when there's something you can use.",
       "error": "Something went wrong. Try again in a moment.",
       "invalidEmail": "Enter a valid email.",
+      "invalidName": "Tell me your name.",
+      "namePlaceholder": "Your name",
       "note": "Week 0 free · Only 6 spots in the cohort",
       "placeholder": "Your email",
       "success": "You're in.",
-      "title": "Don't wait for the cohort — start this week.",
+      "successCta": "Open my Week 0",
       "successDescription": "I just wrote to you. And your Week 0 is already open — no need to wait for the cohort.",
-      "successCta": "Open my Week 0"
+      "successNamed": "You're in, {name}.",
+      "title": "Don't wait for the cohort — start this week."
     }
   },
   "login": {

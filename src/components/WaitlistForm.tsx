@@ -24,8 +24,12 @@ type WaitlistCopy = {
   description: string | JSX.Element;
   button?: string;
   placeholder?: string;
+  namePlaceholder?: string;
+  invalidName?: string;
   invalidEmail: string;
   success: string;
+  /** Interpolated on the client, where the typed name lives. Uses {name}. */
+  successNamed?: string;
   successDescription?: string;
   successCta?: string;
   error: string;
@@ -41,7 +45,9 @@ type WaitlistFormProps = {
 
 export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
   const locale = useLocale();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [nameError, setNameError] = useState("");
   const [fieldError, setFieldError] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   // Honeypot: hidden from humans; bots that fill it get a silent accept.
@@ -49,11 +55,18 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const trimmedName = name.trim();
     const trimmed = email.trim();
+
+    if (newsletter.namePlaceholder && trimmedName.length < 2) {
+      setNameError(newsletter.invalidName ?? "");
+      return;
+    }
     if (!EMAIL_PATTERN.test(trimmed)) {
       setFieldError(newsletter.invalidEmail);
       return;
     }
+    setNameError("");
     setFieldError("");
     setStatus("loading");
     try {
@@ -62,6 +75,7 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: trimmed,
+          fullName: trimmedName,
           company: honeypotRef.current?.value ?? "",
           locale,
         }),
@@ -71,6 +85,9 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
       setStatus("error");
     }
   };
+
+  // "Rulo" out of "Rulo Santana" — the greeting reads better with one word.
+  const firstName = name.trim().split(/\s+/)[0] ?? "";
 
   return (
     <Column
@@ -150,7 +167,11 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         // looking for the next step. Hand them the dashboard, not a dead end.
         <Column gap="16" horizontal="center" align="center" style={{ position: "relative" }}>
           <Icon name="checkCircle" size="l" onBackground="brand-weak" />
-          <Heading variant="heading-strong-m">{newsletter.success}</Heading>
+          <Heading variant="heading-strong-m">
+            {firstName && newsletter.successNamed
+              ? newsletter.successNamed.replace("{name}", firstName)
+              : newsletter.success}
+          </Heading>
           {newsletter.successDescription && (
             <Text
               variant="body-default-m"
@@ -183,7 +204,30 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
           }}
           onSubmit={handleSubmit}
         >
-          <Flex fillWidth maxWidth={24} gap="8">
+          <Column fillWidth maxWidth={24} gap="8">
+            {newsletter.namePlaceholder && (
+              <Input
+                formNoValidate
+                labelAsPlaceholder
+                id="waitlist-name"
+                name="name"
+                type="text"
+                autoComplete="given-name"
+                label={newsletter.namePlaceholder}
+                required
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (nameError && e.target.value.trim().length >= 2) setNameError("");
+                }}
+                onBlur={() => {
+                  if (name !== "" && name.trim().length < 2) {
+                    setNameError(newsletter.invalidName ?? "");
+                  }
+                }}
+                errorMessage={nameError}
+              />
+            )}
             <Input
               formNoValidate
               labelAsPlaceholder
@@ -216,7 +260,7 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
                 defaultValue=""
               />
             </div>
-            <Flex height="48" vertical="center">
+            <Flex height="48" vertical="center" fillWidth>
               <Button
                 type="submit"
                 size="m"
@@ -227,7 +271,7 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
                 {newsletter.button ?? "Subscribe"}
               </Button>
             </Flex>
-          </Flex>
+          </Column>
           {status === "error" && (
             <Text variant="body-default-s" onBackground="danger-weak" style={{ position: "relative" }}>
               {newsletter.error}

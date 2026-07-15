@@ -14,7 +14,7 @@
 import { readFileSync } from "node:fs";
 import { buildWelcomeEmail, resolveWelcomeLocale } from "../src/app/api/waitlist/welcome-email";
 
-type PendingRow = { id: string; email: string; locale: string | null };
+type PendingRow = { id: string; email: string; locale: string | null; full_name: string | null };
 
 const loadEnvLocal = () => {
   let raw: string;
@@ -53,7 +53,7 @@ const main = async () => {
     process.exit(1);
   }
 
-  const query = `${supabaseUrl}/rest/v1/waitlist?welcome_email_sent_at=is.null&select=id,email,locale`;
+  const query = `${supabaseUrl}/rest/v1/waitlist?welcome_email_sent_at=is.null&select=id,email,locale,full_name`;
   const response = await fetch(query, { headers: { apikey: secretKey! } });
   if (!response.ok) {
     console.error(`Supabase query failed: ${response.status} ${await response.text()}`);
@@ -74,7 +74,10 @@ const main = async () => {
 
   let sent = 0;
   for (const row of pending) {
-    const { subject, html, text } = buildWelcomeEmail(resolveWelcomeLocale(row.locale ?? undefined));
+    const { subject, html, text } = buildWelcomeEmail(resolveWelcomeLocale(row.locale ?? undefined), {
+      email: row.email,
+      fullName: row.full_name,
+    });
     const send = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },

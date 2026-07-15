@@ -21,6 +21,8 @@ const routes = {
 // Set NEXT_PUBLIC_CAL_LINK (e.g. https://cal.com/<username>/30min) to switch to Cal.com.
 const scheduling = {
   link: process.env.NEXT_PUBLIC_CAL_LINK || "https://calendly.com/rulocode/30min",
+  // The 1:1 the AI Shift Challenge is built around — booked from the dashboard.
+  oneOnOne: "https://calendly.com/rulocode/1-1-with-rulo",
 };
 
 const style = {

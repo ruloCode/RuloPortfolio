@@ -17,6 +17,8 @@ type WelcomeCopy = {
   wordmarkSuffix: string;
   chip: string;
   heading: string;
+  /** Used when we know their name. {name} is the first word they gave. */
+  headingNamed: string;
   intro: string;
   pull: string;
   ctaLabel: string;
@@ -78,6 +80,7 @@ const COPY: Record<WelcomeLocale, WelcomeCopy> = {
     wordmarkSuffix: "AI SHIFT CHALLENGE",
     chip: "CUPO CONFIRMADO",
     heading: "Estás dentro.",
+    headingNamed: "Estás dentro, {name}.",
     intro:
       "Tu cupo en la primera cohorte del AI Shift Challenge quedó reservado. Eso ya está — no tienes que hacer nada más para asegurarlo.",
     pull: "Pero no te escribí para que esperes. Mientras la cohorte abre, tu Semana 0 ya está abierta en el dashboard: tres lecciones para que arranques hoy, no en cuatro semanas.",
@@ -117,6 +120,7 @@ const COPY: Record<WelcomeLocale, WelcomeCopy> = {
     wordmarkSuffix: "AI SHIFT CHALLENGE",
     chip: "SPOT CONFIRMED",
     heading: "You're in.",
+    headingNamed: "You're in, {name}.",
     intro:
       "Your spot in the first AI Shift Challenge cohort is reserved. That's done — nothing else to do to keep it.",
     pull: "But I didn't write so you'd wait. While the cohort opens, your Week 0 is already open in the dashboard: three lessons so you start today, not in four weeks.",
@@ -190,10 +194,28 @@ const renderDivider = () => `
   </tr></table>
 </td></tr>`;
 
+// Escapes free text before it lands in the HTML — the name comes from a form
+// and reaches an inbox, so it can never be interpolated raw.
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+// First word only: "Hola, Rulo." reads better than the full legal name.
+const firstNameOf = (fullName?: string | null) => (fullName ?? "").trim().split(/\s+/)[0] ?? "";
+
+const headingFor = (copy: WelcomeCopy, fullName?: string | null) => {
+  const first = firstNameOf(fullName);
+  return first ? copy.headingNamed.replace("{name}", first) : copy.heading;
+};
+
 // The plain-text alternative measurably helps inbox placement.
-const renderText = (copy: WelcomeCopy, urls: { dashboard: string; unsubscribe: string }) =>
+const renderText = (copy: WelcomeCopy, urls: { dashboard: string; unsubscribe: string }, heading: string) =>
   [
-    copy.heading,
+    heading,
     copy.intro,
     copy.pull,
     `${copy.ctaLabel}:\n${urls.dashboard}`,
@@ -211,9 +233,10 @@ const renderText = (copy: WelcomeCopy, urls: { dashboard: string; unsubscribe: s
 
 export const buildWelcomeEmail = (
   locale: WelcomeLocale,
-  options?: { email?: string },
+  options?: { email?: string; fullName?: string | null },
 ): WelcomeEmail => {
   const copy = COPY[locale];
+  const heading = headingFor(copy, options?.fullName);
   const urls = {
     // A plain link, not an embedded magic link: those expire in an hour (most
     // people open this later) and link prescanners burn the single-use token
@@ -224,7 +247,7 @@ export const buildWelcomeEmail = (
 
   return {
     subject: copy.subject,
-    text: renderText(copy, urls),
+    text: renderText(copy, urls, heading),
     html: `<!doctype html>
 <html lang="${locale}" dir="ltr" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -277,7 +300,7 @@ ${renderPreheader(copy.preheader)}
         </tr></table>
       </td></tr>
 
-      <tr><td class="t-primary sm-h1" style="font-family:${FONT};font-size:32px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:${C.text};padding-bottom:16px;">${copy.heading}</td></tr>
+      <tr><td class="t-primary sm-h1" style="font-family:${FONT};font-size:32px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:${C.text};padding-bottom:16px;">${escapeHtml(heading)}</td></tr>
       <tr><td class="t-secondary" style="font-family:${FONT};font-size:15px;line-height:1.65;color:${C.textSecondary};padding-bottom:14px;">${copy.intro}</td></tr>
       <tr><td class="t-secondary" style="font-family:${FONT};font-size:15px;line-height:1.65;color:${C.textSecondary};padding-bottom:28px;">${copy.pull}</td></tr>
 

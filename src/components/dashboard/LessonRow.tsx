@@ -1,4 +1,4 @@
-import { Card, Column, Flex, Icon, Row, SmartLink, Tag, Text } from "@/once-ui/components";
+import { Card, Column, Flex, Icon, Row, SmartImage, SmartLink, Text } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
 
 type LessonRowProps = {
@@ -7,9 +7,9 @@ type LessonRowProps = {
   title: string;
   summary: string;
   duration?: number;
+  image?: string;
   completed: boolean;
   durationLabel: string;
-  pendingVideoLabel?: string;
 };
 
 export const LessonRow = ({
@@ -18,56 +18,70 @@ export const LessonRow = ({
   title,
   summary,
   duration,
+  image,
   completed,
   durationLabel,
-  pendingVideoLabel,
 }: LessonRowProps) => (
   <SmartLink unstyled fillWidth href={href}>
     <Card
       fillWidth
       radius="l"
-      padding="16"
+      padding="12"
       gap="16"
       vertical="center"
       background="surface"
       border="neutral-medium"
       className={brand.card}
     >
-    <Flex width="24" height="24" horizontal="center" vertical="center" style={{ flexShrink: 0 }}>
-      {completed ? (
-        <Icon name="checkCircle" onBackground="brand-strong" />
-      ) : (
+      {image && (
         <Flex
-          width="24"
-          height="24"
-          radius="full"
-          border="neutral-medium"
-          horizontal="center"
-          vertical="center"
+          className={brand.media}
+          hide="s"
+          radius="m"
+          overflow="hidden"
+          style={{ width: "7.5rem", flexShrink: 0 }}
         >
-          <Text variant="label-default-s" onBackground="neutral-weak">
-            {order}
-          </Text>
+          <SmartImage src={image} alt="" aspectRatio="16 / 9" sizes="120px" />
         </Flex>
       )}
-    </Flex>
-    <Column flex={1} gap="4" minWidth="0">
-      <Text variant="body-strong-m">{title}</Text>
-      <Text variant="body-default-s" onBackground="neutral-weak" wrap="balance">
-        {summary}
-      </Text>
-      <Row gap="8" vertical="center" paddingTop="4">
+      <Flex
+        width="24"
+        height="24"
+        horizontal="center"
+        vertical="center"
+        style={{ flexShrink: 0 }}
+      >
+        {completed ? (
+          <Icon name="checkCircle" onBackground="brand-strong" />
+        ) : (
+          <Flex
+            width="24"
+            height="24"
+            radius="full"
+            border="neutral-medium"
+            horizontal="center"
+            vertical="center"
+          >
+            <Text variant="label-default-s" onBackground="neutral-weak">
+              {order}
+            </Text>
+          </Flex>
+        )}
+      </Flex>
+      <Column flex={1} gap="4" minWidth="0" paddingY="8">
+        <Text variant="body-strong-m">{title}</Text>
+        <Text variant="body-default-s" onBackground="neutral-weak" wrap="balance">
+          {summary}
+        </Text>
         {duration !== undefined && (
-          <>
+          <Row gap="8" vertical="center" paddingTop="4">
             <Icon name="clock" size="xs" onBackground="neutral-weak" />
             <Text variant="label-default-s" onBackground="neutral-weak">
               {durationLabel}
             </Text>
-          </>
+          </Row>
         )}
-        {pendingVideoLabel && <Tag size="s" variant="neutral" label={pendingVideoLabel} />}
-      </Row>
-    </Column>
+      </Column>
       <Icon name="chevronRight" onBackground="neutral-weak" />
     </Card>
   </SmartLink>

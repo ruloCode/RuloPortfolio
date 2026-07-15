@@ -1,4 +1,5 @@
 import { getLessons, lessonsForRole } from "@/app/[locale]/dashboard/lessons";
+import { scheduling } from "@/app/resources";
 import { LessonRow } from "@/components/dashboard/LessonRow";
 import { localizeHref } from "@/i18n/routing";
 import { getSessionProfile } from "@/lib/auth/session";
@@ -111,11 +112,47 @@ export default async function DashboardPage({ params: { locale } }: PageParams) 
             title={lesson.metadata.title}
             summary={lesson.metadata.summary}
             duration={lesson.metadata.duration}
+            image={lesson.metadata.image}
             completed={completed.has(lesson.slug)}
             durationLabel={t("lesson.duration", { minutes: lesson.metadata.duration ?? 0 })}
-            pendingVideoLabel={lesson.metadata.videoId ? undefined : t("video.pendingBadge")}
           />
         ))}
+      </Column>
+
+      {/* The 1:1 is what the program is built around, so it gets the signature
+          halo — the only conversion moment on this page. */}
+      <Column
+        fillWidth
+        gap="12"
+        padding="l"
+        radius="l"
+        background="surface"
+        border="neutral-medium"
+        className={brand.signatureGlow}
+      >
+        <Text variant="label-default-s" onBackground="brand-weak">
+          {t("oneOnOne.eyebrow")}
+        </Text>
+        <Heading variant="heading-strong-l" wrap="balance">
+          {t("oneOnOne.title")}
+        </Heading>
+        <Text variant="body-default-m" onBackground="neutral-medium" wrap="balance">
+          {t("oneOnOne.description")}
+        </Text>
+        <Flex gap="12" vertical="center" wrap paddingTop="4">
+          <Button
+            href={scheduling.oneOnOne}
+            size="m"
+            arrowIcon
+            prefixIcon="calendar"
+            className={brand.signatureCta}
+          >
+            {t("oneOnOne.cta")}
+          </Button>
+          <Text variant="label-default-s" onBackground="neutral-weak">
+            {t("oneOnOne.note")}
+          </Text>
+        </Flex>
       </Column>
 
       <Column
