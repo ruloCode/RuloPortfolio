@@ -59,7 +59,8 @@
     --line-height-body-xl:         1.75rem;
     --line-height-body-l:          1.5rem;
     --line-height-body-m:          1.5rem;
-    --line-height-body-s:          1.125rem;
+    /* 1.25rem keeps body-s (0.875rem) above the 1.3x readability floor; 1.125rem sat at 1.29x. */
+    --line-height-body-s:          1.25rem;
     --line-height-body-xs:         1rem;
 
     --line-height-label-l:         1.25rem;

@@ -1,0 +1,19 @@
+/* Visually hidden until keyboard focus, then a clearly visible pill above the header. */
+.skip-link {
+    position: fixed;
+    top: var(--static-space-8);
+    left: var(--static-space-8);
+    z-index: 20;
+    padding: var(--static-space-8) var(--static-space-16);
+    border-radius: var(--radius-m);
+    background: var(--brand-solid-strong);
+    color: var(--brand-on-solid-strong);
+    text-decoration: none;
+    transform: translateY(calc(-100% - var(--static-space-16)));
+
+    &:focus-visible {
+        transform: translateY(0);
+        outline: 2px solid var(--brand-border-strong);
+        outline-offset: 2px;
+    }
+}

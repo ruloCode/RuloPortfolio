@@ -1,4 +1,5 @@
 import { getPost, getPosts, type Post } from "@/app/utils/utils";
+import type { Role } from "@/lib/auth/session";
 
 // Relative to src/app/[locale] — getPosts anchors that prefix itself, and it
 // must stay inline there for the file tracer. See utils.ts.
@@ -25,7 +26,10 @@ export function getLesson(locale: string, slug: string): Post | undefined {
   return getPost(LESSONS_PATH, locale, slug);
 }
 
-export function lessonsForRole(lessons: Post[], role: "waitlist" | "student"): Post[] {
-  if (role === "student") return lessons;
-  return lessons.filter((lesson) => lesson.metadata.requiresRole === "waitlist");
+/** Fails closed: only 'waitlist' is restricted, everything above it sees all. */
+export function lessonsForRole(lessons: Post[], role: Role): Post[] {
+  if (role === "waitlist") {
+    return lessons.filter((lesson) => lesson.metadata.requiresRole === "waitlist");
+  }
+  return lessons;
 }

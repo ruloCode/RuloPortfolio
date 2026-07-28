@@ -1,7 +1,8 @@
+import { notFound } from "next/navigation";
 import { Column, Heading } from "@/once-ui/components";
 import { WaitlistForm } from "@/components";
 import { Posts } from "@/components/blog/Posts";
-import { baseURL } from "@/app/resources";
+import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -16,6 +17,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params: { locale } }: PageParams) {
+  // While the route is disabled it must not leak its real title/OG over a 404 body.
+  if (!routes["/blog"]) return {};
   const t = await getTranslations({ locale });
   const { blog } = createI18nContent(t);
   const title = blog.title;
@@ -48,6 +51,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Blog({ params: { locale } }: PageParams) {
+  if (!routes["/blog"]) notFound();
   unstable_setRequestLocale(locale);
   const t = await getTranslations();
   const { blog, person, newsletter } = createI18nContent(t);

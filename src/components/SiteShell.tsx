@@ -24,7 +24,15 @@ export function SiteShell({ background, header, footer, children }: SiteShellPro
 
   if (isDashboard) {
     return (
-      <Flex position="relative" zIndex={0} fillWidth flex={1} minHeight="0">
+      <Flex
+        as="main"
+        id="main-content"
+        position="relative"
+        zIndex={0}
+        fillWidth
+        flex={1}
+        minHeight="0"
+      >
         {children}
       </Flex>
     );
@@ -35,7 +43,17 @@ export function SiteShell({ background, header, footer, children }: SiteShellPro
       {background}
       <Flex fillWidth minHeight="16"></Flex>
       {header}
-      <Flex position="relative" zIndex={0} fillWidth paddingY="l" paddingX="l" horizontal="center" flex={1}>
+      <Flex
+        as="main"
+        id="main-content"
+        position="relative"
+        zIndex={0}
+        fillWidth
+        paddingY="l"
+        paddingX="l"
+        horizontal="center"
+        flex={1}
+      >
         <Flex horizontal="center" fillWidth minHeight="0">
           {children}
         </Flex>

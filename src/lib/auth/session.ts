@@ -1,7 +1,10 @@
 import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 
-export type Role = "waitlist" | "student";
+// Ordered by privilege. 'admin' is the owner: it unlocks /dashboard/admin and,
+// in the database, the read-everything RLS policies — see the admin_role
+// migration. It is granted by hand, never by signup.
+export type Role = "waitlist" | "student" | "admin";
 
 export type SessionProfile = {
   userId: string;

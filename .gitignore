@@ -40,3 +40,14 @@ next-env.d.ts
 
 # MCP config (contiene access token de Supabase)
 .mcp.json
+
+# Scaffolding local de agentes: no es código de la app y este repo es público
+.agents/
+.impeccable/
+.codex/
+.claude/skills/
+.github/hooks/
+.github/skills/
+
+# Screenshots de verificación de UI (usar un directorio temporal, no la raíz)
+verify-*.png

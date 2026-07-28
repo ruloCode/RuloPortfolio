@@ -1,0 +1,112 @@
+// Frame around a page-hero image: a light sweep that crosses it on a loop and a
+// glass caption pill anchored inside. The frame itself is not clipped, so the
+// emerald halo from brand's `.mediaGlow` still spills outside it.
+
+.frame {
+  position: relative;
+  width: 100%;
+}
+
+// The sweep needs its own clipping box, since clipping the frame would cut the
+// halo off.
+.sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -60%;
+    bottom: -60%;
+    left: -60%;
+    width: 40%;
+    // Brand-tinted rather than white so the sweep reads the same in both themes.
+    background: linear-gradient(100deg, transparent, var(--brand-alpha-medium), transparent);
+    transform: rotate(8deg);
+    will-change: left, opacity;
+    animation: sweep 9s ease-in-out 1.4s infinite;
+  }
+}
+
+@keyframes sweep {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  55%,
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
+.caption {
+  position: absolute;
+  left: var(--static-space-16);
+  bottom: var(--static-space-16);
+  // Theme-aware translucency: --backdrop is white-medium in light, black-medium
+  // in dark.
+  background: var(--backdrop);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--brand-alpha-medium);
+  box-shadow: var(--shadow-m);
+}
+
+// Live indicator: a steady dot with a halo that expands and fades out of it.
+.pulse {
+  position: relative;
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--brand-on-background-strong);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: halo 2.4s ease-out infinite;
+  }
+}
+
+@keyframes halo {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  70%,
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+// The pill covers too much of a 21:9 image on a phone, so it moves under it.
+@media (max-width: 768px) {
+  .frame {
+    display: flex;
+    flex-direction: column;
+    gap: var(--static-space-12);
+  }
+
+  .caption {
+    position: static;
+    align-self: flex-start;
+    backdrop-filter: none;
+  }
+}

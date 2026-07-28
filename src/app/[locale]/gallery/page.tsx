@@ -1,6 +1,7 @@
+import { notFound } from "next/navigation";
 import { Flex } from "@/once-ui/components";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
-import { baseURL } from "@/app/resources";
+import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -15,6 +16,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params: { locale } }: PageParams) {
+  // While the route is disabled it must not leak its real title/OG over a 404 body.
+  if (!routes["/gallery"]) return {};
   const t = await getTranslations({ locale });
   const { gallery } = createI18nContent(t);
   const title = gallery.title;
@@ -47,6 +50,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Gallery({ params: { locale } }: PageParams) {
+  if (!routes["/gallery"]) notFound();
   unstable_setRequestLocale(locale);
   const t = await getTranslations();
   const { gallery, person } = createI18nContent(t);

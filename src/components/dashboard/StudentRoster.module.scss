@@ -1,0 +1,69 @@
+/* One grid template shared by the header and every row, so the columns stay
+   locked together. Two separate grids drift the moment a cell wraps.
+   Named areas rather than source order: the mobile layout reflows the same
+   cells into a card, and area names survive that where nth-child does not. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.5rem 9rem 7rem 6.5rem 1.25rem;
+  grid-template-areas: "student status progress last joined chevron";
+  align-items: center;
+  gap: var(--static-space-16);
+  width: 100%;
+}
+
+.student {
+  grid-area: student;
+  min-width: 0;
+}
+.status { grid-area: status; }
+.progress { grid-area: progress; }
+.last { grid-area: last; }
+.joined { grid-area: joined; }
+.chevron { grid-area: chevron; }
+
+/* Redundant while the column header is on screen. Declared before the media
+   queries below so the `--s` override wins on cascade order, not specificity. */
+.inlineLabel {
+  display: none;
+}
+
+/* The columns drop in order of how little they help you act, because the
+   16rem rail eats the same space the table needs and these breakpoints track
+   the viewport, not the container: at 1025px the content well is only ~737px. */
+@media (--l) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) 6.5rem 9rem 7rem 1.25rem;
+    grid-template-areas: "student status progress last chevron";
+  }
+  .joined { display: none; }
+}
+
+@media (--m) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) 6.5rem 9rem 1.25rem;
+    grid-template-areas: "student status progress chevron";
+  }
+  .last { display: none; }
+}
+
+/* Below `s` the row stops being a row: a table that scrolls sideways on a
+   phone is a table nobody reads. The rail is gone here, so the full width is
+   available and "last lesson" earns its place back. */
+@media (--s) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "student status"
+      "progress last";
+    gap: var(--static-space-12);
+  }
+  .last {
+    display: block;
+    justify-self: end;
+  }
+  /* The column headers are gone here, so the value has to carry its own
+     label — a bare "Never" in the corner means nothing. */
+  .inlineLabel { display: inline; }
+  .header { display: none; }
+  .chevron { display: none; }
+}

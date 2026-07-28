@@ -1,0 +1,57 @@
+// The /ia course block on the home page: an informational spotlight, not a
+// second conversion moment. It borrows /ia's ambient light and card wash but
+// deliberately leaves the signature gradient (glow + gradient CTA) to the
+// waitlist block at the end of the page.
+
+.spotlight {
+  position: relative;
+  overflow: hidden;
+  // No dot or grid texture here: the site-wide <Background> (config `effects.dots`
+  // and `effects.grid`) already lays one over every page. The structure in this
+  // card comes from the numbered ladder, not from a decorative field.
+  background:
+    radial-gradient(120% 120% at 100% 0%, var(--brand-alpha-weak), transparent 62%),
+    var(--surface-background);
+}
+
+.copy {
+  max-width: 34rem;
+}
+
+// Numbered week ladder. The rail is a single line behind the markers rather than
+// a border per row, so it reads as one continuous track.
+.ladder {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.9rem;
+    bottom: 0.9rem;
+    left: 0.9rem;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      var(--brand-alpha-medium),
+      var(--neutral-alpha-weak)
+    );
+  }
+}
+
+.marker {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--brand-alpha-medium);
+  border-radius: var(--radius-full);
+  background: var(--page-background);
+  color: var(--brand-on-background-strong);
+  font-family: var(--font-family-code);
+  font-size: var(--font-size-body-xs);
+  line-height: 1;
+}

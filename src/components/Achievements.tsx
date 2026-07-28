@@ -3,9 +3,12 @@
 import { Column, Flex, Icon, SmartLink, Tag, Text, TiltFx } from "@/once-ui/components";
 import { useLocale, useTranslations } from "next-intl";
 import { localizeHref } from "@/i18n/routing";
+import { routes } from "@/app/resources";
 
+// The case-study link only renders while /work is enabled — a proof link that
+// 404s is worse than no link.
 const ACHIEVEMENTS: { key: string; href?: string }[] = [
-  { key: "hackathon", href: "/work/hackathon-samatech" },
+  { key: "hackathon", href: routes["/work"] ? "/work/hackathon-samatech" : undefined },
 ];
 
 export function Achievements() {

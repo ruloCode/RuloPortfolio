@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Column, Grid, Text } from "@/once-ui/components";
+import { Text } from "@/once-ui/components";
 import styles from "./Stats.module.scss";
 
 const STAT_KEYS = ["experience", "transactions", "users", "lcp"] as const;
@@ -54,38 +54,37 @@ function CountUpValue({ value }: { value: string }) {
     return () => observer.disconnect();
   }, [value]);
 
-  return (
-    <span ref={ref} className={styles.value}>
-      {display}
-    </span>
-  );
+  return <span ref={ref}>{display}</span>;
 }
 
 export function Stats() {
   const t = useTranslations("stats");
 
   return (
-    <Grid columns="4" tabletColumns="2" mobileColumns="2" gap="12" fillWidth>
-      {STAT_KEYS.map((key: StatKey) => (
-        <Column
-          key={key}
-          fillWidth
-          fillHeight
-          gap="4"
-          padding="m"
-          radius="l"
-          border="neutral-alpha-weak"
-          background="surface"
-          className={styles.tile}
-        >
-          <Text variant="display-strong-xs" onBackground="brand-strong">
-            <CountUpValue value={t(`items.${key}.value`)} />
-          </Text>
-          <Text variant="label-default-s" onBackground="neutral-weak" wrap="balance">
-            {t(`items.${key}.label`)}
-          </Text>
-        </Column>
-      ))}
-    </Grid>
+    <div className={styles.band}>
+      <span aria-hidden="true" className={styles.rule} />
+      <dl className={styles.grid}>
+        {STAT_KEYS.map((key: StatKey) => (
+          <div key={key} className={styles.cell}>
+            <Text
+              as="dt"
+              variant="label-default-s"
+              onBackground="neutral-weak"
+              wrap="balance"
+            >
+              {t(`items.${key}.label`)}
+            </Text>
+            <Text
+              as="dd"
+              className={styles.figure}
+              variant="display-strong-s"
+              onBackground="brand-strong"
+            >
+              <CountUpValue value={t(`items.${key}.value`)} />
+            </Text>
+          </div>
+        ))}
+      </dl>
+    </div>
   );
 }

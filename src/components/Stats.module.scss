@@ -1,20 +1,83 @@
-.value {
-    font-variant-numeric: tabular-nums;
+// Proof band: one surface split by hairlines instead of four separate tiles, so
+// the four numbers read as a single claim.
+
+.band {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--neutral-alpha-weak);
+  border-radius: var(--radius-l);
+  // No dot or grid texture here: the site-wide <Background> (config `effects.dots`
+  // and `effects.grid`) already lays one over every page, and a second field at a
+  // different pitch only muddies it.
+  background:
+    radial-gradient(80% 140% at 50% 0%, var(--brand-alpha-weak), transparent 64%),
+    var(--surface-background);
 }
 
-.tile {
-    transition: border-color var(--transition-micro-medium), transform var(--transition-micro-medium);
+// Emerald hairline along the top edge, fading at both ends.
+.rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--brand-on-background-strong),
+    transparent
+  );
+  opacity: 0.5;
+}
 
-    &:hover {
-        border-color: var(--brand-alpha-medium);
-        transform: translateY(-2px);
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+}
+
+.cell {
+  display: flex;
+  // The label sits after the value in the DOM (a <dl> pair reads label-then-value)
+  // but above it visually.
+  flex-direction: column-reverse;
+  // With the axis reversed, `flex-end` packs toward the visual top. Without it a
+  // label that wraps to two lines pushes its own figure up, and the row of
+  // numbers stops sharing a baseline.
+  justify-content: flex-end;
+  gap: var(--static-space-4);
+  padding: var(--static-space-24) var(--static-space-20);
+  border-left: 1px solid var(--neutral-alpha-weak);
+
+  &:first-child {
+    border-left: none;
+  }
+}
+
+.figure {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cell {
+    padding: var(--static-space-20) var(--static-space-16);
+
+    // With two columns the rail moves: every odd cell starts a row, and the
+    // second row needs a horizontal divider instead.
+    &:nth-child(odd) {
+      border-left: none;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        transition: none;
-
-        &:hover {
-            transform: none;
-        }
+    &:nth-child(n + 3) {
+      border-top: 1px solid var(--neutral-alpha-weak);
     }
+  }
 }

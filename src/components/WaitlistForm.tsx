@@ -58,16 +58,13 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
     const trimmedName = name.trim();
     const trimmed = email.trim();
 
-    if (newsletter.namePlaceholder && trimmedName.length < 2) {
-      setNameError(newsletter.invalidName ?? "");
-      return;
-    }
-    if (!EMAIL_PATTERN.test(trimmed)) {
-      setFieldError(newsletter.invalidEmail);
-      return;
-    }
-    setNameError("");
-    setFieldError("");
+    // The form runs noValidate, so this layer owns EVERY invalid state —
+    // including empty submits — and both fields report at once, localized.
+    const nameInvalid = !!newsletter.namePlaceholder && trimmedName.length < 2;
+    const emailInvalid = !EMAIL_PATTERN.test(trimmed);
+    setNameError(nameInvalid ? newsletter.invalidName ?? "" : "");
+    setFieldError(emailInvalid ? newsletter.invalidEmail : "");
+    if (nameInvalid || emailInvalid) return;
     setStatus("loading");
     try {
       const response = await fetch("/api/waitlist", {
@@ -148,7 +145,8 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
           opacity: waitlistEffects.lines.opacity as any,
         }}
       />
-      <Heading style={{ position: "relative" }} marginBottom="s" variant="display-strong-xs">
+      {/* as="h2": Heading defaults to h1 and this block always renders under a page h1. */}
+      <Heading as="h2" style={{ position: "relative" }} marginBottom="s" variant="display-strong-xs">
         {newsletter.title}
       </Heading>
       <Text
@@ -195,6 +193,9 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         </Column>
       ) : (
         <form
+          // noValidate: browser validation would surface native (English-only)
+          // bubbles on empty submit; the handler shows localized errors instead.
+          noValidate
           style={{
             width: "100%",
             display: "flex",
@@ -207,7 +208,6 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
           <Column fillWidth maxWidth={24} gap="8">
             {newsletter.namePlaceholder && (
               <Input
-                formNoValidate
                 labelAsPlaceholder
                 id="waitlist-name"
                 name="name"
@@ -229,7 +229,6 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
               />
             )}
             <Input
-              formNoValidate
               labelAsPlaceholder
               id="waitlist-email"
               name="email"

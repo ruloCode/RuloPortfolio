@@ -43,8 +43,6 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
   return <>{currentTime}</>;
 };
 
-export default TimeDisplay;
-
 const LanguageSwitcher = () => {
   const locale = useLocale();
   const router = useRouter();
@@ -92,8 +90,8 @@ export const Header = () => {
         padding="8"
         horizontal="center"
       >
-        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Flex hide="s">America/Bogota</Flex>}
+        <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s" hide="s">
+          {display.location && <Flex>America/Bogota</Flex>}
         </Flex>
         <Flex fillWidth horizontal="center">
           <Flex
@@ -106,7 +104,12 @@ export const Header = () => {
           >
             <Flex gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
-                <ToggleButton prefixIcon="home" href={href("/")} selected={pathname === "/"} />
+                <ToggleButton
+                  prefixIcon="home"
+                  href={href("/")}
+                  aria-label={t("home")}
+                  selected={pathname === "/"}
+                />
               )}
               <Line vert maxHeight="24" />
               {routes["/about"] && (
@@ -122,6 +125,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="person"
                     href={href("/about")}
+                    aria-label={t("about")}
                     selected={pathname === "/about"}
                   />
                 </>
@@ -139,6 +143,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="briefcase"
                     href={href("/services")}
+                    aria-label={t("services")}
                     selected={pathname.startsWith("/services")}
                   />
                 </>
@@ -156,6 +161,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="sparkle"
                     href={href("/ia")}
+                    aria-label={t("ia")}
                     selected={pathname.startsWith("/ia")}
                   />
                 </>
@@ -173,6 +179,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="grid"
                     href={href("/work")}
+                    aria-label={t("work")}
                     selected={pathname.startsWith("/work")}
                   />
                 </>
@@ -190,6 +197,7 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="book"
                     href={href("/blog")}
+                    aria-label={t("blog")}
                     selected={pathname.startsWith("/blog")}
                   />
                 </>
@@ -207,14 +215,22 @@ export const Header = () => {
                     className="s-flex-show"
                     prefixIcon="gallery"
                     href={href("/gallery")}
+                    aria-label={t("gallery")}
                     selected={pathname.startsWith("/gallery")}
                   />
                 </>
               )}
+              {/* On small screens the side clusters are hidden, so language and
+                  theme live inside the pill — the only fully tappable surface. */}
+              <Flex className="s-flex-show" gap="4" vertical="center">
+                <Line vert maxHeight="24" />
+                <LanguageSwitcher />
+                <ThemeToggle />
+              </Flex>
             </Flex>
           </Flex>
         </Flex>
-        <Flex fillWidth horizontal="end" vertical="center">
+        <Flex fillWidth horizontal="end" vertical="center" hide="s">
           <Flex
             paddingRight="12"
             horizontal="end"
@@ -224,21 +240,20 @@ export const Header = () => {
           >
             <LanguageSwitcher />
             <ThemeToggle />
-            {/* Persistent conversion CTA — hidden on /ia (you're already there)
-                and on small screens, where the sparkle nav item covers it. */}
+            {/* Persistent conversion CTA — hidden on /ia (you're already there);
+                on small screens the whole cluster is hidden and language/theme
+                move inside the nav pill. */}
             {routes["/ia"] && !pathname.startsWith("/ia") && (
-              <Flex hide="s">
-                <Button
-                  href={href("/ia#lista")}
-                  size="s"
-                  className={brand.signatureCta}
-                  prefixIcon="sparkle"
-                >
-                  {t("waitlistCta")}
-                </Button>
-              </Flex>
+              <Button
+                href={href("/ia#lista")}
+                size="s"
+                className={brand.signatureCta}
+                prefixIcon="sparkle"
+              >
+                {t("waitlistCta")}
+              </Button>
             )}
-            <Flex hide="s">{display.time && <TimeDisplay timeZone="America/Bogota" />}</Flex>
+            {display.time && <TimeDisplay timeZone="America/Bogota" />}
           </Flex>
         </Flex>
       </Flex>

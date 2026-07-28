@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Badge,
   Button,
   Column,
   Flex,
@@ -12,11 +13,20 @@ import {
   RevealFx,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
+import styles from "./home.module.scss";
 import { baseURL, routes, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
-import { HomePillars, Stats, WaitlistForm } from "@/components";
+import {
+  AuroraBackdrop,
+  CourseSpotlight,
+  HeroShowcase,
+  HomePillars,
+  Stats,
+  TechMarquee,
+  WaitlistForm,
+} from "@/components";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -89,13 +99,8 @@ export default async function Home({ params: { locale } }: PageParams) {
         "@type": "WebSite",
         "@id": `https://${baseURL}/#website`,
         url: `https://${baseURL}`,
-        name: `${person.firstName}'s Portfolio`,
+        name: `${person.name} — ${person.role}`,
         description: home.description,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `https://${baseURL}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
       },
       {
         "@type": "Person",
@@ -113,7 +118,7 @@ export default async function Home({ params: { locale } }: PageParams) {
         "@type": "ProfilePage",
         "@id": `https://${baseURL}/#profilepage`,
         url: `https://${baseURL}`,
-        name: `${person.firstName}'s Portfolio - ${person.role}`,
+        name: `${person.name} — ${person.role}`,
         description: home.description,
         about: {
           "@id": `https://${baseURL}/#person`,
@@ -138,32 +143,27 @@ export default async function Home({ params: { locale } }: PageParams) {
         }}
       />
       <Column maxWidth="m" gap="xl" horizontal="center">
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebPage",
-              name: home.title,
-              description: home.description,
-              url: `https://${baseURL}`,
-              image: `https://${baseURL}/images/gallery/og_img.jpg`,
-              publisher: {
-                "@type": "Person",
-                name: person.name,
-                image: {
-                  "@type": "ImageObject",
-                  url: `https://${baseURL}${person.avatar}`,
-                },
-              },
-            }),
-          }}
-        />
-        <Column fillWidth paddingY="l" gap="m">
-          <Column maxWidth="s">
+        {/* Hero region: one pool of ambient brand light behind the statement, the
+            showcase, the proof band and the stack strip — the same atmosphere
+            /ia opens with. */}
+        <Column
+          className={styles.heroRegion}
+          fillWidth
+          gap="xl"
+          position="relative"
+        >
+          <AuroraBackdrop variant="hero" />
+          <Column maxWidth="s" paddingY="s" zIndex={1}>
+            <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="16">
+              <Badge href={localizeHref(locale, "/ia")} arrow={false} effect>
+                <Text variant="label-strong-s" onBackground="brand-strong">
+                  {home.heroBadge}
+                </Text>
+              </Badge>
+            </RevealFx>
             <RevealFx
               translateY="4"
+              delay={0.1}
               fillWidth
               horizontal="start"
               paddingBottom="m"
@@ -230,22 +230,20 @@ export default async function Home({ params: { locale } }: PageParams) {
               </Flex>
             </RevealFx>
           </Column>
+          <RevealFx translateY="16" delay={0.5} fillWidth zIndex={1}>
+            <HeroShowcase
+              src="/images/home/hero.jpg"
+              alt={home.heroAlt}
+              caption={home.heroCaption}
+            />
+          </RevealFx>
+          <RevealFx translateY="12" delay={0.6} fillWidth zIndex={1}>
+            <Stats />
+          </RevealFx>
+          <RevealFx translateY="12" delay={0.7} fillWidth zIndex={1}>
+            <TechMarquee label={home.stackLabel} />
+          </RevealFx>
         </Column>
-        <RevealFx translateY="16" delay={0.5} fillWidth>
-          <SmartImage
-            className={brand.mediaGlow}
-            src="/images/home/hero.jpg"
-            alt={home.heroAlt}
-            aspectRatio="21 / 9"
-            radius="l"
-            sizes="(max-width: 768px) 100vw, 1024px"
-            priority
-            border="neutral-alpha-weak"
-          />
-        </RevealFx>
-        <RevealFx translateY="12" delay={0.6}>
-          <Stats />
-        </RevealFx>
         <RevealFx translateY="16" inView>
           <Flex
             className={brand.card}
@@ -300,41 +298,28 @@ export default async function Home({ params: { locale } }: PageParams) {
             />
           </RevealFx>
         )}
+        {/* Informational spotlight: it explains the course and links to /ia. The
+            signature gradient (glow + CTA) stays reserved for the waitlist
+            block below — one conversion moment at the end, not two stacked. */}
         {routes["/ia"] && (
           <RevealFx translateY="16" inView>
-            <Flex
-              className={`${brand.featuredCard} ${brand.signatureGlow}`}
-              fillWidth
-              gap="l"
-              padding="l"
-              radius="l"
-              mobileDirection="column"
-              vertical="center"
-              horizontal="space-between"
-            >
-              <Column gap="8" flex={8}>
-                <Flex gap="8" vertical="center">
-                  <Tag variant="brand" size="m" label={t("ia.teaser.eyebrow")} />
-                </Flex>
-                <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                  {t("ia.teaser.title")}
-                </Heading>
-                <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
-                  {t("ia.teaser.description")}
-                </Text>
-              </Column>
-              <Flex flex={4} horizontal="end">
-                <Button
-                  href={`${localizeHref(locale, "/ia")}#lista`}
-                  variant="primary"
-                  size="m"
-                  suffixIcon="sparkle"
-                  className={brand.signatureCta}
-                >
-                  {t("ia.teaser.cta")}
-                </Button>
-              </Flex>
-            </Flex>
+            <CourseSpotlight
+              eyebrow={t("ia.teaser.eyebrow")}
+              title={t("ia.teaser.title")}
+              description={t("ia.teaser.description")}
+              /* The two session formats plus the outcome — the three lines that
+                 actually explain what the program is. */
+              highlights={[
+                t("ia.pricing.card.features.1"),
+                t("ia.pricing.card.features.2"),
+                t("ia.pricing.card.features.4"),
+              ]}
+              cta={t("ia.teaser.cta")}
+              ctaHref={localizeHref(locale, "/ia")}
+              ctaNote={t("ia.hero.ctaNote")}
+              imageSrc="/images/ia/feature-copiloto.jpg"
+              imageAlt={t("ia.features.items.copiloto.imageAlt")}
+            />
           </RevealFx>
         )}
         {routes["/work"] && (

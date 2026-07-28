@@ -13,10 +13,11 @@ type ShellProps = {
   locale: string;
   user: { name: string; email: string };
   nav: NavCopy;
+  isAdmin: boolean;
   children: React.ReactNode;
 };
 
-export const DashboardShell = ({ locale, user, nav, children }: ShellProps) => {
+export const DashboardShell = ({ locale, user, nav, isAdmin, children }: ShellProps) => {
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -26,7 +27,7 @@ export const DashboardShell = ({ locale, user, nav, children }: ShellProps) => {
     router.refresh();
   };
 
-  const navProps = { locale, user, nav, onSignOut: handleSignOut };
+  const navProps = { locale, user, nav, isAdmin, onSignOut: handleSignOut };
 
   return (
     // Column at the top level so the mobile bar stacks above the content. As a

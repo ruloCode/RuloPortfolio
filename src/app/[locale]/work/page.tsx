@@ -1,7 +1,8 @@
+import { notFound } from "next/navigation";
 import { getPosts } from "@/app/utils/utils";
 import { Column } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
-import { baseURL } from "@/app/resources";
+import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
@@ -16,6 +17,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params: { locale } }: PageParams) {
+  // While the route is disabled it must not leak its real title/OG over a 404 body.
+  if (!routes["/work"]) return {};
   const t = await getTranslations({ locale });
   const { work } = createI18nContent(t);
   const title = work.title;
@@ -48,6 +51,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Work({ params: { locale } }: PageParams) {
+  if (!routes["/work"]) notFound();
   unstable_setRequestLocale(locale);
   const t = await getTranslations();
   const { person, work } = createI18nContent(t);

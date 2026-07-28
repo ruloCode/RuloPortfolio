@@ -21,6 +21,7 @@ export type NavCopy = {
   semana0: string;
   cohorte: string;
   comingSoon: string;
+  admin: string;
   backToSite: string;
   signOut: string;
   menu: string;
@@ -30,6 +31,9 @@ type Props = {
   locale: string;
   user: { name: string; email: string };
   nav: NavCopy;
+  /** Hides the admin entry for everyone else. Cosmetic only — the route itself
+   *  is gated server-side and by RLS, so a hand-typed URL still gets nothing. */
+  isAdmin: boolean;
   onSignOut: () => void;
 };
 
@@ -50,13 +54,16 @@ const Wordmark = ({ locale }: { locale: string }) => (
 const NavItems = ({
   locale,
   nav,
+  isAdmin,
   onNavigate,
 }: {
   locale: string;
   nav: NavCopy;
+  isAdmin: boolean;
   onNavigate?: () => void;
 }) => {
   const pathname = usePathname() ?? "";
+  const inAdmin = pathname.startsWith("/dashboard/admin");
 
   return (
     <Column fillWidth gap="4">
@@ -73,7 +80,10 @@ const NavItems = ({
         fillWidth
         justifyContent="flex-start"
         prefixIcon="rocket"
-        selected={pathname.startsWith("/dashboard/")}
+        // Every lesson lives at /dashboard/<slug>, so this matches on the
+        // prefix — but /dashboard/admin is a sibling, not a lesson, and would
+        // otherwise light up Semana 0 while the admin section is open.
+        selected={pathname.startsWith("/dashboard/") && !inAdmin}
         href={localizeHref(locale, "/dashboard")}
         onClick={onNavigate}
         label={nav.semana0}
@@ -84,6 +94,20 @@ const NavItems = ({
         </Text>
         <Tag size="s" variant="neutral" prefixIcon="lock" label={nav.comingSoon} />
       </Flex>
+      {isAdmin && (
+        <>
+          <Line background="neutral-alpha-weak" marginY="8" />
+          <ToggleButton
+            fillWidth
+            justifyContent="flex-start"
+            prefixIcon="team"
+            selected={inAdmin}
+            href={localizeHref(locale, "/dashboard/admin")}
+            onClick={onNavigate}
+            label={nav.admin}
+          />
+        </>
+      )}
     </Column>
   );
 };
@@ -115,7 +139,7 @@ export const DashboardRail = (props: Props) => (
   >
     <Wordmark locale={props.locale} />
     <Line background="neutral-alpha-weak" />
-    <NavItems locale={props.locale} nav={props.nav} />
+    <NavItems locale={props.locale} nav={props.nav} isAdmin={props.isAdmin} />
     <Flex flex={1} />
     <Line background="neutral-alpha-weak" />
     <AccountMenu {...props} />
@@ -157,7 +181,12 @@ export const DashboardTopBar = (props: Props) => {
         <AccountMenu {...props} />
       </Row>
       <Dialog isOpen={menuOpen} onClose={() => setMenuOpen(false)} title={props.nav.menu}>
-        <NavItems locale={props.locale} nav={props.nav} onNavigate={() => setMenuOpen(false)} />
+        <NavItems
+          locale={props.locale}
+          nav={props.nav}
+          isAdmin={props.isAdmin}
+          onNavigate={() => setMenuOpen(false)}
+        />
       </Dialog>
     </>
   );

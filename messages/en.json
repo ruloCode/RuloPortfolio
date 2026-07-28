@@ -160,7 +160,8 @@
       "comingSoon": "Soon",
       "backToSite": "Back to the site",
       "signOut": "Sign out",
-      "menu": "Menu"
+      "menu": "Menu",
+      "admin": "Students"
     },
     "oneOnOne": {
       "eyebrow": "YOUR 1-1 SESSION",
@@ -172,6 +173,115 @@
     "progress": {
       "label": "Week 0 progress",
       "summary": "{completed} of {total} lessons completed"
+    },
+    "admin": {
+      "meta": {
+        "title": "Students — AI Shift Challenge",
+        "description": "Week 0 progress tracking."
+      },
+      "title": "Students",
+      "subtitle": "Who signed in, who is moving and who stalled. All figures are Week 0.",
+      "stats": {
+        "students": {
+          "label": "Students",
+          "hint": "Activated accounts with Week 0 access."
+        },
+        "completion": {
+          "label": "Average progress",
+          "hint": "Mean lessons completed per student."
+        },
+        "pending": {
+          "label": "Not activated",
+          "hint": "On the waitlist, no account created yet."
+        },
+        "openActions": {
+          "label": "Open action items",
+          "hint": "Commitments from 1:1 sessions still not closed."
+        }
+      },
+      "search": {
+        "label": "Search by name or email"
+      },
+      "filters": {
+        "all": "All",
+        "not_started": "Not started",
+        "in_progress": "In progress",
+        "completed": "Finished"
+      },
+      "columns": {
+        "student": "Student",
+        "status": "Status",
+        "progress": "Progress",
+        "lastActivity": "Last lesson",
+        "joined": "Joined",
+        "openActions": "Open"
+      },
+      "status": {
+        "not_started": "Not started",
+        "in_progress": "In progress",
+        "completed": "Finished"
+      },
+      "count": "Showing {shown} of {total} students",
+      "noResults": "No student matches that search.",
+      "neverActive": "Never",
+      "empty": {
+        "title": "No students yet",
+        "description": "They show up here as soon as someone from the waitlist creates their account."
+      },
+      "detail": {
+        "meta": "Student progress",
+        "back": "Back to students",
+        "progress": "Week 0 progress",
+        "lessons": "Lesson by lesson",
+        "joined": "Joined on {date}",
+        "completedOn": "Completed on {date}",
+        "pending": "Not completed yet",
+        "noAccount": "No account",
+        "noAccountTitle": "Has not activated their account yet",
+        "noAccountDescription": "They are on the waitlist and got the email, but never opened the magic link. You can still log sessions — notes attach to their email and show up the day they sign in."
+      },
+      "pending": {
+        "title": "Signed up but never got in",
+        "description": "They are on the waitlist and got the email, but have not opened their account yet. A short nudge usually does it.",
+        "welcomeSent": "Email sent",
+        "welcomeMissing": "No welcome email",
+        "nudge": "Email them",
+        "nudgeSubject": "Your Week 0 access"
+      },
+      "openActions": "{count} open",
+      "sessions": {
+        "title": "1:1 sessions",
+        "empty": "No sessions logged yet. The first one is the diagnostic.",
+        "readError": "Could not load the sessions. This is usually temporary.",
+        "number": "Session {number}",
+        "openCount": "{count} open",
+        "actions": "Action items",
+        "ownerCoach": "Me",
+        "ownerStudent": "Them",
+        "toggleError": "Could not save. Try again.",
+        "form": {
+          "open": "Log a session",
+          "date": "Date",
+          "title": "Title",
+          "summary": "Summary",
+          "summaryHint": "Plain text. A blank line starts a new paragraph; lines starting with \"- \" render as bullets.",
+          "coachActions": "On me",
+          "studentActions": "On them",
+          "onePerLine": "One per line",
+          "save": "Save session",
+          "saving": "Saving…",
+          "cancel": "Cancel",
+          "saved": "Session saved",
+          "error": "Could not save the session.",
+          "invalid": "Check the date and title.",
+          "privacy": "Only you can see this. The student cannot.",
+          "statusHeld": "Already happened",
+          "statusPlanned": "It's a plan"
+        },
+        "planned": "Next session",
+        "prepCount": "{count} to prepare",
+        "prep": "Prep"
+      }
     }
   },
   "footer": {
@@ -197,7 +307,9 @@
       "title": "Start today. The cohort comes after."
     },
     "headline": "6+ years building software. Today I teach professionals to <fx>master AI</fx>.",
-    "heroAlt": "An AI expert works at night in front of several screens bathing his desk in emerald light",
+    "heroAlt": "Night workstation bathed in emerald light, with several screens showing AI workflow graphs",
+    "heroBadge": "Week 0 is open — start today, free",
+    "heroCaption": "AI workflows running in production",
     "label": "Home",
     "pillars": {
       "items": {
@@ -221,10 +333,11 @@
     },
     "proofCta": "View all projects",
     "proofHeading": "The proof: real case studies",
+    "stackLabel": "What I build with every day",
     "story": {
       "cta": "Get to know me",
       "eyebrow": "Track record",
-      "imageAlt": "Engineer reviewing production system dashboards in a dark space lit by emerald light",
+      "imageAlt": "Production system dashboards glowing emerald in a dark room",
       "p1": "I led the frontend of Mexico's fastest-growing digital pharmacy: a platform processing $2M+ per month for 50,000 patients at 99.9% uptime. Real engineering, in production, for over 6 years.",
       "p2": "That foundation is the difference when I talk about AI: no demos, no hype — I ship workflows to production and teach with the empathy of someone who knows what keeping up costs. That's why my program works for non-technical people.",
       "title": "6+ years shipping software to production. Now, AI."
@@ -340,7 +453,7 @@
       "label": "Built for professionals in any field — if your work lives on a computer, it applies"
     },
     "teaser": {
-      "cta": "Start my Week 0",
+      "cta": "See the full program",
       "description": "4 private sessions with me, no code, on your real work. You're in today with Week 0, free — only 6 spots in the first cohort.",
       "eyebrow": "Course",
       "title": "AI Shift Challenge: your first AI automation in 4 weeks"
@@ -401,6 +514,7 @@
     "home": "Home",
     "ia": "AI Course",
     "services": "Services",
+    "skipToContent": "Skip to content",
     "waitlistCta": "Start free",
     "work": "Work"
   },
@@ -411,7 +525,9 @@
     "title": "Subscribe to Andrés's Newsletter"
   },
   "notFound": {
+    "backHome": "Back to home",
     "heading": "Page Not Found",
+    "startCta": "Start Week 0",
     "text": "The page you are looking for does not exist."
   },
   "person": {
@@ -542,7 +658,7 @@
         "value": "6+"
       },
       "lcp": {
-        "label": "LCP reduction at scale",
+        "label": "less load time at scale",
         "value": "-56%"
       },
       "transactions": {

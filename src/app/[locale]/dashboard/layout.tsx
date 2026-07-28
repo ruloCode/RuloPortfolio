@@ -31,11 +31,13 @@ export default async function DashboardLayout({ children, params: { locale } }: 
     <DashboardShell
       locale={locale}
       user={{ name: profile.fullName || email.split("@")[0] || "", email }}
+      isAdmin={profile.role === "admin"}
       nav={{
         overview: t("overview"),
         semana0: t("semana0"),
         cohorte: t("cohorte"),
         comingSoon: t("comingSoon"),
+        admin: t("admin"),
         backToSite: t("backToSite"),
         signOut: t("signOut"),
         menu: t("menu"),

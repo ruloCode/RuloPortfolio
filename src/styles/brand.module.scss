@@ -143,14 +143,15 @@ $signature: linear-gradient(
   }
 }
 
-// Waitlist CTA button. Uses the fixed 600-stops so white text keeps AA
-// contrast in light mode too (the theme-aware stops get too light there).
+// Waitlist CTA button. Uses the fixed 500-stops: white text needs >=4.5:1 in
+// BOTH themes, and the 600 stops measure ~3.0:1 (emerald-600 #08A97C and
+// cyan-600 #049EE2 vs white); the 500s land at ~4.7:1.
 .signatureCta {
   border: none;
   background: linear-gradient(
     100deg,
-    var(--function-brand-600),
-    var(--function-accent-600)
+    var(--function-brand-500),
+    var(--function-accent-500)
   ) !important;
   color: var(--static-white) !important;
 

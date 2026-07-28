@@ -160,7 +160,8 @@
       "comingSoon": "Pronto",
       "backToSite": "Volver al sitio",
       "signOut": "Cerrar sesión",
-      "menu": "Menú"
+      "menu": "Menú",
+      "admin": "Estudiantes"
     },
     "oneOnOne": {
       "eyebrow": "TU SESIÓN 1-1",
@@ -172,6 +173,115 @@
     "progress": {
       "label": "Progreso de Semana 0",
       "summary": "{completed} de {total} lecciones completadas"
+    },
+    "admin": {
+      "meta": {
+        "title": "Estudiantes — AI Shift Challenge",
+        "description": "Seguimiento de la Semana 0."
+      },
+      "title": "Estudiantes",
+      "subtitle": "Quién entró, quién avanza y quién se quedó quieto. Los datos son de la Semana 0.",
+      "stats": {
+        "students": {
+          "label": "Estudiantes",
+          "hint": "Cuentas activadas con acceso a la Semana 0."
+        },
+        "completion": {
+          "label": "Avance promedio",
+          "hint": "Media de lecciones completadas por estudiante."
+        },
+        "pending": {
+          "label": "Sin activar",
+          "hint": "En la lista de espera, todavía sin crear cuenta."
+        },
+        "openActions": {
+          "label": "Accionables abiertos",
+          "hint": "Compromisos de las sesiones 1-1 todavía sin cerrar."
+        }
+      },
+      "search": {
+        "label": "Buscar por nombre o email"
+      },
+      "filters": {
+        "all": "Todos",
+        "not_started": "Sin empezar",
+        "in_progress": "En curso",
+        "completed": "Terminaron"
+      },
+      "columns": {
+        "student": "Estudiante",
+        "status": "Estado",
+        "progress": "Avance",
+        "lastActivity": "Última lección",
+        "joined": "Se unió",
+        "openActions": "Pendientes"
+      },
+      "status": {
+        "not_started": "Sin empezar",
+        "in_progress": "En curso",
+        "completed": "Terminó"
+      },
+      "count": "Mostrando {shown} de {total} estudiantes",
+      "noResults": "Ningún estudiante coincide con esa búsqueda.",
+      "neverActive": "Nunca",
+      "empty": {
+        "title": "Todavía no hay estudiantes",
+        "description": "Aparecerán acá en cuanto alguien de la lista de espera cree su cuenta."
+      },
+      "detail": {
+        "meta": "Seguimiento del estudiante",
+        "back": "Volver a estudiantes",
+        "progress": "Avance de Semana 0",
+        "lessons": "Lección por lección",
+        "joined": "Se unió el {date}",
+        "completedOn": "Completada el {date}",
+        "pending": "Todavía sin completar",
+        "noAccount": "Sin cuenta",
+        "noAccountTitle": "Todavía no ha activado su cuenta",
+        "noAccountDescription": "Está en la lista de espera y le llegó el email, pero no ha abierto el magic link. Puedes registrarle sesiones igual — las notas se quedan pegadas a su email y aparecen cuando entre."
+      },
+      "pending": {
+        "title": "Se registraron pero no entraron",
+        "description": "Están en la lista de espera y recibieron el email, pero todavía no abrieron su cuenta. Un empujón por email suele bastar.",
+        "welcomeSent": "Email enviado",
+        "welcomeMissing": "Sin email de bienvenida",
+        "nudge": "Escribirle",
+        "nudgeSubject": "Tu acceso a la Semana 0"
+      },
+      "openActions": "{count} pendiente{count, plural, one {} other {s}}",
+      "sessions": {
+        "title": "Sesiones 1-1",
+        "empty": "Todavía no hay sesiones registradas. La primera es el diagnóstico.",
+        "readError": "No pude cargar las sesiones. Suele ser pasajero.",
+        "number": "Sesión {number}",
+        "openCount": "{count} pendiente{count, plural, one {} other {s}}",
+        "actions": "Accionables",
+        "ownerCoach": "Yo",
+        "ownerStudent": "Ella/él",
+        "toggleError": "No pude guardar. Intenta de nuevo.",
+        "form": {
+          "open": "Registrar sesión",
+          "date": "Fecha",
+          "title": "Título",
+          "summary": "Resumen",
+          "summaryHint": "Texto plano. Una línea en blanco separa párrafos; las líneas que empiezan con «- » salen como viñetas.",
+          "coachActions": "Queda de mi lado",
+          "studentActions": "Queda de su lado",
+          "onePerLine": "Uno por línea",
+          "save": "Guardar sesión",
+          "saving": "Guardando…",
+          "cancel": "Cancelar",
+          "saved": "Sesión guardada",
+          "error": "No pude guardar la sesión.",
+          "invalid": "Revisa la fecha y el título.",
+          "privacy": "Solo tú ves esto. El estudiante no.",
+          "statusHeld": "Ya ocurrió",
+          "statusPlanned": "Es un plan"
+        },
+        "planned": "Próxima sesión",
+        "prepCount": "{count} por preparar",
+        "prep": "Preparación"
+      }
     }
   },
   "footer": {
@@ -197,7 +307,9 @@
       "title": "Empieza hoy. La cohorte llega después."
     },
     "headline": "Más de 6 años construyendo software. Hoy enseño a profesionales a <fx>dominar la IA</fx>.",
-    "heroAlt": "Un experto en IA trabaja de noche frente a varias pantallas que bañan su escritorio en luz esmeralda",
+    "heroAlt": "Estación de trabajo nocturna bañada en luz esmeralda, con varias pantallas mostrando flujos de trabajo de IA",
+    "heroBadge": "Semana 0 abierta — empiezas hoy, gratis",
+    "heroCaption": "Flujos con IA corriendo en producción",
     "label": "Inicio",
     "pillars": {
       "items": {
@@ -221,10 +333,11 @@
     },
     "proofCta": "Ver todos los proyectos",
     "proofHeading": "La prueba: casos reales",
+    "stackLabel": "Con lo que construyo todos los días",
     "story": {
       "cta": "Conóceme más",
       "eyebrow": "Trayectoria",
-      "imageAlt": "Ingeniero revisando paneles de sistemas en producción en un espacio oscuro iluminado por luz esmeralda",
+      "imageAlt": "Paneles de sistemas en producción brillando en verde esmeralda en una sala oscura",
       "p1": "Lideré el frontend de la farmacia digital de mayor crecimiento en México: una plataforma que procesa más de $2M al mes para 50.000 pacientes, con 99.9% de uptime. Ingeniería real, en producción, durante más de 6 años.",
       "p2": "Esa base es la diferencia cuando hablo de IA: no vendo demos ni humo — llevo flujos a producción y enseño con la empatía de quien sabe lo que cuesta mantenerse al día. Por eso mi programa funciona para gente no técnica.",
       "title": "Más de 6 años llevando software a producción. Ahora, IA."
@@ -340,7 +453,7 @@
       "bannerAlt": "Interfaces y flujos de IA aplicados al trabajo diario de un profesional"
     },
     "teaser": {
-      "cta": "Empezar mi Semana 0",
+      "cta": "Ver el programa completo",
       "description": "4 sesiones privadas conmigo, sin código y sobre tu trabajo real. Entras hoy con la Semana 0 gratis — solo 6 cupos en la primera cohorte.",
       "eyebrow": "Curso",
       "title": "AI Shift Challenge: tu primera automatización con IA en 4 semanas"
@@ -401,6 +514,7 @@
     "home": "Inicio",
     "ia": "Curso de IA",
     "services": "Servicios",
+    "skipToContent": "Saltar al contenido",
     "waitlistCta": "Empezar gratis",
     "work": "Proyectos"
   },
@@ -411,7 +525,9 @@
     "title": "Suscríbete al newsletter de Andrés"
   },
   "notFound": {
+    "backHome": "Volver al inicio",
     "heading": "Página no encontrada",
+    "startCta": "Empezar la Semana 0",
     "text": "La página que buscas no existe."
   },
   "person": {
@@ -542,7 +658,7 @@
         "value": "6+"
       },
       "lcp": {
-        "label": "reducción de LCP a escala",
+        "label": "menos tiempo de carga a escala",
         "value": "-56%"
       },
       "transactions": {

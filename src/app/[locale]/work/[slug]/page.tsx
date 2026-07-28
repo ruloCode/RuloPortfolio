@@ -12,7 +12,7 @@ import {
 } from "@/once-ui/components";
 import { TeamAvatars } from "@/components/TeamAvatars";
 import { CtaBanner } from "@/components";
-import { baseURL, scheduling } from "@/app/resources";
+import { baseURL, routes, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
@@ -37,6 +37,8 @@ export async function generateStaticParams(): Promise<{ locale: string; slug: st
 }
 
 export function generateMetadata({ params: { locale, slug } }: WorkParams) {
+  // While the section is disabled, detail pages must not leak their metadata.
+  if (!routes["/work"]) return {};
   let post = getPost(WORK_PATH, locale, slug);
 
   if (!post) {
@@ -126,6 +128,7 @@ export function generateMetadata({ params: { locale, slug } }: WorkParams) {
 }
 
 export default async function Project({ params }: WorkParams) {
+  if (!routes["/work"]) notFound();
   unstable_setRequestLocale(params.locale);
 
   const t = await getTranslations();

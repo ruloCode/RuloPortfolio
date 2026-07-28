@@ -1,0 +1,87 @@
+// Decorative ambient light field that sits behind a section's content.
+// Emerald (brand) only: cyan stays reserved for the signature gradient
+// documented in src/styles/brand.module.scss.
+//
+// The field fills its parent exactly (`inset: 0`) and every gradient reaches
+// `transparent` before the edges, so nothing bleeds out of the content column
+// and no seam shows where the parent clips. Animates transform only, and the
+// global `prefers-reduced-motion` reset in once-ui/styles/global.scss collapses
+// the drift to its first frame.
+
+.aura {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+// Vertical placement is in px, not %, on purpose: the hero variant's parent spans
+// the statement, the showcase, the proof band and the stack strip (~2200px), so
+// percentage stops would smear the light across the whole first screen. Fixed
+// offsets keep it where the headline actually is.
+.hero {
+  background:
+    radial-gradient(30% 340px at 26% 260px, var(--brand-alpha-medium), transparent 72%),
+    radial-gradient(34% 300px at 74% 140px, var(--brand-alpha-weak), transparent 74%),
+    radial-gradient(46% 260px at 48% 40px, var(--brand-alpha-weak), transparent 70%);
+  // Gone before the CTA row, so the light belongs to the headline only.
+  mask-image: linear-gradient(180deg, #000 0px, #000 400px, transparent 780px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0px, #000 400px, transparent 780px);
+}
+
+.section {
+  background:
+    radial-gradient(32% 38% at 78% 22%, var(--brand-alpha-medium), transparent 74%),
+    radial-gradient(34% 38% at 24% 6%, var(--brand-alpha-weak), transparent 72%);
+}
+
+// Intensity is theme-dependent, not token-dependent. Two reasons light mode gets
+// a fraction of dark's: the same 30% emerald that reads as light on a near-black
+// page reads as fog on a white one, and the site-wide <Background> (config
+// `effects.gradient`) already lays a cursor-following brand wash over the page,
+// which is far more visible in light mode. This field only has to add the local
+// lift behind the headline that the moving wash cannot.
+:global([data-theme="dark"]) {
+  .hero {
+    opacity: 0.9;
+  }
+
+  .section {
+    opacity: 0.8;
+  }
+}
+
+:global([data-theme="light"]) {
+  .hero {
+    opacity: 0.2;
+  }
+
+  .section {
+    opacity: 0.24;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(1.5%, -2%, 0) scale(1.06);
+  }
+}
+
+// On a phone the headline wraps to more lines, so the light has further to
+// travel; the drift reads as restlessness at this size and is dropped.
+@media (max-width: 768px) {
+  .aura {
+    animation: none;
+  }
+
+  .hero {
+    mask-image: linear-gradient(180deg, #000 0px, #000 460px, transparent 860px);
+    -webkit-mask-image: linear-gradient(180deg, #000 0px, #000 460px, transparent 860px);
+  }
+}

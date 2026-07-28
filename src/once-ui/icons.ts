@@ -23,6 +23,8 @@ import {
   HiArrowRight,
   HiOutlineEye,
   HiOutlineEyeSlash,
+  HiMagnifyingGlass,
+  HiPlus,
 } from "react-icons/hi2";
 
 import {
@@ -78,6 +80,8 @@ export const iconLibrary: Record<string, IconType> = {
   discord: FaDiscord,
   eye: HiOutlineEye,
   eyeOff: HiOutlineEyeSlash,
+  search: HiMagnifyingGlass,
+  plus: HiPlus,
   github: FaGithub,
   youtube: FaYoutube,
   linkedin: FaLinkedin,

@@ -39,7 +39,11 @@ export default async function sitemap() {
         })),
       );
 
-  const activeRoutes = Object.keys(routesConfig).filter((route) => routesConfig[route]);
+  // Utility routes (auth, gated platform) are live but have no business in search results.
+  const UNLISTED = new Set(["/dashboard", "/login"]);
+  const activeRoutes = Object.keys(routesConfig).filter(
+    (route) => routesConfig[route] && !UNLISTED.has(route),
+  );
 
   const routes = routing.locales.flatMap((locale) =>
     activeRoutes.map((route) => ({

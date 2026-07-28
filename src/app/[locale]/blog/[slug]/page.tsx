@@ -10,7 +10,7 @@ import {
   Row,
   Text,
 } from "@/once-ui/components";
-import { baseURL, scheduling } from "@/app/resources";
+import { baseURL, routes, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { CtaBanner } from "@/components";
 import { formatDate } from "@/app/utils/formatDate";
@@ -38,6 +38,8 @@ export async function generateStaticParams(): Promise<{ locale: string; slug: st
 }
 
 export function generateMetadata({ params: { locale, slug } }: BlogParams) {
+  // While the section is disabled, detail pages must not leak their metadata.
+  if (!routes["/blog"]) return {};
   let post = getPost(BLOG_PATH, locale, slug);
 
   if (!post) {
@@ -126,6 +128,7 @@ export function generateMetadata({ params: { locale, slug } }: BlogParams) {
 }
 
 export default async function Blog({ params }: BlogParams) {
+  if (!routes["/blog"]) notFound();
   unstable_setRequestLocale(params.locale);
 
   const t = await getTranslations();

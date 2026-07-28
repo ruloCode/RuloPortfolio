@@ -1,5 +1,6 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
+import "@/styles/skip-link.scss";
 
 import classNames from "classnames";
 import { notFound } from "next/navigation";
@@ -39,10 +40,10 @@ export async function generateMetadata({ params: { locale } }: LayoutParams) {
     title: home.title,
     description: home.description,
     openGraph: {
-      title: `${person.firstName}'s Portfolio`,
-      description: "Portfolio website showcasing my work.",
+      title: `${person.name} — ${person.role}`,
+      description: home.description,
       url: `https://${baseURL}`,
-      siteName: `${person.firstName}'s Portfolio`,
+      siteName: person.name,
       locale: locale === "es" ? "es_CO" : "en_US",
       type: "website",
     },
@@ -99,6 +100,7 @@ export default async function RootLayout({ children, params: { locale } }: RootL
   unstable_setRequestLocale(locale);
 
   const messages = await getMessages();
+  const tNav = await getTranslations({ locale, namespace: "nav" });
 
   return (
     <Flex
@@ -129,9 +131,16 @@ export default async function RootLayout({ children, params: { locale } }: RootL
             __html: `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`,
           }}
         />
+        {/* RevealFx hides content until its JS runs; without JS, un-hide everything. */}
+        <noscript>
+          <style>{`[class*="revealFx"]{mask-image:none !important;filter:none !important;transform:none !important;opacity:1 !important}`}</style>
+        </noscript>
       </head>
       <ToastProvider>
         <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
+          <a href="#main-content" className="skip-link">
+            {tNav("skipToContent")}
+          </a>
           <NextIntlClientProvider messages={messages}>
             <SiteShell
               header={<Header />}

@@ -1,0 +1,9 @@
+// Home-page layout only. The visual signature lives in
+// src/styles/brand.module.scss and the ambient light in AuroraBackdrop.
+
+// Clips the aurora's drift horizontally so the transform can never widen the
+// page. `clip` (not `hidden`) keeps the vertical axis visible, so the RevealFx
+// entrance animations inside are not cut off.
+.heroRegion {
+  overflow-x: clip;
+}

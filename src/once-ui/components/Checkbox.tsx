@@ -29,7 +29,12 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
     ref,
   ) => {
     const [isChecked, setIsChecked] = useState(controlledIsChecked || false);
-    const [checkboxId] = useState(generateId());
+    // Honour a caller-supplied id, and only fall back to a random one. Under
+    // SSR the fallback runs twice with different results, so the server's
+    // aria-labelledby never matches the client's and React logs a hydration
+    // mismatch — pass `id` for any checkbox rendered on the server.
+    // The lazy initialiser also stops generateId() from running every render.
+    const [checkboxId] = useState(() => props.id ?? generateId());
 
     useEffect(() => {
       if (controlledIsChecked !== undefined) {
