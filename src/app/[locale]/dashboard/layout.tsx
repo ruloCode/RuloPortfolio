@@ -32,11 +32,15 @@ export default async function DashboardLayout({ children, params: { locale } }: 
       locale={locale}
       user={{ name: profile.fullName || email.split("@")[0] || "", email }}
       isAdmin={profile.role === "admin"}
+      isEntitled={profile.role !== "waitlist"}
       nav={{
         overview: t("overview"),
         semana0: t("semana0"),
         cohorte: t("cohorte"),
         comingSoon: t("comingSoon"),
+        inProgress: t("inProgress"),
+        // The seat, not the permission: a student never reads the word "rol".
+        roleLabel: profile.role === "admin" ? t("roleCoach") : t("roleStudent"),
         admin: t("admin"),
         backToSite: t("backToSite"),
         signOut: t("signOut"),

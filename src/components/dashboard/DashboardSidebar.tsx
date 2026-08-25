@@ -21,6 +21,9 @@ export type NavCopy = {
   semana0: string;
   cohorte: string;
   comingSoon: string;
+  inProgress: string;
+  /** Which seat the viewer is in — coach or student. */
+  roleLabel: string;
   admin: string;
   backToSite: string;
   signOut: string;
@@ -34,6 +37,10 @@ type Props = {
   /** Hides the admin entry for everyone else. Cosmetic only — the route itself
    *  is gated server-side and by RLS, so a hand-typed URL still gets nothing. */
   isAdmin: boolean;
+  /** Anyone past the waitlist. The cohort entry stops being a padlock for
+   *  them — it is not clickable yet either way, but telling someone who paid
+   *  that the thing she paid for is "locked" is a different sentence. */
+  isEntitled: boolean;
   onSignOut: () => void;
 };
 
@@ -55,11 +62,13 @@ const NavItems = ({
   locale,
   nav,
   isAdmin,
+  isEntitled,
   onNavigate,
 }: {
   locale: string;
   nav: NavCopy;
   isAdmin: boolean;
+  isEntitled: boolean;
   onNavigate?: () => void;
 }) => {
   const pathname = usePathname() ?? "";
@@ -88,11 +97,28 @@ const NavItems = ({
         onClick={onNavigate}
         label={nav.semana0}
       />
-      <Flex fillWidth paddingX="8" paddingY="8" gap="8" vertical="center" style={{ opacity: 0.55 }}>
-        <Text variant="label-default-s" onBackground="neutral-weak" style={{ paddingLeft: "1.5rem" }}>
+      {/* Dimmed while it is still a promise; plain once it is hers. Not a link
+          in either case — no lesson declares `module: cohorte` yet. */}
+      <Flex
+        fillWidth
+        paddingX="8"
+        paddingY="8"
+        gap="8"
+        vertical="center"
+        style={{ opacity: isEntitled ? 1 : 0.55 }}
+      >
+        <Text
+          variant="label-default-s"
+          onBackground={isEntitled ? "neutral-medium" : "neutral-weak"}
+          style={{ paddingLeft: "1.5rem" }}
+        >
           {nav.cohorte}
         </Text>
-        <Tag size="s" variant="neutral" prefixIcon="lock" label={nav.comingSoon} />
+        {isEntitled ? (
+          <Tag size="s" variant="brand" label={nav.inProgress} />
+        ) : (
+          <Tag size="s" variant="neutral" prefixIcon="lock" label={nav.comingSoon} />
+        )}
       </Flex>
       {isAdmin && (
         <>
@@ -112,10 +138,18 @@ const NavItems = ({
   );
 };
 
-const AccountMenu = ({ locale, user, nav, onSignOut }: Props) => (
+/**
+ * Whose seat you are in, said out loud. The coach and his students look at the
+ * same shell, and while testing both accounts side by side the only difference
+ * on screen used to be whether "Estudiantes" was in the nav — too subtle to
+ * catch in a shared-screen moment.
+ */
+const AccountMenu = ({ locale, user, nav, isAdmin, onSignOut }: Props) => (
   <UserMenu
     name={user.name}
     subline={user.email}
+    // User reads the label off tagProps, not off a `tag` prop.
+    tagProps={{ label: nav.roleLabel, variant: isAdmin ? "accent" : "brand" }}
     avatarProps={{ value: user.name.charAt(0).toUpperCase() }}
     dropdown={
       <Column padding="4" gap="2" minWidth={10}>
@@ -139,7 +173,12 @@ export const DashboardRail = (props: Props) => (
   >
     <Wordmark locale={props.locale} />
     <Line background="neutral-alpha-weak" />
-    <NavItems locale={props.locale} nav={props.nav} isAdmin={props.isAdmin} />
+    <NavItems
+      locale={props.locale}
+      nav={props.nav}
+      isAdmin={props.isAdmin}
+      isEntitled={props.isEntitled}
+    />
     <Flex flex={1} />
     <Line background="neutral-alpha-weak" />
     <AccountMenu {...props} />
@@ -185,6 +224,7 @@ export const DashboardTopBar = (props: Props) => {
           locale={props.locale}
           nav={props.nav}
           isAdmin={props.isAdmin}
+          isEntitled={props.isEntitled}
           onNavigate={() => setMenuOpen(false)}
         />
       </Dialog>

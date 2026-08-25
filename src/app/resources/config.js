@@ -23,6 +23,14 @@ const scheduling = {
   link: process.env.NEXT_PUBLIC_CAL_LINK || "https://calendly.com/rulocode/30min",
   // The 1:1 the AI Shift Challenge is built around — booked from the dashboard.
   oneOnOne: "https://calendly.com/rulocode/1-1-with-rulo",
+  // Every live session is scheduled in Bogota time and shown that way to
+  // everyone: a class is one moment, and translating it per visitor would make
+  // the coach and the student read different hours off the same card.
+  timeZone: "America/Bogota",
+  // Colombia has never observed DST, so a fixed offset is not a shortcut here —
+  // it is the whole rule. Used to turn the admin form's wall-clock time into an
+  // absolute instant.
+  utcOffset: "-05:00",
 };
 
 const style = {

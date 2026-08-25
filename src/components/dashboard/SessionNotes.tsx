@@ -2,7 +2,7 @@
 
 import { toggleAction } from "@/app/[locale]/dashboard/admin/actions";
 import type { MentoringSession } from "@/lib/admin/sessions";
-import { Checkbox, Column, Flex, Row, Tag, Text, useToast } from "@/once-ui/components";
+import { Button, Checkbox, Column, Flex, Icon, Row, Tag, Text, useToast } from "@/once-ui/components";
 import { useTranslations } from "next-intl";
 import { useState, useTransition } from "react";
 
@@ -226,6 +226,37 @@ export const SessionNotes = ({
             </Row>
 
             <Text variant="heading-strong-s">{session.title}</Text>
+
+            {/* Everything else on this card is private. This block is not, and
+                saying so here is cheaper than remembering it. */}
+            {planned && (session.meetingUrl || session.prep.length > 0) && (
+              <Column fillWidth gap="8" padding="m" radius="m" border="brand-medium">
+                <Text variant="label-default-s" onBackground="brand-weak">
+                  {t("studentSees")}
+                </Text>
+                {session.prep.map((item) => (
+                  <Row key={item} gap="8" vertical="center">
+                    <Icon name="check" size="xs" onBackground="neutral-weak" />
+                    <Text variant="body-default-s" onBackground="neutral-medium">
+                      {item}
+                    </Text>
+                  </Row>
+                ))}
+                {session.meetingUrl && (
+                  <Flex paddingTop="4">
+                    <Button
+                      href={session.meetingUrl}
+                      variant="tertiary"
+                      size="s"
+                      prefixIcon="team"
+                      suffixIcon="arrowUpRightFromSquare"
+                    >
+                      {t("joinLink")}
+                    </Button>
+                  </Flex>
+                )}
+              </Column>
+            )}
 
             {session.summary.trim().length > 0 && <SummaryText summary={session.summary} />}
 

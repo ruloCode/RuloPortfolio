@@ -123,8 +123,14 @@
       "subtitle": "Semana 0 son tres lecciones cortas que haces antes de que abra la cohorte. Empiezas por la primera — no por la herramienta de moda.",
       "subtitleDone": "Terminaste la Semana 0 y tienes una automatización tuya corriendo. La cohorte es esto mismo sobre tus tres tareas, en vivo."
     },
+    "coachView": {
+      "title": "Estás viendo el panel del estudiante",
+      "description": "Esto es exactamente lo que ve quien está en la cohorte. Tu seguimiento de estudiantes está en otra sección.",
+      "cta": "Ir a Estudiantes"
+    },
     "lesson": {
       "number": "Lección {order}",
+      "classNumber": "Clase {number}",
       "duration": "{minutes} min",
       "markComplete": "Marcar como completada",
       "marked": "Completada",
@@ -150,7 +156,21 @@
         "title": "La cohorte",
         "badge": "Bloqueado",
         "description": "Las cuatro semanas en vivo se abren cuando arranque tu cohorte. Estás en la lista fundadora: entras primero y con precio de lanzamiento.",
-        "cta": "Ver el programa"
+        "cta": "Ver el programa",
+        "active": {
+          "title": "Tu cohorte",
+          "badge": "En curso",
+          "description": "Estás dentro. Estas cuatro semanas son en vivo y lo que construyamos queda funcionando en tus herramientas, no acá: esta página es tu agenda, tu progreso y lo que quedó pendiente entre sesión y sesión."
+        },
+        "buy": {
+          "eyebrow": "ENTRA A LA COHORTE",
+          "title": "Las cuatro semanas en vivo, sobre tus tareas",
+          "description": "La Semana 0 la hiciste por tu cuenta. La cohorte es lo mismo conmigo al lado: cuatro semanas en vivo sobre tus tres tareas reales, tus sesiones 1-1 y el grupo para no perder el ritmo.",
+          "cta": "Suscribirme",
+          "loading": "Abriendo el pago…",
+          "error": "No pude abrir el pago. Intenta de nuevo.",
+          "note": "Suscripción mensual · Cancelas cuando quieras"
+        }
       }
     },
     "nav": {
@@ -161,7 +181,18 @@
       "backToSite": "Volver al sitio",
       "signOut": "Cerrar sesión",
       "menu": "Menú",
-      "admin": "Estudiantes"
+      "admin": "Estudiantes",
+      "inProgress": "En curso",
+      "roleCoach": "Coach",
+      "roleStudent": "Estudiante"
+    },
+    "nextSession": {
+      "eyebrow": "TU PRÓXIMA SESIÓN",
+      "when": "{when} · hora de Colombia",
+      "today": "Es hoy",
+      "prepTitle": "Ten esto abierto cuando entres",
+      "join": "Entrar a la videollamada",
+      "noLink": "Te paso el link por WhatsApp antes de empezar."
     },
     "oneOnOne": {
       "eyebrow": "TU SESIÓN 1-1",
@@ -169,6 +200,12 @@
       "description": "Media hora, tú y yo, sobre tus tareas reales. Traes tu inventario de la lección 1 y salimos con tu primera automatización decidida — no con una lista de herramientas.",
       "cta": "Agendar mi 1-1",
       "note": "Cupos limitados · Sin costo para la lista fundadora"
+    },
+    "payment": {
+      "confirmingTitle": "Estamos confirmando tu pago",
+      "confirmingBody": "Tarda unos segundos. No cierres esta página — se desbloquea sola.",
+      "slowTitle": "Tu pago está tardando en confirmarse",
+      "slowBody": "El cobro ya se hizo; lo que falta es que nos llegue el aviso. Si en unos minutos sigues viendo esto, escríbeme y te lo destrabo a mano."
     },
     "progress": {
       "label": "Progreso de Semana 0",
@@ -274,13 +311,22 @@
           "saved": "Sesión guardada",
           "error": "No pude guardar la sesión.",
           "invalid": "Revisa la fecha y el título.",
-          "privacy": "Solo tú ves esto. El estudiante no.",
+          "privacy": "Solo tú ves esto — menos «Qué traer», la hora y el link, que salen en su panel.",
           "statusHeld": "Ya ocurrió",
-          "statusPlanned": "Es un plan"
+          "statusPlanned": "Es un plan",
+          "startTime": "Hora (Colombia)",
+          "meetingUrl": "Link de la videollamada",
+          "prepNote": "Qué traer",
+          "prepHint": "Uno por línea. Esto SÍ lo ve el estudiante en su panel — es lo único de esta ficha que ve.",
+          "invalidUrl": "El link tiene que empezar con https://",
+          "invalidTime": "La hora va en formato 24h, como 11:15.",
+          "startTimeHint": "24h · ej. 11:15"
         },
         "planned": "Próxima sesión",
         "prepCount": "{count} por preparar",
-        "prep": "Preparación"
+        "prep": "Preparación",
+        "studentSees": "Lo que ve en su panel",
+        "joinLink": "Abrir la videollamada"
       }
     }
   },

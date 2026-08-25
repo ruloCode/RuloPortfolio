@@ -68,11 +68,17 @@ type ProgressRow = { user_id: string; lesson_slug: string; completed_at: string 
 export const getRoster = cache(async (locale: string): Promise<RosterResult> => {
   const supabase = createClient();
 
-  const lessons: LessonRef[] = lessonsForRole(getLessons(locale), "student").map((lesson) => ({
-    slug: lesson.slug,
-    title: lesson.metadata.title,
-    order: lesson.metadata.order ?? 0,
-  }));
+  // Semana 0 only. This roster measures the self-serve work a student does
+  // before the cohort — a live class published as a lesson would drag every
+  // student's percentage down for something that is not homework at all, and
+  // the column is labelled "Avance de Semana 0" in both languages.
+  const lessons: LessonRef[] = lessonsForRole(getLessons(locale), "student")
+    .filter((lesson) => (lesson.metadata.module ?? "semana-0") === "semana-0")
+    .map((lesson) => ({
+      slug: lesson.slug,
+      title: lesson.metadata.title,
+      order: lesson.metadata.order ?? 0,
+    }));
 
   // Three round trips, not one per student: the progress rows arrive as a flat
   // list and get grouped in memory. A per-student query would be an N+1 that

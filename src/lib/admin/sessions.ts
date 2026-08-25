@@ -1,3 +1,4 @@
+import { parsePrep } from "@/lib/sessions";
 import { createClient } from "@/lib/supabase/server";
 
 export type ActionOwner = "coach" | "student";
@@ -19,6 +20,12 @@ export type MentoringSession = {
   /** 'planned' is the agenda for the next class; 'held' is what happened. */
   status: SessionStatus;
   actions: SessionAction[];
+  /** The three fields below are the ones the student sees on her own
+   *  dashboard. They are echoed back here so the coach can check what he
+   *  actually published, instead of typing into a black box. */
+  startsAt: string | null;
+  meetingUrl: string | null;
+  prep: string[];
 };
 
 type ActionRow = {
@@ -83,7 +90,7 @@ export async function getSessions(email: string): Promise<SessionsResult> {
   // plan below every session that already happened.
   const { data: sessions, error } = await supabase
     .from("mentoring_sessions")
-    .select("id, session_date, title, summary, status")
+    .select("id, session_date, title, summary, status, starts_at, meeting_url, prep_note")
     .eq("person_email", email.toLowerCase())
     .order("status", { ascending: false })
     .order("session_date", { ascending: false })
@@ -124,6 +131,9 @@ export async function getSessions(email: string): Promise<SessionsResult> {
       title: session.title,
       summary: session.summary,
       status: (session.status ?? "held") as SessionStatus,
+      startsAt: session.starts_at ?? null,
+      meetingUrl: session.meeting_url ?? null,
+      prep: parsePrep(session.prep_note ?? null),
       actions: (bySession.get(session.id) ?? []).map((action) => ({
         id: action.id,
         owner: action.owner,

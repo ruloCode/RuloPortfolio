@@ -1,7 +1,7 @@
 import { NewSessionForm } from "@/components/dashboard/NewSessionForm";
 import { SessionNotes } from "@/components/dashboard/SessionNotes";
 import { localizeHref } from "@/i18n/routing";
-import { formatDate, formatRelative } from "@/lib/admin/format";
+import { formatDate, formatRelative, formatTime } from "@/lib/admin/format";
 import { getSessions } from "@/lib/admin/sessions";
 import { findPerson, getRoster } from "@/lib/admin/students";
 import {
@@ -76,7 +76,9 @@ export default async function PersonDetailPage({ params: { locale, studentId } }
   const dateLabels = Object.fromEntries(
     (sessionsResult.ok ? sessionsResult.sessions : []).map((session) => [
       session.id,
-      formatDate(session.date, locale),
+      session.startsAt
+        ? `${formatDate(session.date, locale)} · ${formatTime(session.startsAt, locale)}`
+        : formatDate(session.date, locale),
     ]),
   );
   const today = new Date().toISOString().slice(0, 10);

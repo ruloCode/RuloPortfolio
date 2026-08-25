@@ -1,4 +1,4 @@
-import { getLesson, getLessons } from "@/app/[locale]/dashboard/lessons";
+import { getLesson, getLessons, lessonsForRole } from "@/app/[locale]/dashboard/lessons";
 import { MarkCompleteButton } from "@/components/dashboard/MarkCompleteButton";
 import { CustomMDX } from "@/components/mdx";
 import { localizeHref } from "@/i18n/routing";
@@ -43,14 +43,30 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
   const lesson = getLesson(locale, slug);
   if (!lesson) notFound();
 
-  // Fails closed: a lesson without an explicit `waitlist` role is student-only.
-  if (lesson.metadata.requiresRole !== "waitlist" && profile?.role !== "student") notFound();
+  // Fails closed: a lesson without an explicit `waitlist` role is gated, and an
+  // absent profile counts as waitlist. Written as "who is blocked" rather than
+  // "who is allowed" on purpose — the previous form named `student` as the only
+  // role that passes, which locked the coach out of the classes he teaches.
+  const role = profile?.role ?? "waitlist";
+  if (lesson.metadata.requiresRole !== "waitlist" && role === "waitlist") notFound();
 
   const t = await getTranslations({ locale, namespace: "dashboard" });
-  const lessons = getLessons(locale);
+  // Filtered by role, not the raw list: prev/next walk this array, and an
+  // unfiltered one hands someone on the waitlist a "Siguiente" button that
+  // lands on a cohort class and 404s.
+  const lessons = lessonsForRole(getLessons(locale), role);
   const index = lessons.findIndex((item) => item.slug === slug);
   const prev = lessons[index - 1];
   const next = lessons[index + 1];
+
+  // Cohort classes are numbered within their own module: the coach calls this
+  // "Clase 1", and "Lección 4" — its position across everything published —
+  // would be a different thing than what he says out loud in the session.
+  const moduleId = lesson.metadata.module ?? "semana-0";
+  const numberInModule =
+    lessons.filter((item) => (item.metadata.module ?? "semana-0") === moduleId).findIndex(
+      (item) => item.slug === slug,
+    ) + 1;
   const completed = (await getCompletedSlugs()).has(slug);
 
   return (
@@ -70,7 +86,15 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
       </Flex>
 
       <Row gap="12" vertical="center">
-        <Tag size="s" variant="brand" label={t("lesson.number", { order: lesson.metadata.order ?? 0 })} />
+        <Tag
+          size="s"
+          variant="brand"
+          label={
+            moduleId === "cohorte"
+              ? t("lesson.classNumber", { number: numberInModule })
+              : t("lesson.number", { order: lesson.metadata.order ?? 0 })
+          }
+        />
         <Icon name="clock" size="xs" onBackground="neutral-weak" />
         <Text variant="label-default-s" onBackground="neutral-weak">
           {t("lesson.duration", { minutes: lesson.metadata.duration ?? 0 })}

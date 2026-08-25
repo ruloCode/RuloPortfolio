@@ -39,7 +39,14 @@ export const NewSessionForm = ({ email, today }: { email: string; today: string 
       if (!result.ok) {
         addToast({
           variant: "danger",
-          message: result.error === "invalid" ? t("invalid") : t("error"),
+          message:
+            result.error === "invalid"
+              ? t("invalid")
+              : result.error === "invalidTime"
+                ? t("invalidTime")
+                : result.error === "invalidUrl"
+                  ? t("invalidUrl")
+                  : t("error"),
         });
         return;
       }
@@ -82,9 +89,13 @@ export const NewSessionForm = ({ email, today }: { email: string; today: string 
             <SegmentedControl
               selected={status}
               onToggle={(value) => setStatus(value as "planned" | "held")}
+              // type="button" is load-bearing: Once UI renders a bare <button>,
+              // which defaults to type="submit" inside a form — so picking a
+              // segment used to try to save the session and pop the browser's
+              // "please fill in this field" on the empty title.
               buttons={[
-                { value: "held", label: t("statusHeld"), size: "s" },
-                { value: "planned", label: t("statusPlanned"), size: "s" },
+                { value: "held", label: t("statusHeld"), size: "s", type: "button" },
+                { value: "planned", label: t("statusPlanned"), size: "s", type: "button" },
               ]}
             />
           </Flex>
@@ -107,6 +118,49 @@ export const NewSessionForm = ({ email, today }: { email: string; today: string 
             <Input id="session-title" name="title" label={t("title")} required />
           </Flex>
         </Row>
+
+        {/* Grouped and shown only on a plan: these are the only three fields
+            on this form the student will ever read, and the boundary between
+            "my notes" and "her card" has to be visible while typing, not
+            discovered afterwards. Unmounted rather than hidden, so a note about
+            a class that already happened cannot carry a join link. */}
+        {status === "planned" && (
+          <Column fillWidth gap="16" padding="m" radius="m" border="brand-medium">
+            <Row fillWidth gap="12" wrap>
+              <Flex flex={1} minWidth={8}>
+                {/* A text field, not type="time": Once UI floats its label off
+                    the value, so an empty native time input would sit with its
+                    label on top of the browser's own "--:--". The server
+                    validates the format and rejects a typo rather than
+                    silently saving no hour at all. */}
+                <Input
+                  id="session-start-time"
+                  name="startTime"
+                  label={t("startTime")}
+                  description={t("startTimeHint")}
+                  inputMode="numeric"
+                />
+              </Flex>
+              <Flex flex={2} minWidth={14}>
+                {/* No placeholder on purpose: the label only floats once the
+                    field is filled, so placeholder text would render behind it. */}
+                <Input
+                  id="session-meeting-url"
+                  name="meetingUrl"
+                  label={t("meetingUrl")}
+                  type="url"
+                />
+              </Flex>
+            </Row>
+            <Textarea
+              id="session-prep-note"
+              name="prepNote"
+              label={t("prepNote")}
+              description={t("prepHint")}
+              lines={3}
+            />
+          </Column>
+        )}
 
         <Textarea
           id="session-summary"

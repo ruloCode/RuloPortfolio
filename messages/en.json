@@ -123,8 +123,14 @@
       "subtitle": "Week 0 is three short lessons you do before the cohort opens. You start with the first one — not with the tool everyone's talking about.",
       "subtitleDone": "You finished Week 0 and you have an automation of your own running. The cohort is this same thing on your three tasks, live."
     },
+    "coachView": {
+      "title": "You're looking at the student dashboard",
+      "description": "This is exactly what someone in the cohort sees. Your student tracking lives in its own section.",
+      "cta": "Go to Students"
+    },
     "lesson": {
       "number": "Lesson {order}",
+      "classNumber": "Class {number}",
       "duration": "{minutes} min",
       "markComplete": "Mark as completed",
       "marked": "Completed",
@@ -150,7 +156,21 @@
         "title": "The cohort",
         "badge": "Locked",
         "description": "The four live weeks open when your cohort starts. You're on the founding list: you get in first, at launch pricing.",
-        "cta": "See the program"
+        "cta": "See the program",
+        "active": {
+          "title": "Your cohort",
+          "badge": "In progress",
+          "description": "You're in. These four weeks are live, and what we build stays running inside your own tools, not here: this page is your schedule, your progress, and whatever is still open between sessions."
+        },
+        "buy": {
+          "eyebrow": "JOIN THE COHORT",
+          "title": "The four live weeks, on your own tasks",
+          "description": "You did Week 0 on your own. The cohort is that same thing with me next to you: four live weeks on your three real tasks, your 1-1 sessions, and the group so you don't lose the rhythm.",
+          "cta": "Subscribe",
+          "loading": "Opening checkout…",
+          "error": "I couldn't open the checkout. Try again.",
+          "note": "Monthly subscription · Cancel anytime"
+        }
       }
     },
     "nav": {
@@ -161,7 +181,18 @@
       "backToSite": "Back to the site",
       "signOut": "Sign out",
       "menu": "Menu",
-      "admin": "Students"
+      "admin": "Students",
+      "inProgress": "In progress",
+      "roleCoach": "Coach",
+      "roleStudent": "Student"
+    },
+    "nextSession": {
+      "eyebrow": "YOUR NEXT SESSION",
+      "when": "{when} · Bogotá time",
+      "today": "Today",
+      "prepTitle": "Have this open when you join",
+      "join": "Join the video call",
+      "noLink": "I'll send you the link on WhatsApp before we start."
     },
     "oneOnOne": {
       "eyebrow": "YOUR 1-1 SESSION",
@@ -169,6 +200,12 @@
       "description": "Half an hour, you and me, on your real tasks. Bring your inventory from lesson 1 and we leave with your first automation decided — not with a list of tools.",
       "cta": "Book my 1-1",
       "note": "Limited slots · Free for the founding list"
+    },
+    "payment": {
+      "confirmingTitle": "We're confirming your payment",
+      "confirmingBody": "It takes a few seconds. Don't close this page — it unlocks on its own.",
+      "slowTitle": "Your payment is taking a while to confirm",
+      "slowBody": "The charge already went through; what's missing is the notification reaching us. If you still see this in a few minutes, email me and I'll unlock it by hand."
     },
     "progress": {
       "label": "Week 0 progress",
@@ -274,13 +311,22 @@
           "saved": "Session saved",
           "error": "Could not save the session.",
           "invalid": "Check the date and title.",
-          "privacy": "Only you can see this. The student cannot.",
+          "privacy": "Only you see this — except “What to bring”, the time and the link, which show on their dashboard.",
           "statusHeld": "Already happened",
-          "statusPlanned": "It's a plan"
+          "statusPlanned": "It's a plan",
+          "startTime": "Time (Bogotá)",
+          "meetingUrl": "Video call link",
+          "prepNote": "What to bring",
+          "prepHint": "One per line. The student DOES see this on their dashboard — it is the only part of this note they see.",
+          "invalidUrl": "The link must start with https://",
+          "invalidTime": "The time goes in 24h format, like 11:15.",
+          "startTimeHint": "24h · e.g. 11:15"
         },
         "planned": "Next session",
         "prepCount": "{count} to prepare",
-        "prep": "Prep"
+        "prep": "Prep",
+        "studentSees": "What they see on their dashboard",
+        "joinLink": "Open the video call"
       }
     }
   },
