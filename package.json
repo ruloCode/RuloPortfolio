@@ -6,7 +6,9 @@
     "export": "next export",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "video": "npm --prefix video exec -- remotion studio video/src/index.ts",
+    "video:render": "npm --prefix video exec -- remotion render video/src/index.ts CuatroNiveles public/videos/cuatro-niveles.mp4"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.1",
