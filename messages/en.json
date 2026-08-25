@@ -196,7 +196,8 @@
       "today": "Today",
       "prepTitle": "Have this open when you join",
       "join": "Join the video call",
-      "noLink": "I'll send you the link on WhatsApp before we start."
+      "noLink": "I'll send you the link on WhatsApp before we start.",
+      "deck": "View the slides"
     },
     "oneOnOne": {
       "eyebrow": "YOUR 1-1 SESSION",
@@ -324,7 +325,9 @@
           "prepHint": "One per line. The student DOES see this on their dashboard — it is the only part of this note they see.",
           "invalidUrl": "The link must start with https://",
           "invalidTime": "The time goes in 24h format, like 11:15.",
-          "startTimeHint": "24h · e.g. 11:15"
+          "startTimeHint": "24h · e.g. 11:15",
+          "lessonSlug": "Class for this session",
+          "lessonHint": "The lesson slug, to link its deck. Optional."
         },
         "planned": "Next session",
         "prepCount": "{count} to prepare",
@@ -339,7 +342,8 @@
           "done": "You're past the plan. Wrap up."
         },
         "studentSees": "What they see on their dashboard",
-        "joinLink": "Open the video call"
+        "joinLink": "Open the video call",
+        "deckLink": "View slides"
       }
     }
   },

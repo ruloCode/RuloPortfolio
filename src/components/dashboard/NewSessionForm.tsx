@@ -19,7 +19,16 @@ import { useRef, useState, useTransition } from "react";
  * Collapsed by default: the page's job is reading history, and a permanently
  * open five-field form would push that history below the fold.
  */
-export const NewSessionForm = ({ email, today }: { email: string; today: string }) => {
+export const NewSessionForm = ({
+  email,
+  today,
+  lessons,
+}: {
+  email: string;
+  today: string;
+  /** Published classes, for the slug picker. */
+  lessons: { slug: string; title: string }[];
+}) => {
   const t = useTranslations("dashboard.admin.sessions.form");
   const [open, setOpen] = useState(false);
   // Controlled on purpose: Input floats its label off `props.value` alone, so
@@ -159,6 +168,22 @@ export const NewSessionForm = ({ email, today }: { email: string; today: string 
               description={t("prepHint")}
               lines={3}
             />
+            {/* A datalist, not a select: the coach can type a slug that is not
+                published yet, and an unknown one simply renders no button. */}
+            <Input
+              id="session-lesson"
+              name="lessonSlug"
+              label={t("lessonSlug")}
+              description={t("lessonHint")}
+              list="session-lesson-options"
+            />
+            <datalist id="session-lesson-options">
+              {lessons.map((lesson) => (
+                <option key={lesson.slug} value={lesson.slug}>
+                  {lesson.title}
+                </option>
+              ))}
+            </datalist>
           </Column>
         )}
 

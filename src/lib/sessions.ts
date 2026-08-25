@@ -10,6 +10,8 @@ export type UpcomingSession = {
   meetingUrl: string | null;
   /** "Have this open when you join", one line per item. */
   prep: string[];
+  /** The class this session teaches, if it has one published. */
+  lessonSlug: string | null;
 };
 
 type Row = {
@@ -18,6 +20,7 @@ type Row = {
   starts_at: string | null;
   meeting_url: string | null;
   prep_note: string | null;
+  lesson_slug: string | null;
 };
 
 /** One item per non-empty line, capped: this renders on the student's home
@@ -62,5 +65,6 @@ export const getUpcomingSession = cache(async (): Promise<UpcomingSession | null
     // href — the check is a constraint, not a convention.
     meetingUrl: data.meeting_url,
     prep: parsePrep(data.prep_note),
+    lessonSlug: data.lesson_slug,
   };
 });

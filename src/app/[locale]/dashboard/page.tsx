@@ -139,6 +139,11 @@ export default async function DashboardPage({ params: { locale } }: PageParams) 
           <NextSessionCard
             title={upcoming.title}
             meetingUrl={upcoming.meetingUrl}
+            deckHref={
+              upcoming.lessonSlug
+                ? localizeHref(locale, `/dashboard/${upcoming.lessonSlug}/presentacion`)
+                : null
+            }
             prep={upcoming.prep}
             labels={{
               eyebrow: t("nextSession.eyebrow"),
@@ -147,6 +152,7 @@ export default async function DashboardPage({ params: { locale } }: PageParams) 
               noLink: t("nextSession.noLink"),
               prepTitle: t("nextSession.prepTitle"),
               today: isToday ? t("nextSession.today") : undefined,
+              deck: t("nextSession.deck"),
             }}
           />
         </RevealFx>

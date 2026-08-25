@@ -8,6 +8,7 @@ type Labels = {
   noLink: string;
   prepTitle: string;
   today?: string;
+  deck: string;
 };
 
 /**
@@ -19,11 +20,14 @@ type Labels = {
 export const NextSessionCard = ({
   title,
   meetingUrl,
+  deckHref,
   prep,
   labels,
 }: {
   title: string;
   meetingUrl: string | null;
+  /** The class deck, when the session names a lesson. */
+  deckHref: string | null;
   prep: string[];
   labels: Labels;
 }) => (
@@ -89,6 +93,11 @@ export const NextSessionCard = ({
         <Text variant="label-default-s" onBackground="neutral-weak">
           {labels.noLink}
         </Text>
+      )}
+      {deckHref && (
+        <Button href={deckHref} size="m" variant="secondary" prefixIcon="gallery" arrowIcon>
+          {labels.deck}
+        </Button>
       )}
     </Flex>
   </Column>

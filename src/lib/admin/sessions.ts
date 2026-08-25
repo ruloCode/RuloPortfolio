@@ -26,6 +26,8 @@ export type MentoringSession = {
   startsAt: string | null;
   meetingUrl: string | null;
   prep: string[];
+  /** The class this session teaches — the deck hangs off it. */
+  lessonSlug: string | null;
 };
 
 type ActionRow = {
@@ -90,7 +92,9 @@ export async function getSessions(email: string): Promise<SessionsResult> {
   // plan below every session that already happened.
   const { data: sessions, error } = await supabase
     .from("mentoring_sessions")
-    .select("id, session_date, title, summary, status, starts_at, meeting_url, prep_note")
+    .select(
+      "id, session_date, title, summary, status, starts_at, meeting_url, prep_note, lesson_slug",
+    )
     .eq("person_email", email.toLowerCase())
     .order("status", { ascending: false })
     .order("session_date", { ascending: false })
@@ -134,6 +138,7 @@ export async function getSessions(email: string): Promise<SessionsResult> {
       startsAt: session.starts_at ?? null,
       meetingUrl: session.meeting_url ?? null,
       prep: parsePrep(session.prep_note ?? null),
+      lessonSlug: session.lesson_slug ?? null,
       actions: (bySession.get(session.id) ?? []).map((action) => ({
         id: action.id,
         owner: action.owner,

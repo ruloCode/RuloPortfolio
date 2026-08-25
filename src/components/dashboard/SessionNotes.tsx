@@ -247,7 +247,7 @@ export const SessionNotes = ({
 
             {/* Everything else on this card is private. This block is not, and
                 saying so here is cheaper than remembering it. */}
-            {planned && (session.meetingUrl || session.prep.length > 0) && (
+            {planned && (session.meetingUrl || session.prep.length > 0 || session.lessonSlug) && (
               <Column fillWidth gap="8" padding="m" radius="m" border="brand-medium">
                 <Text variant="label-default-s" onBackground="brand-weak">
                   {t("studentSees")}
@@ -260,8 +260,8 @@ export const SessionNotes = ({
                     </Text>
                   </Row>
                 ))}
-                {session.meetingUrl && (
-                  <Flex paddingTop="4">
+                <Flex gap="8" paddingTop="4" wrap>
+                  {session.meetingUrl && (
                     <Button
                       href={session.meetingUrl}
                       variant="tertiary"
@@ -271,8 +271,19 @@ export const SessionNotes = ({
                     >
                       {t("joinLink")}
                     </Button>
-                  </Flex>
-                )}
+                  )}
+                  {session.lessonSlug && (
+                    <Button
+                      href={`/dashboard/${session.lessonSlug}/presentacion`}
+                      variant="secondary"
+                      size="s"
+                      prefixIcon="gallery"
+                      arrowIcon
+                    >
+                      {t("deckLink")}
+                    </Button>
+                  )}
+                </Flex>
               </Column>
             )}
 

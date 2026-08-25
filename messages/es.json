@@ -196,7 +196,8 @@
       "today": "Es hoy",
       "prepTitle": "Ten esto abierto cuando entres",
       "join": "Entrar a la videollamada",
-      "noLink": "Te paso el link por WhatsApp antes de empezar."
+      "noLink": "Te paso el link por WhatsApp antes de empezar.",
+      "deck": "Ver la presentación"
     },
     "oneOnOne": {
       "eyebrow": "TU SESIÓN 1-1",
@@ -324,7 +325,9 @@
           "prepHint": "Uno por línea. Esto SÍ lo ve el estudiante en su panel — es lo único de esta ficha que ve.",
           "invalidUrl": "El link tiene que empezar con https://",
           "invalidTime": "La hora va en formato 24h, como 11:15.",
-          "startTimeHint": "24h · ej. 11:15"
+          "startTimeHint": "24h · ej. 11:15",
+          "lessonSlug": "Clase de esta sesión",
+          "lessonHint": "El slug de la clase, para enlazar su presentación. Opcional."
         },
         "planned": "Próxima sesión",
         "prepCount": "{count} por preparar",
@@ -339,7 +342,8 @@
           "done": "Se acabó el tiempo del plan. Cierra."
         },
         "studentSees": "Lo que ve en su panel",
-        "joinLink": "Abrir la videollamada"
+        "joinLink": "Abrir la videollamada",
+        "deckLink": "Ver presentación"
       }
     }
   },

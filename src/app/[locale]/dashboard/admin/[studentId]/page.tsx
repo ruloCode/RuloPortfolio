@@ -1,3 +1,4 @@
+import { getLessons } from "@/app/[locale]/dashboard/lessons";
 import { NewSessionForm } from "@/components/dashboard/NewSessionForm";
 import { SessionNotes } from "@/components/dashboard/SessionNotes";
 import { localizeHref } from "@/i18n/routing";
@@ -82,6 +83,11 @@ export default async function PersonDetailPage({ params: { locale, studentId } }
     ]),
   );
   const today = new Date().toISOString().slice(0, 10);
+  // Every class the coach could attach a session to, deck or not.
+  const lessonOptions = getLessons(locale).map((lesson) => ({
+    slug: lesson.slug,
+    title: lesson.metadata.title,
+  }));
 
   return (
     <Column gap="20" fillWidth>
@@ -211,7 +217,7 @@ export default async function PersonDetailPage({ params: { locale, studentId } }
         <Row fillWidth gap="12" vertical="center" wrap>
           <Heading variant="heading-strong-m">{t("admin.sessions.title")}</Heading>
           <Flex flex={1} />
-          <NewSessionForm email={person.email} today={today} />
+          <NewSessionForm email={person.email} today={today} lessons={lessonOptions} />
         </Row>
 
         {!sessionsResult.ok ? (

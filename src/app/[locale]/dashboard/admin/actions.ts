@@ -59,6 +59,13 @@ export async function createSession(formData: FormData): Promise<Result> {
         .trim()
         .slice(0, 2_000)
     : "";
+  // Slug shape only — the app resolves it, and an unknown one renders no
+  // button rather than an error.
+  const lessonSlug = String(formData.get("lessonSlug") ?? "")
+    .trim()
+    .toLowerCase()
+    .slice(0, 120)
+    .replace(/[^a-z0-9-]/g, "");
 
   // The DB check constraint would reject these anyway; failing here turns a
   // 500 into a message the form can show.
@@ -99,6 +106,7 @@ export async function createSession(formData: FormData): Promise<Result> {
       // would render as a blank line on her card; null is the honest "unset".
       meeting_url: meetingUrl || null,
       prep_note: prepNote || null,
+      lesson_slug: lessonSlug || null,
     })
     .select("id")
     .single();
