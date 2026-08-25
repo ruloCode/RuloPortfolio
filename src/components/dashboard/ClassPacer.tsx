@@ -133,7 +133,9 @@ export const ClassPacer = ({ blocks, labels }: { blocks: PacerBlock[]; labels: L
         </Flex>
       </Row>
 
-      {/* The whole session as one line: where the clock is against the plan. */}
+      {/* The whole session as one line: where the clock is against the plan.
+          Scaled, not widened: this ticks every second for an hour, and
+          animating width would re-run layout on each one. */}
       <Flex
         fillWidth
         radius="full"
@@ -142,8 +144,13 @@ export const ClassPacer = ({ blocks, labels }: { blocks: PacerBlock[]; labels: L
         style={{ height: "4px" }}
       >
         <Flex
+          fillWidth
           className={brand.progressFill}
-          style={{ width: `${elapsedRatio}%`, transition: "width 1s linear" }}
+          style={{
+            transform: `scaleX(${elapsedRatio / 100})`,
+            transformOrigin: "left",
+            transition: "transform 1s linear",
+          }}
         />
       </Flex>
 
