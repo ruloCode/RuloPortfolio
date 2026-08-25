@@ -74,6 +74,10 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
   // The class outline, read off the source rather than the rendered output:
   // this is a server component, so there is no DOM to query, and the "## "
   // lines are the same headings MDX turns into anchors.
+  // Only classes with an authored deck get the button — see the presentacion
+  // route, where DECKS is keyed by slug.
+  const hasDeck = slug === "clase-1-tu-copiloto";
+
   const sections: OutlineSection[] = lesson.content
     .split("\n")
     .filter((line) => line.startsWith("## "))
@@ -132,6 +136,20 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
           priority
           border="neutral-alpha-weak"
         />
+      )}
+
+      {hasDeck && (
+        <Flex>
+          <Button
+            href={localizeHref(locale, `/dashboard/${slug}/presentacion`)}
+            variant="secondary"
+            size="s"
+            prefixIcon="gallery"
+            arrowIcon
+          >
+            {t("lesson.present")}
+          </Button>
+        </Flex>
       )}
 
       {sections.length > 2 && (

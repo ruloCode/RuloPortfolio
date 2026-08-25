@@ -133,6 +133,7 @@
       "classNumber": "Class {number}",
       "duration": "{minutes} min",
       "outline": "In this class · {count} sections",
+      "present": "Open the slides",
       "markComplete": "Mark as completed",
       "marked": "Completed",
       "toastComplete": "Lesson completed",

@@ -1,0 +1,321 @@
+// Deck styles for the live class presentation.
+//
+// Full-bleed on purpose: it covers the rail rather than living inside it. A
+// presentation with navigation chrome around it reads as a web page being
+// shown, not as a deck being presented.
+//
+// Every animation moves transform or opacity only, so nothing here can cause
+// layout work mid-sentence, and the global prefers-reduced-motion reset in
+// once-ui/styles/global.scss neutralizes all of it for anyone who asked.
+
+.deck {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--brand-alpha-weak), transparent 60%),
+    var(--page-background);
+  overflow: hidden;
+}
+
+// The stage holds one slide at a time, centred, with a measure that keeps
+// titles readable on a 27" monitor shared over video.
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--static-space-24);
+  padding: clamp(2rem, 6vw, 6rem);
+  max-width: 68rem;
+  width: 100%;
+  margin-inline: auto;
+  min-height: 0;
+}
+
+// ——— Entrance ———
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wipe {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+// Children animate in sequence. The stagger is what makes a slide feel
+// authored instead of pasted: the eye lands on the title before the support
+// text exists.
+.stage > * {
+  animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.stage > *:nth-child(1) { animation-delay: 0.04s; }
+.stage > *:nth-child(2) { animation-delay: 0.14s; }
+.stage > *:nth-child(3) { animation-delay: 0.24s; }
+.stage > *:nth-child(4) { animation-delay: 0.34s; }
+.stage > *:nth-child(5) { animation-delay: 0.44s; }
+
+// ——— Type ———
+
+.eyebrow {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-on-background-weak);
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  color: var(--neutral-on-background-strong);
+  text-wrap: balance;
+}
+
+.support {
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--neutral-on-background-medium);
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.footnote {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  color: var(--neutral-on-background-weak);
+}
+
+// A line of hers, set as the whole slide. No quotation styling beyond the
+// marks — the words are doing the work.
+.quote {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--neutral-on-background-strong);
+  text-wrap: balance;
+}
+
+// The one sentence per deck that earns the gradient.
+.headline {
+  background: linear-gradient(
+    100deg,
+    var(--brand-on-background-strong),
+    var(--accent-on-background-weak)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+// ——— The ladder ———
+
+.levels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-12);
+}
+
+.level {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-16);
+  padding: var(--static-space-16) var(--static-space-20);
+  border-radius: var(--radius-l);
+  border: 1px solid var(--neutral-alpha-weak);
+  background: var(--surface-background);
+  box-shadow: var(--shadow-s);
+  // Each rung sits a little further in than the one below it, so the shape of
+  // the list says "ladder" before anyone reads a word.
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.levelActive {
+  border-color: var(--brand-border-strong);
+  box-shadow:
+    var(--shadow-m),
+    0 0 0 1px var(--brand-alpha-medium);
+}
+
+.levelIndex {
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--brand-on-background-weak);
+  min-width: 2ch;
+}
+
+.levelName {
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  color: var(--neutral-on-background-strong);
+}
+
+.levelHere {
+  margin-left: auto;
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-on-background-weak);
+  white-space: nowrap;
+}
+
+// ——— Numbered deliverables ———
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-20);
+}
+
+.item {
+  display: flex;
+  gap: var(--static-space-20);
+  align-items: flex-start;
+}
+
+.itemIndex {
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(
+    100deg,
+    var(--brand-on-background-strong),
+    var(--accent-on-background-weak)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  min-width: 1.6ch;
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-4);
+}
+
+.itemTitle {
+  font-size: clamp(1.15rem, 1.9vw, 1.6rem);
+  color: var(--neutral-on-background-strong);
+  line-height: 1.25;
+}
+
+.itemNote {
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  color: var(--neutral-on-background-weak);
+  line-height: 1.45;
+}
+
+// Example lines quoted back to her, marked as hers.
+.example {
+  padding: var(--static-space-16) var(--static-space-20);
+  border-left: 2px solid var(--brand-border-strong);
+  background: var(--brand-alpha-weak);
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  line-height: 1.4;
+  color: var(--neutral-on-background-strong);
+  max-width: 46ch;
+}
+
+// ——— Chrome ———
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-16);
+  padding: var(--static-space-12) clamp(1rem, 4vw, 3rem);
+  border-top: 1px solid var(--neutral-alpha-weak);
+  background: var(--surface-background);
+}
+
+.progress {
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--neutral-alpha-weak);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  transform-origin: left;
+  background: linear-gradient(
+    100deg,
+    var(--brand-on-background-strong),
+    var(--accent-on-background-weak)
+  );
+  animation: wipe 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  color: var(--neutral-on-background-weak);
+  min-width: 5ch;
+  text-align: right;
+}
+
+.signature {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--neutral-on-background-weak);
+}
+
+// Click targets over the whole stage: presenting with a trackpad should not
+// require aiming at a button.
+.zone {
+  position: absolute;
+  top: 0;
+  bottom: 4rem;
+  width: 22%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-border-strong);
+    outline-offset: -4px;
+  }
+}
+
+.zonePrev {
+  left: 0;
+}
+
+.zoneNext {
+  right: 0;
+  width: 40%;
+}
+
+.hint {
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  top: clamp(1rem, 3vw, 2rem);
+  display: flex;
+  gap: var(--static-space-8);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  .deck:hover & {
+    opacity: 1;
+  }
+}
