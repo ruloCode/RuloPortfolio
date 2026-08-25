@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint",
     "video": "npm --prefix video exec -- remotion studio video/src/index.ts",
     "video:render": "npm --prefix video exec -- remotion render video/src/index.ts CuatroNiveles public/videos/cuatro-niveles.mp4"
   },
@@ -41,8 +41,8 @@
     "@types/node": "^22.20.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.35",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.3.3",
     "postcss-custom-media": "^10.0.7",
     "postcss-flexbugs-fixes": "^5.0.2",
     "typescript": "^5"

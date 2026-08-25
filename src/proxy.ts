@@ -14,7 +14,7 @@ function needsSession(pathname: string) {
   return AUTH_AWARE.test(pathname.endsWith("/") ? pathname : `${pathname}/`);
 }
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   if (!needsSession(request.nextUrl.pathname)) {
     return handleI18n(request);
   }
