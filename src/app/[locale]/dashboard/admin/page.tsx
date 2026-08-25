@@ -11,10 +11,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 export const dynamic = "force-dynamic";
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "dashboard.admin" });
   return {
     title: t("meta.title"),
@@ -23,7 +25,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function AdminPage({ params: { locale } }: PageParams) {
+export default async function AdminPage({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "dashboard" });

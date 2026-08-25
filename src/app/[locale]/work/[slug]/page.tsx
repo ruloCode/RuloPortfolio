@@ -22,10 +22,10 @@ import { localizeHref, routing } from "@/i18n/routing";
 const WORK_PATH = ["work", "projects"];
 
 interface WorkParams {
-  params: {
+  params: Promise<{
     locale: string;
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams(): Promise<{ locale: string; slug: string }[]> {
@@ -36,7 +36,9 @@ export async function generateStaticParams(): Promise<{ locale: string; slug: st
   );
 }
 
-export function generateMetadata({ params: { locale, slug } }: WorkParams) {
+export async function generateMetadata({ params }: WorkParams) {
+  const { locale, slug } = await params;
+
   // While the section is disabled, detail pages must not leak their metadata.
   if (!routes["/work"]) return {};
   let post = getPost(WORK_PATH, locale, slug);
@@ -127,7 +129,8 @@ export function generateMetadata({ params: { locale, slug } }: WorkParams) {
   };
 }
 
-export default async function Project({ params }: WorkParams) {
+export default async function Project(props: WorkParams) {
+  const params = await props.params;
   if (!routes["/work"]) notFound();
   setRequestLocale(params.locale);
 

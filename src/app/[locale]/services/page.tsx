@@ -26,14 +26,16 @@ const OFFERING_ICONS: Record<string, string> = {
 };
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale });
   const { services } = createI18nContent(t);
   const title = services.title;
@@ -65,7 +67,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function Services({ params: { locale } }: PageParams) {
+export default async function Services({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
   const t = await getTranslations();
   const { person, services, testimonials } = createI18nContent(t);

@@ -44,14 +44,16 @@ const USE_CASES: { key: string; icon: string }[] = [
 const FAQ_KEYS = ["1", "2", "3", "4", "5"] as const;
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale });
   const title = t("ia.meta.title");
   const description = t("ia.meta.description");
@@ -82,7 +84,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function Ia({ params: { locale } }: PageParams) {
+export default async function Ia({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
   const t = await getTranslations("ia");
   const tRoot = await getTranslations();

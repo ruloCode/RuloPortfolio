@@ -66,7 +66,7 @@ type ProgressRow = { user_id: string; lesson_slug: string; completed_at: string 
  * this gets their own row back and nothing else.
  */
 export const getRoster = cache(async (locale: string): Promise<RosterResult> => {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Semana 0 only. This roster measures the self-serve work a student does
   // before the cohort — a live class published as a lesson would drag every

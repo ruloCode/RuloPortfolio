@@ -180,7 +180,13 @@ function MarkdownInlineCode({ children, ...props }: { children?: ReactNode }) {
  * copy button instead of raw monospace text.
  */
 function MarkdownPre({ children }: { children?: ReactNode }) {
-  const child = React.isValidElement(children) ? children : null;
+  // Typed narrowing: React 19 types ReactElement["props"] as `unknown`, so an
+  // untyped isValidElement leaves nothing readable on the unwrapped <code>.
+  const child = React.isValidElement<{ className?: string; children?: ReactNode }>(
+    children,
+  )
+    ? children
+    : null;
   const className: string = child?.props?.className ?? "";
   const language = className.replace("language-", "") || "text";
   const code = String(child?.props?.children ?? "").replace(/\n$/, "");

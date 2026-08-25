@@ -1,16 +1,18 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 
-export const runtime = "edge";
+// The edge runtime is deprecated as of Next 16. On Node the font can't be
+// fetch()ed from a file URL, so it's read off disk instead — which is why
+// next.config.mjs traces public/fonts into the lambda.
+export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   let url = new URL(request.url);
   let title = url.searchParams.get("title") || "Portfolio";
-  const font = fetch(new URL("../../../public/fonts/Inter.ttf", import.meta.url)).then((res) =>
-    res.arrayBuffer(),
-  );
-  const fontData = await font;
+  const fontData = await readFile(join(process.cwd(), "public/fonts/Inter.ttf"));
 
   return new ImageResponse(
     <div

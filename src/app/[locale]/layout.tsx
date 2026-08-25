@@ -28,10 +28,12 @@ export function generateStaticParams() {
 }
 
 interface LayoutParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({ params: { locale } }: LayoutParams) {
+export async function generateMetadata({ params }: LayoutParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale });
   const { person, home } = createI18nContent(t);
 
@@ -89,10 +91,12 @@ const code = Source_Code_Pro({
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+export default async function RootLayout({ children, params }: RootLayoutProps) {
+  const { locale } = await params;
+
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }

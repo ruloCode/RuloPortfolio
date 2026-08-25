@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get("type") as EmailOtpType | null;
   const code = searchParams.get("code");
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // token_hash is preferred over PKCE: no code verifier is involved, so the
   // link still works when opened on a different device than it was requested

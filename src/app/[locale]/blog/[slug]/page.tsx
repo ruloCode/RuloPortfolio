@@ -23,10 +23,10 @@ import { localizeHref, routing } from "@/i18n/routing";
 const BLOG_PATH = ["blog", "posts"];
 
 interface BlogParams {
-  params: {
+  params: Promise<{
     locale: string;
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams(): Promise<{ locale: string; slug: string }[]> {
@@ -37,7 +37,9 @@ export async function generateStaticParams(): Promise<{ locale: string; slug: st
   );
 }
 
-export function generateMetadata({ params: { locale, slug } }: BlogParams) {
+export async function generateMetadata({ params }: BlogParams) {
+  const { locale, slug } = await params;
+
   // While the section is disabled, detail pages must not leak their metadata.
   if (!routes["/blog"]) return {};
   let post = getPost(BLOG_PATH, locale, slug);
@@ -127,7 +129,8 @@ export function generateMetadata({ params: { locale, slug } }: BlogParams) {
   };
 }
 
-export default async function Blog({ params }: BlogParams) {
+export default async function Blog(props: BlogParams) {
+  const params = await props.params;
   if (!routes["/blog"]) notFound();
   setRequestLocale(params.locale);
 

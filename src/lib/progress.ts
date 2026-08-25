@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
  * a Supabase blip must never take down the lesson content.
  */
 export async function getCompletedSlugs(): Promise<Set<string>> {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.from("lesson_progress").select("lesson_slug");
 
   if (error) {

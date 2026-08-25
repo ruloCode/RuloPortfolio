@@ -50,7 +50,7 @@ export type SessionsResult = { ok: true; sessions: MentoringSession[] } | { ok: 
  * roster that will not render.
  */
 export async function getOpenActionCounts(): Promise<Record<string, number>> {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // !inner turns the embed into a join instead of a nullable side-load, so
   // rows whose session vanished cannot come back with a null email.
@@ -85,7 +85,7 @@ export async function getOpenActionCounts(): Promise<Record<string, number>> {
  * session would be an N+1 that grows with the relationship.
  */
 export async function getSessions(email: string): Promise<SessionsResult> {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // The next class goes on top, history underneath. That needs status
   // DESCENDING: 'held' < 'planned' alphabetically, so ascending would bury the

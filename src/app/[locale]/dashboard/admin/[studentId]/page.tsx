@@ -26,10 +26,12 @@ import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 interface PageParams {
-  params: { locale: string; studentId: string };
+  params: Promise<{ locale: string; studentId: string }>;
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "dashboard.admin" });
   return {
     title: t("detail.meta"),
@@ -43,7 +45,9 @@ const STATUS_VARIANT = {
   completed: "success",
 } as const;
 
-export default async function PersonDetailPage({ params: { locale, studentId } }: PageParams) {
+export default async function PersonDetailPage({ params }: PageParams) {
+  const { locale, studentId } = await params;
+
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "dashboard" });

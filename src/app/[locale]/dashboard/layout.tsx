@@ -10,10 +10,12 @@ export const dynamic = "force-dynamic";
 
 interface LayoutParams {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default async function DashboardLayout({ children, params: { locale } }: LayoutParams) {
+export default async function DashboardLayout({ children, params }: LayoutParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   // The authoritative gate. Middleware only refreshes the session — the role

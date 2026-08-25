@@ -31,14 +31,16 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale });
   const { person } = createI18nContent(t);
 
@@ -85,7 +87,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function Home({ params: { locale } }: PageParams) {
+export default async function Home({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   const t = await getTranslations();

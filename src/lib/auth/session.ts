@@ -16,7 +16,7 @@ export type SessionProfile = {
 
 // cache(): the layout and the page both call this — one query per request.
 export const getSessionProfile = cache(async (): Promise<SessionProfile | null> => {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // getClaims() verifies the JWT signature, so its output is safe to trust.
   // getSession() is not, and must never gate anything on the server.

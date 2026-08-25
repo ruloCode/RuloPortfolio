@@ -17,17 +17,20 @@ import brand from "@/styles/brand.module.scss";
 import styles from "@/components/about/about.module.scss";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { JSX } from "react";
 import { routing } from "@/i18n/routing";
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale });
   const { about } = createI18nContent(t);
   const title = about.title;
@@ -69,7 +72,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function About({ params: { locale } }: PageParams) {
+export default async function About({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
   const t = await getTranslations();
   const { person, about, social, waitlist } = createI18nContent(t);

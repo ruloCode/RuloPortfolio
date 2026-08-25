@@ -15,7 +15,7 @@ import {
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
 import { useLocale } from "next-intl";
-import { useRef, useState } from "react";
+import { useRef, useState, type JSX } from "react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

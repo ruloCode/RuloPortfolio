@@ -91,7 +91,7 @@ export async function createSession(formData: FormData): Promise<Result> {
   const startsAt =
     startTime.length > 0 ? `${date}T${startTime.padStart(5, "0")}:00${scheduling.utcOffset}` : null;
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: session, error } = await supabase
     .from("mentoring_sessions")
@@ -149,7 +149,7 @@ export async function createSession(formData: FormData): Promise<Result> {
 export async function toggleAction(id: string, done: boolean): Promise<Result> {
   if (!(await requireAdmin())) return { ok: false, error: "unauthorized" };
 
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from("session_actions")
     // done_at cleared on un-checking, so the timestamp never claims a

@@ -24,10 +24,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 interface PageParams {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }
 
-export async function generateMetadata({ params: { locale, slug } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale, slug } = await params;
+
   const lesson = getLesson(locale, slug);
   if (!lesson) return {};
   return {
@@ -38,7 +40,9 @@ export async function generateMetadata({ params: { locale, slug } }: PageParams)
   };
 }
 
-export default async function LessonPage({ params: { locale, slug } }: PageParams) {
+export default async function LessonPage({ params }: PageParams) {
+  const { locale, slug } = await params;
+
   setRequestLocale(locale);
 
   const profile = await getSessionProfile();

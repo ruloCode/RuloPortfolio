@@ -9,14 +9,16 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   // While the route is disabled it must not leak its real title/OG over a 404 body.
   if (!routes["/work"]) return {};
   const t = await getTranslations({ locale });
@@ -50,7 +52,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function Work({ params: { locale } }: PageParams) {
+export default async function Work({ params }: PageParams) {
+  const { locale } = await params;
+
   if (!routes["/work"]) notFound();
   setRequestLocale(locale);
   const t = await getTranslations();

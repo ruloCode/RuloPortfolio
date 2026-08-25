@@ -4,14 +4,16 @@ import { Column } from "@/once-ui/components";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "login" });
   return {
     title: t("title"),
@@ -20,7 +22,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function Login({ params: { locale } }: PageParams) {
+export default async function Login({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "login" });
 

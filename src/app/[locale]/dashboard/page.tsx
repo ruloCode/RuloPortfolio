@@ -31,10 +31,12 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 interface PageParams {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export async function generateMetadata({ params: { locale } }: PageParams) {
+export async function generateMetadata({ params }: PageParams) {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "dashboard.meta" });
   return {
     title: t("title"),
@@ -43,7 +45,9 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
   };
 }
 
-export default async function DashboardPage({ params: { locale } }: PageParams) {
+export default async function DashboardPage({ params }: PageParams) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
 
   const profile = await getSessionProfile();

@@ -48,7 +48,7 @@ export function parsePrep(raw: string | null): string[] {
  * class card, not her whole dashboard.
  */
 export const getUpcomingSession = cache(async (): Promise<UpcomingSession | null> => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.rpc("my_upcoming_session").maybeSingle<Row>();
 
   if (error) {

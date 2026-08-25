@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 interface PageParams {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export function generateMetadata() {
@@ -132,7 +132,9 @@ const DECKS: Record<string, { signature: string; slides: Slide[] }> = {
   },
 };
 
-export default async function PresentationPage({ params: { locale, slug } }: PageParams) {
+export default async function PresentationPage({ params }: PageParams) {
+  const { locale, slug } = await params;
+
   setRequestLocale(locale);
 
   const profile = await getSessionProfile();

@@ -19,7 +19,7 @@ export async function toggleLessonComplete(slug: string, completed: boolean): Pr
   );
   if (!known) return { ok: false, error: "unknown_lesson" };
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Row present = completed; un-completing is a delete.
   const { error } = completed
