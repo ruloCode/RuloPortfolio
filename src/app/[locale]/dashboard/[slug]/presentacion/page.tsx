@@ -1,5 +1,6 @@
 import { getLesson } from "@/app/[locale]/dashboard/lessons";
 import { SlideDeck, type Slide } from "@/components/dashboard/SlideDeck";
+import { localizeHref } from "@/i18n/routing";
 import { getSessionProfile } from "@/lib/auth/session";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -147,11 +148,12 @@ export default async function PresentationPage({ params: { locale, slug } }: Pag
     <SlideDeck
       slides={deck.slides}
       signature={deck.signature}
+      exitHref={localizeHref(locale, `/dashboard/${slug}`)}
       labels={{
         prev: "Anterior",
         next: "Siguiente",
         fullscreen: "Pantalla completa (F)",
-        exit: "Salir",
+        exit: "Volver a la clase",
       }}
     />
   );

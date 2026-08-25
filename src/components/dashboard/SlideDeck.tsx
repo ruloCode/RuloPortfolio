@@ -29,11 +29,14 @@ type Labels = { prev: string; next: string; fullscreen: string; exit: string };
 export const SlideDeck = ({
   slides,
   signature,
+  exitHref,
   labels,
 }: {
   slides: Slide[];
   /** Sits in the bar on every slide — the deck's letterhead. */
   signature: string;
+  /** Back to the class the deck belongs to. */
+  exitHref: string;
   labels: Labels;
 }) => {
   const [index, setIndex] = useState(0);
@@ -151,6 +154,18 @@ export const SlideDeck = ({
           onClick={toggleFullscreen}
           aria-label={labels.fullscreen}
           tooltip={labels.fullscreen}
+          tooltipPosition="left"
+        />
+        {/* The deck covers the whole viewport, rail included. Without this the
+            only way back is the browser's back button, which on a phone is a
+            gesture some people do not know they have. */}
+        <IconButton
+          size="s"
+          variant="tertiary"
+          icon="close"
+          href={exitHref}
+          aria-label={labels.exit}
+          tooltip={labels.exit}
           tooltipPosition="left"
         />
       </div>

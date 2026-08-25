@@ -311,16 +311,20 @@
   width: 40%;
 }
 
+// Present but quiet, never absent: opacity 0 until hover left the controls
+// unreachable on a phone, where there is no hover and no keyboard — which is
+// exactly the device the student opens this on.
 .hint {
   position: absolute;
   right: clamp(1rem, 4vw, 3rem);
   top: clamp(1rem, 3vw, 2rem);
   display: flex;
   gap: var(--static-space-8);
-  opacity: 0;
+  opacity: 0.4;
   transition: opacity 0.25s ease;
 
-  .deck:hover & {
+  .deck:hover &,
+  &:focus-within {
     opacity: 1;
   }
 }
