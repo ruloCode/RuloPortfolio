@@ -294,7 +294,11 @@ export const DashboardTopBar = (props: Props) => {
           />
           <Wordmark locale={props.locale} />
         </Flex>
-        <AccountMenu {...props} />
+        {/* Avatar only: on a 390px bar the name, the email and the role badge
+            share the row with the wordmark and the menu button, and the badge
+            was being clipped against the edge. The menu behind the avatar
+            still carries everything. */}
+        <AccountMenu {...props} compact />
       </Row>
       <Dialog isOpen={menuOpen} onClose={() => setMenuOpen(false)} title={props.nav.menu}>
         <NavItems
