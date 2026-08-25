@@ -34,7 +34,7 @@ export const NextSessionCard = ({
     radius="l"
     background="surface"
     border="brand-medium"
-    className={brand.signatureGlow}
+    className={`${brand.signatureGlow} ${brand.panel}`}
   >
     <Row gap="8" vertical="center" wrap>
       <Text variant="label-default-s" onBackground="brand-weak">

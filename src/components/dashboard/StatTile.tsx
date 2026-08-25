@@ -1,3 +1,4 @@
+import brand from "@/styles/brand.module.scss";
 import { Column, Icon, Row, Text } from "@/once-ui/components";
 
 /**
@@ -22,6 +23,7 @@ export const StatTile = ({
     padding="16"
     radius="l"
     background="surface"
+    className={brand.panel}
     border="neutral-medium"
   >
     <Row gap="8" vertical="center">

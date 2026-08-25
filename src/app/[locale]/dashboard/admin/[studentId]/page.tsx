@@ -147,6 +147,7 @@ export default async function PersonDetailPage({ params: { locale, studentId } }
             radius="l"
             background="surface"
             border="neutral-medium"
+            className={brand.panel}
           >
             <Row fillWidth horizontal="space-between" vertical="center">
               <Text variant="label-default-s" onBackground="neutral-weak">
@@ -173,6 +174,7 @@ export default async function PersonDetailPage({ params: { locale, studentId } }
             radius="l"
             background="surface"
             border="neutral-medium"
+            className={brand.panel}
           >
             <Row gap="8" vertical="center">
               <Icon name="clock" size="xs" onBackground="neutral-weak" />

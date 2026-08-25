@@ -41,6 +41,8 @@ export default async function DashboardLayout({ children, params: { locale } }: 
         inProgress: t("inProgress"),
         // The seat, not the permission: a student never reads the word "rol".
         roleLabel: profile.role === "admin" ? t("roleCoach") : t("roleStudent"),
+        collapse: t("collapse"),
+        expand: t("expand"),
         admin: t("admin"),
         backToSite: t("backToSite"),
         signOut: t("signOut"),

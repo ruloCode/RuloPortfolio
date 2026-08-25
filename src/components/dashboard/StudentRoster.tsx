@@ -98,7 +98,14 @@ export const StudentRoster = ({
         </Flex>
       </Row>
 
-      <Column fillWidth radius="l" background="surface" border="neutral-medium" overflow="hidden">
+      <Column
+        fillWidth
+        radius="l"
+        background="surface"
+        border="neutral-medium"
+        overflow="hidden"
+        className={brand.panel}
+      >
         {/* Presentational only. The rows below are links, not cells, so real
             table semantics would promise navigation this markup can't deliver. */}
         <Row

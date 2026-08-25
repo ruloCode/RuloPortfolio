@@ -1,6 +1,7 @@
 "use client";
 
 import { Column, Row, Text } from "@/once-ui/components";
+import brand from "@/styles/brand.module.scss";
 import { useEffect, useState } from "react";
 
 export type OutlineSection = { title: string; slug: string };
@@ -57,6 +58,7 @@ export const LessonOutline = ({
       radius="l"
       background="surface"
       border="neutral-medium"
+      className={brand.panel}
     >
       <Text variant="label-default-s" onBackground="neutral-weak" marginBottom="4">
         {label}

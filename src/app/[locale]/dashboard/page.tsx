@@ -135,19 +135,21 @@ export default async function DashboardPage({ params: { locale } }: PageParams) 
       {/* Above everything, including her progress: for someone with a class on
           the calendar, "when do we meet" outranks "how far along am I". */}
       {upcoming && sessionWhen && (
-        <NextSessionCard
-          title={upcoming.title}
-          meetingUrl={upcoming.meetingUrl}
-          prep={upcoming.prep}
-          labels={{
-            eyebrow: t("nextSession.eyebrow"),
-            when: t("nextSession.when", { when: sessionWhen }),
-            join: t("nextSession.join"),
-            noLink: t("nextSession.noLink"),
-            prepTitle: t("nextSession.prepTitle"),
-            today: isToday ? t("nextSession.today") : undefined,
-          }}
-        />
+        <RevealFx translateY="8" delay={0.05}>
+          <NextSessionCard
+            title={upcoming.title}
+            meetingUrl={upcoming.meetingUrl}
+            prep={upcoming.prep}
+            labels={{
+              eyebrow: t("nextSession.eyebrow"),
+              when: t("nextSession.when", { when: sessionWhen }),
+              join: t("nextSession.join"),
+              noLink: t("nextSession.noLink"),
+              prepTitle: t("nextSession.prepTitle"),
+              today: isToday ? t("nextSession.today") : undefined,
+            }}
+          />
+        </RevealFx>
       )}
 
       {/* Only while still unentitled: the render that grants access is the one
@@ -177,6 +179,7 @@ export default async function DashboardPage({ params: { locale } }: PageParams) 
           radius="l"
           background="surface"
           border="neutral-medium"
+          className={brand.panel}
         >
           <Row fillWidth horizontal="space-between" vertical="center">
             <Text variant="label-default-s" onBackground="neutral-weak">
@@ -308,6 +311,7 @@ export default async function DashboardPage({ params: { locale } }: PageParams) 
           radius="l"
           background="surface"
           border="neutral-medium"
+          className={brand.panel}
         >
           <Row gap="12" vertical="center">
             <Icon name="graduationCap" onBackground="brand-weak" />

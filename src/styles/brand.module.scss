@@ -167,3 +167,70 @@ $signature: linear-gradient(
 .progressFill {
   background: $signature;
 }
+
+// The rail is the only vertical edge on the page, so it earns real elevation
+// instead of a hairline: the shadow separates it from the content the way a
+// physical panel would, and the width transition makes collapsing feel like
+// one movement rather than a jump.
+.rail {
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 6px 0 24px -22px rgba(0, 0, 0, 0.5);
+  will-change: width;
+}
+
+// Revealed on hover so the rail stays quiet, but always there for keyboards.
+.railToggle {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  .rail:hover &,
+  &:focus-visible {
+    opacity: 1;
+  }
+}
+
+// Once UI's User lays the name and email in a flex column that never shrinks,
+// and the email is nowrap by design — so a long address escaped the rail
+// instead of truncating. Everything in the chain has to be allowed to shrink.
+.account {
+  min-width: 0;
+  max-width: 100%;
+
+  &,
+  > *,
+  > * > * {
+    min-width: 0;
+  }
+
+  // Both lines are xs — the name is heading-strong-xs, the email
+  // body-default-xs — and both have to stay on one line: without nowrap the
+  // name breaks across two rows and the ellipsis lands mid-word.
+  :global(.font-xs) {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// Resting elevation for the panels that make up a dashboard page. A flat
+// surface on a flat page reads as a wireframe; one soft layer of depth is what
+// separates "boxes with borders" from a product.
+.panel {
+  box-shadow: var(--shadow-s);
+  transition:
+    box-shadow 0.24s ease,
+    transform 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.24s ease;
+}
+
+// Panels you can click get the lift; the rest keep the resting shadow only.
+.panelInteractive {
+  @extend .panel;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-m);
+    border-color: var(--brand-border-strong);
+  }
+}

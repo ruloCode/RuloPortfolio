@@ -185,7 +185,9 @@
       "admin": "Estudiantes",
       "inProgress": "En curso",
       "roleCoach": "Coach",
-      "roleStudent": "Estudiante"
+      "roleStudent": "Estudiante",
+      "collapse": "Contraer menú",
+      "expand": "Expandir menú"
     },
     "nextSession": {
       "eyebrow": "TU PRÓXIMA SESIÓN",
