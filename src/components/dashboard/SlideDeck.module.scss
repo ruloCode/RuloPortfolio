@@ -222,15 +222,20 @@
 }
 
 // Example lines quoted back to her, marked as hers.
+//
+// No box and no rule: it is a quotation, and a quotation is set apart by
+// voice, not by a container. It arrives in the heading face at the support
+// text's size, which reads as "someone is speaking" against the paragraph
+// above it — and avoids the tinted card with a coloured left edge, which is
+// the most templated shape in the deck vocabulary.
 .example {
-  padding: var(--static-space-16) var(--static-space-20);
-  border-left: 2px solid var(--brand-border-strong);
-  background: var(--brand-alpha-weak);
-  border-radius: 0 var(--radius-m) var(--radius-m) 0;
-  font-size: clamp(1rem, 1.5vw, 1.3rem);
-  line-height: 1.4;
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   color: var(--neutral-on-background-strong);
-  max-width: 46ch;
+  max-width: 42ch;
+  text-wrap: pretty;
 }
 
 // ——— Chrome ———
