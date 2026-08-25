@@ -8,7 +8,7 @@ import { NextIntlClientProvider } from "next-intl";
 import {
   getMessages,
   getTranslations,
-  unstable_setRequestLocale,
+  setRequestLocale,
 } from "next-intl/server";
 
 import { Footer, Header, RouteGuard, SiteShell } from "@/components";
@@ -97,7 +97,7 @@ export default async function RootLayout({ children, params: { locale } }: RootL
     notFound();
   }
 
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const messages = await getMessages();
   const tNav = await getTranslations({ locale, namespace: "nav" });

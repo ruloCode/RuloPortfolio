@@ -17,7 +17,7 @@ import { formatDate } from "@/app/utils/formatDate";
 import { readingTime } from "@/app/utils/readingTime";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import ScrollToHash from "@/components/ScrollToHash";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
 const BLOG_PATH = ["blog", "posts"];
@@ -129,7 +129,7 @@ export function generateMetadata({ params: { locale, slug } }: BlogParams) {
 
 export default async function Blog({ params }: BlogParams) {
   if (!routes["/blog"]) notFound();
-  unstable_setRequestLocale(params.locale);
+  setRequestLocale(params.locale);
 
   const t = await getTranslations();
   let post = getPost(BLOG_PATH, params.locale, params.slug);

@@ -2,7 +2,7 @@ import { getLesson } from "@/app/[locale]/dashboard/lessons";
 import { SlideDeck, type Slide } from "@/components/dashboard/SlideDeck";
 import { localizeHref } from "@/i18n/routing";
 import { getSessionProfile } from "@/lib/auth/session";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 // Reads the session, so it must never be prerendered.
@@ -133,7 +133,7 @@ const DECKS: Record<string, { signature: string; slides: Slide[] }> = {
 };
 
 export default async function PresentationPage({ params: { locale, slug } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const profile = await getSessionProfile();
   const lesson = getLesson(locale, slug);

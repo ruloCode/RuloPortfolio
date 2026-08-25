@@ -27,7 +27,7 @@ import {
   TechMarquee,
   WaitlistForm,
 } from "@/components";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
 interface PageParams {
@@ -86,7 +86,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Home({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const t = await getTranslations();
   const { person, home, about, waitlist } = createI18nContent(t);

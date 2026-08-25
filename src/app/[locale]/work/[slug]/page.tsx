@@ -16,7 +16,7 @@ import { baseURL, routes, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
 const WORK_PATH = ["work", "projects"];
@@ -129,7 +129,7 @@ export function generateMetadata({ params: { locale, slug } }: WorkParams) {
 
 export default async function Project({ params }: WorkParams) {
   if (!routes["/work"]) notFound();
-  unstable_setRequestLocale(params.locale);
+  setRequestLocale(params.locale);
 
   const t = await getTranslations();
   let post = getPost(WORK_PATH, params.locale, params.slug);

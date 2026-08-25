@@ -16,7 +16,7 @@ import TableOfContents from "@/components/about/TableOfContents";
 import brand from "@/styles/brand.module.scss";
 import styles from "@/components/about/about.module.scss";
 import { createI18nContent } from "@/app/resources/content-i18n";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 interface PageParams {
@@ -70,7 +70,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function About({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const t = await getTranslations();
   const { person, about, social, waitlist } = createI18nContent(t);
   const structure = [

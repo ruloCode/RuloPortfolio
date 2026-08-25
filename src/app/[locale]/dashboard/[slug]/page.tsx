@@ -20,7 +20,7 @@ import {
   Text,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 interface PageParams {
@@ -39,7 +39,7 @@ export async function generateMetadata({ params: { locale, slug } }: PageParams)
 }
 
 export default async function LessonPage({ params: { locale, slug } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const profile = await getSessionProfile();
   const lesson = getLesson(locale, slug);

@@ -14,7 +14,7 @@ import { baseURL } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { CtaBanner } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 import brand from "@/styles/brand.module.scss";
 
@@ -66,7 +66,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Services({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const t = await getTranslations();
   const { person, services, testimonials } = createI18nContent(t);
 

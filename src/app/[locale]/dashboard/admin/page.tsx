@@ -6,7 +6,7 @@ import { getOpenActionCounts } from "@/lib/admin/sessions";
 import { getRoster } from "@/lib/admin/students";
 import { formatRelative } from "@/lib/admin/format";
 import { Column, Feedback, Heading, Icon, RevealFx, Row, Text } from "@/once-ui/components";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function AdminPage({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "dashboard" });
   const [result, openActions] = await Promise.all([getRoster(locale), getOpenActionCounts()]);

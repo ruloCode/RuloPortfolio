@@ -20,7 +20,7 @@ import {
   Text,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -44,7 +44,7 @@ const STATUS_VARIANT = {
 } as const;
 
 export default async function PersonDetailPage({ params: { locale, studentId } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "dashboard" });
   const result = await getRoster(locale);

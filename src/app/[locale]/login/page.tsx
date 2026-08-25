@@ -1,7 +1,7 @@
 import { LoginForm } from "@/components/LoginForm";
 import { routing } from "@/i18n/routing";
 import { Column } from "@/once-ui/components";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 interface PageParams {
   params: { locale: string };
@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Login({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "login" });
 
   return (

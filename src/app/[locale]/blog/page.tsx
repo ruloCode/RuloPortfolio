@@ -5,7 +5,7 @@ import { Posts } from "@/components/blog/Posts";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { localeAlternates } from "@/app/utils/seo";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 interface PageParams {
@@ -52,7 +52,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 
 export default async function Blog({ params: { locale } }: PageParams) {
   if (!routes["/blog"]) notFound();
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const t = await getTranslations();
   const { blog, person, newsletter } = createI18nContent(t);
 

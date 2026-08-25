@@ -22,7 +22,7 @@ import {
   Text,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 
 // Reads the session, so it must never be prerendered — the parent [locale]
@@ -44,7 +44,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function DashboardPage({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const profile = await getSessionProfile();
   const t = await getTranslations({ locale, namespace: "dashboard" });

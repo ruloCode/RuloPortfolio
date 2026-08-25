@@ -16,7 +16,7 @@ import { baseURL, scheduling } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { WaitlistForm } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import brand from "@/styles/brand.module.scss";
 import styles from "./ia.module.scss";
@@ -83,7 +83,7 @@ export async function generateMetadata({ params: { locale } }: PageParams) {
 }
 
 export default async function Ia({ params: { locale } }: PageParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const t = await getTranslations("ia");
   const tRoot = await getTranslations();
   const { person } = createI18nContent(tRoot);

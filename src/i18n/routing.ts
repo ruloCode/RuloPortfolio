@@ -1,5 +1,5 @@
 import { defineRouting } from "next-intl/routing";
-import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { createNavigation } from "next-intl/navigation";
 
 export const routing = defineRouting({
   locales: ["en", "es"],
@@ -11,7 +11,7 @@ export const routing = defineRouting({
 export type Locale = (typeof routing.locales)[number];
 
 export const { Link, redirect, usePathname, useRouter } =
-  createSharedPathnamesNavigation(routing);
+  createNavigation(routing);
 
 /** Prefixes an internal href with the locale segment when needed. */
 export function localizeHref(locale: string, href: string) {

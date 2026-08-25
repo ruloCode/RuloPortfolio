@@ -1,7 +1,7 @@
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 import { redirect } from "@/i18n/routing";
 import { getSessionProfile } from "@/lib/auth/session";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 // This subtree reads cookies, so it can never be prerendered. cookies() would
 // force this implicitly; being explicit documents that /dashboard is the only
@@ -14,13 +14,13 @@ interface LayoutParams {
 }
 
 export default async function DashboardLayout({ children, params: { locale } }: LayoutParams) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   // The authoritative gate. Middleware only refreshes the session — the role
   // lives in the DB, which doesn't belong in edge middleware on every request.
   const profile = await getSessionProfile();
   if (!profile) {
-    redirect("/login");
+    redirect({ href: "/login", locale });
     return null;
   }
 
