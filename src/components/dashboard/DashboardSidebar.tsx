@@ -45,7 +45,9 @@ type Props = {
 };
 
 const Wordmark = ({ locale }: { locale: string }) => (
-  <Link href={localizeHref(locale, "/")} style={{ textDecoration: "none" }}>
+  // next-intl's Link adds the locale itself, so localizeHref() here produced
+  // /es/es — a 404 on the one link that is on every dashboard screen.
+  <Link href="/" style={{ textDecoration: "none" }}>
     <Text variant="label-strong-s" onBackground="neutral-strong" style={{ letterSpacing: "0.16em" }}>
       RULO
       <Text as="span" onBackground="brand-weak">
