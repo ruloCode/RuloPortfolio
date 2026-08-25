@@ -1,6 +1,7 @@
 "use client";
 
 import { toggleAction } from "@/app/[locale]/dashboard/admin/actions";
+import { ClassPacer, parseBlocks } from "@/components/dashboard/ClassPacer";
 import type { MentoringSession } from "@/lib/admin/sessions";
 import { Button, Checkbox, Column, Flex, Icon, Row, Tag, Text, useToast } from "@/once-ui/components";
 import { useTranslations } from "next-intl";
@@ -190,6 +191,8 @@ export const SessionNotes = ({
       {sessions.map((session) => {
         const open = session.actions.filter((action) => !action.done).length;
         const planned = session.status === "planned";
+        // Read off the plan the coach already wrote — see parseBlocks.
+        const blocks = planned ? parseBlocks(session.summary) : [];
         // Numbered against held sessions only — a plan has no ordinal until it
         // actually happens, and counting it would renumber the history.
         const number = held.indexOf(session.id) + 1;
@@ -226,6 +229,21 @@ export const SessionNotes = ({
             </Row>
 
             <Text variant="heading-strong-s">{session.title}</Text>
+
+            {planned && blocks.length > 1 && (
+              <ClassPacer
+                blocks={blocks}
+                labels={{
+                  start: t("pacer.start"),
+                  pause: t("pacer.pause"),
+                  resume: t("pacer.resume"),
+                  reset: t("pacer.reset"),
+                  idle: t("pacer.idle"),
+                  done: t("pacer.done"),
+                  remaining: (minutes: number) => t("pacer.remaining", { minutes }),
+                }}
+              />
+            )}
 
             {/* Everything else on this card is private. This block is not, and
                 saying so here is cheaper than remembering it. */}

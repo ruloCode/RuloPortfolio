@@ -34,7 +34,7 @@ const scheduling = {
 };
 
 const style = {
-  theme: "dark", // dark | light
+  theme: "light", // dark | light
   neutral: "slate", // sand | gray | slate
   brand: "emerald", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   accent: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan

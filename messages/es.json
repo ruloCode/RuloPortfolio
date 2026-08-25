@@ -132,6 +132,7 @@
       "number": "Lección {order}",
       "classNumber": "Clase {number}",
       "duration": "{minutes} min",
+      "outline": "En esta clase · {count} bloques",
       "markComplete": "Marcar como completada",
       "marked": "Completada",
       "toastComplete": "Lección completada",
@@ -325,6 +326,15 @@
         "planned": "Próxima sesión",
         "prepCount": "{count} por preparar",
         "prep": "Preparación",
+        "pacer": {
+          "start": "Empezar clase",
+          "pause": "Pausar",
+          "resume": "Seguir",
+          "reset": "Reiniciar",
+          "idle": "El cronómetro corre contigo, no con el calendario.",
+          "remaining": "Quedan {minutes} min en este bloque",
+          "done": "Se acabó el tiempo del plan. Cierra."
+        },
         "studentSees": "Lo que ve en su panel",
         "joinLink": "Abrir la videollamada"
       }

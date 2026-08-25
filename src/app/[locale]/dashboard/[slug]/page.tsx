@@ -1,6 +1,8 @@
 import { getLesson, getLessons, lessonsForRole } from "@/app/[locale]/dashboard/lessons";
 import { MarkCompleteButton } from "@/components/dashboard/MarkCompleteButton";
-import { CustomMDX } from "@/components/mdx";
+import { LessonOutline, type OutlineSection } from "@/components/dashboard/LessonOutline";
+import { LessonProgress } from "@/components/dashboard/LessonProgress";
+import { CustomMDX, slugify } from "@/components/mdx";
 import { localizeHref } from "@/i18n/routing";
 import { getSessionProfile } from "@/lib/auth/session";
 import { getCompletedSlugs } from "@/lib/progress";
@@ -69,6 +71,15 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
     ) + 1;
   const completed = (await getCompletedSlugs()).has(slug);
 
+  // The class outline, read off the source rather than the rendered output:
+  // this is a server component, so there is no DOM to query, and the "## "
+  // lines are the same headings MDX turns into anchors.
+  const sections: OutlineSection[] = lesson.content
+    .split("\n")
+    .filter((line) => line.startsWith("## "))
+    .map((line) => line.slice(3).trim())
+    .map((title) => ({ title, slug: slugify(title) }));
+
   return (
     // "s" rather than the blog's "xs": these lessons carry tables and prompt
     // blocks that a pure prose measure squeezes.
@@ -123,7 +134,17 @@ export default async function LessonPage({ params: { locale, slug } }: PageParam
         />
       )}
 
-      <Column as="article" fillWidth>
+      {sections.length > 2 && (
+        <>
+          <LessonProgress targetId="lesson-body" />
+          <LessonOutline
+            sections={sections}
+            label={t("lesson.outline", { count: sections.length })}
+          />
+        </>
+      )}
+
+      <Column as="article" fillWidth id="lesson-body">
         <CustomMDX source={lesson.content} />
       </Column>
 

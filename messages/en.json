@@ -132,6 +132,7 @@
       "number": "Lesson {order}",
       "classNumber": "Class {number}",
       "duration": "{minutes} min",
+      "outline": "In this class · {count} sections",
       "markComplete": "Mark as completed",
       "marked": "Completed",
       "toastComplete": "Lesson completed",
@@ -325,6 +326,15 @@
         "planned": "Next session",
         "prepCount": "{count} to prepare",
         "prep": "Prep",
+        "pacer": {
+          "start": "Start class",
+          "pause": "Pause",
+          "resume": "Resume",
+          "reset": "Reset",
+          "idle": "The clock runs with you, not with the calendar.",
+          "remaining": "{minutes} min left in this block",
+          "done": "You're past the plan. Wrap up."
+        },
         "studentSees": "What they see on their dashboard",
         "joinLink": "Open the video call"
       }

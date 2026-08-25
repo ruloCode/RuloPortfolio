@@ -126,9 +126,12 @@ export default async function RootLayout({ children, params: { locale } }: RootL
     >
       <head>
         <script
-          // Applies the persisted theme before first paint to avoid a flash
+          // Applies the persisted theme before first paint to avoid a flash.
+          // Falls back to the configured theme, NOT to the OS preference: this
+          // brand is light, and a visitor whose laptop is in dark mode was
+          // getting a palette nobody designed.
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("theme")||"${style.theme}";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`,
           }}
         />
         {/* RevealFx hides content until its JS runs; without JS, un-hide everything. */}

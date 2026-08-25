@@ -85,7 +85,7 @@ function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) 
   );
 }
 
-function slugify(str: string): string {
+export function slugify(str: string): string {
   return str
     .toString()
     .toLowerCase()
