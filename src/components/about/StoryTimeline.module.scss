@@ -1,0 +1,46 @@
+// The story as four acts on one rail — the same rail the home's trajectory
+// uses, so both pages read as one system.
+
+.acts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-40);
+  margin: 0;
+  padding: 0 0 0 var(--static-space-32);
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: color-mix(in srgb, var(--brand-border-strong) 45%, transparent);
+  }
+}
+
+.act {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: calc(-1 * var(--static-space-32) + 1px);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot) 22%, transparent);
+  }
+}
+
+// Pull quote: the line worth remembering, set in the heading face.
+.quote {
+  position: relative;
+  margin: 0;
+  padding-left: var(--static-space-24);
+  border-left: 3px solid var(--brand-border-strong);
+}

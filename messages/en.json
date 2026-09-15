@@ -1,7 +1,7 @@
 {
   "about": {
     "calendar": "Schedule a call",
-    "description": "The story of Andrés Santana: from musician to Software Developer. Automation, development and AI training from Colombia.",
+    "description": "From musician to tech lead of a digital pharmacy processing $2M+ a month. Today, an AI automation consultant (agents, LLMs, n8n) and the creator of the AI Shift Challenge. Next.js, React, TypeScript. From Bogotá.",
     "intro": {
       "p1": "Before writing code, I wrote songs. Music was the life plan — until technology transformed the industry and forced me to choose between what I loved and what let me make a living. <strong>I chose to survive.</strong>",
       "p2": "I learned to code from scratch and took it seriously: for over 4 years I was the frontend lead at Mexico's fastest-growing digital pharmacy. I cut load time by <strong>56%</strong>, lifted conversions <strong>23%</strong>, and the platform I architected processes <strong>$2M+ monthly</strong> for 50,000+ patients with 99.9% uptime.",
@@ -20,6 +20,10 @@
         "platzi": {
           "description": "Studied software engineering.",
           "name": "Platzi"
+        },
+        "learning": {
+          "name": "Continuous learning",
+          "description": "Anthropic, OpenAI and Vercel docs and courses. I build with every new model before recommending it."
         }
       },
       "title": "Studies"
@@ -61,7 +65,7 @@
       },
       "title": "Technical Skills"
     },
-    "title": "About me",
+    "title": "About — Andrés Santana, applied AI expert and tech lead",
     "work": {
       "experiences": {
         "freelance": {
@@ -83,9 +87,150 @@
           "company": "Vitau",
           "role": "Senior Frontend Engineer & Tech Lead",
           "timeframe": "2020 - Present"
+        },
+        "aishift": {
+          "company": "AI Shift Challenge · rulocode",
+          "role": "Creator and instructor",
+          "timeframe": "2026 - Present",
+          "achievements": {
+            "1": "A 4-week live program for non-technical professionals: 4 private sessions, 2 group sessions and an automation of their own running at the end.",
+            "2": "A study platform of my own (Next.js + Supabase) with a free Week 0, lessons and progress tracking."
+          }
         }
       },
-      "title": "Work Experience"
+      "title": "Experience"
+    },
+    "hero": {
+      "eyebrow": "About",
+      "title": "Six years shipping software to production. Today, <fx>applied AI</fx> for companies and professionals.",
+      "intro": "I'm Andrés Santana, Rulo. A senior frontend engineer and tech lead (Next.js, React, TypeScript) who now designs AI automations for companies and teaches non-technical professionals to do it without code in the AI Shift Challenge. From Bogotá, for Latin America and the world.",
+      "ctaCall": "Book a call",
+      "ctaProgram": "See the AI Shift Challenge",
+      "portraitAlt": "Andrés Santana, Rulo, smiling in front of his laptop",
+      "location": "Bogotá, Colombia"
+    },
+    "story": {
+      "eyebrow": "My story",
+      "title": "From writing songs to writing software. And from there, to teaching AI.",
+      "quote": "I found my unfair advantage: I can do the technical work and I can translate it. Because I lived the fear of falling behind, I teach from empathy, not arrogance.",
+      "north": "My north star is simple: help professionals master AI before the world forces them to choose. It forced me. It doesn't have to force you.",
+      "acts": {
+        "before": {
+          "label": "Before code",
+          "title": "Music was the plan.",
+          "body": "I wrote songs and that was the life plan, until technology transformed the industry and forced me to choose between what I loved and what let me make a living. I chose to survive, and learned to code from scratch."
+        },
+        "learn": {
+          "label": "2019",
+          "title": "Learning for real, getting paid for it.",
+          "body": "As a freelancer I delivered 10+ projects for startups and SMBs in e-commerce, SaaS and real estate: from a Figma design to production on Vercel, with React and Next.js."
+        },
+        "production": {
+          "label": "2020",
+          "title": "Real production: Mexico's fastest-growing digital pharmacy.",
+          "body": "Four-plus years as senior frontend engineer and tech lead at Vitau. I took LCP from 5.8s to 2.5s, conversion rose 23%, and the checkout I designed processes $2M+ USD a month for 50,000 patients at 99.9% uptime. Healthtech and fintech at once, in strict TypeScript."
+        },
+        "today": {
+          "label": "Today",
+          "title": "Applied AI: I automate for companies and teach professionals.",
+          "body": "I design agents and flows with language models (Claude, GPT) and integrations with n8n, Make and Zapier for teams that want their hours back. And I created the AI Shift Challenge, a live program for non-technical professionals to automate their work without writing code."
+        }
+      }
+    },
+    "help": {
+      "eyebrow": "Services",
+      "title": "How I can help",
+      "intro": "Three fronts, one base: real engineering, in production.",
+      "items": {
+        "automation": {
+          "title": "AI automation for companies",
+          "body": "Process audits, AI agent design and LLM flows connected to your email, sheets and CRM. Integrations with n8n, Make, Zapier and the OpenAI and Anthropic APIs. Fewer repetitive tasks, more hours for the team.",
+          "cta": "See services",
+          "tags": {
+            "1": "AI agents",
+            "2": "LLMs",
+            "3": "RAG",
+            "4": "n8n · Make · Zapier",
+            "5": "Process automation"
+          }
+        },
+        "development": {
+          "title": "Custom software development",
+          "body": "Web apps with Next.js, React and TypeScript: fintech and healthtech platforms, dashboards, e-commerce. Server Components, Core Web Vitals and deployment on Vercel, with Supabase or AWS behind.",
+          "cta": "See projects",
+          "tags": {
+            "1": "Next.js",
+            "2": "React",
+            "3": "TypeScript",
+            "4": "Supabase",
+            "5": "Core Web Vitals"
+          }
+        },
+        "training": {
+          "title": "AI training for non-technical professionals",
+          "body": "The AI Shift Challenge: 4 live weeks, 4 private and 2 group sessions, to leave with a daily copilot and an automation of your own running. No code.",
+          "cta": "See the program",
+          "tags": {
+            "1": "AI Shift Challenge",
+            "2": "AI copilot",
+            "3": "Prompts that deliver work",
+            "4": "No code"
+          }
+        }
+      }
+    },
+    "stack": {
+      "eyebrow": "Stack",
+      "title": "What I work with",
+      "intro": "What I use every day, in production.",
+      "groups": {
+        "ai": {
+          "title": "Applied AI",
+          "items": {
+            "1": "Claude and Claude Code",
+            "2": "ChatGPT and the OpenAI API",
+            "3": "AI agents",
+            "4": "RAG and vector databases",
+            "5": "Prompt engineering",
+            "6": "n8n",
+            "7": "Make",
+            "8": "Zapier",
+            "9": "Vercel AI SDK"
+          }
+        },
+        "frontend": {
+          "title": "Frontend",
+          "items": {
+            "1": "Next.js (App Router)",
+            "2": "React Server Components",
+            "3": "TypeScript",
+            "4": "Tailwind CSS",
+            "5": "SCSS",
+            "6": "XState",
+            "7": "GraphQL / Apollo",
+            "8": "Remotion"
+          }
+        },
+        "platform": {
+          "title": "Platform",
+          "items": {
+            "1": "Supabase and Postgres",
+            "2": "Vercel",
+            "3": "AWS (S3, CloudFront, Lambda)",
+            "4": "GitHub Actions / CI-CD",
+            "5": "Core Web Vitals",
+            "6": "Resend"
+          }
+        }
+      }
+    },
+    "toc": {
+      "story": "My story",
+      "help": "How I can help",
+      "work": "Experience",
+      "achievements": "Achievements",
+      "studies": "Studies",
+      "stack": "Stack"
     }
   },
   "achievements": {
@@ -763,9 +908,9 @@
     "title": "What People Say"
   },
   "work": {
-    "description": "Fintech dashboards, healthcare platforms, and high-performance web applications I've built.",
-    "label": "Work",
-    "title": "Selected Projects"
+    "description": "Fintech, healthtech and my own product. Each case tells the problem, the solution and what changed.",
+    "label": "Projects",
+    "title": "Real cases: software in production, with numbers."
   },
   "scroll": {
     "brand": "rulocode",

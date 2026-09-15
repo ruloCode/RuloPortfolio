@@ -1,7 +1,7 @@
 {
   "about": {
     "calendar": "Agenda una llamada",
-    "description": "La historia de Andrés Santana: de músico a Software Developer. Automatización, desarrollo y formación en IA desde Colombia.",
+    "description": "De músico a tech lead de una farmacia digital que procesa +$2M al mes. Hoy, consultor de automatización con IA (agentes, LLMs, n8n) y creador del AI Shift Challenge. Next.js, React, TypeScript. Desde Bogotá.",
     "intro": {
       "p1": "Antes de escribir código, escribía canciones. La música era el plan de vida — hasta que la tecnología transformó la industria y me obligó a elegir entre lo que amaba y lo que me permitía vivir. <strong>Elegí sobrevivir.</strong>",
       "p2": "Aprendí a programar desde cero y me lo tomé en serio: durante más de 4 años fui líder de frontend de la farmacia digital de mayor crecimiento en México. Reduje el tiempo de carga en <strong>56%</strong>, subí las conversiones <strong>23%</strong> y la plataforma que diseñé procesa <strong>más de $2M mensuales</strong> para más de 50,000 pacientes con 99.9% de uptime.",
@@ -20,6 +20,10 @@
         "platzi": {
           "description": "Estudié ingeniería de software.",
           "name": "Platzi"
+        },
+        "learning": {
+          "name": "Formación continua",
+          "description": "Documentación y cursos de Anthropic, OpenAI y Vercel. Construyo con cada modelo nuevo antes de recomendarlo."
         }
       },
       "title": "Estudios"
@@ -61,7 +65,7 @@
       },
       "title": "Habilidades Técnicas"
     },
-    "title": "Sobre mí",
+    "title": "Sobre mí — Andrés Santana, experto en IA aplicada y tech lead",
     "work": {
       "experiences": {
         "freelance": {
@@ -83,9 +87,150 @@
           "company": "Vitau",
           "role": "Senior Frontend Engineer & Tech Lead",
           "timeframe": "2020 - Presente"
+        },
+        "aishift": {
+          "company": "AI Shift Challenge · rulocode",
+          "role": "Creador e instructor",
+          "timeframe": "2026 - Presente",
+          "achievements": {
+            "1": "Programa en vivo de 4 semanas para profesionales no técnicos: 4 sesiones privadas, 2 grupales y una automatización propia funcionando al cierre.",
+            "2": "Plataforma de estudio propia (Next.js + Supabase) con Semana 0 gratuita, lecciones y seguimiento de progreso."
+          }
         }
       },
-      "title": "Experiencia Laboral"
+      "title": "Experiencia"
+    },
+    "hero": {
+      "eyebrow": "Sobre mí",
+      "title": "Seis años llevando software a producción. Hoy, <fx>IA aplicada</fx> para empresas y profesionales.",
+      "intro": "Soy Andrés Santana, Rulo. Senior frontend engineer y tech lead (Next.js, React, TypeScript) que hoy diseña automatizaciones con IA para empresas y enseña a profesionales no técnicos a hacerlo sin código en el AI Shift Challenge. Desde Bogotá, para Latinoamérica y el mundo.",
+      "ctaCall": "Agenda una llamada",
+      "ctaProgram": "Ver el AI Shift Challenge",
+      "portraitAlt": "Andrés Santana, Rulo, sonriendo frente a su portátil",
+      "location": "Bogotá, Colombia"
+    },
+    "story": {
+      "eyebrow": "Mi historia",
+      "title": "De escribir canciones a escribir software. Y de ahí, a enseñar IA.",
+      "quote": "Descubrí mi ventaja injusta: sé hacer lo técnico y sé traducirlo. Como viví el miedo a quedarme atrás, enseño desde la empatía, no desde la arrogancia.",
+      "north": "Mi norte es simple: ayudar a profesionales a dominar la IA antes de que el mundo los obligue a elegir. A mí me obligó. A ti no tiene por qué.",
+      "acts": {
+        "before": {
+          "label": "Antes del código",
+          "title": "La música era el plan.",
+          "body": "Escribía canciones y ese era el plan de vida, hasta que la tecnología transformó la industria y me obligó a elegir entre lo que amaba y lo que me permitía vivir. Elegí sobrevivir, y aprendí a programar desde cero."
+        },
+        "learn": {
+          "label": "2019",
+          "title": "Aprender en serio, cobrando por ello.",
+          "body": "Como freelance entregué más de 10 proyectos para startups y pymes de e-commerce, SaaS y bienes raíces: de un diseño en Figma a producción en Vercel, con React y Next.js."
+        },
+        "production": {
+          "label": "2020",
+          "title": "Producción de verdad: la farmacia digital de mayor crecimiento en México.",
+          "body": "Más de cuatro años como senior frontend engineer y tech lead en Vitau. Bajé el LCP de 5,8 s a 2,5 s, la conversión subió 23 % y el checkout que diseñé procesa más de $2M USD al mes para 50.000 pacientes con 99,9 % de uptime. Healthtech y fintech a la vez, con TypeScript estricto."
+        },
+        "today": {
+          "label": "Hoy",
+          "title": "IA aplicada: automatizo para empresas y enseño a profesionales.",
+          "body": "Diseño agentes y flujos con modelos de lenguaje (Claude, GPT) e integraciones con n8n, Make y Zapier para equipos que quieren recuperar horas. Y creé el AI Shift Challenge, un programa en vivo para que profesionales no técnicos automaticen su trabajo sin escribir código."
+        }
+      }
+    },
+    "help": {
+      "eyebrow": "Servicios",
+      "title": "En qué te ayudo",
+      "intro": "Tres frentes, una misma base: ingeniería real, en producción.",
+      "items": {
+        "automation": {
+          "title": "Automatización con IA para empresas",
+          "body": "Auditoría de procesos, diseño de agentes de IA y flujos con LLMs conectados a tu correo, tus hojas y tu CRM. Integraciones con n8n, Make, Zapier y las APIs de OpenAI y Anthropic. Menos tareas repetitivas, más horas para el equipo.",
+          "cta": "Ver servicios",
+          "tags": {
+            "1": "Agentes de IA",
+            "2": "LLMs",
+            "3": "RAG",
+            "4": "n8n · Make · Zapier",
+            "5": "Automatización de procesos"
+          }
+        },
+        "development": {
+          "title": "Desarrollo de software a la medida",
+          "body": "Aplicaciones web con Next.js, React y TypeScript: plataformas fintech y healthtech, dashboards, e-commerce. Server Components, Core Web Vitals y despliegue en Vercel, con Supabase o AWS detrás.",
+          "cta": "Ver proyectos",
+          "tags": {
+            "1": "Next.js",
+            "2": "React",
+            "3": "TypeScript",
+            "4": "Supabase",
+            "5": "Core Web Vitals"
+          }
+        },
+        "training": {
+          "title": "Formación en IA para profesionales no técnicos",
+          "body": "El AI Shift Challenge: 4 semanas en vivo, 4 sesiones privadas y 2 grupales, para salir con un copiloto diario y una automatización propia funcionando. Sin código.",
+          "cta": "Ver el programa",
+          "tags": {
+            "1": "AI Shift Challenge",
+            "2": "Copiloto con IA",
+            "3": "Prompts que entregan trabajo",
+            "4": "Sin código"
+          }
+        }
+      }
+    },
+    "stack": {
+      "eyebrow": "Stack",
+      "title": "Con qué trabajo",
+      "intro": "Lo que uso todos los días, en producción.",
+      "groups": {
+        "ai": {
+          "title": "IA aplicada",
+          "items": {
+            "1": "Claude y Claude Code",
+            "2": "ChatGPT y la API de OpenAI",
+            "3": "Agentes de IA",
+            "4": "RAG y bases vectoriales",
+            "5": "Prompt engineering",
+            "6": "n8n",
+            "7": "Make",
+            "8": "Zapier",
+            "9": "Vercel AI SDK"
+          }
+        },
+        "frontend": {
+          "title": "Frontend",
+          "items": {
+            "1": "Next.js (App Router)",
+            "2": "React Server Components",
+            "3": "TypeScript",
+            "4": "Tailwind CSS",
+            "5": "SCSS",
+            "6": "XState",
+            "7": "GraphQL / Apollo",
+            "8": "Remotion"
+          }
+        },
+        "platform": {
+          "title": "Plataforma",
+          "items": {
+            "1": "Supabase y Postgres",
+            "2": "Vercel",
+            "3": "AWS (S3, CloudFront, Lambda)",
+            "4": "GitHub Actions / CI-CD",
+            "5": "Core Web Vitals",
+            "6": "Resend"
+          }
+        }
+      }
+    },
+    "toc": {
+      "story": "Mi historia",
+      "help": "En qué te ayudo",
+      "work": "Experiencia",
+      "achievements": "Logros",
+      "studies": "Estudios",
+      "stack": "Stack"
     }
   },
   "achievements": {
@@ -763,9 +908,9 @@
     "title": "Lo Que Dicen"
   },
   "work": {
-    "description": "Dashboards fintech, plataformas de salud y aplicaciones web de alto rendimiento que he construido.",
+    "description": "Fintech, healthtech y producto propio. Cada caso cuenta el problema, la solución y lo que cambió.",
     "label": "Proyectos",
-    "title": "Proyectos Seleccionados"
+    "title": "Casos reales: software en producción, con números."
   },
   "scroll": {
     "brand": "rulocode",

@@ -8,6 +8,18 @@ const strong = (chunks) => <strong>{chunks}</strong>;
 const fx = (chunks) => <span className={brand.gradientText}>{chunks}</span>;
 
 const createI18nContent = (t) => {
+  // Numbered message lists ("1", "2", ...) read until the first gap, so adding
+  // a bullet is a messages-only change — no counts hardcoded in this file.
+  const listOf = (path, read = t) => {
+    const items = [];
+    for (let i = 1; i <= 12; i++) {
+      const key = path(i);
+      if (!t.has(key)) break;
+      items.push(read(key));
+    }
+    return items;
+  };
+
   const person = {
     firstName: "Andrés",
     lastName: "Santana",
@@ -145,34 +157,56 @@ const createI18nContent = (t) => {
       display: true,
       subItems: false,
     },
-    avatar: {
-      display: true,
+    hero: {
+      eyebrow: t("about.hero.eyebrow"),
+      title: t.rich("about.hero.title", { fx }),
+      intro: t("about.hero.intro"),
+      ctaCall: t("about.hero.ctaCall"),
+      ctaProgram: t("about.hero.ctaProgram"),
+      portraitAlt: t("about.hero.portraitAlt"),
+      location: t("about.hero.location"),
     },
     calendar: {
       display: true,
       text: t("about.calendar"),
       link: scheduling.link,
     },
-    intro: {
+    story: {
       display: true,
-      title: t("about.intro.title"),
-      description: (
-        <>
-          {t.rich("about.intro.p1", { strong })}
-          <br />
-          <br />
-          {t.rich("about.intro.p2", { strong })}
-          <br />
-          <br />
-          {t.rich("about.intro.p3", { strong })}
-          <br />
-          <br />
-          {t.rich("about.intro.p4", { strong })}
-          <br />
-          <br />
-          {t.rich("about.intro.p5", { strong })}
-        </>
+      title: t("about.story.title"),
+      eyebrow: t("about.story.eyebrow"),
+      quote: t("about.story.quote"),
+      north: t("about.story.north"),
+      acts: Object.fromEntries(
+        ["before", "learn", "production", "today"].map((key) => [
+          key,
+          {
+            label: t(`about.story.acts.${key}.label`),
+            title: t(`about.story.acts.${key}.title`),
+            body: t(`about.story.acts.${key}.body`),
+          },
+        ]),
       ),
+    },
+    // The three service lines, in the vocabulary clients search for.
+    help: {
+      display: true,
+      eyebrow: t("about.help.eyebrow"),
+      title: t("about.help.title"),
+      intro: t("about.help.intro"),
+      items: [
+        { key: "automation", icon: "robot", route: "/services" },
+        { key: "development", icon: "rocket", route: "/work" },
+        { key: "training", icon: "graduationCap", route: "/ia" },
+      ].map(({ key, icon, route }) => ({
+        key,
+        icon,
+        route,
+        title: t(`about.help.items.${key}.title`),
+        body: t(`about.help.items.${key}.body`),
+        cta: t(`about.help.items.${key}.cta`),
+        tags: listOf((i) => `about.help.items.${key}.tags.${i}`),
+      })),
     },
     achievements: {
       display: true,
@@ -181,53 +215,41 @@ const createI18nContent = (t) => {
     work: {
       display: true,
       title: t("about.work.title"),
-      experiences: [
-        {
-          company: t("about.work.experiences.vitau.company"),
-          timeframe: t("about.work.experiences.vitau.timeframe"),
-          role: t("about.work.experiences.vitau.role"),
-          achievements: [1, 2, 3, 4].map((i) =>
-            t.rich(`about.work.experiences.vitau.achievements.${i}`, { strong }),
-          ),
-          images: [],
-        },
-        {
-          company: t("about.work.experiences.freelance.company"),
-          timeframe: t("about.work.experiences.freelance.timeframe"),
-          role: t("about.work.experiences.freelance.role"),
-          achievements: [1, 2].map((i) =>
-            t.rich(`about.work.experiences.freelance.achievements.${i}`, { strong }),
-          ),
-          images: [],
-        },
-      ],
+      // Newest first: what he does today leads.
+      experiences: ["aishift", "vitau", "freelance"].map((key) => ({
+        company: t(`about.work.experiences.${key}.company`),
+        timeframe: t(`about.work.experiences.${key}.timeframe`),
+        role: t(`about.work.experiences.${key}.role`),
+        achievements: listOf(
+          (i) => `about.work.experiences.${key}.achievements.${i}`,
+          (path) => t.rich(path, { strong }),
+        ),
+        images: [],
+      })),
     },
     studies: {
       display: true,
       title: t("about.studies.title"),
-      institutions: ["platzi", "google"].map((key) => ({
+      institutions: ["platzi", "google", "learning"].map((key) => ({
         name: t(`about.studies.institutions.${key}.name`),
         description: t(`about.studies.institutions.${key}.description`),
       })),
     },
-    technical: {
+    stack: {
       display: true,
-      title: t("about.technical.title"),
-      skills: [
-        "react",
-        "typescript",
-        "graphql",
-        "xstate",
-        "aws",
-        "performance",
-        "cicd",
-        "tailwind",
-      ].map((key) => ({
-        title: t(`about.technical.skills.${key}.title`),
-        description: t(`about.technical.skills.${key}.description`),
-        images: [],
+      eyebrow: t("about.stack.eyebrow"),
+      title: t("about.stack.title"),
+      intro: t("about.stack.intro"),
+      groups: ["ai", "frontend", "platform"].map((key) => ({
+        key,
+        title: t(`about.stack.groups.${key}.title`),
+        items: listOf((i) => `about.stack.groups.${key}.items.${i}`),
       })),
     },
+    toc: ["story", "help", "work", "achievements", "studies", "stack"].reduce(
+      (acc, key) => ({ ...acc, [key]: t(`about.toc.${key}`) }),
+      {},
+    ),
   };
 
   const blog = {

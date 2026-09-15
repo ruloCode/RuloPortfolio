@@ -1,3 +1,12 @@
+.tocLink {
+    color: var(--neutral-on-background-medium);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--neutral-on-background-strong);
+    }
+}
+
 .hover {
     transition: var(--transition-micro-medium);
 
@@ -6,10 +15,11 @@
     }
 }
 
-.avatar {
-    position: sticky;
-    height: fit-content;
-    top: var(--static-space-64);
+// Hero portrait: a soft emerald halo, the same light the media uses.
+.portrait {
+    box-shadow:
+        0 24px 80px -32px var(--brand-alpha-medium),
+        0 0 0 1px var(--brand-alpha-weak);
 }
 
 @media (--s) {

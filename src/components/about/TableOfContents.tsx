@@ -6,6 +6,8 @@ import styles from "./about.module.scss";
 
 interface TableOfContentsProps {
   structure: {
+    /** Stable anchor, independent of the (translated) title. */
+    id: string;
     title: string;
     display: boolean;
     items: string[];
@@ -16,9 +18,10 @@ interface TableOfContentsProps {
       subItems: boolean;
     };
   };
+  label: string;
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) => {
+const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about, label }) => {
   const scrollTo = (id: string, offset: number) => {
     const element = document.getElementById(id);
     if (element) {
@@ -36,6 +39,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
 
   return (
     <Column
+      as="nav"
+      aria-label={label}
       left="0"
       style={{
         top: "50%",
@@ -51,16 +56,22 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
         .filter((section) => section.display)
         .map((section, sectionIndex) => (
           <Column key={sectionIndex} gap="12">
-            <Flex
-              cursor="interactive"
-              className={styles.hover}
-              gap="8"
-              vertical="center"
-              onClick={() => scrollTo(section.title, 80)}
+            {/* A real link: it works without JS, is keyboard-reachable and
+                can be opened in a new tab. The handler only smooths it. */}
+            <a
+              href={`#${section.id}`}
+              className={styles.tocLink}
+              onClick={(event) => {
+                event.preventDefault();
+                scrollTo(section.id, 80);
+                history.replaceState(null, "", `#${section.id}`);
+              }}
             >
-              <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
-              <Text>{section.title}</Text>
-            </Flex>
+              <Flex className={styles.hover} gap="8" vertical="center">
+                <Flex height="1" minWidth="16" background="neutral-strong"></Flex>
+                <Text>{section.title}</Text>
+              </Flex>
+            </a>
             {about.tableOfContent.subItems && (
               <>
                 {section.items.map((item, itemIndex) => (
