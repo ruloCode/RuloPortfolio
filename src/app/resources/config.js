@@ -4,11 +4,10 @@ const baseURL = "rulocode.com";
 const routes = {
   "/": true,
   "/about": true,
-  // Hidden while the site focuses on the /ia funnel — flip to true to bring them back.
-  "/work": false,
+  "/work": true,
   "/services": true,
   "/ia": true,
-  "/blog": false,
+  "/blog": true,
   // Hidden until there are real photos (e.g. from the Bogotá pilot event) — flip to true to bring it back.
   "/gallery": false,
   // Gated study platform. Access is enforced by the session check in

@@ -1,0 +1,71 @@
+// The career line: one rail, four dots in the scroll-world's station accents.
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--static-space-24);
+  margin: 0;
+  padding: var(--static-space-32) 0 0;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 5px;
+    height: 2px;
+    background: color-mix(in srgb, var(--brand-solid-strong) 28%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 0 0 var(--static-space-24);
+    gap: var(--static-space-32);
+
+    &::before {
+      left: 5px;
+      right: auto;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      height: auto;
+    }
+  }
+}
+
+.milestone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-8);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--static-space-32) - 1px);
+    left: 1px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot) 22%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    &::before {
+      top: 6px;
+      left: calc(-1 * var(--static-space-24) - 1px);
+    }
+  }
+}
+
+// Case-card summaries: two lines, then an ellipsis — the card is a teaser,
+// the case study is the page.
+.clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

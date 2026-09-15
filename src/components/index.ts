@@ -17,3 +17,5 @@ export { TechMarquee } from "@/components/TechMarquee";
 export { CourseSpotlight } from "@/components/CourseSpotlight";
 export { Testimonials } from "@/components/Testimonials";
 export { ThemeToggle } from "@/components/ThemeToggle";
+export { Trajectory } from "@/components/Trajectory";
+export { NewsletterBand } from "@/components/NewsletterBand";

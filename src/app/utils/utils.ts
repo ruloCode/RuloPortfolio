@@ -21,6 +21,10 @@ type Metadata = {
   team: Team[];
   link?: string;
   repository?: string;
+  // Work only: position in the home's case grid (1-2 large, 3-5 small) and
+  // the one-line outcome shown on the card. Absent = not featured on the home.
+  homeOrder?: number;
+  metric?: string;
   // Dashboard lessons only (src/app/[locale]/dashboard/lessons). Undefined for
   // blog and work.
   module?: string;
@@ -66,6 +70,8 @@ function readMDXFile(filePath: string) {
     team: data.team || [],
     link: data.link || "",
     repository: data.repository || "",
+    homeOrder: typeof data.homeOrder === "number" ? data.homeOrder : undefined,
+    metric: data.metric || undefined,
     module: data.module || undefined,
     order: typeof data.order === "number" ? data.order : undefined,
     duration: typeof data.duration === "number" ? data.duration : undefined,

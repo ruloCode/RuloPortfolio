@@ -102,11 +102,15 @@
   "blog": {
     "availableInEnglishOnly": "This post is currently available in English only.",
     "availableInSpanishOnly": "This post is currently available in Spanish only.",
-    "description": "Technical articles and insights on React, Next.js, GraphQL, and building scalable financial applications.",
+    "description": "No conference theory: what I tried, what worked and the numbers that came out.",
     "label": "Blog",
     "readingTime": "{minutes} min read",
     "related": "Related posts",
-    "title": "Writing about frontend, performance & fintech"
+    "title": "I write about applied AI, frontend and what happens in production.",
+    "all": "All",
+    "filterLabel": "Filter by topic",
+    "readArticle": "Read the article",
+    "latest": "Latest from the blog"
   },
   "dashboard": {
     "empty": {
@@ -582,10 +586,13 @@
     "work": "Work"
   },
   "newsletter": {
+    "title": "One real automation, explained, every two weeks.",
+    "description": "What I'm building with AI for my work and my students': the flow, the click-based tools and the hours it gives back. No news digests.",
     "button": "Subscribe",
-    "description": "I occasionally write about Web Development, technology, and share thoughts on the intersection of creativity and engineering.",
-    "placeholder": "Email",
-    "title": "Subscribe to Andrés's Newsletter"
+    "placeholder": "you@email.com",
+    "note": "No spam. Unsubscribe in one click. If you're already in Week 0, you already get it.",
+    "success": "Done. The next issue lands in your inbox.",
+    "imageAlt": "Rulo, the rulocode robot, at the final station of his world"
   },
   "notFound": {
     "backHome": "Back to home",
@@ -839,5 +846,35 @@
         }
       }
     }
+  },
+  "trajectory": {
+    "eyebrow": "Track record",
+    "title": "6+ years building software that runs in production.",
+    "intro": "I led the frontend of Mexico's fastest-growing digital pharmacy. That base is the difference when I talk about AI: I don't sell demos, I teach what already runs.",
+    "milestones": {
+      "freelance": {
+        "year": "2019",
+        "title": "Freelance · Frontend & Consultant",
+        "body": "10+ projects for startups and SMBs: e-commerce, SaaS and real estate, from Figma to production."
+      },
+      "vitau": {
+        "year": "2020",
+        "title": "Vitau · Senior Frontend & Tech Lead",
+        "body": "Frontend architecture of Mexico's fastest-growing digital pharmacy. Zero-downtime migration to Next.js, bundle −40%."
+      },
+      "topra": {
+        "year": "2025",
+        "title": "To-Pra · my own product",
+        "body": "A task manager with focus modes that 500+ people use today."
+      },
+      "aishift": {
+        "year": "2026",
+        "title": "AI Shift Challenge · Week 0",
+        "body": "From building software to teaching non-technical professionals to automate their work with AI."
+      }
+    },
+    "casesTitle": "Real cases",
+    "viewAll": "See all projects",
+    "caseCta": "Read the case"
   }
 }

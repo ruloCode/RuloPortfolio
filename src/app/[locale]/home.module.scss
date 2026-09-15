@@ -13,5 +13,7 @@
   scroll-snap-align: start;
   min-height: 100svh;
   padding-top: calc(var(--static-space-80) + 40px);
-  background: var(--page-background);
+  // Cream, like the sky it follows: the stations and what comes after read
+  // as one page, not a landing stapled to a template.
+  background: var(--sw-bg, #f4ead5);
 }

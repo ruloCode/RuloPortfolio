@@ -1,21 +1,10 @@
 import React from "react";
-import {
-  Column,
-  Flex,
-  Heading,
-  RevealFx,
-  SmartImage,
-  SmartLink,
-  Tag,
-  Text,
-} from "@/once-ui/components";
-import brand from "@/styles/brand.module.scss";
+import { Column, Flex, Heading, RevealFx, SmartLink, Text } from "@/once-ui/components";
 import styles from "./home.module.scss";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { Posts } from "@/components/blog/Posts";
-import { Projects } from "@/components/work/Projects";
-import { HomePillars, WaitlistForm } from "@/components";
+import { HomePillars, Trajectory, WaitlistForm } from "@/components";
 import { ScrollWorld } from "@/components/scroll-world";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
@@ -152,45 +141,7 @@ export default async function Home({ params }: PageParams) {
       >
         <Column maxWidth="m" gap="xl" horizontal="center">
           <RevealFx translateY="16" inView>
-            <Flex
-              className={brand.card}
-              fillWidth
-              gap="l"
-              padding="l"
-              radius="l"
-              border="neutral-alpha-medium"
-              background="surface"
-              mobileDirection="column"
-            >
-              <Column gap="12" flex={7}>
-                <Flex gap="8" vertical="center">
-                  <Tag variant="brand" size="m" label={home.story.eyebrow} />
-                </Flex>
-                <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                  {home.story.title}
-                </Heading>
-                <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
-                  {home.story.p1}
-                </Text>
-                <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
-                  {home.story.p2}
-                </Text>
-                <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/about")}>
-                  <Text variant="body-default-s">{home.story.cta}</Text>
-                </SmartLink>
-              </Column>
-              <Flex flex={5} vertical="center">
-                <SmartImage
-                  className={brand.media}
-                  src="/images/home/experience.jpg"
-                  alt={home.story.imageAlt}
-                  aspectRatio="4 / 3"
-                  radius="l"
-                  sizes="(max-width: 768px) 100vw, 480px"
-                  border="neutral-alpha-weak"
-                />
-              </Flex>
-            </Flex>
+            <Trajectory locale={locale} />
           </RevealFx>
           {routes["/services"] && (
             <RevealFx translateY="16" inView>
@@ -205,33 +156,19 @@ export default async function Home({ params }: PageParams) {
               />
             </RevealFx>
           )}
-          {routes["/work"] && (
+          {routes["/blog"] && (
             <RevealFx translateY="16" inView>
               <Column fillWidth gap="l">
                 <Flex fillWidth horizontal="space-between" vertical="center" wrap gap="12">
                   <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                    {home.proofHeading}
-                  </Heading>
-                  <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/work")}>
-                    <Text variant="body-default-s">{home.proofCta}</Text>
-                  </SmartLink>
-                </Flex>
-                <Projects range={[1, 2]} locale={locale} />
-              </Column>
-            </RevealFx>
-          )}
-          {routes["/blog"] && (
-            <RevealFx translateY="16" inView>
-              <Flex fillWidth gap="24" mobileDirection="column">
-                <Flex flex={1}>
-                  <Heading as="h2" variant="display-strong-xs" wrap="balance">
                     {home.blogHeading}
                   </Heading>
+                  <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/blog")}>
+                    <Text variant="body-default-s">{t("blog.label")}</Text>
+                  </SmartLink>
                 </Flex>
-                <Flex flex={3}>
-                  <Posts range={[1, 2]} columns="2" locale={locale} />
-                </Flex>
-              </Flex>
+                <Posts range={[1, 3]} columns="3" thumbnail locale={locale} />
+              </Column>
             </RevealFx>
           )}
           {/* Primary conversion: the course waitlist, inline (no extra hop). */}

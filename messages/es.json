@@ -102,11 +102,15 @@
   "blog": {
     "availableInEnglishOnly": "Este artículo está disponible solo en inglés por ahora.",
     "availableInSpanishOnly": "Este artículo está disponible solo en español por ahora.",
-    "description": "Artículos técnicos sobre React, Next.js, GraphQL y la construcción de aplicaciones financieras escalables.",
+    "description": "Sin teoría de conferencia: lo que probé, lo que funcionó y los números que salieron.",
     "label": "Blog",
     "readingTime": "{minutes} min de lectura",
     "related": "Artículos relacionados",
-    "title": "Escribo sobre frontend, performance y fintech"
+    "title": "Escribo sobre IA aplicada, frontend y lo que pasa en producción.",
+    "all": "Todos",
+    "filterLabel": "Filtrar por tema",
+    "readArticle": "Leer el artículo",
+    "latest": "Lo último del blog"
   },
   "dashboard": {
     "empty": {
@@ -582,10 +586,13 @@
     "work": "Proyectos"
   },
   "newsletter": {
+    "title": "Una automatización real, explicada, cada dos semanas.",
+    "description": "Lo que estoy montando con IA para mi trabajo y el de mis alumnos: el flujo, las herramientas de clics y las horas que devuelve. Nada de resúmenes de noticias.",
     "button": "Suscribirme",
-    "description": "Escribo ocasionalmente sobre desarrollo web, tecnología y la intersección entre creatividad e ingeniería.",
-    "placeholder": "Email",
-    "title": "Suscríbete al newsletter de Andrés"
+    "placeholder": "tu@correo.com",
+    "note": "Sin spam. Te das de baja con un clic. Si ya estás en la Semana 0, ya la recibes.",
+    "success": "Listo. El próximo número llega a tu correo.",
+    "imageAlt": "Rulo, el robot de rulocode, en la estación final de su mundo"
   },
   "notFound": {
     "backHome": "Volver al inicio",
@@ -839,5 +846,35 @@
         }
       }
     }
+  },
+  "trajectory": {
+    "eyebrow": "Trayectoria",
+    "title": "Más de 6 años construyendo software en producción.",
+    "intro": "Lideré el frontend de la farmacia digital de mayor crecimiento en México. Esa base es la diferencia cuando hablo de IA: no vendo demos, enseño lo que ya corre.",
+    "milestones": {
+      "freelance": {
+        "year": "2019",
+        "title": "Freelance · Frontend & Consultor",
+        "body": "+10 proyectos para startups y pymes: e-commerce, SaaS y bienes raíces, de Figma a producción."
+      },
+      "vitau": {
+        "year": "2020",
+        "title": "Vitau · Senior Frontend & Tech Lead",
+        "body": "Arquitectura frontend de la farmacia digital de mayor crecimiento en México. Migración a Next.js sin downtime, bundle −40%."
+      },
+      "topra": {
+        "year": "2025",
+        "title": "To-Pra · producto propio",
+        "body": "Un gestor de tareas con modos de enfoque que hoy usan más de 500 personas."
+      },
+      "aishift": {
+        "year": "2026",
+        "title": "AI Shift Challenge · Semana 0",
+        "body": "De construir software a enseñar a profesionales no técnicos a automatizar su trabajo con IA."
+      }
+    },
+    "casesTitle": "Casos reales",
+    "viewAll": "Ver todos los proyectos",
+    "caseCta": "Ver el caso"
   }
 }
