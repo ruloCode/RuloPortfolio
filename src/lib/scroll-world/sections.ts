@@ -31,6 +31,9 @@ export type WorldConfig = {
   sections: StationConfig[];
 };
 
+/** URL pública (hasheada) de un asset del scroll-world, por su nombre original. */
+export const scrollAsset = (name: string): string => asset(name);
+
 const asset = (name: string): string => {
   const url = (manifest as Record<string, string>)[name];
   if (!url) throw new Error(`Asset sin entrada en el manifest: ${name} — corre \`pnpm scroll:assets\``);

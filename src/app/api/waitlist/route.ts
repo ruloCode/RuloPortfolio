@@ -15,7 +15,7 @@ const supabaseHeaders = (secretKey: string) => ({
 });
 
 export async function POST(request: Request) {
-  let body: { email?: string; company?: string; locale?: string; fullName?: string };
+  let body: { email?: string; company?: string; locale?: string; fullName?: string; source?: string };
   try {
     body = await request.json();
   } catch {
@@ -40,7 +40,12 @@ export async function POST(request: Request) {
   }
 
   const locale = resolveWelcomeLocale(body.locale);
-  const source = sourcePath(request.headers.get("referer"));
+  // `source` distinguishes the newsletter band from the Week 0 waitlist on
+  // the same table without a schema change: "newsletter:/es/blog" vs "/es".
+  // A short slug only — anything else falls back to the referer path.
+  const path = sourcePath(request.headers.get("referer"));
+  const kind = body.source && /^[a-z-]{1,32}$/.test(body.source) ? body.source : null;
+  const source = kind ? `${kind}:${path ?? ""}` : path;
   // Free text straight into a greeting: cap it so a pasted essay can't wreck
   // the email layout, and drop blanks rather than storing "".
   const fullName = body.fullName?.trim().slice(0, 80) || null;

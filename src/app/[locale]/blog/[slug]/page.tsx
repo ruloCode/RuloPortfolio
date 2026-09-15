@@ -12,10 +12,12 @@ import {
 } from "@/once-ui/components";
 import { baseURL, routes, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
-import { CtaBanner } from "@/components";
+import { CtaBanner, NewsletterBand } from "@/components";
+import { createI18nContent } from "@/app/resources/content-i18n";
 import { formatDate } from "@/app/utils/formatDate";
 import { readingTime } from "@/app/utils/readingTime";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { scrollAsset } from "@/lib/scroll-world/sections";
 import ScrollToHash from "@/components/ScrollToHash";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
@@ -135,6 +137,7 @@ export default async function Blog(props: BlogParams) {
   setRequestLocale(params.locale);
 
   const t = await getTranslations();
+  const { newsletter } = createI18nContent(t);
   let post = getPost(BLOG_PATH, params.locale, params.slug);
 
   if (!post) {
@@ -219,6 +222,7 @@ export default async function Blog(props: BlogParams) {
       <Column as="article" fillWidth>
         <CustomMDX source={post.content} />
       </Column>
+      <NewsletterBand copy={newsletter} image={scrollAsset("07-semana0.webp")} />
       <RelatedPosts
         currentSlug={post.slug}
         tag={typeof post.metadata.tag === "string" ? post.metadata.tag : undefined}

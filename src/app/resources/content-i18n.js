@@ -48,14 +48,17 @@ const createI18nContent = (t) => {
     },
   ];
 
+  // The newsletter band (blog index and every post). Same API as the
+  // waitlist — one table, one welcome flow — tagged source "newsletter".
   const newsletter = {
-    display: false,
     title: t("newsletter.title"),
     description: t("newsletter.description"),
     button: t("newsletter.button"),
     placeholder: t("newsletter.placeholder"),
+    note: t("newsletter.note"),
+    imageAlt: t("newsletter.imageAlt"),
     invalidEmail: t("ia.waitlist.invalidEmail"),
-    success: t("ia.waitlist.success"),
+    success: t("newsletter.success"),
     error: t("ia.waitlist.error"),
   };
 
