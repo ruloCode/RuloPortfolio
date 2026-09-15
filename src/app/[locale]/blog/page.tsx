@@ -1,12 +1,16 @@
 import { notFound } from "next/navigation";
-import { Column, Heading } from "@/once-ui/components";
-import { WaitlistForm } from "@/components";
-import { Posts } from "@/components/blog/Posts";
+import { Column, Heading, Tag, Text } from "@/once-ui/components";
+import { NewsletterBand } from "@/components";
+import { BlogIndex, type BlogIndexPost } from "@/components/blog/BlogIndex";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { localeAlternates } from "@/app/utils/seo";
+import { getPosts } from "@/app/utils/utils";
+import { formatDate } from "@/app/utils/formatDate";
+import { readingTime } from "@/app/utils/readingTime";
+import { scrollAsset } from "@/lib/scroll-world/sections";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { routing } from "@/i18n/routing";
+import { localizeHref, routing } from "@/i18n/routing";
 
 interface PageParams {
   params: Promise<{ locale: string }>;
@@ -60,8 +64,26 @@ export default async function Blog({ params }: PageParams) {
   const t = await getTranslations();
   const { blog, person, newsletter } = createI18nContent(t);
 
+  // Newest first. Dates and reading times are formatted here, where the
+  // locale and the MDX body live; the client only filters.
+  const posts: BlogIndexPost[] = getPosts(["blog", "posts"], locale)
+    .sort(
+      (a, b) =>
+        new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
+    )
+    .map((post) => ({
+      slug: post.slug,
+      href: localizeHref(locale, `/blog/${post.slug}`),
+      title: post.metadata.title,
+      summary: post.metadata.summary,
+      image: post.metadata.image || undefined,
+      tag: typeof post.metadata.tag === "string" ? post.metadata.tag : undefined,
+      date: formatDate(post.metadata.publishedAt, false, locale),
+      readingTime: t("blog.readingTime", { minutes: readingTime(post.content) }),
+    }));
+
   return (
-    <Column maxWidth="s">
+    <Column maxWidth="m" gap="xl">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -84,15 +106,22 @@ export default async function Blog({ params }: PageParams) {
           }),
         }}
       />
-      <Heading marginBottom="l" variant="display-strong-s">
-        {blog.title}
-      </Heading>
-      <Column fillWidth flex={1}>
-        <Posts range={[1, 1]} variant="featured" locale={locale} />
-        <Posts range={[2, 4]} thumbnail locale={locale} />
-        <Posts range={[5]} columns="2" locale={locale} />
+      <Column maxWidth="s" gap="12">
+        <Tag variant="brand" size="m" label={blog.label} />
+        <Heading variant="display-strong-s" wrap="balance">
+          {blog.title}
+        </Heading>
+        <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance">
+          {blog.description}
+        </Text>
       </Column>
-      {newsletter.display && <WaitlistForm newsletter={newsletter} />}
+      <BlogIndex
+        posts={posts}
+        allLabel={t("blog.all")}
+        filterLabel={t("blog.filterLabel")}
+        readLabel={t("blog.readArticle")}
+      />
+      <NewsletterBand copy={newsletter} image={scrollAsset("07-semana0.webp")} />
     </Column>
   );
 }
