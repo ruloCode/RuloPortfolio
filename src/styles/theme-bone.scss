@@ -111,6 +111,22 @@
 }
 
 // Foco de teclado visible sobre cualquier fondo del sitio (WCAG 2.4.7 / 2.4.11).
+// Cualquier salto a un ancla (#historia, el índice lateral, un enlace
+// compartido) deja el título por debajo de la barra fija si no se reserva
+// sitio. Se excluye la portada: ahí <html> lleva scroll-snap y este relleno
+// desplazaría los puntos de anclaje de las estaciones.
+html:not([data-scroll-world]) {
+  scroll-padding-top: var(--static-space-104);
+}
+
+@media (max-width: 768px) {
+  // En el teléfono la barra vive abajo: el sitio se reserva al final.
+  html:not([data-scroll-world]) {
+    scroll-padding-top: var(--static-space-24);
+    scroll-padding-bottom: var(--static-space-104);
+  }
+}
+
 :focus-visible {
   outline: 3px solid var(--ink);
   outline-offset: 3px;

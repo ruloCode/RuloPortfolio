@@ -1,6 +1,15 @@
+// La barra del sitio: una franja sólida, no un velo.
+//
+// Antes era un degradado translúcido sobre el contenido, y al parar el scroll
+// a media altura los títulos se veían medio tapados — el "se ve cortado". Una
+// franja opaca con una línea abajo hace que el contenido pase por debajo de
+// algo que se lee como una barra, que es lo que un lector espera.
+
 .position {
     position: sticky;
     top: 0;
+    background: var(--page-background);
+    border-bottom: 1px solid var(--neutral-alpha-weak);
 }
 
 .mask {
@@ -15,7 +24,10 @@
     .position {
         top: auto;
         position: fixed;
-        bottom: var(--static-space-24);
+        bottom: 0;
+        padding-bottom: calc(var(--static-space-8) + env(safe-area-inset-bottom));
+        border-bottom: 0;
+        border-top: 1px solid var(--neutral-alpha-weak);
     }
 
     .mask {

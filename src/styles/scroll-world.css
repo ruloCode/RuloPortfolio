@@ -145,9 +145,13 @@
      formulario completo, y el botón sigue ahí durante todo el vuelo. */
   .sw-root.is-past .sw-topcta{ display:none; }
 }
-/* Pasada la película el velo es el papel del sitio, no el crema del diorama. */
+/* Pasada la película la barra deja de ser un velo y se vuelve una franja
+   sólida con su línea, igual que la del resto del sitio: si no, los títulos
+   de la cola se leen medio tapados al parar el scroll a media altura. */
 .sw-root.is-past .sw-topbar::before{
-  background:linear-gradient(180deg,var(--bone) 0%,color-mix(in srgb,var(--bone) 55%,transparent) 62%,transparent 100%);
+  background:var(--bone);
+  height:100%;
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent);
 }
 
 /* Barra superior: velo suave arriba + nav como pill de vidrio (ref. T1 Energy). */

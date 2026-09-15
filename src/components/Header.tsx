@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
-import { Button, Fade, Flex, Line, SmartLink, Text, ToggleButton } from "@/once-ui/components";
+import { Button, Flex, Line, SmartLink, Text, ToggleButton } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
 import styles from "@/components/Header.module.scss";
 
@@ -46,8 +46,6 @@ export const Header = () => {
 
   return (
     <>
-      <Fade hide="s" fillWidth position="fixed" height="80" zIndex={9} />
-      <Fade show="s" fillWidth position="fixed" bottom="0" to="top" height="80" zIndex={9} />
       <Flex
         fitHeight
         className={styles.position}
