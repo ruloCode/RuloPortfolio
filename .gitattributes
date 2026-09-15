@@ -1,0 +1,3 @@
+# Binarios del scroll-world: sin diff textual, se cachean por hash de contenido.
+public/scroll/vid/*.mp4 -diff
+public/scroll/ia/*.webp -diff

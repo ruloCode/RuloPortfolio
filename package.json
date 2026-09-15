@@ -6,6 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "scroll:encode": "bash scripts/scroll-world/encode-videos.sh",
+    "scroll:posters": "bash scripts/scroll-world/extract-posters.sh",
+    "scroll:assets": "node scripts/scroll-world/hash-assets.mjs",
     "video": "npm --prefix video exec -- remotion studio video/src/index.ts",
     "video:render": "npm --prefix video exec -- remotion render video/src/index.ts CuatroNiveles public/videos/cuatro-niveles.mp4"
   },
