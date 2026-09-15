@@ -1,0 +1,252 @@
+/* Tema y ajustes del landing sobre el CSS base que inyecta el motor
+   (src/lib/scroll-world/stage-engine.js, capa @layer sw). Estas reglas van sin
+   capa, así que siempre ganan a las del motor sin necesidad de !important.
+   Copiado de fauna-scroll-world/app/globals.css: los tokens --sw-* son los
+   mismos; lo único del portfolio es la tipografía (Space Grotesk / Inter),
+   que entra por --sw-font-* en StageWorld. */
+
+/* Tema: fondo crema del diorama + acento verde esmeralda de rulocode. */
+:root, .sw-root {
+  --sw-bg: #F4EAD5;          /* == color de fondo de las escenas (crema) */
+  --sw-ink: #241C18;         /* casi-negro cálido (un punto más oscuro = más contraste) */
+  --sw-ink-soft: #5F5346;    /* gris cálido más oscuro que el default → cuerpo/nav legibles */
+  --sw-accent: #2E9C7B;      /* esmeralda — los acentos por sección lo sobreescriben */
+
+  /* ===== Material soft-glass =====
+     Un solo material, definido una vez y reutilizado en cada superficie
+     (nav, tarjeta de copy, tags, rail). Referencias: el pill esmerilado de
+     T1 Energy y los paneles translúcidos sobre crema de Clay. Sobre fondo
+     claro el vidrio "caro" es casi transparente con borde fino y luz desde
+     arriba; el blur alto lechoso es justo lo que se ve barato.
+
+     El fill al 84% mantiene AA de sobra: con el frame más oscuro posible
+     detrás (L≈0.05), el fondo efectivo queda en L≈0.70 y la tinta #241C18
+     sigue a ~12:1 (el umbral AA es 4.5:1). */
+  --glass-fill: color-mix(in srgb, var(--sw-bg) 84%, transparent);
+  --glass-blur: blur(20px) saturate(1.18);
+  /* Borde especular de 1px: blanco arriba (la "arista" que recoge la luz),
+     se apaga a mitad y termina en un filo de tinta que asienta la pieza. */
+  --glass-edge: linear-gradient(180deg,
+    rgba(255,255,255,.75),
+    rgba(255,255,255,.10) 55%,
+    color-mix(in srgb, var(--sw-ink) 12%, transparent));
+  --glass-highlight: inset 0 1px 0 rgba(255,255,255,.55);
+  --glass-shadow:
+    0 24px 70px -28px color-mix(in srgb, var(--sw-ink) 42%, transparent),
+    0 2px 8px -4px color-mix(in srgb, var(--sw-ink) 20%, transparent);
+}
+
+/* ===== Legibilidad =====
+   El texto oscuro sobre una escena clara y detallada no se sostiene con un
+   degradado translúcido: el ojo compite con el diorama. El copy vive en un
+   panel de vidrio con fill casi opaco: el contraste no depende de qué haya
+   debajo en ese frame del vídeo, y si vidrio y legibilidad chocan, gana la
+   legibilidad (se sube el fill, no se baja). */
+
+/* Fuera el scrim: el panel ya garantiza el contraste y el degradado solo ensuciaba. */
+.sw-copylayer::before{ display:none; }
+
+.sw-copy{
+  /* 460px obligaba al titular a romperse en 4-5 líneas cortas — de ahí el bulto.
+     Con ~600px cae en 2-3 líneas y respira. */
+  width:min(46vw,600px);
+  border:1px solid transparent;
+  /* Tres capas: velo del acento de la sección (arriba-derecha, 7% — ata la
+     tarjeta a la escena), fill del vidrio, y el borde especular clipado al
+     anillo del border. */
+  background:
+    radial-gradient(120% 90% at 100% 0%,
+      color-mix(in srgb, var(--sw-accent) 7%, transparent), transparent 60%) padding-box,
+    linear-gradient(var(--glass-fill), var(--glass-fill)) padding-box,
+    var(--glass-edge) border-box;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius:24px;
+  padding:30px 34px 34px;
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+}
+/* Sobre fondo casi opaco las sombras de texto solo emborronan: fuera todas. */
+.sw-copy__num{ color:color-mix(in srgb,var(--sw-ink) 62%,var(--sw-ink-soft)); text-shadow:none; }
+.sw-copy__eyebrow{
+  margin-top:10px;
+  color:color-mix(in srgb,var(--sw-accent) 42%,var(--sw-ink));
+  text-shadow:none;
+}
+.sw-copy__title{
+  font-size:clamp(1.9rem,3.3vw,3rem);
+  line-height:1.06;
+  text-wrap:balance;              /* reparte las líneas en vez de dejar viudas */
+  color:var(--sw-ink);
+  text-shadow:none;
+}
+.sw-copy__body{
+  color:color-mix(in srgb,var(--sw-ink) 88%,var(--sw-ink-soft));
+  max-width:52ch;                 /* medida cómoda de lectura */
+  line-height:1.6;
+  text-shadow:none;
+}
+/* Tags: pastilla de vidrio tintada con el acento de la sección (ref. FLORA).
+   Sin backdrop-filter: viven SOBRE la tarjeta, que ya es el vidrio — blurear
+   el fill de la tarjeta costaría GPU y no aportaría nada. */
+.sw-copy__tags li{
+  color:color-mix(in srgb,var(--sw-accent) 40%,#000);
+  border:1px solid transparent;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--sw-accent) 13%, rgba(255,255,255,.55)),
+      color-mix(in srgb, var(--sw-accent) 8%, rgba(255,255,255,.30))) padding-box,
+    linear-gradient(180deg,
+      rgba(255,255,255,.85),
+      color-mix(in srgb, var(--sw-accent) 35%, transparent)) border-box;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+/* Botones: el primario se queda sólido (es el elemento de conversión — la
+   jerarquía gana al efecto) pero con arista de luz y sombra de contacto;
+   el ghost sí es vidrio tintado. */
+.sw-topcta,.sw-btn--primary{
+  background:linear-gradient(180deg, color-mix(in srgb,var(--sw-ink) 88%,#fff), var(--sw-ink));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.16),
+    0 12px 28px -14px color-mix(in srgb,var(--sw-ink) 70%,transparent);
+}
+.sw-btn--ghost{
+  border:1px solid transparent;
+  background:
+    linear-gradient(color-mix(in srgb,var(--sw-accent) 8%, rgba(255,255,255,.35)),
+      color-mix(in srgb,var(--sw-accent) 8%, rgba(255,255,255,.35))) padding-box,
+    var(--glass-edge) border-box;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+}
+
+/* Barra superior: velo suave arriba + nav como pill de vidrio (ref. T1 Energy). */
+.sw-topbar::before{content:"";position:absolute;left:0;right:0;top:0;height:150%;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,var(--sw-bg) 0%,color-mix(in srgb,var(--sw-bg) 45%,transparent) 60%,transparent 100%);}
+.sw-brand__name{ text-shadow:0 1px 10px color-mix(in srgb,var(--sw-bg) 82%,transparent); }
+.sw-nav{
+  border:1px solid transparent;
+  background:
+    linear-gradient(var(--glass-fill), var(--glass-fill)) padding-box,
+    var(--glass-edge) border-box;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-highlight),
+    0 10px 30px -18px color-mix(in srgb, var(--sw-ink) 45%, transparent);
+}
+.sw-nav__item{ color:color-mix(in srgb,var(--sw-ink) 72%,var(--sw-ink-soft)); }
+.sw-nav__item.is-active{ color:#fff; background:color-mix(in srgb,var(--sw-accent) 55%,var(--sw-ink)); }
+
+/* Rail de estaciones: cápsula de vidrio ligera detrás de los puntos, con la
+   etiqueta flotante en el mismo material. Fill más bajo (55%): solo sostiene
+   puntos, no texto. */
+.sw-route{
+  border-radius:999px;
+  border:1px solid transparent;
+  background:
+    linear-gradient(color-mix(in srgb, var(--sw-bg) 55%, transparent),
+      color-mix(in srgb, var(--sw-bg) 55%, transparent)) padding-box,
+    var(--glass-edge) border-box;
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
+  box-shadow: var(--glass-highlight),
+    0 12px 32px -22px color-mix(in srgb, var(--sw-ink) 50%, transparent);
+}
+.sw-route__label{
+  border:1px solid transparent;
+  background:
+    linear-gradient(var(--glass-fill), var(--glass-fill)) padding-box,
+    var(--glass-edge) border-box;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5),
+    0 6px 18px -10px color-mix(in srgb, var(--sw-ink) 40%, transparent);
+}
+
+/* Barra de progreso: el fill emite un halo sutil del acento — luz, no adorno. */
+.sw-scrollbar{ background:color-mix(in srgb,var(--sw-accent) 10%,transparent); }
+.sw-scrollbar span{ box-shadow:0 0 12px color-mix(in srgb,var(--sw-accent) 55%,transparent); }
+
+/* Once UI pinta todo <a> con `a:not(.button)` (color de marca, subrayado al
+   pasar) sin capa, así que le gana al @layer del motor. Aquí se devuelve a
+   cada enlace del mundo el color que el motor le dio. */
+.sw-root a:not(.button),.sw-root a:not(.button):hover{ text-decoration:none; }
+.sw-root a.sw-brand,.sw-root a.sw-btn--ghost{ color:var(--sw-ink); }
+.sw-root a.sw-topcta,.sw-root a.sw-btn--primary,
+.sw-root a.sw-topcta:hover,.sw-root a.sw-btn--primary:hover{ color:#fff; }
+.sw-topcta,.sw-btn,.sw-brand{ cursor:pointer; }
+
+/* Foco visible de teclado (WCAG 2.4.7) */
+.sw-root a:focus-visible,.sw-root button:focus-visible{ outline:3px solid var(--sw-ink);outline-offset:3px;border-radius:8px; }
+
+/* El vidrio es un acabado, no un requisito: si el usuario pide menos
+   transparencia o más contraste, todas las superficies caen a panel opaco. */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more){
+  .sw-copy,.sw-nav,.sw-route,.sw-route__label,.sw-btn--ghost{
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    background:var(--sw-bg);
+    border:1px solid color-mix(in srgb,var(--sw-ink) 16%,transparent);
+  }
+}
+
+/* ===== Móvil, pensado primero para el teléfono =====
+   Dos problemas propios del formato vertical, que no existen en desktop:
+
+   1. El clip es 16:9 y la pantalla ~9:19.5, así que `cover` se come cerca del
+      75% del ancho. El encuadre queda centrado en el vacío que dejamos a la
+      izquierda para el texto, y la acción se va fuera de pantalla. Se corrige
+      moviendo el punto focal al sujeto, que vive en el tercio derecho.
+   2. La tarjeta ocupaba el 48% del alto y caía justo sobre la escena. Los
+      patrones móviles (SoFi, Superpower, Tolan) mantienen visual y texto en
+      zonas separadas, con el texto breve y anclado abajo. */
+@media (max-width:860px){
+  /* El mismo material, recalibrado: fill más denso (texto pequeño sobre escena
+     más agitada) y blur más barato — detrás hay un video decodificando y la
+     tarjeta es la única superficie con blur viva en móvil (nav y rail ocultos). */
+  :root, .sw-root{
+    --glass-fill: color-mix(in srgb, var(--sw-bg) 90%, transparent);
+    --glass-blur: blur(14px) saturate(1.15);
+  }
+
+  /* Centrado. Antes se desplazaba al 60% para perseguir al sujeto, porque los
+     clips terminaban en un plano muy cerrado; ahora los clips móviles se cortan
+     más lejos (al 55% del vuelo) y la escena entra entera, así que centrar es
+     lo correcto y además queda equilibrado. */
+  .sw-scene__video,.sw-scene__still{ object-position:50% 46%; }
+
+  .sw-copy{
+    width:auto;
+    left:12px; right:12px;
+    bottom:calc(20px + env(safe-area-inset-bottom));
+    padding:16px 18px 18px;
+    border-radius:20px;
+  }
+  /* El "01 / 07" es ruido cuando el espacio vertical es el recurso escaso. */
+  .sw-copy__num{ display:none; }
+  /* El eyebrow largo se partía en dos líneas y robaba una línea de titular. */
+  .sw-copy__eyebrow{
+    margin-top:0; font-size:.68rem; letter-spacing:.1em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .sw-copy__title{ font-size:clamp(1.4rem,5.6vw,1.95rem);line-height:1.14;margin-top:7px; }
+  .sw-copy__body{
+    font-size:.94rem;line-height:1.45;margin-top:10px;max-width:none;
+    /* Con el copy ya acortado no debería recortar nunca; queda como red de
+       seguridad para traducciones o textos más largos. */
+    display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .sw-copy__tags{ margin-top:12px;gap:6px; }
+  .sw-copy__tags li{ font-size:.72rem;padding:5px 11px; }
+  .sw-copy__tags li:nth-child(n+3){ display:none; }   /* dos etiquetas bastan */
+  .sw-copy__cta{ margin-top:14px; }
+  /* El rail lateral se cruzaba por encima de la tarjeta y su etiqueta activa
+     flotaba sobre la escena. En vertical no hay ancho para las dos cosas, y
+     arriba ya existe una barra de progreso que cumple la misma función. */
+  .sw-route{ display:none; }
+  /* En móvil el gesto de scroll es evidente y el hint chocaba con la tarjeta. */
+  .sw-hint{ display:none; }
+
+  /* Teléfonos cortos (SE, mini): recortar aún más antes que desbordar. */
+  @media (max-height:700px){
+    .sw-copy__title{ font-size:clamp(1.3rem,5.2vw,1.7rem); }
+    .sw-copy__body{ -webkit-line-clamp:3;font-size:.9rem; }
+    .sw-copy__tags{ display:none; }
+  }
+}

@@ -758,5 +758,86 @@
     "description": "Fintech dashboards, healthcare platforms, and high-performance web applications I've built.",
     "label": "Work",
     "title": "Selected Projects"
+  },
+  "scroll": {
+    "brand": "rulocode",
+    "cta": "Get in and start",
+    "hint": "scroll to fly",
+    "stations": {
+      "semana": {
+        "label": "Start",
+        "eyebrow": "AI Shift Challenge · Week 0 is open",
+        "title": "Automate your work with AI in 4 weeks. No code.",
+        "body": "A live program for non-technical professionals: 4 private sessions, 2 group sessions and one automation of yours running at the end.",
+        "tags": {
+          "1": "Free",
+          "2": "No card",
+          "3": "Start today"
+        }
+      },
+      "rol": {
+        "label": "Your role",
+        "eyebrow": "01 · Your role first",
+        "title": "We start from your job, not from the tools.",
+        "body": "We map your real week and find, for your role, where the hidden hours are. No generic tours.",
+        "tags": {
+          "1": "Marketing",
+          "2": "Finance",
+          "3": "HR",
+          "4": "Operations"
+        }
+      },
+      "copiloto": {
+        "label": "Copilot",
+        "eyebrow": "02 · Daily copilot",
+        "title": "From loose prompts to flows that deliver finished work.",
+        "body": "From using AI “sometimes” to a daily system for analyzing, writing and producing at professional quality.",
+        "tags": {
+          "1": "Analyze",
+          "2": "Write",
+          "3": "Produce"
+        }
+      },
+      "automatiza": {
+        "label": "Automate",
+        "eyebrow": "03 · Automation",
+        "title": "Your repetitive tasks, on autopilot.",
+        "body": "You build your automations with click-based tools — email, sheets, documents — and free up hours every week.",
+        "tags": {
+          "1": "No code",
+          "2": "Hours every week"
+        }
+      },
+      "reto": {
+        "label": "The challenge",
+        "eyebrow": "04 · The challenge",
+        "title": "4 private sessions with me, 2 group ones, one flow running.",
+        "body": "Four one-on-one sessions on your concrete case, two group sessions with other roles, and a complete flow operating at the end.",
+        "tags": {
+          "1": "4 weeks",
+          "2": "Only 6 seats"
+        }
+      },
+      "posicionate": {
+        "label": "Stand out",
+        "eyebrow": "05 · Stand out",
+        "title": "Be the AI person on your team.",
+        "body": "You finish knowing how to demo your automation to your boss or clients, with a method to judge whatever comes out tomorrow.",
+        "tags": {
+          "1": "Show it",
+          "2": "Your own judgment"
+        }
+      },
+      "semana0": {
+        "label": "Week 0",
+        "eyebrow": "Week 0 · free",
+        "title": "Don't wait for the cohort — start this week.",
+        "body": "Three free lessons to diagnose your week, set up your copilot and leave your first automation running.",
+        "tags": {
+          "1": "3 free lessons",
+          "2": "Zero spam"
+        }
+      }
+    }
   }
 }

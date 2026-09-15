@@ -758,5 +758,86 @@
     "description": "Dashboards fintech, plataformas de salud y aplicaciones web de alto rendimiento que he construido.",
     "label": "Proyectos",
     "title": "Proyectos Seleccionados"
+  },
+  "scroll": {
+    "brand": "rulocode",
+    "cta": "Entrar y empezar",
+    "hint": "baja para volar",
+    "stations": {
+      "semana": {
+        "label": "Empieza",
+        "eyebrow": "AI Shift Challenge · Semana 0 abierta",
+        "title": "Automatiza tu trabajo con IA en 4 semanas. Sin escribir código.",
+        "body": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas, 2 grupales y una automatización tuya funcionando al final.",
+        "tags": {
+          "1": "Gratis",
+          "2": "Sin tarjeta",
+          "3": "Empiezas hoy"
+        }
+      },
+      "rol": {
+        "label": "Tu rol",
+        "eyebrow": "01 · Tu rol primero",
+        "title": "Empezamos por tu trabajo, no por las herramientas.",
+        "body": "Mapeamos tu semana real y encontramos, para tu rol, dónde están las horas escondidas. Nada de recorridos genéricos.",
+        "tags": {
+          "1": "Marketing",
+          "2": "Finanzas",
+          "3": "RRHH",
+          "4": "Operaciones"
+        }
+      },
+      "copiloto": {
+        "label": "Copiloto",
+        "eyebrow": "02 · Copiloto diario",
+        "title": "De prompts sueltos a flujos que entregan trabajo terminado.",
+        "body": "De usar la IA «a veces» a un sistema diario para analizar, escribir y producir con calidad profesional.",
+        "tags": {
+          "1": "Analizar",
+          "2": "Escribir",
+          "3": "Producir"
+        }
+      },
+      "automatiza": {
+        "label": "Automatiza",
+        "eyebrow": "03 · Automatización",
+        "title": "Tus tareas repetitivas, en piloto automático.",
+        "body": "Montas tus automatizaciones con herramientas de clics — correo, hojas, documentos — y liberas horas cada semana.",
+        "tags": {
+          "1": "Sin código",
+          "2": "Horas cada semana"
+        }
+      },
+      "reto": {
+        "label": "El reto",
+        "eyebrow": "04 · El reto",
+        "title": "4 sesiones privadas conmigo, 2 grupales, un flujo funcionando.",
+        "body": "Cuatro sesiones uno a uno sobre tu caso concreto, dos grupales con otros roles, y al final un flujo completo operando.",
+        "tags": {
+          "1": "4 semanas",
+          "2": "Solo 6 cupos"
+        }
+      },
+      "posicionate": {
+        "label": "Posiciónate",
+        "eyebrow": "05 · Posiciónate",
+        "title": "Sé la persona de IA de tu equipo.",
+        "body": "Cierras sabiendo demostrar tu automatización a tu jefe o tus clientes, y con un método para evaluar lo que salga mañana.",
+        "tags": {
+          "1": "Demuéstralo",
+          "2": "Criterio propio"
+        }
+      },
+      "semana0": {
+        "label": "Semana 0",
+        "eyebrow": "Semana 0 · gratis",
+        "title": "No esperes a la cohorte — empieza esta semana.",
+        "body": "Tres lecciones gratis para diagnosticar tu semana, montar tu copiloto y dejar tu primera automatización corriendo.",
+        "tags": {
+          "1": "3 lecciones gratis",
+          "2": "Cero spam"
+        }
+      }
+    }
   }
 }
