@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/routing";
-import { Flex } from "@/once-ui/components";
+import { Column, Flex } from "@/once-ui/components";
 
 type SiteShellProps = {
   background: React.ReactNode;
@@ -21,6 +21,10 @@ type SiteShellProps = {
 export function SiteShell({ background, header, footer, children }: SiteShellProps) {
   const pathname = usePathname() ?? "";
   const isDashboard = pathname.startsWith("/dashboard");
+  // The home is the scroll-world: its own topbar is the header, the fixed
+  // cream sky is the background, and the snap track needs the viewport, not a
+  // padded main. Only the footer survives, after the stations.
+  const isHome = pathname === "/";
 
   if (isDashboard) {
     return (
@@ -35,6 +39,17 @@ export function SiteShell({ background, header, footer, children }: SiteShellPro
       >
         {children}
       </Flex>
+    );
+  }
+
+  if (isHome) {
+    return (
+      <>
+        <Column as="main" id="main-content" fillWidth>
+          {children}
+        </Column>
+        {footer}
+      </>
     );
   }
 

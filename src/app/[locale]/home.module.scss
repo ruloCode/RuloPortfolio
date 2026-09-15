@@ -1,9 +1,17 @@
-// Home-page layout only. The visual signature lives in
-// src/styles/brand.module.scss and the ambient light in AuroraBackdrop.
+// Home-page layout only. The stations are the scroll-world engine
+// (src/lib/scroll-world); the visual signature of what follows lives in
+// src/styles/brand.module.scss.
 
-// Clips the aurora's drift horizontally so the transform can never widen the
-// page. `clip` (not `hidden`) keeps the vertical axis visible, so the RevealFx
-// entrance animations inside are not cut off.
-.heroRegion {
-  overflow-x: clip;
+// Everything after the last station. It is a snap area of its own (the snap
+// is `mandatory`, and content past the last snap point would otherwise be
+// unreachable), taller than the viewport so scrolling inside it is free, and
+// positioned above the engine's fixed sky (z-index 0) so it actually paints.
+// Clears the fixed topbar with the top padding.
+.afterWorld {
+  position: relative;
+  z-index: 1;
+  scroll-snap-align: start;
+  min-height: 100svh;
+  padding-top: calc(var(--static-space-80) + 40px);
+  background: var(--page-background);
 }
