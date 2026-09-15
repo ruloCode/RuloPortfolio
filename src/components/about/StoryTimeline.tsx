@@ -6,7 +6,8 @@ const ACTS: { key: string; dot: string }[] = [
   { key: "before", dot: "var(--accent-brick)" },
   { key: "learn", dot: "var(--accent-gold)" },
   { key: "production", dot: "var(--accent-blue)" },
-  { key: "today", dot: "var(--sw-accent)" },
+  { key: "day", dot: "var(--brand)" },
+  { key: "night", dot: "var(--ink)" },
 ];
 
 type StoryCopy = {

@@ -1,7 +1,7 @@
 {
   "about": {
     "calendar": "Agenda una llamada",
-    "description": "De músico a tech lead de una farmacia digital que procesa +$2M al mes. Hoy, consultor de automatización con IA (agentes, LLMs, n8n) y creador del AI Shift Challenge. Next.js, React, TypeScript. Desde Bogotá.",
+    "description": "No aprendí IA en un curso: tengo LLMs corriendo en producción en una siderúrgica global y en mi propia casa. Senior Frontend Engineer en Arkano (asistente multi-agente de Ternium). Next.js, React, TypeScript, Azure OpenAI, LangGraph. Desde Bogotá.",
     "intro": {
       "p1": "Antes de escribir código, escribía canciones. La música era el plan de vida — hasta que la tecnología transformó la industria y me obligó a elegir entre lo que amaba y lo que me permitía vivir. <strong>Elegí sobrevivir.</strong>",
       "p2": "Aprendí a programar desde cero y me lo tomé en serio: durante más de 4 años fui líder de frontend de la farmacia digital de mayor crecimiento en México. Reduje el tiempo de carga en <strong>56%</strong>, subí las conversiones <strong>23%</strong> y la plataforma que diseñé procesa <strong>más de $2M mensuales</strong> para más de 50,000 pacientes con 99.9% de uptime.",
@@ -12,21 +12,21 @@
     },
     "label": "Sobre mí",
     "studies": {
+      "title": "Estudios",
       "institutions": {
-        "google": {
-          "description": "Estudié ciberseguridad.",
-          "name": "Google & MinTic"
-        },
         "platzi": {
-          "description": "Estudié ingeniería de software.",
-          "name": "Platzi"
+          "name": "Platzi",
+          "description": "Desarrollo de software, frontend (2019 - 2020)."
+        },
+        "google": {
+          "name": "Google & MinTic",
+          "description": "Ciberseguridad."
         },
         "learning": {
           "name": "Formación continua",
           "description": "Documentación y cursos de Anthropic, OpenAI y Vercel. Construyo con cada modelo nuevo antes de recomendarlo."
         }
-      },
-      "title": "Estudios"
+      }
     },
     "technical": {
       "skills": {
@@ -65,28 +65,51 @@
       },
       "title": "Habilidades Técnicas"
     },
-    "title": "Sobre mí — Andrés Santana, experto en IA aplicada y tech lead",
+    "title": "Sobre mí — Andrés Santana, Senior Frontend Engineer con LLMs en producción",
     "work": {
+      "title": "Experiencia",
       "experiences": {
-        "freelance": {
+        "arkano": {
+          "company": "Arkano Software",
+          "role": "Senior Frontend Engineer",
+          "timeframe": "2026 - Presente",
           "achievements": {
-            "1": "Entregué más de 10 proyectos para startups y pymes en e-commerce, SaaS y bienes raíces.",
-            "2": "Construí plataformas web de extremo a extremo, desde diseños en Figma hasta despliegue en producción con Vercel."
-          },
-          "company": "Freelance",
-          "role": "Desarrollador Frontend & Consultor",
-          "timeframe": "2019 - Presente"
+            "1": "Frontend y BFF full-stack del asistente conversacional <strong>multi-agente de Ternium</strong>, siderúrgica global: un agente por área operativa sobre un backend FastAPI + LangGraph.",
+            "2": "Chat en tiempo real con streaming (SSE/WebSockets) y modo voz sobre Next.js App Router, React 19 y el Vercel AI SDK contra Azure OpenAI.",
+            "3": "Auditoría OWASP del BFF: <strong>20 hallazgos priorizados, 15 remediados en código</strong> — validación con Zod, CSP, rate limiting por usuario en Redis con Lua atómico.",
+            "4": "Observabilidad de punta a punta con Application Insights: los <strong>primeros datos reales de adopción</strong> que tuvo el equipo de producto.",
+            "5": "SSO corporativo con Microsoft Entra ID (OAuth/OIDC) sobre Better Auth, con MFA escalonado, e i18n en español, inglés y portugués."
+          }
+        },
+        "careways": {
+          "company": "CareWays Collaborative",
+          "role": "Desarrollador frontend · freelance",
+          "timeframe": "2026",
+          "achievements": {
+            "1": "Plataforma para <strong>reducir la mortalidad en UCI pediátrica</strong> en Latinoamérica: módulo de educación clínica y módulo de analítica, de punta a punta.",
+            "2": "Tableros de resultados clínicos con Recharts, roles y permisos por perfil (RBAC) y formularios clínicos con react-hook-form y Zod."
+          }
         },
         "vitau": {
-          "achievements": {
-            "1": "Lideré la arquitectura frontend de la farmacia digital de mayor crecimiento en México, atendiendo a <strong>más de 50,000 pacientes</strong> con condiciones crónicas.",
-            "2": "Reduje el LCP de 5.8s a 2.5s (<strong>-56%</strong>), mejorando directamente la tasa de conversión en un <strong>23%</strong>.",
-            "3": "Diseñé un sistema de checkout modular que procesa <strong>más de $2M mensuales</strong> en transacciones con 99.9% de uptime.",
-            "4": "Lideré la migración de React legacy a Next.js 15 <strong>sin downtime</strong>, reduciendo el tamaño del bundle en 40%."
-          },
           "company": "Vitau",
-          "role": "Senior Frontend Engineer & Tech Lead",
-          "timeframe": "2020 - Presente"
+          "role": "Senior Frontend Developer",
+          "timeframe": "2020 - 2026",
+          "achievements": {
+            "1": "Checkout modular que recortó el abandono de carrito un <strong>31 %</strong>, con un impacto de <strong>2,8 M USD al año</strong>.",
+            "2": "Optimización de rendimiento que subió los usuarios activos diarios un <strong>23 %</strong>, hasta más de <strong>450.000</strong>. LCP de 5,8 s a 2,5 s y CLS de 0,3 a 0,1.",
+            "3": "Migración a Next.js 15: <strong>−40 % de bundle y −50 % de tiempo de build</strong>. Estándares de TypeScript adoptados en toda la empresa.",
+            "4": "Integración de la pasarela Tonder procesando <strong>más de 500 K USD al mes</strong>, y automatizaciones con n8n que recortaron el agendamiento manual un 80 %.",
+            "5": "Mentoría técnica a tres juniors, <strong>dos ascendidos</strong>, en un equipo multifuncional de ocho."
+          }
+        },
+        "freelance": {
+          "company": "Freelance",
+          "role": "Desarrollador frontend & consultor",
+          "timeframe": "2019 - Presente",
+          "achievements": {
+            "1": "Más de 10 proyectos para startups y pymes en e-commerce, SaaS y bienes raíces.",
+            "2": "Plataformas web de extremo a extremo, desde diseños en Figma hasta producción en Vercel."
+          }
         },
         "aishift": {
           "company": "AI Shift Challenge · rulocode",
@@ -97,23 +120,22 @@
             "2": "Plataforma de estudio propia (Next.js + Supabase) con Semana 0 gratuita, lecciones y seguimiento de progreso."
           }
         }
-      },
-      "title": "Experiencia"
+      }
     },
     "hero": {
       "eyebrow": "Sobre mí",
-      "title": "Seis años llevando software a producción. Hoy, <fx>IA aplicada</fx> para empresas y profesionales.",
-      "intro": "Soy Andrés Santana, Rulo. Senior frontend engineer y tech lead (Next.js, React, TypeScript) que hoy diseña automatizaciones con IA para empresas y enseña a profesionales no técnicos a hacerlo sin código en el AI Shift Challenge. Desde Bogotá, para Latinoamérica y el mundo.",
+      "title": "No aprendí IA en un curso: tengo <fx>LLMs en producción</fx>.",
+      "intro": "Soy Andrés Santana, Rulo. De día construyo el asistente conversacional multi-agente de Ternium desde Arkano. De noche construyo Hermes OS, mi propio Jarvis. Seis años haciendo que el software sobreviva a usuarios reales, ahora también con IA generativa.",
       "ctaCall": "Agenda una llamada",
       "ctaProgram": "Ver el AI Shift Challenge",
-      "portraitAlt": "Andrés Santana, Rulo, sonriendo frente a su portátil",
-      "location": "Bogotá, Colombia"
+      "portraitAlt": "Andrés Santana, Rulo, frente a su portátil",
+      "location": "Bogotá, Colombia · remoto desde 2020"
     },
     "story": {
       "eyebrow": "Mi historia",
-      "title": "De escribir canciones a escribir software. Y de ahí, a enseñar IA.",
-      "quote": "Descubrí mi ventaja injusta: sé hacer lo técnico y sé traducirlo. Como viví el miedo a quedarme atrás, enseño desde la empatía, no desde la arrogancia.",
-      "north": "Mi norte es simple: ayudar a profesionales a dominar la IA antes de que el mundo los obligue a elegir. A mí me obligó. A ti no tiene por qué.",
+      "title": "De escribir canciones a poner modelos de lenguaje a trabajar.",
+      "quote": "Mi regla: cada número visible es real. Cada métrica de este sitio está respaldada por un commit, un tablero o un reporte.",
+      "north": "Dirijo agentes de código (Claude Code y el Agent SDK) con barandas: la arquitectura y el diseño del sistema son míos, ellos teclean. Fuera de pantalla, músico. De ahí nació «Más allá del código».",
       "acts": {
         "before": {
           "label": "Antes del código",
@@ -123,47 +145,52 @@
         "learn": {
           "label": "2019",
           "title": "Aprender en serio, cobrando por ello.",
-          "body": "Como freelance entregué más de 10 proyectos para startups y pymes de e-commerce, SaaS y bienes raíces: de un diseño en Figma a producción en Vercel, con React y Next.js."
+          "body": "Un año en Platzi estudiando desarrollo frontend y, en paralelo, proyectos para startups y pymes: de un diseño en Figma a producción, con React y Next.js."
         },
         "production": {
-          "label": "2020",
-          "title": "Producción de verdad: la farmacia digital de mayor crecimiento en México.",
-          "body": "Más de cuatro años como senior frontend engineer y tech lead en Vitau. Bajé el LCP de 5,8 s a 2,5 s, la conversión subió 23 % y el checkout que diseñé procesa más de $2M USD al mes para 50.000 pacientes con 99,9 % de uptime. Healthtech y fintech a la vez, con TypeScript estricto."
+          "label": "2020 — 2026",
+          "title": "Seis años haciendo que el software sobreviva a usuarios reales.",
+          "body": "De frontend a senior en Vitau, una farmacia digital en México. Bajé el LCP de 5,8 s a 2,5 s y el CLS de 0,3 a 0,1, el checkout modular que diseñé recortó el abandono de carrito un 31 % (2,8 M USD al año) y los usuarios activos diarios subieron 23 %, hasta más de 450.000. Mentoría a tres juniors, dos ascendidos."
         },
-        "today": {
-          "label": "Hoy",
-          "title": "IA aplicada: automatizo para empresas y enseño a profesionales.",
-          "body": "Diseño agentes y flujos con modelos de lenguaje (Claude, GPT) e integraciones con n8n, Make y Zapier para equipos que quieren recuperar horas. Y creé el AI Shift Challenge, un programa en vivo para que profesionales no técnicos automaticen su trabajo sin escribir código."
+        "day": {
+          "label": "Hoy · de día",
+          "title": "El asistente multi-agente de Ternium, desde Arkano.",
+          "body": "Frontend y BFF full-stack del asistente conversacional de una siderúrgica global: un agente por área operativa —producción, seguridad, minutas— sobre FastAPI y LangGraph. Chat en tiempo real con streaming y modo voz sobre Azure OpenAI y el Vercel AI SDK, SSO con Entra ID y MFA escalonado, y una auditoría OWASP con 20 hallazgos de los que remedié 15."
+        },
+        "night": {
+          "label": "Hoy · de noche",
+          "title": "Hermes OS, mi propio Jarvis.",
+          "body": "Un sistema de agentes de punta a punta que corre 24/7: orquestación multi-agente con llamadas a herramientas y barandas de permisos, RAG con pgvector sobre cinco fuentes, voz de entrada y salida, un copiloto de reuniones con ~2 s de latencia y control por gestos. No es una demo: es mi laboratorio de producción."
         }
       }
     },
     "help": {
       "eyebrow": "Servicios",
       "title": "En qué te ayudo",
-      "intro": "Tres frentes, una misma base: ingeniería real, en producción.",
+      "intro": "Construyo sobre modelos de lenguaje y hago que la parte que el usuario toca sea tan sólida como el modelo que va detrás.",
       "items": {
         "automation": {
-          "title": "Automatización con IA para empresas",
-          "body": "Auditoría de procesos, diseño de agentes de IA y flujos con LLMs conectados a tu correo, tus hojas y tu CRM. Integraciones con n8n, Make, Zapier y las APIs de OpenAI y Anthropic. Menos tareas repetitivas, más horas para el equipo.",
+          "title": "Producto sobre LLMs",
+          "body": "Interfaces de chat con streaming, modo voz, orquestación multi-agente, RAG y llamadas a herramientas con barandas de permisos. Azure OpenAI, Anthropic Claude, LangGraph, Vercel AI SDK y MCP, con evaluaciones para saber si de verdad funciona.",
           "cta": "Ver servicios",
           "tags": {
-            "1": "Agentes de IA",
-            "2": "LLMs",
-            "3": "RAG",
-            "4": "n8n · Make · Zapier",
-            "5": "Automatización de procesos"
+            "1": "Agentes multi-agente",
+            "2": "RAG y pgvector",
+            "3": "Streaming y voz",
+            "4": "LangGraph",
+            "5": "MCP"
           }
         },
         "development": {
-          "title": "Desarrollo de software a la medida",
-          "body": "Aplicaciones web con Next.js, React y TypeScript: plataformas fintech y healthtech, dashboards, e-commerce. Server Components, Core Web Vitals y despliegue en Vercel, con Supabase o AWS detrás.",
+          "title": "Frontend que aguanta producción",
+          "body": "Next.js App Router, React 19 y TypeScript con la parte aburrida resuelta: Core Web Vitals, accesibilidad, pruebas con Jest, RTL y Playwright, seguridad OWASP y observabilidad de verdad.",
           "cta": "Ver proyectos",
           "tags": {
             "1": "Next.js",
-            "2": "React",
+            "2": "React 19",
             "3": "TypeScript",
-            "4": "Supabase",
-            "5": "Core Web Vitals"
+            "4": "Core Web Vitals",
+            "5": "OWASP"
           }
         },
         "training": {
@@ -173,8 +200,7 @@
           "tags": {
             "1": "AI Shift Challenge",
             "2": "Copiloto con IA",
-            "3": "Prompts que entregan trabajo",
-            "4": "Sin código"
+            "3": "Sin código"
           }
         }
       }
@@ -185,41 +211,44 @@
       "intro": "Lo que uso todos los días, en producción.",
       "groups": {
         "ai": {
-          "title": "IA aplicada",
+          "title": "IA en producción",
           "items": {
-            "1": "Claude y Claude Code",
-            "2": "ChatGPT y la API de OpenAI",
-            "3": "Agentes de IA",
-            "4": "RAG y bases vectoriales",
-            "5": "Prompt engineering",
-            "6": "n8n",
-            "7": "Make",
-            "8": "Zapier",
-            "9": "Vercel AI SDK"
+            "1": "Azure OpenAI",
+            "2": "Anthropic Claude",
+            "3": "LangGraph",
+            "4": "Vercel AI SDK",
+            "5": "Claude Agent SDK",
+            "6": "MCP",
+            "7": "RAG y pgvector",
+            "8": "Evaluaciones",
+            "9": "Prompt y context engineering"
           }
         },
         "frontend": {
           "title": "Frontend",
           "items": {
             "1": "Next.js (App Router)",
-            "2": "React Server Components",
+            "2": "React 19",
             "3": "TypeScript",
             "4": "Tailwind CSS",
-            "5": "SCSS",
-            "6": "XState",
-            "7": "GraphQL / Apollo",
-            "8": "Remotion"
+            "5": "Radix",
+            "6": "Zustand",
+            "7": "React Query",
+            "8": "GraphQL",
+            "9": "Jest · RTL · Playwright"
           }
         },
         "platform": {
           "title": "Plataforma",
           "items": {
-            "1": "Supabase y Postgres",
-            "2": "Vercel",
-            "3": "AWS (S3, CloudFront, Lambda)",
-            "4": "GitHub Actions / CI-CD",
-            "5": "Core Web Vitals",
-            "6": "Resend"
+            "1": "PostgreSQL y Drizzle",
+            "2": "Redis",
+            "3": "Azure y Cosmos DB",
+            "4": "Docker y Kubernetes (AKS)",
+            "5": "Application Insights",
+            "6": "Better Auth y Entra ID",
+            "7": "CI/CD",
+            "8": "Vercel"
           }
         }
       }
@@ -512,7 +541,7 @@
     "ctaCompanies": "Empresas: agenda una llamada",
     "ctaProfessionals": "Conoce el AI Shift Challenge",
     "ctaStory": "Sobre mí",
-    "description": "Experto en IA aplicada con más de 6 años construyendo software. Enseño a profesionales no técnicos a automatizar su trabajo con IA (AI Shift Challenge) y ayudo a empresas con consultoría y software a la medida.",
+    "description": "No aprendí IA en un curso: tengo LLMs corriendo en producción en una siderúrgica global y en mi propia casa. Frontend que aguanta producción, producto sobre modelos de lenguaje, y formación en IA para profesionales no técnicos.",
     "finalCta": {
       "button": "Entrar y empezar",
       "description": "Déjame tu correo y entras hoy a tu Semana 0: tres lecciones gratis para dejar tu primera automatización corriendo. Cuando abra el AI Shift Challenge, entras primero y con precio de lanzamiento. ¿Tienes una empresa? La consultoría sigue abierta en Servicios.",
@@ -555,7 +584,7 @@
       "title": "Más de 6 años llevando software a producción. Ahora, IA."
     },
     "subline": "Soy Andrés Santana, experto en IA aplicada. Llevo más de 6 años construyendo software en producción — una plataforma que procesa <strong>+$2M/mes</strong> para <strong>+50K usuarios</strong> — y hoy enseño a profesionales no técnicos a automatizar su trabajo con el <strong>AI Shift Challenge</strong>.",
-    "title": "Andrés Santana — Experto en IA aplicada · AI Shift Challenge"
+    "title": "Andrés Santana — Senior Frontend Engineer · LLMs en producción"
   },
   "ia": {
     "faq": {
@@ -751,7 +780,7 @@
       "english": "Inglés (Profesional)",
       "spanish": "Español (Nativo)"
     },
-    "role": "Experto en IA aplicada · Formación y consultoría"
+    "role": "Senior Frontend Engineer · LLMs en producción"
   },
   "projectCard": {
     "caseStudy": "Leer case study",
@@ -870,20 +899,20 @@
   "stats": {
     "items": {
       "experience": {
-        "label": "años construyendo software",
+        "label": "años haciendo software en producción",
         "value": "6+"
       },
-      "lcp": {
-        "label": "menos tiempo de carga a escala",
-        "value": "-56%"
-      },
-      "transactions": {
-        "label": "en transacciones mensuales",
-        "value": "$2M+"
-      },
       "users": {
-        "label": "usuarios atendidos",
-        "value": "50K+"
+        "label": "usuarios activos diarios",
+        "value": "450K+"
+      },
+      "revenue": {
+        "label": "de impacto anual en el checkout",
+        "value": "$2.8M"
+      },
+      "lcp": {
+        "label": "de tiempo de carga: 5,8 s → 2,5 s",
+        "value": "-56%"
       }
     }
   },
@@ -996,28 +1025,28 @@
   },
   "trajectory": {
     "eyebrow": "Trayectoria",
-    "title": "Más de 6 años construyendo software en producción.",
-    "intro": "Lideré el frontend de la farmacia digital de mayor crecimiento en México. Esa base es la diferencia cuando hablo de IA: no vendo demos, enseño lo que ya corre.",
+    "title": "Seis años haciendo que el software sobreviva a usuarios reales.",
+    "intro": "Salud, e-commerce y ahora IA generativa que la gente usa todos los días. Cada número de aquí está respaldado por un commit, un tablero o un reporte.",
     "milestones": {
       "freelance": {
         "year": "2019",
-        "title": "Freelance · Frontend & Consultor",
-        "body": "+10 proyectos para startups y pymes: e-commerce, SaaS y bienes raíces, de Figma a producción."
+        "title": "Freelance · frontend",
+        "body": "Platzi y, en paralelo, más de 10 proyectos para startups y pymes: de Figma a producción."
       },
       "vitau": {
         "year": "2020",
-        "title": "Vitau · Senior Frontend & Tech Lead",
-        "body": "Arquitectura frontend de la farmacia digital de mayor crecimiento en México. Migración a Next.js sin downtime, bundle −40%."
+        "title": "Vitau · senior frontend",
+        "body": "Seis años en una farmacia digital: checkout con −31 % de abandono, +23 % de usuarios activos y LCP de 5,8 s a 2,5 s."
       },
-      "topra": {
-        "year": "2025",
-        "title": "To-Pra · producto propio",
-        "body": "Un gestor de tareas con modos de enfoque que hoy usan más de 500 personas."
-      },
-      "aishift": {
+      "careways": {
         "year": "2026",
-        "title": "AI Shift Challenge · Semana 0",
-        "body": "De construir software a enseñar a profesionales no técnicos a automatizar su trabajo con IA."
+        "title": "CareWays · UCI pediátrica",
+        "body": "Plataforma para reducir la mortalidad en UCI pediátrica en Latinoamérica: educación clínica y analítica."
+      },
+      "arkano": {
+        "year": "2026",
+        "title": "Arkano · asistente de Ternium",
+        "body": "Frontend y BFF del asistente multi-agente de una siderúrgica global, sobre Azure OpenAI y LangGraph."
       }
     },
     "casesTitle": "Casos reales",

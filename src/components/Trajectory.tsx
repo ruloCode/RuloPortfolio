@@ -17,10 +17,10 @@ import styles from "./Trajectory.module.scss";
 
 // Same accents as the scroll-world stations, in narrative order.
 const MILESTONES: { key: string; dot: string }[] = [
-  { key: "freelance", dot: "#D3A048" },
-  { key: "vitau", dot: "#4C90A3" },
-  { key: "topra", dot: "#E85E3E" },
-  { key: "aishift", dot: "#2E9C7B" },
+  { key: "freelance", dot: "var(--accent-gold)" },
+  { key: "vitau", dot: "var(--accent-blue)" },
+  { key: "careways", dot: "var(--accent-coral)" },
+  { key: "arkano", dot: "var(--brand)" },
 ];
 
 /**

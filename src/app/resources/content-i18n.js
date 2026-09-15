@@ -178,7 +178,7 @@ const createI18nContent = (t) => {
       quote: t("about.story.quote"),
       north: t("about.story.north"),
       acts: Object.fromEntries(
-        ["before", "learn", "production", "today"].map((key) => [
+        ["before", "learn", "production", "day", "night"].map((key) => [
           key,
           {
             label: t(`about.story.acts.${key}.label`),
@@ -216,7 +216,7 @@ const createI18nContent = (t) => {
       display: true,
       title: t("about.work.title"),
       // Newest first: what he does today leads.
-      experiences: ["aishift", "vitau", "freelance"].map((key) => ({
+      experiences: ["arkano", "aishift", "careways", "vitau", "freelance"].map((key) => ({
         company: t(`about.work.experiences.${key}.company`),
         timeframe: t(`about.work.experiences.${key}.timeframe`),
         role: t(`about.work.experiences.${key}.role`),

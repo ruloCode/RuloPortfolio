@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Text } from "@/once-ui/components";
 import styles from "./Stats.module.scss";
 
-const STAT_KEYS = ["experience", "transactions", "users", "lcp"] as const;
+const STAT_KEYS = ["experience", "users", "revenue", "lcp"] as const;
 type StatKey = (typeof STAT_KEYS)[number];
 
 /** Splits "$2M+" into { prefix: "$", target: 2, suffix: "M+" } for the count-up. */
