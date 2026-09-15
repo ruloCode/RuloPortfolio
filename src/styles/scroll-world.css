@@ -5,12 +5,17 @@
    mismos; lo único del portfolio es la tipografía (Space Grotesk / Inter),
    que entra por --sw-font-* en StageWorld. */
 
-/* Tema: fondo crema del diorama + acento verde esmeralda de rulocode. */
+/* Tema: el crema del diorama para los paneles (se apoyan sobre el vídeo) y la
+   tinta y el verde del sitio para el texto — ver src/styles/theme-bone.scss. */
 :root, .sw-root {
-  --sw-bg: #F4EAD5;          /* == color de fondo de las escenas (crema) */
-  --sw-ink: #241C18;         /* casi-negro cálido (un punto más oscuro = más contraste) */
-  --sw-ink-soft: #5F5346;    /* gris cálido más oscuro que el default → cuerpo/nav legibles */
-  --sw-accent: #2E9C7B;      /* esmeralda — los acentos por sección lo sobreescriben */
+  /* El crema se queda: los paneles se apoyan sobre el vídeo, que está
+     renderizado en ese tono. La tinta y el verde vienen del sitio
+     (src/styles/theme-bone.scss) para que el texto sea el mismo en todas
+     partes. Cada estación sobreescribe --sw-accent con su propio color. */
+  --sw-bg: #F4EAD5;
+  --sw-ink: var(--ink, #111110);
+  --sw-ink-soft: var(--ink-soft, #4f4c45);
+  --sw-accent: var(--brand, #08533c);
 
   /* ===== Material soft-glass =====
      Un solo material, definido una vez y reutilizado en cada superficie
@@ -66,7 +71,7 @@
   box-shadow: var(--glass-highlight), var(--glass-shadow);
 }
 /* Sobre fondo casi opaco las sombras de texto solo emborronan: fuera todas. */
-.sw-copy__num{ color:color-mix(in srgb,var(--sw-ink) 62%,var(--sw-ink-soft)); text-shadow:none; }
+.sw-copy__num{ color:var(--sw-ink-soft); text-shadow:none; }
 .sw-copy__eyebrow{
   margin-top:10px;
   color:color-mix(in srgb,var(--sw-accent) 42%,var(--sw-ink));
@@ -105,9 +110,9 @@
    jerarquía gana al efecto) pero con arista de luz y sombra de contacto;
    el ghost sí es vidrio tintado. */
 .sw-topcta,.sw-btn--primary{
-  background:linear-gradient(180deg, color-mix(in srgb,var(--sw-ink) 88%,#fff), var(--sw-ink));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.16),
-    0 12px 28px -14px color-mix(in srgb,var(--sw-ink) 70%,transparent);
+  background:var(--brand);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14),
+    0 12px 28px -14px rgba(10,91,68,.8);
 }
 .sw-btn--ghost{
   border:1px solid transparent;
@@ -116,6 +121,33 @@
       color-mix(in srgb,var(--sw-accent) 8%, rgba(255,255,255,.35))) padding-box,
     var(--glass-edge) border-box;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+}
+
+/* ===== La barra cambia de trabajo según dónde esté el visitante =====
+   Mientras se vuela, la barra navega ESTACIONES. Cuando el scroll pasa la
+   última y empieza la página (is-past), esas estaciones ya no sirven: la
+   barra pasa a navegar el SITIO. Antes se pintaban las dos a la vez y a
+   1440 px los enlaces se montaban encima del contenido.
+
+   Los enlaces del sitio siguen en el DOM desde el primer pintado — son lo
+   que un rastreador sigue desde la portada — solo cambian de turno. */
+.sw-sitenav{ display:none; }
+.sw-root.is-past .sw-nav{ display:none; }
+.sw-root.is-past .sw-sitenav{ display:flex; }
+/* En el teléfono la home no pinta el header del sitio y la barra de estaciones
+   está oculta: sin esto, pasada la película no quedaría ninguna forma de salir
+   de la portada salvo el pie. */
+@media (max-width:860px){
+  .sw-root.is-past .sw-sitenav{ display:flex; gap:0; }
+  .sw-root.is-past .sw-sitenav__item{ padding:10px 8px; font-size:.78rem; }
+  /* Marca + enlaces + botón no caben en 390 px: el botón se sale por la
+     derecha. Pasada la película cede el sitio — justo debajo está el
+     formulario completo, y el botón sigue ahí durante todo el vuelo. */
+  .sw-root.is-past .sw-topcta{ display:none; }
+}
+/* Pasada la película el velo es el papel del sitio, no el crema del diorama. */
+.sw-root.is-past .sw-topbar::before{
+  background:linear-gradient(180deg,var(--bone) 0%,color-mix(in srgb,var(--bone) 55%,transparent) 62%,transparent 100%);
 }
 
 /* Barra superior: velo suave arriba + nav como pill de vidrio (ref. T1 Energy). */

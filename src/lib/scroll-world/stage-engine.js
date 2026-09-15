@@ -505,7 +505,7 @@ function injectStageCSS() {
   .sw-stage,.sw-copylayer,.sw-route,.sw-scrollbar{transition:opacity .45s ease,visibility .45s;}
   .sw-root.is-past .sw-stage,.sw-root.is-past .sw-copylayer,.sw-root.is-past .sw-route,.sw-root.is-past .sw-hint,.sw-root.is-past .sw-scrollbar{opacity:0;visibility:hidden;pointer-events:none;}
   @media (max-width:860px){
-    .sw-nav{display:none;} .sw-sitenav{display:none;}
+    .sw-nav{display:none;}
     /* Encuadre centrado: con los clips móviles cortados más lejos ya entra la escena
        completa, así que desplazar el foco a la derecha solo la descentraba. */
     .sw-scene__video,.sw-scene__still{object-position:50% 46%;}

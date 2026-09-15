@@ -9,14 +9,14 @@ a.skip-link {
     z-index: 20;
     padding: var(--static-space-8) var(--static-space-16);
     border-radius: var(--radius-m);
-    background: var(--sw-ink);
+    background: var(--ink);
     color: #ffffff;
     text-decoration: none;
     transform: translateY(calc(-100% - var(--static-space-16)));
 
     &:focus-visible {
         transform: translateY(0);
-        outline: 3px solid var(--sw-ink);
+        outline: 3px solid var(--ink);
         outline-offset: 2px;
     }
 }

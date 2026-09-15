@@ -1,0 +1,161 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Paleta del sitio — dirección "Hueso".
+//
+// Papel hueso, negro cálido y un esmeralda profundo que solo aparece donde
+// importa. Es la crema de antes sin el amarillo: los dioramas de la portada
+// siguen siendo cálidos, pero la página que los rodea deja de leerse blanda.
+//
+// Se carga después de once-ui/tokens y solo redefine variables: ningún
+// componente cambia, todos heredan.
+//
+// Contraste medido (WCAG 2.2). Todo el texto llega a AAA (7:1), no solo a AA:
+//   tinta        #111110  16,8:1 sobre hueso · 18,9:1 sobre blanco
+//   medio        #3A3731  10,5:1
+//   suave        #4F4C45   7,6:1 sobre hueso · 8,6:1 sobre blanco
+//   marca        #08533C   7,2:1 sobre hueso · 8,1:1 sobre blanco
+//   blanco sobre marca     8,1:1  (botón primario)
+//   borde de marca #3E9276 3,3:1  (no-texto, umbral 3:1)
+//   borde neutro  #8C8578  3,2:1  (no-texto)
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+  // Neutral "sand" → rampa cálida: tinta arriba, papel abajo.
+  --scheme-sand-100: #111110;
+  --scheme-sand-200: #1c1b19;
+  --scheme-sand-300: #2a2825;
+  --scheme-sand-400: #3a3731;
+  --scheme-sand-500: #45423b;
+  --scheme-sand-600: #4f4c45;
+  --scheme-sand-700: #6b675e;
+  --scheme-sand-800: #8c8578;
+  --scheme-sand-900: #ddd8cc;
+  --scheme-sand-1000: #ede9df;
+  --scheme-sand-1100: #fbf9f4;
+  --scheme-sand-1200: #ffffff;
+  --scheme-sand-600-10: #4f4c451a;
+  --scheme-sand-600-30: #4f4c454d;
+  --scheme-sand-600-50: #4f4c4580;
+
+  // Brand "emerald" → un solo verde profundo, con un escalón claro para bordes.
+  --scheme-emerald-100: #04231a;
+  --scheme-emerald-200: #063527;
+  --scheme-emerald-300: #084733;
+  --scheme-emerald-400: #08533c;
+  --scheme-emerald-500: #08533c;
+  --scheme-emerald-600: #08533c;
+  --scheme-emerald-700: #2e8466;
+  --scheme-emerald-800: #3e9276;
+  --scheme-emerald-900: #a9d9c6;
+  --scheme-emerald-1000: #cfe9df;
+  --scheme-emerald-1100: #e4f2eb;
+  --scheme-emerald-1200: #f1f8f5;
+  --scheme-emerald-600-10: #08533c1a;
+  --scheme-emerald-600-30: #08533c4d;
+  --scheme-emerald-600-50: #08533c80;
+
+  // Los tres colores, con nombre, para lo que no pasa por Once UI.
+  --bone: #f4f1ea;
+  --ink: #111110;
+  --ink-soft: #4f4c45;
+  --brand: #08533c;
+
+  // Acentos por estación, en su versión legible sobre hueso (≥ 4,5:1).
+  // Solo para la línea de tiempo y los eyebrows por sección.
+  --accent-gold: #8a6420;
+  --accent-blue: #2f6b7c;
+  --accent-coral: #b4402a;
+  --accent-brick: #9e4b3f;
+
+  // El mundo de la portada conserva su crema: los paneles se apoyan sobre el
+  // vídeo, que está renderizado en ese tono. Lo que se alinea con el sitio es
+  // la tinta y la marca, para que el texto sea el mismo en todas partes.
+  --sw-bg: #f4ead5;
+  --sw-ink: #111110;
+  --sw-ink-soft: #4f4c45;
+  --sw-accent: #08533c;
+
+  // Etiquetas: Once UI apunta a --font-tertiary, que el layout nunca define.
+  --font-tertiary: var(--font-primary);
+  // Space Grotesk se carga hasta 700: pedir 800 sintetiza una negrita falsa.
+  --font-weight-display-strong: var(--font-weight-bold);
+}
+
+[data-theme="light"] {
+  --page-background: var(--bone);
+  --neutral-background-weak: var(--bone);
+  --brand-background-weak: var(--bone);
+  --accent-background-weak: var(--bone);
+  --backdrop: rgba(244, 241, 234, 0.72);
+
+  // Once UI apunta "background-strong" y "border-strong" al mismo escalón de la
+  // rampa. Aquí tienen trabajos distintos: el relleno tiene que ser lo bastante
+  // pálido para que su propia etiqueta llegue a AAA (7,0:1), y el borde lo
+  // bastante oscuro para verse (3,3:1).
+  --brand-background-strong: #e4f2eb;
+  --brand-background-medium: #f1f8f5;
+  --accent-background-strong: #e4f2eb;
+  --accent-background-medium: #f1f8f5;
+
+  // El botón sólido es la marca, no un gris: es el mismo verde del logo.
+  --brand-solid-strong: var(--brand);
+  --brand-solid-medium: #084733;
+  --brand-solid-weak: #063527;
+  --brand-on-solid-strong: #ffffff;
+}
+
+// Superficies: papel blanco sobre hueso, no vidrio lechoso.
+[data-surface="translucent"][data-theme="light"],
+[data-surface="translucent"] [data-theme="light"] {
+  --surface-background: rgba(255, 255, 255, 0.72);
+  --surface-border: var(--neutral-alpha-medium);
+}
+
+// Foco de teclado visible sobre cualquier fondo del sitio (WCAG 2.4.7 / 2.4.11).
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+// Los enlaces se distinguen por color (7,2:1) y, al enfocarlos, también por
+// subrayado — nunca solo por color cuando hay teclado de por medio.
+a:not(.button):focus-visible {
+  text-decoration-line: underline;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bone);
+}
+
+// ─── Objetivos táctiles (WCAG 2.5.8) ────────────────────────────────────────
+// En el teléfono la barra de navegación es la única forma de moverse por el
+// sitio y sus botones median 32 px de alto. Se suben a 44 sin cambiar el
+// tamaño del texto, y lo mismo para los IconButton pequeños del pie.
+//
+// El ancho, no el tipo de puntero: es el mismo umbral en el que el header se
+// convierte en barra inferior (once-ui/styles/breakpoints.scss, --s = 768px).
+@media (max-width: 768px) {
+  [class*="ToggleButton-module"][class*="__m"],
+  [class*="ToggleButton-module"][class*="__s"] {
+    min-height: 44px;
+    height: 44px;
+  }
+
+  [class*="IconButton-module"][class*="__s"],
+  [class*="IconButton-module"][class*="__m"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  // Con los objetivos a 44 px la píldora de navegación medía 424 px en una
+  // pantalla de 390 y se salía por los dos lados. Se recorta el relleno
+  // horizontal (no el alto: el objetivo táctil se mantiene).
+  header [class*="ToggleButton-module"][class*="__m"] {
+    padding-left: var(--static-space-8);
+    padding-right: var(--static-space-8);
+  }
+
+  header nav {
+    max-width: 100%;
+  }
+}

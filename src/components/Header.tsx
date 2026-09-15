@@ -1,46 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
-import { Button, Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
+import { Button, Fade, Flex, Line, SmartLink, Text, ToggleButton } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
 import styles from "@/components/Header.module.scss";
 
-import { routes, display } from "@/app/resources";
+import { routes } from "@/app/resources";
 import { localizeHref, routing, usePathname, useRouter } from "@/i18n/routing";
-
-type TimeDisplayProps = {
-  timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
-};
-
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
-  const [currentTime, setCurrentTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      const timeString = new Intl.DateTimeFormat(locale, options).format(now);
-      setCurrentTime(timeString);
-    };
-
-    updateTime();
-    const intervalId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeZone, locale]);
-
-  return <>{currentTime}</>;
-};
 
 const LanguageSwitcher = () => {
   const locale = useLocale();
@@ -90,7 +58,15 @@ export const Header = () => {
         horizontal="center"
       >
         <Flex paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s" hide="s">
-          {display.location && <Flex>America/Bogota</Flex>}
+          {/* The mark, linking home — the only place it appears outside the
+              scroll-world topbar and the share card. */}
+          <SmartLink unstyled href={href("/")} aria-label={t("home")}>
+            <Flex gap="8" vertical="center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/brand/mark.svg" alt="" width={26} height={26} />
+              <Text variant="heading-strong-s">rulocode</Text>
+            </Flex>
+          </SmartLink>
         </Flex>
         <Flex fillWidth horizontal="center">
           <Flex
@@ -250,7 +226,6 @@ export const Header = () => {
                 {t("waitlistCta")}
               </Button>
             )}
-            {display.time && <TimeDisplay timeZone="America/Bogota" />}
           </Flex>
         </Flex>
       </Flex>

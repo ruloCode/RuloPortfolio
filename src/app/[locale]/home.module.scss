@@ -13,7 +13,7 @@
   scroll-snap-align: start;
   min-height: 100svh;
   padding-top: calc(var(--static-space-80) + 40px);
-  // Cream, like the sky it follows: the stations and what comes after read
-  // as one page, not a landing stapled to a template.
-  background: var(--sw-bg, #f4ead5);
+  // Bone: the film ends here. The stations keep the diorama's cream because
+  // their panels sit on the video; everything after them is the site.
+  background: var(--page-background);
 }

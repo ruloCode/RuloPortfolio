@@ -1,14 +1,14 @@
-// Brand signature — single source of the visual signature, on the cream/ink/
-// emerald palette (src/styles/theme-cream.scss). Rules: emerald is THE
+// Brand signature — single source of the visual signature, on the bone/ink/
+// emerald palette (src/styles/theme-bone.scss). Rules: emerald is THE
 // single-color UI accent; the signature text gradient is two AA greens and is
 // reserved for the H1 keyword (.gradientText) and the halo of conversion
-// blocks (.signatureGlow); primary CTAs are solid ink (.signatureCta), the
-// same button the scroll-world uses, so "the next step" looks identical on
-// every page. Animates transform / opacity / border-color / box-shadow only
+// blocks (.signatureGlow); primary CTAs are solid brand green
+// (.signatureCta), the same green the mark is drawn in, so "the next step"
+// looks identical on every page. Animates transform / opacity / border-color / box-shadow only
 // (compositor-friendly); the global `prefers-reduced-motion` reset in
 // once-ui/styles/global.scss neutralizes these transitions automatically.
 
-$signature: linear-gradient(100deg, #0c6551, #23896a);
+$signature: linear-gradient(100deg, #08533c, #2e8466);
 
 // ——— Heroes ———
 
@@ -136,25 +136,26 @@ $signature: linear-gradient(100deg, #0c6551, #23896a);
   }
 }
 
-// Primary CTA: solid ink with a light edge and a contact shadow — the
-// scroll-world's `.sw-topcta`, verbatim, so the same button carries the
-// visitor from the first station to the last form. White on ink is 16.7:1.
+// Primary CTA: solid brand green, the same one the mark is drawn in, so the
+// next step always looks like the same object. White on it is 8.1:1 (AAA).
 .signatureCta {
   border: none;
-  background: linear-gradient(180deg, #3e3733, #241c18) !important;
+  background: var(--brand) !important;
   color: #ffffff !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 12px 28px -14px rgba(36, 28, 24, 0.7);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 10px 24px -14px rgba(10, 91, 68, 0.8);
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
 
   &:hover {
+    filter: brightness(1.12);
     transform: translateY(-2px);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.16),
-      0 16px 32px -14px rgba(36, 28, 24, 0.75);
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 16px 30px -14px rgba(10, 91, 68, 0.85);
   }
 
   &:active {

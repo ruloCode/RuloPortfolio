@@ -90,7 +90,8 @@ export function buildWorldConfig(
 ): WorldConfig {
   const cta = { label: t("cta"), href: ctaHref };
   return {
-    brand: { name: t("brand"), href: "#top", logo: asset("rulo-mark.svg") },
+    // La marca del sitio, no un asset del mundo: vive en public/brand.
+    brand: { name: t("brand"), href: "#top", logo: "/brand/mark.svg" },
     cta,
     links,
     ...labels,

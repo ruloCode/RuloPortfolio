@@ -9,12 +9,12 @@ import { person } from "@/app/resources/content";
 // next.config.mjs traces public/fonts into the lambda.
 export const runtime = "nodejs";
 
-// The share card wears the site's palette: cream ground, ink title, the
+// The share card wears the site's palette: bone ground, ink title, the
 // emerald mark. 1200×630 is what every scraper actually crops to.
-const CREAM = "#F4EAD5";
-const INK = "#241C18";
-const INK_SOFT = "#5F5346";
-const EMERALD = "#1A6B53";
+const BONE = "#F4F1EA";
+const INK = "#111110";
+const INK_SOFT = "#4F4C45";
+const EMERALD = "#08533C";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   const eyebrow = (url.searchParams.get("eyebrow") || "rulocode.com").slice(0, 40);
   const [fontData, markSvg] = await Promise.all([
     readFile(join(process.cwd(), "public/fonts/Inter.ttf")),
-    readFile(join(process.cwd(), "public/scroll/rulo-mark.svg"), "utf8"),
+    readFile(join(process.cwd(), "public/brand/mark-plate.svg"), "utf8"),
   ]);
   const mark = `data:image/svg+xml;base64,${Buffer.from(markSvg).toString("base64")}`;
   // Long titles get a smaller size instead of a third line that clips.
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
         width: "100%",
         height: "100%",
         padding: "64px 72px",
-        background: CREAM,
+        background: BONE,
         fontFamily: "Inter",
         color: INK,
       }}

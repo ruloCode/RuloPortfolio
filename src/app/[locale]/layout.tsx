@@ -1,6 +1,6 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
-import "@/styles/theme-cream.scss";
+import "@/styles/theme-bone.scss";
 import "@/styles/skip-link.scss";
 
 import type { Viewport } from "next";
@@ -32,7 +32,7 @@ export function generateStaticParams() {
 // One theme, one color: the cream of the diorama. The site no longer has a
 // dark mode — the brand is light and every contrast was measured on cream.
 export const viewport: Viewport = {
-  themeColor: "#F4EAD5",
+  themeColor: "#F4F1EA",
   colorScheme: "light",
   viewportFit: "cover",
 };
