@@ -165,7 +165,7 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         // looking for the next step. Hand them the dashboard, not a dead end.
         <Column gap="16" horizontal="center" align="center" style={{ position: "relative" }}>
           <Icon name="checkCircle" size="l" onBackground="brand-weak" />
-          <Heading variant="heading-strong-m">
+          <Heading as="h2" variant="heading-strong-m">
             {firstName && newsletter.successNamed
               ? newsletter.successNamed.replace("{name}", firstName)
               : newsletter.success}
@@ -272,7 +272,12 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
             </Flex>
           </Column>
           {status === "error" && (
-            <Text variant="body-default-s" onBackground="danger-weak" style={{ position: "relative" }}>
+            <Text
+              role="alert"
+              variant="body-default-s"
+              onBackground="danger-weak"
+              style={{ position: "relative" }}
+            >
               {newsletter.error}
             </Text>
           )}

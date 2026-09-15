@@ -19,6 +19,7 @@ export default async function sitemap() {
             languages: {
               en: localeUrl("en", `/blog/${post.slug}`),
               es: localeUrl("es", `/blog/${post.slug}`),
+              "x-default": localeUrl("en", `/blog/${post.slug}`),
             },
           },
         })),
@@ -34,6 +35,7 @@ export default async function sitemap() {
             languages: {
               en: localeUrl("en", `/work/${post.slug}`),
               es: localeUrl("es", `/work/${post.slug}`),
+              "x-default": localeUrl("en", `/work/${post.slug}`),
             },
           },
         })),

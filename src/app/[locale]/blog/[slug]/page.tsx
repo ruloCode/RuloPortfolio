@@ -10,9 +10,9 @@ import {
   Row,
   Text,
 } from "@/once-ui/components";
-import { baseURL, routes, scheduling } from "@/app/resources";
+import { baseURL, routes } from "@/app/resources";
 import { person } from "@/app/resources/content";
-import { CtaBanner, NewsletterBand } from "@/components";
+import { NewsletterBand } from "@/components";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { formatDate } from "@/app/utils/formatDate";
 import { readingTime } from "@/app/utils/readingTime";
@@ -204,7 +204,7 @@ export default async function Blog(props: BlogParams) {
         size="s"
         prefixIcon="chevronLeft"
       >
-        Posts
+        {t("blog.label")}
       </Button>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
       <Row gap="12" vertical="center">
@@ -227,12 +227,6 @@ export default async function Blog(props: BlogParams) {
         currentSlug={post.slug}
         tag={typeof post.metadata.tag === "string" ? post.metadata.tag : undefined}
         locale={params.locale}
-      />
-      <CtaBanner
-        title={t("services.cta.title")}
-        description={t("services.cta.description")}
-        button={t("services.cta.button")}
-        href={scheduling.link}
       />
       <ScrollToHash />
     </Column>

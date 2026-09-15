@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { routes } from "@/app/resources";
 import { localizeHref } from "@/i18n/routing";
 import { buildWorldConfig, PRELOAD } from "@/lib/scroll-world/sections";
 import { StageWorld } from "./StageWorld";
@@ -18,7 +19,14 @@ document.head.appendChild(l);
 /** Las 7 estaciones de la home: config del locale + precargas del primer tramo. */
 export async function ScrollWorld({ locale }: { locale: string }) {
   const t = await getTranslations("scroll");
-  const config = buildWorldConfig(t, localizeHref(locale, "/ia"));
+  const tNav = await getTranslations("nav");
+  const links = (["/about", "/services", "/blog"] as const)
+    .filter((route) => routes[route])
+    .map((route) => ({ label: tNav(route.slice(1)), href: localizeHref(locale, route) }));
+  const config = buildWorldConfig(t, localizeHref(locale, "/ia"), links, {
+    navLabel: t("stationsNav"),
+    linksLabel: tNav("mainNav"),
+  });
 
   return (
     <>

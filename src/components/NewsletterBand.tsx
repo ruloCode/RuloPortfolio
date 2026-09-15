@@ -81,7 +81,7 @@ export function NewsletterBand({ copy, image }: NewsletterBandProps) {
           {copy.description}
         </Text>
         {status === "success" ? (
-          <Column gap="8" paddingTop="8">
+          <Column gap="8" paddingTop="8" role="status">
             <Icon name="checkCircle" size="l" onBackground="brand-weak" />
             <Text variant="heading-strong-m">{copy.success}</Text>
           </Column>

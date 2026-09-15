@@ -100,7 +100,16 @@ export function mountStageWorld(container, config) {
     const nm = el('span', 'sw-brand__name'); nm.textContent = config.brand.name || ''; brand.appendChild(nm);
     topbar.appendChild(brand);
   }
-  const nav = el('nav', 'sw-nav'); if (config.nav !== false) topbar.appendChild(nav);
+  const nav = el('nav', 'sw-nav'); if (config.navLabel) nav.setAttribute('aria-label', config.navLabel);
+  if (config.nav !== false) topbar.appendChild(nav);
+  // Enlaces al resto del sitio (about, servicios, blog): la home no pinta el
+  // header general, así que estos son la navegación principal — y lo que un
+  // rastreador sigue desde la portada.
+  if (config.links && config.links.length) {
+    const site = el('nav', 'sw-sitenav'); if (config.linksLabel) site.setAttribute('aria-label', config.linksLabel);
+    config.links.forEach(l => { const a = el('a', 'sw-sitenav__item'); a.href = l.href; a.textContent = l.label; site.appendChild(a); });
+    topbar.appendChild(site);
+  }
   if (config.cta && config.cta.label) {
     const c = el('a', 'sw-topcta'); if (config.cta.href) c.href = config.cta.href; c.textContent = config.cta.label;
     topbar.appendChild(c);
@@ -139,7 +148,8 @@ export function mountStageWorld(container, config) {
     c.innerHTML =
       `<span class="sw-copy__num">${pad(i + 1)} / ${pad(N)}</span>` +
       (s.eyebrow ? `<span class="sw-copy__eyebrow">${esc(s.eyebrow)}</span>` : '') +
-      (s.title ? `<h2 class="sw-copy__title">${esc(s.title)}</h2>` : '') +
+      // La primera estación es el titular de la página: su H1. Las demás son h2.
+      (s.title ? `<${i === 0 ? 'h1' : 'h2'} class="sw-copy__title">${esc(s.title)}</${i === 0 ? 'h1' : 'h2'}>` : '') +
       (s.body ? `<p class="sw-copy__body">${esc(s.body)}</p>` : '') +
       (s.tags && s.tags.length ? `<ul class="sw-copy__tags">${s.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '') +
       (s.cta ? `<div class="sw-copy__cta">${ctaBtns(s.cta)}</div>` : '');
@@ -150,7 +160,7 @@ export function mountStageWorld(container, config) {
     dot.addEventListener('click', () => jumpTo(i)); route.appendChild(dot); dots.push(dot);
 
     if (config.nav !== false) {
-      const b = el('button', 'sw-nav__item'); b.textContent = s.label || '';
+      const b = el('button', 'sw-nav__item'); b.textContent = s.label || ''; b.type = 'button';
       b.addEventListener('click', () => jumpTo(i)); nav.appendChild(b);
     }
   });
@@ -270,7 +280,7 @@ export function mountStageWorld(container, config) {
 
     container.style.setProperty('--sw-accent', SECTIONS[i].accent || '');
     dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
-    nav.querySelectorAll('.sw-nav__item').forEach((n, k) => n.classList.toggle('is-active', k === i));
+    nav.querySelectorAll('.sw-nav__item').forEach((n, k) => { n.classList.toggle('is-active', k === i); n.setAttribute('aria-current', k === i ? 'true' : 'false'); });
 
     playSection(S[i]);
     // Red de seguridad: si `timeupdate` no llega (vídeo que no carga, pestaña en
@@ -451,6 +461,9 @@ function injectStageCSS() {
   .sw-nav__item{font:inherit;font-size:.82rem;color:var(--sw-ink-soft);border:0;background:transparent;cursor:pointer;padding:7px 14px;border-radius:999px;transition:color .25s,background .25s;}
   .sw-nav__item:hover{color:var(--sw-ink);} .sw-nav__item.is-active{color:#fff;background:var(--sw-accent);}
   .sw-topcta{text-decoration:none;font-weight:600;font-size:.9rem;color:#fff;background:var(--sw-ink);padding:10px 20px;border-radius:999px;white-space:nowrap;}
+  .sw-sitenav{display:flex;gap:2px;margin-left:auto;}
+  .sw-sitenav__item{font-size:.82rem;font-weight:500;color:var(--sw-ink-soft);text-decoration:none;padding:7px 10px;border-radius:999px;transition:color .25s,background .25s;}
+  .sw-sitenav__item:hover{color:var(--sw-ink);background:color-mix(in srgb,var(--sw-ink) 7%,transparent);}
   .sw-stage{position:fixed;inset:0;z-index:10;pointer-events:none;}
   /* La escena activa entra con un fundido corto; el resto no se pinta. */
   .sw-scene{position:absolute;inset:0;opacity:0;overflow:hidden;transition:opacity .5s ease;}
@@ -492,7 +505,7 @@ function injectStageCSS() {
   .sw-stage,.sw-copylayer,.sw-route,.sw-scrollbar{transition:opacity .45s ease,visibility .45s;}
   .sw-root.is-past .sw-stage,.sw-root.is-past .sw-copylayer,.sw-root.is-past .sw-route,.sw-root.is-past .sw-hint,.sw-root.is-past .sw-scrollbar{opacity:0;visibility:hidden;pointer-events:none;}
   @media (max-width:860px){
-    .sw-nav{display:none;}
+    .sw-nav{display:none;} .sw-sitenav{display:none;}
     /* Encuadre centrado: con los clips móviles cortados más lejos ya entra la escena
        completa, así que desplazar el foco a la derecha solo la descentraba. */
     .sw-scene__video,.sw-scene__still{object-position:50% 46%;}

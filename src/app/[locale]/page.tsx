@@ -8,6 +8,7 @@ import { HomePillars, Trajectory, WaitlistForm } from "@/components";
 import { ScrollWorld } from "@/components/scroll-world";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
+import { localeAlternates } from "@/app/utils/seo";
 
 interface PageParams {
   params: Promise<{ locale: string }>;
@@ -32,17 +33,7 @@ export async function generateMetadata({ params }: PageParams) {
   return {
     title,
     description,
-    alternates: {
-      canonical:
-        locale === routing.defaultLocale
-          ? `https://${baseURL}`
-          : `https://${baseURL}/${locale}`,
-      languages: {
-        en: `https://${baseURL}`,
-        es: `https://${baseURL}/es`,
-        "x-default": `https://${baseURL}`,
-      },
-    },
+    alternates: localeAlternates(locale, "/"),
     openGraph: {
       title,
       description,

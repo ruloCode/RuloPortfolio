@@ -26,6 +26,10 @@ export type StationConfig = {
 export type WorldConfig = {
   brand: { name: string; href: string; logo: string };
   cta: { label: string; href: string };
+  /** Rest-of-site links in the topbar: the home's primary navigation. */
+  links: { label: string; href: string }[];
+  navLabel: string;
+  linksLabel: string;
   hint: string;
   copyAt: number;
   sections: StationConfig[];
@@ -78,11 +82,18 @@ const TAG_KEYS = ["1", "2", "3", "4", "5", "6"] as const;
 type Translator = ((key: string) => string) & { has: (key: string) => boolean };
 
 /** Arma la config del motor con los textos del locale activo. */
-export function buildWorldConfig(t: Translator, ctaHref: string): WorldConfig {
+export function buildWorldConfig(
+  t: Translator,
+  ctaHref: string,
+  links: { label: string; href: string }[],
+  labels: { navLabel: string; linksLabel: string },
+): WorldConfig {
   const cta = { label: t("cta"), href: ctaHref };
   return {
     brand: { name: t("brand"), href: "#top", logo: asset("rulo-mark.svg") },
     cta,
+    links,
+    ...labels,
     hint: t("hint"),
     // El panel entra a los 2.2s de clip, con la animación todavía corriendo:
     // así se puede leer sin esperar a que el vuelo termine.

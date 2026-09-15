@@ -49,7 +49,7 @@ export default function Post({ post, thumbnail, locale = "en", variant = "defaul
               cursor="interactive"
               radius="l"
               src={post.metadata.image}
-              alt={"Thumbnail of " + post.metadata.title}
+              alt=""
               aspectRatio="16 / 9"
             />
           )}
@@ -95,7 +95,7 @@ export default function Post({ post, thumbnail, locale = "en", variant = "defaul
             cursor="interactive"
             radius="m"
             src={post.metadata.image}
-            alt={"Thumbnail of " + post.metadata.title}
+            alt=""
             aspectRatio="16 / 9"
           />
         )}

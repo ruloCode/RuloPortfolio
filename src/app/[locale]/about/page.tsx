@@ -19,6 +19,7 @@ import { createI18nContent } from "@/app/resources/content-i18n";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { JSX } from "react";
 import { routing } from "@/i18n/routing";
+import { localeAlternates } from "@/app/utils/seo";
 
 interface PageParams {
   params: Promise<{ locale: string }>;
@@ -40,17 +41,7 @@ export async function generateMetadata({ params }: PageParams) {
   return {
     title,
     description,
-    alternates: {
-      canonical:
-        locale === routing.defaultLocale
-          ? `https://${baseURL}/about`
-          : `https://${baseURL}/${locale}/about`,
-      languages: {
-        en: `https://${baseURL}/about`,
-        es: `https://${baseURL}/es/about`,
-        "x-default": `https://${baseURL}/about`,
-      },
-    },
+    alternates: localeAlternates(locale, "/about"),
     openGraph: {
       title,
       description,
@@ -118,7 +109,7 @@ export default async function About({ params }: PageParams) {
             jobTitle: person.role,
             description: about.intro.description,
             url: `https://${baseURL}/about`,
-            image: `${baseURL}/images/${person.avatar}`,
+            image: `https://${baseURL}${person.avatar}`,
             sameAs: social
               .filter((item) => item.link && !item.link.startsWith("mailto:")) // Filter out empty links and email links
               .map((item) => item.link),

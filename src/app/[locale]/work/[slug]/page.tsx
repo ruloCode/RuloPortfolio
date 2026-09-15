@@ -222,7 +222,7 @@ export default async function Project(props: WorkParams) {
           priority
           aspectRatio="16 / 9"
           radius="m"
-          alt="image"
+          alt={post.metadata.title}
           src={post.metadata.images[0]}
         />
       )}
