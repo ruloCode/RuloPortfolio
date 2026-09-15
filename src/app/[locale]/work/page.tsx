@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import { getPosts } from "@/app/utils/utils";
-import { Column } from "@/once-ui/components";
+import { Button, Column } from "@/once-ui/components";
+import { PageHero } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { routing } from "@/i18n/routing";
+import { localizeHref, routing } from "@/i18n/routing";
 
 interface PageParams {
   params: Promise<{ locale: string }>;
@@ -63,7 +64,7 @@ export default async function Work({ params }: PageParams) {
   let allProjects = getPosts(["work", "projects"], locale);
 
   return (
-    <Column maxWidth="m">
+    <Column maxWidth="m" gap="xl">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -90,6 +91,22 @@ export default async function Work({ params }: PageParams) {
             })),
           }),
         }}
+      />
+      <PageHero
+        eyebrow={work.label}
+        title={work.title}
+        intro={work.description}
+        actions={
+          <Button
+            href={localizeHref(locale, "/services")}
+            size="m"
+            variant="secondary"
+            data-border="rounded"
+            prefixIcon="briefcase"
+          >
+            {t("services.label")}
+          </Button>
+        }
       />
       <Projects locale={locale} />
     </Column>

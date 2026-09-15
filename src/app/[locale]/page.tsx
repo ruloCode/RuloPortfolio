@@ -158,7 +158,7 @@ export default async function Home({ params }: PageParams) {
                     <Text variant="body-default-s">{t("blog.label")}</Text>
                   </SmartLink>
                 </Flex>
-                <Posts range={[1, 3]} columns="3" thumbnail locale={locale} />
+                <Posts range={[1, 3]} columns="3" locale={locale} />
               </Column>
             </RevealFx>
           )}

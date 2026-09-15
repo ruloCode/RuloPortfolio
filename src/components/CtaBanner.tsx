@@ -1,4 +1,5 @@
 import { Button, Column, Heading, Text } from "@/once-ui/components";
+import brand from "@/styles/brand.module.scss";
 
 interface CtaBannerProps {
   title: string;
@@ -15,8 +16,9 @@ export function CtaBanner({ title, description, button, href }: CtaBannerProps) 
       gap="m"
       padding="xl"
       radius="l"
-      border="brand-alpha-medium"
-      background="brand-alpha-weak"
+      border="neutral-alpha-weak"
+      background="surface"
+      className={brand.signatureGlow}
       horizontal="center"
     >
       <Heading as="h2" variant="display-strong-xs" align="center" wrap="balance">
@@ -30,7 +32,7 @@ export function CtaBanner({ title, description, button, href }: CtaBannerProps) 
       >
         {description}
       </Text>
-      <Button href={href} variant="primary" size="m" arrowIcon>
+      <Button href={href} size="m" arrowIcon className={brand.signatureCta}>
         {button}
       </Button>
     </Column>

@@ -15,3 +15,11 @@
     left: -2rem;
     transition: var(--transition-micro-medium);
 }
+
+// Card summaries are a teaser; the case study is the page.
+.clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

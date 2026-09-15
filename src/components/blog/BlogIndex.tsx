@@ -1,22 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Column, Flex, Grid, Heading, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
+import { Column, Flex, Grid, Heading, RevealFx, SmartImage, SmartLink, Tag, Text } from "@/once-ui/components";
+import { PostCard, type PostCardData } from "./PostCard";
 import brand from "@/styles/brand.module.scss";
 import styles from "./BlogIndex.module.scss";
 
-export type BlogIndexPost = {
-  slug: string;
-  href: string;
-  title: string;
-  summary: string;
-  image?: string;
-  tag?: string;
-  /** Already formatted for the locale on the server. */
-  date: string;
-  /** Already localized ("8 min de lectura"). */
-  readingTime: string;
-};
+export type BlogIndexPost = PostCardData;
 
 type BlogIndexProps = {
   posts: BlogIndexPost[];
@@ -117,50 +107,17 @@ export function BlogIndex({ posts, allLabel, filterLabel, readLabel }: BlogIndex
       </div>
 
       <Grid columns="3" tabletColumns="2" mobileColumns="1" gap="16" fillWidth>
-        {rest.map((post) => (
-          <SmartLink key={post.slug} unstyled fillWidth href={post.href}>
-            <Column
-              className={brand.card}
-              fillWidth
-              fillHeight
-              gap="12"
-              padding="m"
-              radius="l"
-              border="neutral-alpha-weak"
-              background="surface"
-            >
-              {post.image && (
-                <SmartImage
-                  className={brand.media}
-                  src={post.image}
-                  alt=""
-                  aspectRatio="16 / 9"
-                  radius="m"
-                  sizes="(max-width: 768px) 100vw, 360px"
-                  border="neutral-alpha-weak"
-                />
-              )}
-              <Flex gap="12" vertical="center" wrap>
-                {post.tag && <Tag variant="neutral" size="s" label={post.tag} />}
-                <Text variant="label-default-s" onBackground="neutral-weak">
-                  {post.date}
-                </Text>
-              </Flex>
-              <Heading as="h2" variant="heading-strong-m" wrap="balance">
-                {post.title}
-              </Heading>
-              <Text className={styles.clamp} variant="body-default-s" onBackground="neutral-weak">
-                {post.summary}
-              </Text>
-              <Text
-                variant="label-default-s"
-                onBackground="neutral-weak"
-                style={{ marginTop: "auto" }}
-              >
-                {post.readingTime}
-              </Text>
-            </Column>
-          </SmartLink>
+        {rest.map((post, index) => (
+          <RevealFx
+            key={post.slug}
+            speed="fast"
+            delay={(index % 3) * 0.06}
+            translateY="12"
+            inView
+            fillWidth
+          >
+            <PostCard post={post} />
+          </RevealFx>
         ))}
       </Grid>
     </Column>

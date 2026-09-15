@@ -14,16 +14,16 @@ $signature: linear-gradient(100deg, #0c6551, #23896a);
 
 // Oversized hero statement — scales from mobile to a full editorial display size.
 .heroTitle {
-  font-size: clamp(2.5rem, 7vw, 4.75rem);
-  line-height: 1.05;
+  font-size: clamp(2.25rem, 5.6vw, 4rem);
+  line-height: 1.04;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
-// Secondary-page variant (services/about): still oversized, one step down.
+// Kept as an alias: every page now opens at the same size (.heroTitle), so
+// the visitor always lands on the same typographic note.
 .heroTitleSub {
-  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  @extend .heroTitle;
 }
 
 // Signature use 1: the keyword of each page's H1, clipped to the gradient.

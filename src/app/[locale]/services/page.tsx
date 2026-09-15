@@ -6,13 +6,14 @@ import {
   Grid,
   Heading,
   Icon,
+  RevealFx,
   SmartImage,
   Tag,
   Text,
 } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
-import { CtaBanner } from "@/components";
+import { CtaBanner, PageHero, SectionHeader } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
@@ -120,31 +121,48 @@ export default async function Services({ params }: PageParams) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
 
-      {/* Hero */}
-      <Column gap="m" maxWidth="s">
-        <Heading className={brand.heroTitleSub} variant="display-strong-l" wrap="balance">
-          {services.hero.title}
-        </Heading>
-        <Text variant="heading-default-l" onBackground="neutral-weak" wrap="balance">
-          {services.hero.intro}
-        </Text>
-      </Column>
-      <SmartImage
-        className={brand.mediaGlow}
-        src="/images/services/hero.jpg"
-        alt={services.hero.imageAlt}
-        aspectRatio="21 / 9"
-        radius="l"
-        sizes="(max-width: 768px) 100vw, 1024px"
-        priority
-        border="neutral-alpha-weak"
+      <PageHero
+        eyebrow={services.label}
+        title={services.hero.title}
+        intro={services.hero.intro}
+        actions={
+          <>
+            <Button
+              href={services.cta.link}
+              size="m"
+              className={brand.signatureCta}
+              prefixIcon="calendar"
+            >
+              {services.cta.button}
+            </Button>
+            <Button
+              href={localizeHref(locale, "/work")}
+              size="m"
+              variant="secondary"
+              data-border="rounded"
+              prefixIcon="grid"
+            >
+              {t("work.label")}
+            </Button>
+          </>
+        }
       />
+      <RevealFx speed="fast" translateY="12" inView fillWidth>
+        <SmartImage
+          className={brand.mediaGlow}
+          src="/images/services/hero.jpg"
+          alt={services.hero.imageAlt}
+          aspectRatio="21 / 9"
+          radius="l"
+          sizes="(max-width: 768px) 100vw, 1024px"
+          priority
+          border="neutral-alpha-weak"
+        />
+      </RevealFx>
 
       {/* Offerings */}
       <Column gap="l">
-        <Heading as="h2" variant="display-strong-s">
-          {services.offerings.title}
-        </Heading>
+        <SectionHeader title={services.offerings.title} />
         <Grid columns="2" mobileColumns="1" gap="12" fillWidth>
           {services.offerings.items.map((offering) => (
             <Column
@@ -158,7 +176,9 @@ export default async function Services({ params }: PageParams) {
               background="surface"
             >
               <Icon name={OFFERING_ICONS[offering.key] ?? "sparkle"} onBackground="brand-weak" />
-              <Text variant="heading-strong-l">{offering.title}</Text>
+              <Heading as="h3" variant="heading-strong-l" wrap="balance">
+                {offering.title}
+              </Heading>
               <Text variant="body-default-m" onBackground="neutral-weak">
                 {offering.description}
               </Text>
@@ -170,16 +190,26 @@ export default async function Services({ params }: PageParams) {
 
       {/* Process */}
       <Column gap="l">
-        <Heading as="h2" variant="display-strong-s">
-          {services.process.title}
-        </Heading>
+        <SectionHeader title={services.process.title} />
         <Grid columns="4" tabletColumns="2" mobileColumns="1" gap="12" fillWidth>
           {services.process.steps.map((step, index) => (
-            <Column key={step.title} fillWidth gap="8" padding="m">
+            <Column
+              key={step.title}
+              className={brand.card}
+              fillWidth
+              fillHeight
+              gap="8"
+              padding="l"
+              radius="l"
+              border="neutral-alpha-weak"
+              background="surface"
+            >
               <Text variant="display-strong-s" onBackground="brand-weak">
                 {String(index + 1).padStart(2, "0")}
               </Text>
-              <Text variant="heading-strong-m">{step.title}</Text>
+              <Heading as="h3" variant="heading-strong-m" wrap="balance">
+                {step.title}
+              </Heading>
               <Text variant="body-default-s" onBackground="neutral-weak">
                 {step.description}
               </Text>
@@ -190,9 +220,7 @@ export default async function Services({ params }: PageParams) {
 
       {/* Engagement models */}
       <Column gap="l">
-        <Heading as="h2" variant="display-strong-s">
-          {services.engagement.title}
-        </Heading>
+        <SectionHeader title={services.engagement.title} />
         <Grid columns="3" tabletColumns="3" mobileColumns="1" gap="12" fillWidth>
           {services.engagement.items.map((model) => (
             <Column
@@ -208,7 +236,9 @@ export default async function Services({ params }: PageParams) {
               background={model.highlight ? undefined : "surface"}
             >
               {model.badge && <Tag size="s" variant="brand" label={model.badge} />}
-              <Text variant="heading-strong-l">{model.title}</Text>
+              <Heading as="h3" variant="heading-strong-l" wrap="balance">
+                {model.title}
+              </Heading>
               <Text variant="body-default-m" onBackground="neutral-weak">
                 {model.description}
               </Text>
@@ -219,6 +249,7 @@ export default async function Services({ params }: PageParams) {
 
       {/* Social proof */}
       <Flex
+        className={brand.card}
         fillWidth
         gap="m"
         padding="l"
@@ -242,9 +273,7 @@ export default async function Services({ params }: PageParams) {
 
       {/* FAQ */}
       <Column gap="l">
-        <Heading as="h2" variant="display-strong-s">
-          {services.faq.title}
-        </Heading>
+        <SectionHeader title={services.faq.title} />
         <Column fillWidth radius="l" border="neutral-alpha-weak" overflow="hidden">
           {services.faq.items.map((item) => (
             <Accordion key={item.question} title={item.question}>

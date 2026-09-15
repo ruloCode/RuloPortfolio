@@ -1,6 +1,7 @@
 "use client";
 
-import { Column, Flex, Icon, SmartLink, Tag, Text, TiltFx } from "@/once-ui/components";
+import { Column, Flex, Heading, Icon, SmartLink, Tag, Text } from "@/once-ui/components";
+import brand from "@/styles/brand.module.scss";
 import { useLocale, useTranslations } from "next-intl";
 import { localizeHref } from "@/i18n/routing";
 import { routes } from "@/app/resources";
@@ -18,30 +19,32 @@ export function Achievements() {
   return (
     <Column fillWidth gap="m">
       {ACHIEVEMENTS.map(({ key, href }) => (
-        <TiltFx key={key} fillWidth radius="l">
-          <Column
-            fillWidth
-            gap="8"
-            padding="l"
-            radius="l"
-            border="brand-alpha-medium"
-            background="brand-alpha-weak"
-          >
-            <Flex gap="12" vertical="center" wrap>
-              <Icon name="trophy" onBackground="brand-weak" />
-              <Text variant="heading-strong-l">{t(`items.${key}.title`)}</Text>
-            </Flex>
-            <Tag size="s" variant="neutral" label={t(`items.${key}.meta`)} />
-            <Text variant="body-default-m" onBackground="neutral-weak">
-              {t(`items.${key}.description`)}
-            </Text>
-            {href && (
-              <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, href)}>
-                <Text variant="body-default-s">{t(`items.${key}.cta`)}</Text>
-              </SmartLink>
-            )}
-          </Column>
-        </TiltFx>
+        <Column
+          key={key}
+          className={brand.card}
+          fillWidth
+          gap="8"
+          padding="l"
+          radius="l"
+          border="neutral-alpha-weak"
+          background="surface"
+        >
+          <Flex gap="12" vertical="center" wrap>
+            <Icon name="trophy" onBackground="brand-weak" />
+            <Heading as="h3" variant="heading-strong-l">
+              {t(`items.${key}.title`)}
+            </Heading>
+          </Flex>
+          <Tag size="s" variant="neutral" label={t(`items.${key}.meta`)} />
+          <Text variant="body-default-m" onBackground="neutral-weak">
+            {t(`items.${key}.description`)}
+          </Text>
+          {href && (
+            <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, href)}>
+              <Text variant="body-default-s">{t(`items.${key}.cta`)}</Text>
+            </SmartLink>
+          )}
+        </Column>
       ))}
     </Column>
   );

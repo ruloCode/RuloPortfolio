@@ -38,12 +38,14 @@ export const TeamAvatars: React.FC<TeamAvatarsProps> = ({
             transition: 'transform 0.2s ease',
           }}
           onMouseEnter={(e) => {
-            (e.target as HTMLElement).style.transform = 'scale(1.1)';
+            e.currentTarget.style.transform = "scale(1.1)";
           }}
           onMouseLeave={(e) => {
-            (e.target as HTMLElement).style.transform = 'scale(1)';
+            e.currentTarget.style.transform = "scale(1)";
           }}
-          title={`${member.name} - ${member.role}`}
+          // The avatar is the whole link, so the name has to come from here.
+          aria-label={`${member.name} — ${member.role} (LinkedIn)`}
+          title={`${member.name} — ${member.role}`}
         >
           <Avatar
             src={member.avatar}

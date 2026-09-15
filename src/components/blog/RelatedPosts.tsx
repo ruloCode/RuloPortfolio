@@ -1,7 +1,10 @@
 import { Column, Grid, Heading } from "@/once-ui/components";
+import { formatDate } from "@/app/utils/formatDate";
+import { readingTime } from "@/app/utils/readingTime";
+import { localizeHref } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { getPosts } from "@/app/utils/utils";
-import Post from "./Post";
+import { PostCard } from "./PostCard";
 
 interface RelatedPostsProps {
   currentSlug: string;
@@ -12,6 +15,7 @@ interface RelatedPostsProps {
 /** Two related posts: same tag first, newest fill the rest. */
 export async function RelatedPosts({ currentSlug, tag, locale }: RelatedPostsProps) {
   const t = await getTranslations("blog");
+  const tRoot = await getTranslations();
 
   const others = getPosts(["blog", "posts"], locale)
     .filter((post) => post.slug !== currentSlug)
@@ -33,7 +37,19 @@ export async function RelatedPosts({ currentSlug, tag, locale }: RelatedPostsPro
       </Heading>
       <Grid columns="2" mobileColumns="1" fillWidth gap="m">
         {related.map((post) => (
-          <Post key={post.slug} post={post} thumbnail locale={locale} />
+          <PostCard
+            key={post.slug}
+            post={{
+              slug: post.slug,
+              href: localizeHref(locale, `/blog/${post.slug}`),
+              title: post.metadata.title,
+              summary: post.metadata.summary,
+              image: post.metadata.image || undefined,
+              tag: typeof post.metadata.tag === "string" ? post.metadata.tag : undefined,
+              date: formatDate(post.metadata.publishedAt, false, locale),
+              readingTime: tRoot("blog.readingTime", { minutes: readingTime(post.content) }),
+            }}
+          />
         ))}
       </Grid>
     </Column>

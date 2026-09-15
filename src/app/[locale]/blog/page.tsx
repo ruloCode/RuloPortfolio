@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { Column, Heading, Tag, Text } from "@/once-ui/components";
-import { NewsletterBand } from "@/components";
+import { Column } from "@/once-ui/components";
+import { NewsletterBand, PageHero } from "@/components";
 import { BlogIndex, type BlogIndexPost } from "@/components/blog/BlogIndex";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
@@ -106,15 +106,7 @@ export default async function Blog({ params }: PageParams) {
           }),
         }}
       />
-      <Column maxWidth="s" gap="12">
-        <Tag variant="brand" size="m" label={blog.label} />
-        <Heading variant="display-strong-s" wrap="balance">
-          {blog.title}
-        </Heading>
-        <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance">
-          {blog.description}
-        </Text>
-      </Column>
+      <PageHero eyebrow={blog.label} title={blog.title} intro={blog.description} />
       <BlogIndex
         posts={posts}
         allLabel={t("blog.all")}
