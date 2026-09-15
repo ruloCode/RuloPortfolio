@@ -1,7 +1,9 @@
 import "@/once-ui/styles/index.scss";
 import "@/once-ui/tokens/index.scss";
+import "@/styles/theme-cream.scss";
 import "@/styles/skip-link.scss";
 
+import type { Viewport } from "next";
 import classNames from "classnames";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
@@ -27,6 +29,14 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// One theme, one color: the cream of the diorama. The site no longer has a
+// dark mode — the brand is light and every contrast was measured on cream.
+export const viewport: Viewport = {
+  themeColor: "#F4EAD5",
+  colorScheme: "light",
+  viewportFit: "cover",
+};
+
 interface LayoutParams {
   params: Promise<{ locale: string }>;
 }
@@ -41,6 +51,14 @@ export async function generateMetadata({ params }: LayoutParams) {
     metadataBase: new URL(`https://${baseURL}`),
     title: home.title,
     description: home.description,
+    icons: {
+      icon: [
+        { url: "/icons/icon.svg", type: "image/svg+xml" },
+        { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      ],
+      apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+    },
+    manifest: "/manifest.webmanifest",
     openGraph: {
       title: `${person.name} — ${person.role}`,
       description: home.description,
@@ -129,15 +147,6 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       )}
     >
       <head>
-        <script
-          // Applies the persisted theme before first paint to avoid a flash.
-          // Falls back to the configured theme, NOT to the OS preference: this
-          // brand is light, and a visitor whose laptop is in dark mode was
-          // getting a palette nobody designed.
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme")||"${style.theme}";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`,
-          }}
-        />
         {/* RevealFx hides content until its JS runs; without JS, un-hide everything. */}
         <noscript>
           <style>{`[class*="revealFx"]{mask-image:none !important;filter:none !important;transform:none !important;opacity:1 !important}`}</style>

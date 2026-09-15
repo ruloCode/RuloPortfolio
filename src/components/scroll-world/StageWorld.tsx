@@ -14,17 +14,8 @@ export function StageWorld({ config }: { config: WorldConfig }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // El diorama es crema: un visitante con el toggle en oscuro vería las
-    // secciones de abajo en una paleta que nadie diseñó. Se fuerza claro
-    // mientras dura la home y se devuelve lo que hubiera al salir.
-    const root = document.documentElement;
-    const prevTheme = root.getAttribute("data-theme");
-    root.setAttribute("data-theme", "light");
     const destroy = mountStageWorld(el, config);
-    return () => {
-      destroy();
-      if (prevTheme) root.setAttribute("data-theme", prevTheme);
-    };
+    return destroy;
   }, [config]);
 
   return (

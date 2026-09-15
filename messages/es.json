@@ -583,7 +583,8 @@
     "services": "Servicios",
     "skipToContent": "Saltar al contenido",
     "waitlistCta": "Empezar gratis",
-    "work": "Proyectos"
+    "work": "Proyectos",
+    "mainNav": "Navegación principal"
   },
   "newsletter": {
     "title": "Una automatización real, explicada, cada dos semanas.",
@@ -845,7 +846,8 @@
           "2": "Cero spam"
         }
       }
-    }
+    },
+    "stationsNav": "Estaciones del recorrido"
   },
   "trajectory": {
     "eyebrow": "Trayectoria",

@@ -10,7 +10,6 @@ import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
 import { localizeHref, routing, usePathname, useRouter } from "@/i18n/routing";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -102,7 +101,7 @@ export const Header = () => {
             padding="4"
             horizontal="center"
           >
-            <Flex gap="4" vertical="center" textVariant="body-default-s">
+            <Flex as="nav" aria-label={t("mainNav")} gap="4" vertical="center" textVariant="body-default-s">
               {routes["/"] && (
                 <ToggleButton
                   prefixIcon="home"
@@ -220,12 +219,11 @@ export const Header = () => {
                   />
                 </>
               )}
-              {/* On small screens the side clusters are hidden, so language and
-                  theme live inside the pill — the only fully tappable surface. */}
+              {/* On small screens the side clusters are hidden, so the language
+                  switch lives inside the pill — the only fully tappable surface. */}
               <Flex className="s-flex-show" gap="4" vertical="center">
                 <Line vert maxHeight="24" />
                 <LanguageSwitcher />
-                <ThemeToggle />
               </Flex>
             </Flex>
           </Flex>
@@ -239,7 +237,6 @@ export const Header = () => {
             gap="20"
           >
             <LanguageSwitcher />
-            <ThemeToggle />
             {/* Persistent conversion CTA — hidden on /ia (you're already there);
                 on small screens the whole cluster is hidden and language/theme
                 move inside the nav pill. */}

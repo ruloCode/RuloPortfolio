@@ -34,7 +34,7 @@ const scheduling = {
 
 const style = {
   theme: "light", // dark | light
-  neutral: "slate", // sand | gray | slate
+  neutral: "sand", // sand | gray | slate — the ramp itself is redefined in src/styles/theme-cream.scss
   brand: "emerald", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   accent: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   solid: "contrast", // color | contrast
@@ -60,10 +60,11 @@ const effects = {
     tilt: 0,
     colorStart: "brand-background-strong",
     colorEnd: "static-transparent",
-    opacity: 50,
+    // On cream the wash reads as a green cloud at 50; 20 is a hint of light.
+    opacity: 20,
   },
   dots: {
-    display: true,
+    display: false,
     size: 2,
     color: "brand-on-background-weak",
     opacity: 10,
@@ -76,7 +77,7 @@ const effects = {
   grid: {
     display: true,
     color: "neutral-alpha-weak",
-    opacity: 30,
+    opacity: 20,
   },
 };
 

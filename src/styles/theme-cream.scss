@@ -1,0 +1,103 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Paleta única del sitio: la del scroll-world (crema, tinta, esmeralda) llevada
+// a los tokens de Once UI, para que la home y el resto de páginas sean un solo
+// mundo visual. Se carga después de once-ui/tokens y solo redefine variables:
+// ningún componente cambia, todos heredan.
+//
+// Contraste (WCAG 2.2 AA, medido sobre crema #F4EAD5):
+//   tinta        #241C18  14,0:1   texto fuerte
+//   neutral-400  #3F3532   9,9:1   texto medio
+//   neutral-600  #5F5346   6,3:1   texto débil (el "gris" del sitio)
+//   brand-400    #0C6551   5,9:1   enlaces
+//   brand-600    #1A6B53   5,4:1   texto/iconos de marca
+//   brand-800    #23896A   3,6:1   bordes, foco, fondos de Tag (no-texto ≥ 3:1)
+//   blanco sobre tinta     16,7:1   botones primarios
+// El esmeralda vivo del diorama (#2E9C7B) queda como color de acento
+// decorativo (--sw-accent): a 2,85:1 no vale para texto ni para foco.
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+  // Neutral "sand" → rampa cálida tinta → crema (config.js: style.neutral = "sand").
+  --scheme-sand-100: #241c18;
+  --scheme-sand-200: #2f2622;
+  --scheme-sand-300: #3f3532;
+  --scheme-sand-400: #3f3532;
+  --scheme-sand-500: #55493f;
+  --scheme-sand-600: #5f5346;
+  --scheme-sand-700: #8c8172;
+  --scheme-sand-800: #b3a895;
+  --scheme-sand-900: #d9cdb5;
+  --scheme-sand-1000: #e6dbc4;
+  --scheme-sand-1100: #fbf6ea;
+  --scheme-sand-1200: #fffdf8;
+  --scheme-sand-600-10: #5f53461a;
+  --scheme-sand-600-30: #5f53464d;
+  --scheme-sand-600-50: #5f534680;
+
+  // Brand "emerald" → rampa que pasa AA sobre crema en cada uso que hace el tema.
+  --scheme-emerald-100: #0b2e24;
+  --scheme-emerald-200: #10402f;
+  --scheme-emerald-300: #14523f;
+  --scheme-emerald-400: #0c6551;
+  --scheme-emerald-500: #1a6b53;
+  --scheme-emerald-600: #1a6b53;
+  --scheme-emerald-700: #23896a;
+  --scheme-emerald-800: #23896a;
+  --scheme-emerald-900: #b4dccb;
+  --scheme-emerald-1000: #d7efe4;
+  --scheme-emerald-1100: #e8f5ee;
+  --scheme-emerald-1200: #f1f9f4;
+  --scheme-emerald-600-10: #1a6b531a;
+  --scheme-emerald-600-30: #1a6b534d;
+  --scheme-emerald-600-50: #1a6b5380;
+
+  // Acentos secundarios del diorama, en su versión legible (≥ 4,5:1 sobre crema).
+  // Para eyebrows, puntos de la línea de tiempo y tags por sección.
+  --accent-gold: #8a6420;
+  --accent-blue: #2f6b7c;
+  --accent-coral: #b4402a;
+  --accent-brick: #9e4b3f;
+
+  // Los tokens del scroll-world, disponibles en todo el sitio.
+  --sw-bg: #f4ead5;
+  --sw-ink: #241c18;
+  --sw-ink-soft: #5f5346;
+  --sw-accent: #2e9c7b;
+
+  // Etiquetas: Once UI apunta a --font-tertiary, que el layout nunca define.
+  --font-tertiary: var(--font-primary);
+  // Space Grotesk se carga hasta 700: pedir 800 sintetiza una negrita falsa.
+  --font-weight-display-strong: var(--font-weight-bold);
+}
+
+[data-theme="light"] {
+  --page-background: var(--sw-bg);
+  --neutral-background-weak: var(--sw-bg);
+  --brand-background-weak: var(--sw-bg);
+  --accent-background-weak: var(--sw-bg);
+  --backdrop: rgba(244, 234, 213, 0.72);
+}
+
+// Superficies: el mismo vidrio suave de las tarjetas del scroll-world.
+[data-surface="translucent"][data-theme="light"],
+[data-surface="translucent"] [data-theme="light"] {
+  --surface-background: rgba(251, 246, 234, 0.84);
+  --surface-border: var(--neutral-alpha-medium);
+}
+
+// Foco de teclado visible en cualquier fondo del sitio (WCAG 2.4.7 / 2.4.11).
+:focus-visible {
+  outline: 3px solid var(--sw-ink);
+  outline-offset: 3px;
+}
+
+// Los enlaces se distinguen por color (5,9:1) y, al enfocarlos, también por
+// subrayado — nunca solo por color cuando hay teclado de por medio.
+a:not(.button):focus-visible {
+  text-decoration-line: underline;
+}
+
+::selection {
+  background: var(--sw-ink);
+  color: var(--sw-bg);
+}

@@ -583,7 +583,8 @@
     "services": "Services",
     "skipToContent": "Skip to content",
     "waitlistCta": "Start free",
-    "work": "Work"
+    "work": "Work",
+    "mainNav": "Main navigation"
   },
   "newsletter": {
     "title": "One real automation, explained, every two weeks.",
@@ -845,7 +846,8 @@
           "2": "Zero spam"
         }
       }
-    }
+    },
+    "stationsNav": "Stations of the tour"
   },
   "trajectory": {
     "eyebrow": "Track record",

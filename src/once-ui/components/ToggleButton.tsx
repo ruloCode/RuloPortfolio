@@ -82,6 +82,10 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
           className,
         )}
         style={style}
+        // `selected` is otherwise conveyed by color alone: a link toggle marks
+        // the current page, a plain toggle its pressed state.
+        aria-current={href && selected ? "page" : undefined}
+        aria-pressed={!href ? selected : undefined}
         {...props}
       >
         {prefixIcon && <Icon name={prefixIcon} size={size === "l" ? "m" : "s"} />}

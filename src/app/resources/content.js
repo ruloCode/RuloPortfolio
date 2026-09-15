@@ -6,7 +6,8 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Senior Frontend Engineer | React & Next.js | Fintech & Scalable Applications",
+  // Locale-neutral: this file feeds the share card (/og), not the pages.
+  role: "IA aplicada · Automatización · Desarrollo",
   avatar: "/images/avatar.jpg",
   location: "America/Bogota",
   languages: ["Spanish (Native)", "English (Professional)"],

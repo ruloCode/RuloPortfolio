@@ -1,21 +1,14 @@
-// "AI-expert dark" brand system — single source of the visual signature.
-// Rules: emerald (brand) is THE single-color UI accent; cyan (accent) never
-// appears alone — it only exists as the far stop of the signature gradient,
-// which is reserved for conversion moments: the H1 keyword (.gradientText),
-// the waitlist CTA (.signatureCta), the halo of conversion blocks
-// (.signatureGlow) and the Week 0 progress fill (.progressFill) — finishing the
-// free track is what ladders into the paid cohort, so it earns the gradient and
-// nothing else inside /dashboard does. Everything else uses brand tokens.
-// All tokens are theme-aware ([data-theme]) so light mode keeps working.
-// Animates transform / opacity / border-color / box-shadow only
+// Brand signature — single source of the visual signature, on the cream/ink/
+// emerald palette (src/styles/theme-cream.scss). Rules: emerald is THE
+// single-color UI accent; the signature text gradient is two AA greens and is
+// reserved for the H1 keyword (.gradientText) and the halo of conversion
+// blocks (.signatureGlow); primary CTAs are solid ink (.signatureCta), the
+// same button the scroll-world uses, so "the next step" looks identical on
+// every page. Animates transform / opacity / border-color / box-shadow only
 // (compositor-friendly); the global `prefers-reduced-motion` reset in
 // once-ui/styles/global.scss neutralizes these transitions automatically.
 
-$signature: linear-gradient(
-  100deg,
-  var(--brand-on-background-strong),
-  var(--accent-on-background-weak)
-);
+$signature: linear-gradient(100deg, #0c6551, #23896a);
 
 // ——— Heroes ———
 
@@ -143,20 +136,29 @@ $signature: linear-gradient(
   }
 }
 
-// Waitlist CTA button. Uses the fixed 500-stops: white text needs >=4.5:1 in
-// BOTH themes, and the 600 stops measure ~3.0:1 (emerald-600 #08A97C and
-// cyan-600 #049EE2 vs white); the 500s land at ~4.7:1.
+// Primary CTA: solid ink with a light edge and a contact shadow — the
+// scroll-world's `.sw-topcta`, verbatim, so the same button carries the
+// visitor from the first station to the last form. White on ink is 16.7:1.
 .signatureCta {
   border: none;
-  background: linear-gradient(
-    100deg,
-    var(--function-brand-500),
-    var(--function-accent-500)
-  ) !important;
-  color: var(--static-white) !important;
+  background: linear-gradient(180deg, #3e3733, #241c18) !important;
+  color: #ffffff !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 12px 28px -14px rgba(36, 28, 24, 0.7);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
-    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 16px 32px -14px rgba(36, 28, 24, 0.75);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
