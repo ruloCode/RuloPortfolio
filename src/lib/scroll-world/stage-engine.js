@@ -149,7 +149,7 @@ export function mountStageWorld(container, config) {
       `<span class="sw-copy__num">${pad(i + 1)} / ${pad(N)}</span>` +
       (s.eyebrow ? `<span class="sw-copy__eyebrow">${esc(s.eyebrow)}</span>` : '') +
       // La primera estación es el titular de la página: su H1. Las demás son h2.
-      (s.title ? `<${i === 0 ? 'h1' : 'h2'} class="sw-copy__title">${esc(s.title)}</${i === 0 ? 'h1' : 'h2'}>` : '') +
+      (s.title ? `<${i === 0 ? 'h1' : 'h2'} class="sw-copy__title">${mark(s.title, s.highlight)}</${i === 0 ? 'h1' : 'h2'}>` : '') +
       (s.body ? `<p class="sw-copy__body">${esc(s.body)}</p>` : '') +
       (s.tags && s.tags.length ? `<ul class="sw-copy__tags">${s.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '') +
       (s.cta ? `<div class="sw-copy__cta">${ctaBtns(s.cta)}</div>` : '');
@@ -396,6 +396,16 @@ export function mountStageWorld(container, config) {
   function el(tag, cls) { const n = document.createElement(tag); if (cls) n.className = cls; return n; }
   function pad(n) { return String(n).padStart(2, '0'); }
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+  // Resalta una palabra del titular. Se escapa TODO primero y solo después se
+  // envuelve la subcadena ya escapada: el contenido nunca puede inyectar HTML.
+  function mark(title, highlight) {
+    const safe = esc(title);
+    if (!highlight) return safe;
+    const needle = esc(highlight);
+    const at = safe.indexOf(needle);
+    if (at < 0) return safe;
+    return safe.slice(0, at) + '<em class="sw-mark">' + needle + '</em>' + safe.slice(at + needle.length);
+  }
   function ctaBtns(cta) {
     // href solo si existe: sin él, el botón es un placeholder que no navega.
     const attr = (c) => (c.href ? ` href="${esc(c.href)}"` : '');

@@ -18,6 +18,8 @@ export type StationConfig = {
   copyAt?: number;
   eyebrow: string;
   title: string;
+  /** Palabra del titular que va en el verde de la marca. */
+  highlight?: string;
   body: string;
   tags: string[];
   cta?: { primary: { label: string; href: string } };
@@ -108,6 +110,9 @@ export function buildWorldConfig(
       copyAt: s.copyAt,
       eyebrow: t(`stations.${s.id}.eyebrow`),
       title: t(`stations.${s.id}.title`),
+      ...(t.has(`stations.${s.id}.highlight`)
+        ? { highlight: t(`stations.${s.id}.highlight`) }
+        : {}),
       body: t(`stations.${s.id}.body`),
       tags: TAG_KEYS.filter((k) => t.has(`stations.${s.id}.tags.${k}`)).map((k) =>
         t(`stations.${s.id}.tags.${k}`),

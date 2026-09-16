@@ -955,7 +955,8 @@
           "1": "Free",
           "2": "No card",
           "3": "Start today"
-        }
+        },
+        "highlight": "with AI"
       },
       "rol": {
         "label": "Your role",
@@ -967,7 +968,8 @@
           "2": "Finance",
           "3": "HR",
           "4": "Operations"
-        }
+        },
+        "highlight": "your job"
       },
       "copiloto": {
         "label": "Copilot",
@@ -978,7 +980,8 @@
           "1": "Analyze",
           "2": "Write",
           "3": "Produce"
-        }
+        },
+        "highlight": "finished work"
       },
       "automatiza": {
         "label": "Automate",
@@ -988,7 +991,8 @@
         "tags": {
           "1": "No code",
           "2": "Hours every week"
-        }
+        },
+        "highlight": "autopilot"
       },
       "reto": {
         "label": "The challenge",
@@ -998,7 +1002,8 @@
         "tags": {
           "1": "4 weeks",
           "2": "Only 6 seats"
-        }
+        },
+        "highlight": "one flow running"
       },
       "posicionate": {
         "label": "Stand out",
@@ -1008,7 +1013,8 @@
         "tags": {
           "1": "Show it",
           "2": "Your own judgment"
-        }
+        },
+        "highlight": "the AI person"
       },
       "semana0": {
         "label": "Week 0",
@@ -1018,7 +1024,8 @@
         "tags": {
           "1": "3 free lessons",
           "2": "Zero spam"
-        }
+        },
+        "highlight": "this week"
       }
     },
     "stationsNav": "Stations of the tour"
