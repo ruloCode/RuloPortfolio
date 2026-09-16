@@ -4,34 +4,64 @@
 // a media altura los títulos se veían medio tapados — el "se ve cortado". Una
 // franja opaca con una línea abajo hace que el contenido pase por debajo de
 // algo que se lee como una barra, que es lo que un lector espera.
+//
+// El z-index vive aquí y no en la prop `zIndex` de Once UI: su utilidad
+// (.z-index-9) pesa lo mismo que .position y cuál gana dependería del orden
+// de inyección de las hojas.
 
 .position {
     position: sticky;
     top: 0;
+    z-index: 9;
     background: var(--page-background);
     border-bottom: 1px solid var(--neutral-alpha-weak);
 }
 
-.mask {
-    pointer-events: none;
-    backdrop-filter: blur(0.5rem);
-    background: linear-gradient(to bottom, var(--page-background), var(--static-transparent));
-    mask-image: linear-gradient(rgba(0,0,0) 25%, rgba(0, 0, 0, 0) 100%);
-    mask-size: 100% 100%;
+// En la portada la barra flota sobre la película. Va fija (el <html> lleva
+// scroll-snap y la barra no puede viajar con las estaciones) y por encima de
+// las capas del motor: escena 10, copy 20, rail 40. Se queda por debajo de la
+// barra de progreso (60), que es la línea de 3 px pegada al borde.
+//
+// El fondo es el crema del diorama mientras dura la película y pasa al hueso
+// del sitio cuando termina: el motor marca ese momento en <html>.
+.overWorld {
+    position: fixed;
+    z-index: 55;
+    background: var(--sw-bg);
+}
+
+:global(html[data-sw-past]) .overWorld {
+    background: var(--page-background);
+}
+
+// La marca comparte contexto de apilado con el panel del menú (ambos cuelgan
+// del <header>): sin esto quedaría debajo y el panel abierto se vería sin
+// cabecera. El burger hace lo propio en MobileMenu.module.scss.
+.brand {
+    position: relative;
+    z-index: 95;
+}
+
+// El grupo marca + burger del teléfono. En escritorio no existe: ahí la
+// conversión vive en el bloque de la derecha, con el idioma.
+.phoneActions {
+    display: none;
 }
 
 @media (--s) {
-    .position {
-        top: auto;
-        position: fixed;
-        bottom: 0;
-        padding-bottom: calc(var(--static-space-8) + env(safe-area-inset-bottom));
-        border-bottom: 0;
-        border-top: 1px solid var(--neutral-alpha-weak);
+    .phoneActions {
+        display: flex;
     }
 
-    .mask {
-        transform: rotate(180deg);
-        bottom: 0;
+    // La palabra "rulocode" mide unos 85 px que en 390 hacen falta para el
+    // botón. El símbolo se queda y sigue enlazando a la portada.
+    .wordmark {
+        display: none;
+    }
+
+    .position {
+        padding-top: var(--static-space-4);
+        padding-bottom: var(--static-space-4);
+        padding-right: var(--static-space-8);
     }
 }

@@ -101,8 +101,6 @@ export default async function Work({ params }: PageParams) {
             href={localizeHref(locale, "/services")}
             size="m"
             variant="secondary"
-            data-border="rounded"
-            prefixIcon="briefcase"
           >
             {t("services.label")}
           </Button>

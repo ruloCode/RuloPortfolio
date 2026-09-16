@@ -19,3 +19,4 @@ export { Trajectory } from "@/components/Trajectory";
 export { NewsletterBand } from "@/components/NewsletterBand";
 export { PageHero } from "@/components/PageHero";
 export { SectionHeader } from "@/components/SectionHeader";
+export { BrandSplash } from "@/components/BrandSplash";

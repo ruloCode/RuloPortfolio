@@ -147,6 +147,19 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       )}
     >
       <head>
+        {/*
+          El velo de entrada se muestra una vez por sesión. La decisión tiene
+          que tomarse ANTES del primer pintado — en React solo podría tomarse
+          después de hidratar, y para entonces el velo ya habría parpadeado.
+          De ahí este script en línea, que marca <html> y deja que el CSS
+          esconda el velo sin que nadie lo vea.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('rc-splash')){document.documentElement.dataset.splash='seen'}else{sessionStorage.setItem('rc-splash','1')}}catch(e){}",
+          }}
+        />
         {/* RevealFx hides content until its JS runs; without JS, un-hide everything. */}
         <noscript>
           <style>{`[class*="revealFx"]{mask-image:none !important;filter:none !important;transform:none !important;opacity:1 !important}`}</style>

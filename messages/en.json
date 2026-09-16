@@ -570,7 +570,9 @@
           "title": "Course: AI Shift Challenge"
         }
       },
-      "title": "How I can help you"
+      "title": "How I can help you",
+      "eyebrow": "Services",
+      "highlight": "help you"
     },
     "proofCta": "View all projects",
     "proofHeading": "The proof: real case studies",
@@ -584,7 +586,8 @@
       "title": "6+ years shipping software to production. Now, AI."
     },
     "subline": "I'm Andrés Santana, an applied AI expert. I've spent 6+ years building production software — a platform processing <strong>$2M+/month</strong> for <strong>50K+ users</strong> — and today I teach non-technical professionals to automate their work through the <strong>AI Shift Challenge</strong>.",
-    "title": "Andrés Santana — Senior Frontend Engineer · LLMs in production"
+    "title": "Andrés Santana — Senior Frontend Engineer · LLMs in production",
+    "blogHighlight": "the blog"
   },
   "ia": {
     "faq": {
@@ -758,7 +761,9 @@
     "skipToContent": "Skip to content",
     "waitlistCta": "Start free",
     "work": "Work",
-    "mainNav": "Main navigation"
+    "mainNav": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "newsletter": {
     "title": "One real automation, explained, every two weeks.",
@@ -943,24 +948,21 @@
   },
   "scroll": {
     "brand": "rulocode",
-    "cta": "Get in and start",
-    "hint": "scroll to fly",
+    "cta": "Start free",
     "stations": {
       "semana": {
         "label": "Start",
         "eyebrow": "AI Shift Challenge · Week 0 is open",
         "title": "Automate your work with AI in 4 weeks. No code.",
-        "body": "A live program for non-technical professionals: 4 private sessions, 2 group sessions and one automation of yours running at the end.",
+        "body": "A live program for non-technical professionals: 4 private sessions, 2 group sessions and one automation of yours running at the end. Getting in is free and asks for no card.",
         "tags": {
-          "1": "Free",
-          "2": "No card",
-          "3": "Start today"
+          "1": "Start today"
         },
         "highlight": "with AI"
       },
       "rol": {
         "label": "Your role",
-        "eyebrow": "01 · Your role first",
+        "eyebrow": "Your role first",
         "title": "We start from your job, not from the tools.",
         "body": "We map your real week and find, for your role, where the hidden hours are. No generic tours.",
         "tags": {
@@ -973,7 +975,7 @@
       },
       "copiloto": {
         "label": "Copilot",
-        "eyebrow": "02 · Daily copilot",
+        "eyebrow": "Daily copilot",
         "title": "From loose prompts to flows that deliver finished work.",
         "body": "From using AI “sometimes” to a daily system for analyzing, writing and producing at professional quality.",
         "tags": {
@@ -985,7 +987,7 @@
       },
       "automatiza": {
         "label": "Automate",
-        "eyebrow": "03 · Automation",
+        "eyebrow": "Automation",
         "title": "Your repetitive tasks, on autopilot.",
         "body": "You build your automations with click-based tools — email, sheets, documents — and free up hours every week.",
         "tags": {
@@ -996,18 +998,19 @@
       },
       "reto": {
         "label": "The challenge",
-        "eyebrow": "04 · The challenge",
+        "eyebrow": "The challenge",
         "title": "4 private sessions with me, 2 group ones, one flow running.",
         "body": "Four one-on-one sessions on your concrete case, two group sessions with other roles, and a complete flow operating at the end.",
         "tags": {
           "1": "4 weeks",
           "2": "Only 6 seats"
         },
-        "highlight": "one flow running"
+        "highlight": "one flow running",
+        "by": "I teach it myself, Andrés Santana. Six years shipping software in production for 450K+ users."
       },
       "posicionate": {
         "label": "Stand out",
-        "eyebrow": "05 · Stand out",
+        "eyebrow": "Stand out",
         "title": "Be the AI person on your team.",
         "body": "You finish knowing how to demo your automation to your boss or clients, with a method to judge whatever comes out tomorrow.",
         "tags": {
@@ -1028,7 +1031,9 @@
         "highlight": "this week"
       }
     },
-    "stationsNav": "Stations of the tour"
+    "stationsNav": "Stations of the tour",
+    "ctaNote": "No card · 3 lessons today · Leave whenever",
+    "ctaCompanies": "Running a company? Let's talk"
   },
   "trajectory": {
     "eyebrow": "Track record",
@@ -1058,6 +1063,7 @@
     },
     "casesTitle": "Real cases",
     "viewAll": "See all projects",
-    "caseCta": "Read the case"
+    "caseCta": "Read the case",
+    "highlight": "survive real users"
   }
 }

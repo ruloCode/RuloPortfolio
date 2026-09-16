@@ -1,6 +1,5 @@
 import {
   Accordion,
-  Badge,
   Button,
   Column,
   Flex,
@@ -18,18 +17,22 @@ import { WaitlistForm } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { scrollAsset } from "@/lib/scroll-world/sections";
 import brand from "@/styles/brand.module.scss";
 import styles from "./ia.module.scss";
 
 const PROOF_CHIP_KEYS = ["1", "2", "3"] as const;
 
+// Each feature is illustrated by the station that tells it on the home —
+// the dioramas are rendered on this same cream, so they sit on the page
+// without a frame.
 const FEATURES: { key: string; icon: string; image: string }[] = [
-  { key: "rol", icon: "gauge", image: "/images/ia/feature-rol.jpg" },
-  { key: "copiloto", icon: "sparkle", image: "/images/ia/feature-copiloto.jpg" },
-  { key: "automatizacion", icon: "robot", image: "/images/ia/feature-automatizacion.jpg" },
-  { key: "reto", icon: "graduationCap", image: "/images/ia/feature-reto.jpg" },
-  { key: "posicionamiento", icon: "trophy", image: "/images/ia/feature-posicionamiento.jpg" },
-  { key: "criterio", icon: "lightbulb", image: "/images/ia/feature-criterio.jpg" },
+  { key: "rol", icon: "gauge", image: scrollAsset("02-rol.webp") },
+  { key: "copiloto", icon: "sparkle", image: scrollAsset("03-copiloto.webp") },
+  { key: "automatizacion", icon: "robot", image: scrollAsset("04-automatiza.webp") },
+  { key: "reto", icon: "graduationCap", image: scrollAsset("05-reto.webp") },
+  { key: "posicionamiento", icon: "trophy", image: scrollAsset("06-posicionate.webp") },
+  { key: "criterio", icon: "lightbulb", image: scrollAsset("07-semana0.webp") },
 ];
 
 const PRICING_FEATURE_KEYS = ["1", "2", "3", "4", "5", "6"] as const;
@@ -155,11 +158,10 @@ export default async function Ia({ params }: PageParams) {
       {/* Hero — big centered statement with dual CTA */}
       <Column gap="l" fillWidth horizontal="center" paddingTop="l">
         <RevealFx translateY="4" fillWidth horizontal="center">
-          <Badge arrow={false} effect={true}>
-            <Text variant="label-strong-s" onBackground="brand-strong">
-              {t("hero.badge")}
-            </Text>
-          </Badge>
+          {/* The station eyebrow, not a pill: it wraps on a phone. */}
+          <Text as="span" className={brand.eyebrow} align="center" wrap="balance">
+            {t("hero.badge")}
+          </Text>
         </RevealFx>
         <RevealFx translateY="8" delay={0.1} fillWidth horizontal="center">
           <Heading className={brand.heroTitle} variant="display-strong-l" align="center" wrap="balance">
@@ -211,7 +213,7 @@ export default async function Ia({ params }: PageParams) {
           </Column>
           <SmartImage
             className={brand.mediaGlow}
-            src="/images/ia/hero.jpg"
+            src={scrollAsset("01-semana.webp")}
             alt={t("proof.bannerAlt")}
             aspectRatio="21 / 9"
             radius="l"
@@ -236,11 +238,11 @@ export default async function Ia({ params }: PageParams) {
               <Column flex={1} gap="m" fillWidth>
                 <Flex gap="8" vertical="center">
                   <Icon name={icon} onBackground="brand-weak" />
-                  <Text variant="label-strong-s" onBackground="brand-strong">
+                  <Text as="span" className={brand.eyebrow}>
                     {t(`features.items.${key}.eyebrow`)}
                   </Text>
                 </Flex>
-                <Heading as="h2" variant="display-strong-s" wrap="balance">
+                <Heading as="h2" className={brand.sectionTitle} variant="display-strong-s" wrap="balance">
                   {t(`features.items.${key}.title`)}
                 </Heading>
                 <Text variant="body-default-l" onBackground="neutral-weak">

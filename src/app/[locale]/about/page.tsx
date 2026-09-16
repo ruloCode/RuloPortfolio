@@ -209,7 +209,6 @@ export default async function About({ params }: PageParams) {
               href={scheduling.link}
               size="m"
               className={brand.signatureCta}
-              prefixIcon="calendar"
             >
               {about.hero.ctaCall}
             </Button>
@@ -217,8 +216,6 @@ export default async function About({ params }: PageParams) {
               href={localizeHref(locale, "/ia")}
               size="m"
               variant="secondary"
-              data-border="rounded"
-              prefixIcon="sparkle"
             >
               {about.hero.ctaProgram}
             </Button>

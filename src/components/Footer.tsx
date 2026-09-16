@@ -1,7 +1,7 @@
 import { Column, Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import { getLocale, getTranslations } from "next-intl/server";
 import { person, social } from "@/app/resources/content";
-import { routes, scheduling } from "@/app/resources";
+import { navHidden, routes, scheduling } from "@/app/resources";
 import { localizeHref } from "@/i18n/routing";
 import styles from "./Footer.module.scss";
 
@@ -55,7 +55,11 @@ export const Footer = async () => {
               {t("footer.navTitle")}
             </Text>
             <Flex gap="16" wrap>
-              {NAV_ITEMS.filter(({ route }) => routes[route as keyof typeof routes]).map(
+              {NAV_ITEMS.filter(
+                ({ route }) =>
+                  routes[route as keyof typeof routes] &&
+                  !navHidden[route as keyof typeof navHidden],
+              ).map(
                 ({ route, key }) => (
                   <SmartLink key={route} href={localizeHref(locale, route)}>
                     <Text variant="body-default-s">{t(`nav.${key}`)}</Text>

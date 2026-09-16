@@ -51,7 +51,7 @@ export async function Projects({ range, locale = "en" }: ProjectsProps) {
               )}
               {post.metadata.metric && (
                 <Flex>
-                  <Tag variant="brand" size="s" label={post.metadata.metric} />
+                  <Tag variant="neutral" size="s" label={post.metadata.metric} />
                 </Flex>
               )}
               <Heading as="h2" variant="heading-strong-l" wrap="balance">

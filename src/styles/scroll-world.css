@@ -36,70 +36,73 @@
     rgba(255,255,255,.10) 55%,
     color-mix(in srgb, var(--sw-ink) 12%, transparent));
   --glass-highlight: inset 0 1px 0 rgba(255,255,255,.55);
+  /* ── Ritmo vertical del panel ──────────────────────────────────────────
+     Cuatro escalones sobre una rejilla de 4 px, no seis distancias sueltas.
+     La distancia crece con la distancia semántica: lo que forma una unidad va
+     pegado, y cada grupo nuevo se separa un poco más que el anterior.
+
+       hair  (6)  eyebrow → titular      · son la misma cabecera
+       tight (14) contador → eyebrow     · metadato y etiqueta
+       gap   (18) titular → cuerpo       · enunciado y explicación
+       wide  (24) cuerpo → datos → CTA   · bloques distintos             */
+  --sw-gap-hair: 6px;
+  --sw-gap-tight: 14px;
+  --sw-gap: 18px;
+  --sw-gap-wide: 24px;
+
   --glass-shadow:
     0 24px 70px -28px color-mix(in srgb, var(--sw-ink) 42%, transparent),
     0 2px 8px -4px color-mix(in srgb, var(--sw-ink) 20%, transparent);
 }
 
-/* ═══ Maqueta del hero ═══════════════════════════════════════════════════════
-   El texto ya no vive en una tarjeta de vidrio sobre un vídeo a sangre. Ahora
-   el hueso es el papel, el titular se apoya directo sobre él y la escena se
-   contiene a la derecha. Es lo que separa un hero de portafolio de uno de
-   producto: el tipo manda y la ilustración acompaña.
+/* ===== Legibilidad =====
+   El texto oscuro sobre una escena clara y detallada no se sostiene con un
+   degradado translúcido: el ojo compite con el diorama. El copy vive en un
+   panel de vidrio con fill casi opaco: el contraste no depende de qué haya
+   debajo en ese frame del vídeo, y si vidrio y legibilidad chocan, gana la
+   legibilidad (se sube el fill, no se baja). */
 
-   El truco que lo hace posible: el fondo de los dioramas YA está renderizado
-   en este crema, así que un vídeo con object-fit:contain se funde con la
-   página sin bordes ni máscaras. */
-
-/* Fuera el scrim y fuera el vidrio. */
+/* Fuera el scrim: el panel ya garantiza el contraste y el degradado solo ensuciaba. */
 .sw-copylayer::before{ display:none; }
 
-.sw-stage{ background:var(--sw-bg); }
-
-/* La escena: contenida a la derecha, apoyada en el papel, con un halo verde
-   que le da profundidad sin recortarla. */
-.sw-scene__video,.sw-scene__still{
-  inset:auto;
-  right:clamp(4px,1.6vw,34px);
-  top:50%;
-  transform:translateY(-50%);
-  width:min(41vw,660px);
-  height:min(66vh,560px);
-  /* contain y no cover: la gracia del diorama es la escena completa — el
-     reloj, el corcho, los archivadores. Recortando quedaba un fondo bonito
-     pero sin historia.
-     El precio de contain es que el borde del frame tiene dibujo, así que se
-     vería la costura: lo resuelve un desvanecido largo, que solo se come
-     confeti de los extremos y nunca al personaje, que vive en el centro. */
-  object-fit:contain;
-  object-position:center;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0, #000 14%, #000 88%, transparent 100%),
-    linear-gradient(to bottom, transparent 0, #000 13%, #000 87%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0, #000 14%, #000 88%, transparent 100%),
-    linear-gradient(to bottom, transparent 0, #000 13%, #000 87%, transparent 100%);
-  mask-composite: intersect;
-}
-.sw-scene::after{
-  content:"";position:absolute;right:6%;top:50%;transform:translateY(-50%);
-  width:min(42vw,700px);height:min(60vh,520px);z-index:-1;pointer-events:none;
-  background:radial-gradient(50% 50% at 50% 50%,
-    color-mix(in srgb,var(--sw-accent) 16%,transparent),transparent 70%);
-}
-
-/* El copy: sin caja, más ancho y más grande. */
 .sw-copy{
-  width:min(44vw,600px);
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:none;
-  backdrop-filter:none;
-  -webkit-backdrop-filter:none;
-  box-shadow:none;
+  /* 460px obligaba al titular a romperse en 4-5 líneas cortas — de ahí el bulto.
+     Con ~600px cae en 2-3 líneas y respira. */
+  width:min(46vw,600px);
+  /* Punto de partida fijo en vez de centrado: ver nota de ritmo abajo. */
+  top:26vh;
+  border:1px solid transparent;
+  /* Tres capas: velo del acento de la sección (arriba-derecha, 7% — ata la
+     tarjeta a la escena), fill del vidrio, y el borde especular clipado al
+     anillo del border. */
+  background:
+    radial-gradient(120% 90% at 100% 0%,
+      color-mix(in srgb, var(--sw-accent) 7%, transparent), transparent 60%) padding-box,
+    linear-gradient(var(--glass-fill), var(--glass-fill)) padding-box,
+    var(--glass-edge) border-box;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius:24px;
+  /* Un solo valor en los cuatro lados; abajo un escalón más porque el último
+     elemento (etiquetas o botón) no lleva descendentes que llenen la caja. */
+  padding:32px 32px 36px;
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
+  transform:translateY(1.4vh);
 }
+/* Centrar la tarjeta parecía lo correcto, pero cada estación tiene un alto
+   distinto (334-458 px medidos) y centrarla movía su borde superior 62 px de
+   una a otra. Anclada arriba, el alto varía hacia abajo y el titular no salta.
+   Las referencias de narrativa por capítulos (AI in Design Report, Trawelt)
+   hacen justo esto: el número y el título no se mueven. */
+.sw-copy.is-on{ transform:none; }
+
+/* Ventanas bajas: la tarjeta más alta mide 458 px y a 26vh se saldría por
+   abajo de los 620 px de alto. Sube el punto de partida antes que desbordar. */
+@media (min-width:861px) and (max-height:760px){
+  .sw-copy{ top:17vh; }
+}
+/* Sobre fondo casi opaco las sombras de texto solo emborronan: fuera todas. */
+/* La pastilla "01 / 07": sólida, en el verde de la marca. */
 .sw-copy__num{
   display:inline-block;
   color:#fff;
@@ -111,68 +114,102 @@
   text-shadow:none;
 }
 .sw-copy__eyebrow{
-  margin-top:16px;
+  margin-top:var(--sw-gap-tight);
   color:color-mix(in srgb,var(--sw-accent) 42%,var(--sw-ink));
   text-shadow:none;
 }
 .sw-copy__title{
-  font-size:clamp(2.2rem,4.4vw,4rem);
-  line-height:1.02;
-  letter-spacing:-.035em;
-  text-wrap:balance;
+  margin-top:var(--sw-gap-hair);
+  font-size:clamp(1.9rem,3.3vw,3rem);
+  line-height:1.06;
+  text-wrap:balance;              /* reparte las líneas en vez de dejar viudas */
   color:var(--sw-ink);
   text-shadow:none;
-  margin-top:10px;
 }
 /* La palabra que carga el mensaje, en el verde de la marca. */
 .sw-copy__title .sw-mark{ font-style:normal; color:var(--brand); }
 .sw-copy__body{
-  margin-top:18px;
-  color:var(--sw-ink-soft);
-  max-width:46ch;
-  font-size:clamp(1rem,1.15vw,1.12rem);
+  margin-top:var(--sw-gap);
+  color:color-mix(in srgb,var(--sw-ink) 88%,var(--sw-ink-soft));
+  max-width:52ch;                 /* medida cómoda de lectura */
   line-height:1.6;
   text-shadow:none;
 }
-/* Etiquetas como botones: la primera sólida (es la promesa), el resto
-   delineadas. Es la jerarquía del mockup y además dice qué es lo importante. */
-.sw-copy__tags{ margin-top:26px;gap:10px; }
+/* Etiquetas: datos, no acciones. Eran pastillas con borde y radio completo —
+   la misma forma que un botón — así que en el panel que sí tiene botón había
+   tres objetos con aspecto pulsable de los que solo uno lo era. Ahora son una
+   lista de hechos con su punto, imposible de confundir, y el único objeto
+   pulsable de todo el mundo es el CTA.
+
+   El punto delante (y no un separador entre elementos) también resuelve el
+   envoltorio: un "·" intermedio dejaría un huérfano al empezar la segunda
+   línea. */
+.sw-copy__tags{ margin-top:var(--sw-gap-wide); gap:8px 20px; }
 .sw-copy__tags li{
-  font-size:.86rem;
-  font-weight:600;
-  padding:11px 20px;
-  border-radius:999px;
-  color:var(--brand);
-  background:transparent;
-  border:1.5px solid color-mix(in srgb,var(--brand) 38%,transparent);
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:none;
   box-shadow:none;
+  font-size:.88rem;
+  font-weight:600;
+  color:color-mix(in srgb,var(--sw-ink) 84%,var(--sw-ink-soft));
 }
-.sw-copy__tags li:first-child{
-  color:#fff;
+.sw-copy__tags li::before{
+  content:"";
+  flex:0 0 auto;
+  width:5px;
+  height:5px;
+  border-radius:50%;
   background:var(--brand);
-  border-color:var(--brand);
 }
 
-/* Una línea fina abajo cierra el bloque, como en el resto del sitio. */
-.sw-copylayer::after{
-  content:"";position:absolute;left:clamp(18px,5vw,64px);right:clamp(18px,5vw,64px);
-  bottom:clamp(26px,4vh,52px);height:1px;pointer-events:none;
-  background:color-mix(in srgb,var(--sw-ink) 12%,transparent);
+/* La firma: quién lo imparte, con su cara. En un programa cuyo núcleo son
+   cuatro sesiones uno a uno, la persona ES el producto, y hasta ahora no
+   aparecía en ninguna de las siete pantallas. */
+.sw-copy__by{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:var(--sw-gap-wide);
+  padding-top:var(--sw-gap);
+  border-top:1px solid color-mix(in srgb,var(--sw-ink) 12%,transparent);
+  font-size:.88rem;
+  line-height:1.45;
+  color:color-mix(in srgb,var(--sw-ink) 84%,var(--sw-ink-soft));
+}
+.sw-copy__by img{
+  flex:0 0 auto;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid color-mix(in srgb,var(--sw-ink) 14%,transparent);
 }
 
-/* El rail de estaciones sobraba: con la escena contenida a la derecha se le
-   montaba encima, y la barra de arriba ya navega las estaciones. */
-.sw-route{ display:none; }
+.sw-copy__cta{ margin-top:var(--sw-gap-wide); }
+
+/* Lo que pasa al pulsar, debajo del botón: las tres objeciones del primer
+   contacto, donde se deciden. */
+.sw-copy__note{
+  margin:var(--sw-gap-hair) 0 0;
+  font-size:.78rem;
+  color:var(--sw-ink-soft);
+}
 
 /* Botones: el primario se queda sólido (es el elemento de conversión — la
    jerarquía gana al efecto) pero con arista de luz y sombra de contacto;
    el ghost sí es vidrio tintado. */
-.sw-topcta,.sw-btn--primary{
+.sw-btn--primary{
   background:var(--brand);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.14),
     0 12px 28px -14px rgba(10,91,68,.8);
 }
 .sw-btn--ghost{
+  font-weight:600;
   border:1px solid transparent;
   background:
     linear-gradient(color-mix(in srgb,var(--sw-accent) 8%, rgba(255,255,255,.35)),
@@ -181,51 +218,12 @@
   box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
 }
 
-/* ===== La barra cambia de trabajo según dónde esté el visitante =====
-   Mientras se vuela, la barra navega ESTACIONES. Cuando el scroll pasa la
-   última y empieza la página (is-past), esas estaciones ya no sirven: la
-   barra pasa a navegar el SITIO. Antes se pintaban las dos a la vez y a
-   1440 px los enlaces se montaban encima del contenido.
+/* La barra del motor ya no se monta aquí: `topbar:false` en la config
+   (src/lib/scroll-world/sections.ts). La portada usa el header del sitio, que
+   navega rutas reales en todas las páginas y trae el burger del teléfono; las
+   estaciones se recorren con el rail de la derecha y con el scroll.
 
-   Los enlaces del sitio siguen en el DOM desde el primer pintado — son lo
-   que un rastreador sigue desde la portada — solo cambian de turno. */
-.sw-sitenav{ display:none; }
-.sw-root.is-past .sw-nav{ display:none; }
-.sw-root.is-past .sw-sitenav{ display:flex; }
-/* En el teléfono la home no pinta el header del sitio y la barra de estaciones
-   está oculta: sin esto, pasada la película no quedaría ninguna forma de salir
-   de la portada salvo el pie. */
-@media (max-width:860px){
-  .sw-root.is-past .sw-sitenav{ display:flex; gap:0; }
-  .sw-root.is-past .sw-sitenav__item{ padding:10px 8px; font-size:.78rem; }
-  /* Marca + enlaces + botón no caben en 390 px: el botón se sale por la
-     derecha. Pasada la película cede el sitio — justo debajo está el
-     formulario completo, y el botón sigue ahí durante todo el vuelo. */
-  .sw-root.is-past .sw-topcta{ display:none; }
-}
-/* Pasada la película la barra deja de ser un velo y se vuelve una franja
-   sólida con su línea, igual que la del resto del sitio: si no, los títulos
-   de la cola se leen medio tapados al parar el scroll a media altura. */
-.sw-root.is-past .sw-topbar::before{
-  background:var(--bone);
-  height:100%;
-  border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent);
-}
-
-/* Barra superior: franja sólida con su línea, igual que la del resto del sitio. */
-.sw-topbar::before{content:"";position:absolute;left:0;right:0;top:0;height:100%;z-index:-1;pointer-events:none;
-  background:var(--sw-bg);border-bottom:1px solid color-mix(in srgb,var(--sw-ink) 10%,transparent);}
-.sw-brand__name{ text-shadow:none; }
-.sw-nav{
-  border:1px solid transparent;
-  background:
-    linear-gradient(var(--glass-fill), var(--glass-fill)) padding-box,
-    var(--glass-edge) border-box;
-  box-shadow: var(--glass-highlight),
-    0 10px 30px -18px color-mix(in srgb, var(--sw-ink) 45%, transparent);
-}
-.sw-nav__item{ color:color-mix(in srgb,var(--sw-ink) 72%,var(--sw-ink-soft)); }
-.sw-nav__item.is-active{ color:#fff; background:color-mix(in srgb,var(--sw-accent) 55%,var(--sw-ink)); }
+   Lo que sigue son las superficies que SÍ viven dentro del mundo. */
 
 /* Rail de estaciones: cápsula de vidrio ligera detrás de los puntos, con la
    etiqueta flotante en el mismo material. Fill más bajo (55%): solo sostiene
@@ -251,6 +249,16 @@
     0 6px 18px -10px color-mix(in srgb, var(--sw-ink) 40%, transparent);
 }
 
+/* El indicador de scroll se apoya sobre el VÍDEO, no sobre el papel, y su
+   trazo es fino: sin ayuda desaparecía en cuanto caía sobre la madera de la
+   mesa. Un halo del propio papel detrás del contorno lo sostiene sin dibujar
+   una caja. El texto ya no existe — el ratón dice "baja" él solo. */
+.sw-hint i{
+  border-color:color-mix(in srgb,var(--sw-ink) 62%,transparent);
+  filter:drop-shadow(0 0 5px var(--sw-bg));
+}
+.sw-hint i::after{ background:var(--brand); }
+
 /* Barra de progreso: el fill emite un halo sutil del acento — luz, no adorno. */
 .sw-scrollbar{ background:color-mix(in srgb,var(--sw-accent) 10%,transparent); }
 .sw-scrollbar span{ box-shadow:0 0 12px color-mix(in srgb,var(--sw-accent) 55%,transparent); }
@@ -260,9 +268,8 @@
    cada enlace del mundo el color que el motor le dio. */
 .sw-root a:not(.button),.sw-root a:not(.button):hover{ text-decoration:none; }
 .sw-root a.sw-brand,.sw-root a.sw-btn--ghost{ color:var(--sw-ink); }
-.sw-root a.sw-topcta,.sw-root a.sw-btn--primary,
-.sw-root a.sw-topcta:hover,.sw-root a.sw-btn--primary:hover{ color:#fff; }
-.sw-topcta,.sw-btn,.sw-brand{ cursor:pointer; }
+.sw-root a.sw-btn--primary,.sw-root a.sw-btn--primary:hover{ color:#fff; }
+.sw-btn,.sw-brand{ cursor:pointer; }
 
 /* Foco visible de teclado (WCAG 2.4.7) */
 .sw-root a:focus-visible,.sw-root button:focus-visible{ outline:3px solid var(--sw-ink);outline-offset:3px;border-radius:8px; }
@@ -270,7 +277,7 @@
 /* El vidrio es un acabado, no un requisito: si el usuario pide menos
    transparencia o más contraste, todas las superficies caen a panel opaco. */
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more){
-  .sw-copy,.sw-nav,.sw-route,.sw-route__label,.sw-btn--ghost{
+  .sw-copy,.sw-route,.sw-route__label,.sw-btn--ghost{
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
     background:var(--sw-bg);
@@ -278,67 +285,88 @@
   }
 }
 
-/* ═══ Móvil ═════════════════════════════════════════════════════════════════
-   En el teléfono no hay dos columnas: la escena va arriba y el texto debajo,
-   apilados. El clip móvil es vertical (720×1280), así que aquí sí conviene
-   recortar — llena el ancho sin dejar franjas — y solo se funde el borde de
-   abajo, que es donde se encuentra con el texto. */
+/* ===== Móvil, pensado primero para el teléfono =====
+   Dos problemas propios del formato vertical, que no existen en desktop:
+
+   1. El clip es 16:9 y la pantalla ~9:19.5, así que `cover` se come cerca del
+      75% del ancho. El encuadre queda centrado en el vacío que dejamos a la
+      izquierda para el texto, y la acción se va fuera de pantalla. Se corrige
+      moviendo el punto focal al sujeto, que vive en el tercio derecho.
+   2. La tarjeta ocupaba el 48% del alto y caía justo sobre la escena. Los
+      patrones móviles (SoFi, Superpower, Tolan) mantienen visual y texto en
+      zonas separadas, con el texto breve y anclado abajo. */
 @media (max-width:860px){
-  .sw-scene__video,.sw-scene__still{
-    inset:auto;
-    left:0; right:0; top:0;
-    transform:none;
-    width:100%;
-    height:46vh;
-    object-fit:cover;
-    object-position:50% 38%;
-    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 72%,transparent 100%);
-    -webkit-mask-composite:source-over;
-    mask-image:linear-gradient(to bottom,#000 0,#000 72%,transparent 100%);
-    mask-composite:add;
+  /* El mismo material, recalibrado: fill más denso (texto pequeño sobre escena
+     más agitada) y blur más barato — detrás hay un video decodificando y la
+     tarjeta es la única superficie con blur viva en móvil (nav y rail ocultos). */
+  :root, .sw-root{
+    --glass-fill: color-mix(in srgb, var(--sw-bg) 90%, transparent);
+    --glass-blur: blur(14px) saturate(1.15);
   }
-  .sw-scene::after{
-    right:auto;left:50%;top:26vh;
-    transform:translate(-50%,-50%);
-    width:86vw;height:34vh;
-  }
+
+  /* Centrado. Antes se desplazaba al 60% para perseguir al sujeto, porque los
+     clips terminaban en un plano muy cerrado; ahora los clips móviles se cortan
+     más lejos (al 55% del vuelo) y la escena entra entera, así que centrar es
+     lo correcto y además queda equilibrado. */
+  .sw-scene__video,.sw-scene__still{ object-position:50% 46%; }
 
   .sw-copy{
     width:auto;
-    left:20px; right:20px;
+    left:12px; right:12px;
+    /* El ancla de escritorio (top:26vh) no viaja al teléfono: aquí la tarjeta
+       cuelga del borde inferior, así que fijar arriba Y abajo la estiraba de
+       punta a punta. */
     top:auto;
-    bottom:calc(30px + env(safe-area-inset-bottom));
-    transform:none;
+    bottom:calc(20px + env(safe-area-inset-bottom));
+    padding:20px 20px 22px;
+    border-radius:20px;
+    --sw-gap-hair: 5px;
+    --sw-gap-tight: 10px;
+    --sw-gap: 12px;
+    --sw-gap-wide: 16px;
   }
-  .sw-copy.is-on{ transform:none; }
-  .sw-copy__num{ font-size:.64rem; padding:3px 9px; }
+  /* El contador se queda. En el teléfono no hay rail de estaciones y la barra
+     de progreso es una línea de 3 px: sin la pastilla, nadie sabe cuánto falta.
+     Cuesta 20 px de una tarjeta que ocupa 300 de 844. */
+  .sw-copy__num{ font-size:.62rem; padding:3px 9px; }
+  /* El eyebrow largo se partía en dos líneas y robaba una línea de titular. */
   .sw-copy__eyebrow{
-    margin-top:12px; font-size:.68rem; letter-spacing:.1em;
+    font-size:.68rem; letter-spacing:.1em;
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   }
-  .sw-copy__title{
-    font-size:clamp(1.85rem,7.6vw,2.6rem);
-    line-height:1.06;
-    letter-spacing:-.03em;
-    margin-top:8px;
-  }
+  .sw-copy__title{ font-size:clamp(1.4rem,5.6vw,1.95rem);line-height:1.14; }
   .sw-copy__body{
-    font-size:1rem; line-height:1.5; margin-top:12px; max-width:none;
-    /* Red de seguridad para traducciones largas o teléfonos cortos. */
-    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+    font-size:.94rem;line-height:1.45;max-width:none;
+    /* Con el copy ya acortado no debería recortar nunca; queda como red de
+       seguridad para traducciones o textos más largos. */
+    display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
   }
-  .sw-copy__tags{ margin-top:18px; gap:8px; }
-  .sw-copy__tags li{ font-size:.8rem; padding:9px 16px; }
-  .sw-copy__tags li:nth-child(n+4){ display:none; }
-
-  /* La línea de cierre y el hint sobran cuando el alto es el recurso escaso. */
-  .sw-copylayer::after{ display:none; }
+  .sw-copy__by{ font-size:.8rem; gap:10px; }
+  .sw-copy__by img{ width:30px; height:30px; }
+  .sw-copy__note{ font-size:.72rem; }
+  .sw-copy__tags{ gap:6px 16px; }
+  .sw-copy__tags li{ font-size:.78rem; gap:7px; }
+  .sw-copy__tags li::before{ width:4px; height:4px; }
+  /* Antes se ocultaba de la tercera en adelante y el teléfono perdía contenido
+     en silencio: la estación 1 se quedaba sin "Empiezas hoy" y la 2 sin la
+     mitad de los roles. Las etiquetas envuelven, que para eso hay sitio; solo
+     se recorta a partir de la cuarta. */
+  .sw-copy__tags li:nth-child(n+5){ display:none; }
+  /* El rail lateral se cruzaba por encima de la tarjeta y su etiqueta activa
+     flotaba sobre la escena. En vertical no hay ancho para las dos cosas, y
+     arriba ya existe una barra de progreso que cumple la misma función. */
+  .sw-route{ display:none; }
+  /* En móvil el gesto de scroll es evidente y el hint chocaba con la tarjeta. */
   .sw-hint{ display:none; }
 
-  @media (max-height:720px){
-    .sw-scene__video,.sw-scene__still{ height:38vh; }
-    .sw-copy__title{ font-size:clamp(1.6rem,6.6vw,2.1rem); }
-    .sw-copy__body{ -webkit-line-clamp:3; font-size:.95rem; }
+  /* Teléfonos cortos (SE, mini): recortar aún más antes que desbordar. */
+  @media (max-height:700px){
+    /* Teléfonos cortos: aquí sí manda el alto. Vuelven a caer las etiquetas
+       sobrantes y el contador. */
+    .sw-copy__num{ display:none; }
     .sw-copy__tags li:nth-child(n+3){ display:none; }
+    .sw-copy__title{ font-size:clamp(1.3rem,5.2vw,1.7rem); }
+    .sw-copy__body{ -webkit-line-clamp:3;font-size:.9rem; }
+    .sw-copy__tags{ display:none; }
   }
 }

@@ -1,5 +1,6 @@
-import { Column, Flex, Grid, Heading, Icon, SmartImage, SmartLink, Text } from "@/once-ui/components";
+import { Column, Grid, Flex, Icon, SmartImage, SmartLink, Text } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
+import { SectionHeader } from "./SectionHeader";
 
 export interface HomePillarItem {
   key: string;
@@ -12,23 +13,31 @@ export interface HomePillarItem {
 }
 
 interface HomePillarsProps {
+  eyebrow?: string;
   title: string;
+  /** Substring of the title to set in the brand green. */
+  highlight?: string;
   items: HomePillarItem[];
   viewAllLabel: string;
   viewAllHref: string;
 }
 
-export function HomePillars({ title, items, viewAllLabel, viewAllHref }: HomePillarsProps) {
+export function HomePillars({
+  eyebrow,
+  title,
+  highlight,
+  items,
+  viewAllLabel,
+  viewAllHref,
+}: HomePillarsProps) {
   return (
     <Column fillWidth gap="l">
-      <Flex fillWidth horizontal="space-between" vertical="center" wrap gap="12">
-        <Heading as="h2" variant="display-strong-s">
-          {title}
-        </Heading>
-        <SmartLink suffixIcon="arrowRight" href={viewAllHref}>
-          <Text variant="body-default-s">{viewAllLabel}</Text>
-        </SmartLink>
-      </Flex>
+      <SectionHeader
+        eyebrow={eyebrow}
+        title={title}
+        highlight={highlight}
+        link={{ label: viewAllLabel, href: viewAllHref }}
+      />
       <Grid columns="3" tabletColumns="3" mobileColumns="1" gap="12" fillWidth>
         {items.map((item) => (
           <Column

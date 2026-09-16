@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "@/i18n/routing";
+import { BrandSplash } from "@/components/BrandSplash";
 import { Column, Flex } from "@/once-ui/components";
 
 type SiteShellProps = {
@@ -11,7 +12,8 @@ type SiteShellProps = {
 };
 
 /**
- * Hides the marketing chrome on /dashboard, which brings its own shell.
+ * Hides the marketing chrome on /dashboard, which brings its own shell. El
+ * velo de entrada tampoco va ahí: quien entra al panel ya vio la marca.
  *
  * Header/Footer/Background stay server components and arrive as slots — Footer
  * reads translations on the server and could not call usePathname itself. A
@@ -21,9 +23,8 @@ type SiteShellProps = {
 export function SiteShell({ background, header, footer, children }: SiteShellProps) {
   const pathname = usePathname() ?? "";
   const isDashboard = pathname.startsWith("/dashboard");
-  // The home is the scroll-world: its own topbar is the header, the fixed
-  // cream sky is the background, and the snap track needs the viewport, not a
-  // padded main. Only the footer survives, after the stations.
+  // The home is the scroll-world: the fixed cream sky is its background and
+  // the snap track needs the whole viewport.
   const isHome = pathname === "/";
 
   if (isDashboard) {
@@ -43,18 +44,24 @@ export function SiteShell({ background, header, footer, children }: SiteShellPro
   }
 
   if (isHome) {
+    // The landing ends at the seventh station: no footer either. The snap is
+    // mandatory, so anything past the last station would be unreachable
+    // without giving it a snap area of its own, and the header already
+    // navigates every route.
     return (
       <>
+        <BrandSplash />
+        {header}
         <Column as="main" id="main-content" fillWidth>
           {children}
         </Column>
-        {footer}
       </>
     );
   }
 
   return (
     <>
+      <BrandSplash />
       {background}
       <Flex fillWidth minHeight="16"></Flex>
       {header}

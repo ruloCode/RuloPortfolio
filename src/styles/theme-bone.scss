@@ -120,10 +120,10 @@ html:not([data-scroll-world]) {
 }
 
 @media (max-width: 768px) {
-  // En el teléfono la barra vive abajo: el sitio se reserva al final.
+  // La barra también vive arriba en el teléfono (marca + burger), solo que es
+  // más baja que en escritorio.
   html:not([data-scroll-world]) {
-    scroll-padding-top: var(--static-space-24);
-    scroll-padding-bottom: var(--static-space-104);
+    scroll-padding-top: var(--static-space-64);
   }
 }
 
@@ -148,8 +148,8 @@ a:not(.button):focus-visible {
 // sitio y sus botones median 32 px de alto. Se suben a 44 sin cambiar el
 // tamaño del texto, y lo mismo para los IconButton pequeños del pie.
 //
-// El ancho, no el tipo de puntero: es el mismo umbral en el que el header se
-// convierte en barra inferior (once-ui/styles/breakpoints.scss, --s = 768px).
+// El ancho, no el tipo de puntero: es el mismo umbral en el que la navegación
+// pasa al burger (once-ui/styles/breakpoints.scss, --s = 768px).
 @media (max-width: 768px) {
   [class*="ToggleButton-module"][class*="__m"],
   [class*="ToggleButton-module"][class*="__s"] {
@@ -162,16 +162,66 @@ a:not(.button):focus-visible {
     min-width: 44px;
     min-height: 44px;
   }
+}
 
-  // Con los objetivos a 44 px la píldora de navegación medía 424 px en una
-  // pantalla de 390 y se salía por los dos lados. Se recorta el relleno
-  // horizontal (no el alto: el objetivo táctil se mantiene).
-  header [class*="ToggleButton-module"][class*="__m"] {
-    padding-left: var(--static-space-8);
-    padding-right: var(--static-space-8);
-  }
+// ─── El lenguaje del hero, en las primitivas de Once UI ─────────────────────
+// La primera estación fija la nota: pastilla sólida, palabra clave en verde,
+// botón primario sólido y secundario delineado, nav activa en verde. Aquí se
+// llevan esas mismas decisiones a Tag, Button y ToggleButton, para que el resto
+// del sitio las herede sin tocar `once-ui/`. Los selectores casan con las
+// clases hasheadas de los CSS Modules (`Tag-module-…__brand`), igual que las
+// reglas táctiles de arriba.
 
-  header nav {
-    max-width: 100%;
+// La etiqueta de marca es la pastilla "01 / 07" del hero: sólida, blanca,
+// monoespaciada, en mayúsculas. Blanco sobre #08533C: 8,1:1 (AAA).
+// Tres atributos: la regla `.tag.brand` de Once UI llega después en cascada y
+// pesa (0,2,0); sin el tercer selector el relleno no cambia.
+[class*="Tag-module"][class*="__tag"][class*="__brand"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #ffffff;
+  border-radius: 999px;
+  font-family: var(--font-code), ui-monospace, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-top: var(--static-space-4);
+  padding-bottom: var(--static-space-4);
+}
+
+// La etiqueta neutra es la delineada del hero ("Sin tarjeta"): verde sobre
+// hueso (7,2:1), sin relleno.
+[class*="Tag-module"][class*="__tag"][class*="__neutral"] {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--brand) 38%, transparent);
+  color: var(--brand);
+  border-radius: 999px;
+}
+
+// Todo botón es una pastilla, como en la portada.
+[class*="Button-module"][class*="__button"] {
+  border-radius: 999px;
+}
+
+// Secundario: delineado en verde, sin relleno gris. Al pasar, un lavado tenue.
+[class*="Button-module"][class*="__secondary"]:not(:disabled) {
+  background: transparent;
+  border: 1.5px solid color-mix(in srgb, var(--brand) 38%, transparent);
+  color: var(--brand);
+  box-shadow: none;
+
+  &:hover,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--brand) 8%, transparent);
+    border-color: var(--brand);
   }
+}
+
+// La pestaña activa de la barra es verde sólido con texto blanco, como la de
+// las estaciones. Solo en la navegación: el selector de idioma se queda gris.
+header nav > [class*="ToggleButton-module"][class*="__selected"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #ffffff;
 }

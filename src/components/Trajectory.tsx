@@ -14,6 +14,7 @@ import { localizeHref } from "@/i18n/routing";
 import { Stats } from "@/components/Stats";
 import brand from "@/styles/brand.module.scss";
 import styles from "./Trajectory.module.scss";
+import { highlight } from "./Highlight";
 
 // Same accents as the scroll-world stations, in narrative order.
 const MILESTONES: { key: string; dot: string }[] = [
@@ -43,8 +44,8 @@ export async function Trajectory({ locale }: { locale: string }) {
           <Flex>
             <Tag variant="brand" size="m" label={t("eyebrow")} />
           </Flex>
-          <Heading as="h2" variant="display-strong-s" wrap="balance">
-            {t("title")}
+          <Heading as="h2" className={brand.sectionTitle} variant="display-strong-s" wrap="balance">
+            {highlight(t("title"), t("highlight"))}
           </Heading>
         </Column>
         <Flex flex={5}>
@@ -79,7 +80,7 @@ export async function Trajectory({ locale }: { locale: string }) {
       {cases.length > 0 && (
         <Column fillWidth gap="l">
           <Flex fillWidth horizontal="space-between" vertical="center" wrap gap="12">
-            <Heading as="h3" variant="display-strong-xs" wrap="balance">
+            <Heading as="h3" className={brand.sectionTitle} variant="display-strong-xs" wrap="balance">
               {t("casesTitle")}
             </Heading>
             <SmartLink suffixIcon="arrowRight" href={localizeHref(locale, "/work")}>
@@ -117,7 +118,7 @@ export async function Trajectory({ locale }: { locale: string }) {
                   )}
                   {post.metadata.metric && (
                     <Flex>
-                      <Tag variant="brand" size="s" label={post.metadata.metric} />
+                      <Tag variant="neutral" size="s" label={post.metadata.metric} />
                     </Flex>
                   )}
                   <Heading as="h4" variant="heading-strong-l" wrap="balance">

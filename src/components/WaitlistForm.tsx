@@ -14,6 +14,7 @@ import {
   Text,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
+import { track } from "@vercel/analytics";
 import { useLocale } from "next-intl";
 import { useRef, useState, type JSX } from "react";
 
@@ -78,6 +79,9 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         }),
       });
       setStatus(response.ok ? "success" : "error");
+      // El último escalón del embudo. Con esto y los avisos del recorrido se
+      // puede leer la caída entera: estación vista, botón pulsado, alta hecha.
+      if (response.ok) track("waitlist_submit", { variant: variant ?? "default" });
     } catch {
       setStatus("error");
     }
@@ -146,7 +150,14 @@ export const WaitlistForm = ({ newsletter, variant }: WaitlistFormProps) => {
         }}
       />
       {/* as="h2": Heading defaults to h1 and this block always renders under a page h1. */}
-      <Heading as="h2" style={{ position: "relative" }} marginBottom="s" variant="display-strong-xs">
+      <Heading
+        as="h2"
+        className={brand.sectionTitle}
+        style={{ position: "relative" }}
+        marginBottom="s"
+        variant="display-strong-xs"
+        wrap="balance"
+      >
         {newsletter.title}
       </Heading>
       <Text

@@ -570,7 +570,9 @@
           "title": "Curso: AI Shift Challenge"
         }
       },
-      "title": "En qué te puedo ayudar"
+      "title": "En qué te puedo ayudar",
+      "eyebrow": "Servicios",
+      "highlight": "ayudar"
     },
     "proofCta": "Ver todos los proyectos",
     "proofHeading": "La prueba: casos reales",
@@ -584,7 +586,8 @@
       "title": "Más de 6 años llevando software a producción. Ahora, IA."
     },
     "subline": "Soy Andrés Santana, experto en IA aplicada. Llevo más de 6 años construyendo software en producción — una plataforma que procesa <strong>+$2M/mes</strong> para <strong>+50K usuarios</strong> — y hoy enseño a profesionales no técnicos a automatizar su trabajo con el <strong>AI Shift Challenge</strong>.",
-    "title": "Andrés Santana — Senior Frontend Engineer · LLMs en producción"
+    "title": "Andrés Santana — Senior Frontend Engineer · LLMs en producción",
+    "blogHighlight": "del blog"
   },
   "ia": {
     "faq": {
@@ -756,9 +759,11 @@
     "ia": "Curso de IA",
     "services": "Servicios",
     "skipToContent": "Saltar al contenido",
-    "waitlistCta": "Empezar gratis",
+    "waitlistCta": "Empieza gratis",
     "work": "Proyectos",
-    "mainNav": "Navegación principal"
+    "mainNav": "Navegación principal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "newsletter": {
     "title": "Una automatización real, explicada, cada dos semanas.",
@@ -943,24 +948,21 @@
   },
   "scroll": {
     "brand": "rulocode",
-    "cta": "Entrar y empezar",
-    "hint": "baja para volar",
+    "cta": "Empieza gratis",
     "stations": {
       "semana": {
         "label": "Empieza",
         "eyebrow": "AI Shift Challenge · Semana 0 abierta",
         "title": "Automatiza tu trabajo con IA en 4 semanas. Sin escribir código.",
-        "body": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas, 2 grupales y una automatización tuya funcionando al final.",
+        "body": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas, 2 grupales y una automatización tuya funcionando al final. Entrar es gratis y no pide tarjeta.",
         "tags": {
-          "1": "Gratis",
-          "2": "Sin tarjeta",
-          "3": "Empiezas hoy"
+          "1": "Empiezas hoy"
         },
         "highlight": "con IA"
       },
       "rol": {
         "label": "Tu rol",
-        "eyebrow": "01 · Tu rol primero",
+        "eyebrow": "Tu rol primero",
         "title": "Empezamos por tu trabajo, no por las herramientas.",
         "body": "Mapeamos tu semana real y encontramos, para tu rol, dónde están las horas escondidas. Nada de recorridos genéricos.",
         "tags": {
@@ -973,7 +975,7 @@
       },
       "copiloto": {
         "label": "Copiloto",
-        "eyebrow": "02 · Copiloto diario",
+        "eyebrow": "Copiloto diario",
         "title": "De prompts sueltos a flujos que entregan trabajo terminado.",
         "body": "De usar la IA «a veces» a un sistema diario para analizar, escribir y producir con calidad profesional.",
         "tags": {
@@ -985,7 +987,7 @@
       },
       "automatiza": {
         "label": "Automatiza",
-        "eyebrow": "03 · Automatización",
+        "eyebrow": "Automatización",
         "title": "Tus tareas repetitivas, en piloto automático.",
         "body": "Montas tus automatizaciones con herramientas de clics — correo, hojas, documentos — y liberas horas cada semana.",
         "tags": {
@@ -996,18 +998,19 @@
       },
       "reto": {
         "label": "El reto",
-        "eyebrow": "04 · El reto",
+        "eyebrow": "El reto",
         "title": "4 sesiones privadas conmigo, 2 grupales, un flujo funcionando.",
         "body": "Cuatro sesiones uno a uno sobre tu caso concreto, dos grupales con otros roles, y al final un flujo completo operando.",
         "tags": {
           "1": "4 semanas",
           "2": "Solo 6 cupos"
         },
-        "highlight": "un flujo funcionando"
+        "highlight": "un flujo funcionando",
+        "by": "Lo doy yo, Andrés Santana. Seis años llevando software a producción para más de 450.000 usuarios."
       },
       "posicionate": {
         "label": "Posiciónate",
-        "eyebrow": "05 · Posiciónate",
+        "eyebrow": "Posiciónate",
         "title": "Sé la persona de IA de tu equipo.",
         "body": "Cierras sabiendo demostrar tu automatización a tu jefe o tus clientes, y con un método para evaluar lo que salga mañana.",
         "tags": {
@@ -1028,7 +1031,9 @@
         "highlight": "esta semana"
       }
     },
-    "stationsNav": "Estaciones del recorrido"
+    "stationsNav": "Estaciones del recorrido",
+    "ctaNote": "Sin tarjeta · 3 lecciones hoy · Cancelas cuando quieras",
+    "ctaCompanies": "¿Eres empresa? Hablemos"
   },
   "trajectory": {
     "eyebrow": "Trayectoria",
@@ -1058,6 +1063,7 @@
     },
     "casesTitle": "Casos reales",
     "viewAll": "Ver todos los proyectos",
-    "caseCta": "Ver el caso"
+    "caseCta": "Ver el caso",
+    "highlight": "sobreviva a usuarios reales"
   }
 }

@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 import { Column, Flex, Heading, RevealFx, Tag, Text } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
+import { highlight } from "./Highlight";
 
 interface PageHeroProps {
   eyebrow: string;
   title: ReactNode;
+  /** Substring of a plain-text title to set in the brand green. */
+  highlight?: string;
   intro?: ReactNode;
   actions?: ReactNode;
   /** Portrait, image or any visual for the right column. */
@@ -19,7 +22,15 @@ interface PageHeroProps {
  * revealed in a short stagger. With `aside`, the visual sits to the right on
  * desktop and above the text on phones.
  */
-export function PageHero({ eyebrow, title, intro, actions, aside, facts }: PageHeroProps) {
+export function PageHero({
+  eyebrow,
+  title,
+  highlight: word,
+  intro,
+  actions,
+  aside,
+  facts,
+}: PageHeroProps) {
   const copy = (
     <Column flex={7} gap="20" maxWidth={40}>
       <RevealFx speed="fast" translateY="4" horizontal="start">
@@ -27,7 +38,7 @@ export function PageHero({ eyebrow, title, intro, actions, aside, facts }: PageH
       </RevealFx>
       <RevealFx speed="fast" delay={0.08} translateY="8" horizontal="start">
         <Heading className={brand.heroTitle} variant="display-strong-l" wrap="balance">
-          {title}
+          {highlight(title, word)}
         </Heading>
       </RevealFx>
       {intro && (

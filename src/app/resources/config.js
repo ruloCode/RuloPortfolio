@@ -16,6 +16,17 @@ const routes = {
   "/login": true,
 };
 
+// Rutas que existen, se indexan y reciben visitas, pero que NO se listan en la
+// navegación. El curso se ofrece por el botón de conversión ("Empezar gratis")
+// y por el pilar de la portada, no por el menú: en la barra competía con su
+// propio CTA, que está dos centímetros a la derecha.
+//
+// Distinto de `routes`, que decide si la ruta existe: aquí la página sigue
+// viva y todos sus enlaces funcionan.
+const navHidden = {
+  "/ia": true,
+};
+
 // Scheduling link for consulting CTAs (about, services, home, footer).
 // Set NEXT_PUBLIC_CAL_LINK (e.g. https://cal.com/<username>/30min) to switch to Cal.com.
 const scheduling = {
@@ -126,6 +137,7 @@ const waitlistEffects = {
 
 export {
   routes,
+  navHidden,
   scheduling,
   effects,
   style,

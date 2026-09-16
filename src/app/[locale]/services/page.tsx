@@ -17,6 +17,7 @@ import { CtaBanner, PageHero, SectionHeader } from "@/components";
 import { localeAlternates } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
+import { scrollAsset } from "@/lib/scroll-world/sections";
 import brand from "@/styles/brand.module.scss";
 
 const OFFERING_ICONS: Record<string, string> = {
@@ -131,7 +132,6 @@ export default async function Services({ params }: PageParams) {
               href={services.cta.link}
               size="m"
               className={brand.signatureCta}
-              prefixIcon="calendar"
             >
               {services.cta.button}
             </Button>
@@ -139,8 +139,6 @@ export default async function Services({ params }: PageParams) {
               href={localizeHref(locale, "/work")}
               size="m"
               variant="secondary"
-              data-border="rounded"
-              prefixIcon="grid"
             >
               {t("work.label")}
             </Button>
@@ -150,7 +148,7 @@ export default async function Services({ params }: PageParams) {
       <RevealFx speed="fast" translateY="12" inView fillWidth>
         <SmartImage
           className={brand.mediaGlow}
-          src="/images/services/hero.jpg"
+          src={scrollAsset("04-automatiza.webp")}
           alt={services.hero.imageAlt}
           aspectRatio="21 / 9"
           radius="l"

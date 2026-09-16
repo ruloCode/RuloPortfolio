@@ -1,0 +1,153 @@
+// El menú del teléfono: burger en la barra y panel a pantalla completa.
+// Solo existe por debajo de --s (768px); en escritorio manda la píldora.
+
+.burger {
+  display: none;
+  position: relative;
+  // El panel es hermano del burger dentro del <header>, así que comparten
+  // contexto de apilado: para que el aspa siga viéndose y se pueda pulsar,
+  // el botón tiene que estar por encima del panel (90), no la barra.
+  z-index: 95;
+  width: 44px; // objetivo táctil WCAG 2.5.8
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+
+  @media (--s) {
+    display: grid;
+    place-items: center;
+  }
+}
+
+.bars {
+  display: block;
+  position: relative;
+  width: 22px;
+  height: 14px;
+
+  i {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition:
+      transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.18s ease;
+  }
+
+  i:nth-child(1) {
+    top: 0;
+  }
+
+  i:nth-child(2) {
+    top: 6px;
+  }
+
+  i:nth-child(3) {
+    top: 12px;
+  }
+
+  // Abierto: la de arriba y la de abajo se cruzan, la del medio se apaga.
+  &[data-open] i:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  &[data-open] i:nth-child(2) {
+    opacity: 0;
+  }
+
+  &[data-open] i:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+}
+
+.panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  // Por debajo de la barra (95): el burger se queda visible y en aspa.
+  z-index: 90;
+  // Opaco: detrás puede haber un vídeo a sangre y el texto tiene que leerse
+  // pase lo que pase en ese frame.
+  background: var(--page-background);
+  padding: calc(var(--static-space-64) + env(safe-area-inset-top)) var(--static-space-24)
+    calc(var(--static-space-32) + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.24s;
+
+  @media (--s) {
+    display: flex;
+    flex-direction: column;
+    // El índice ocupa el centro óptico y el CTA se queda abajo, a la altura
+    // del pulgar.
+    justify-content: center;
+    gap: var(--static-space-40);
+  }
+
+  &[data-open] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.list {
+  // Una línea fina entre rutas: es un índice, no una lista de botones.
+  border-top: 1px solid var(--neutral-alpha-weak);
+  flex: 0 0 auto;
+}
+
+// `a:not(.button)` de once-ui/styles/global.scss pesa (0,1,1) y pinta de verde
+// cualquier enlace: para devolver la tinta a los inactivos hace falta al menos
+// esa especificidad. De ahí `.panel a.item` (0,2,1) en vez de `.item`.
+// Lo mismo con el ancho: SmartLink llega con `display-inline-flex fit-width`,
+// así que la línea inferior solo mediría lo que mide la palabra.
+.panel a.item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: var(--static-space-12) 0;
+  border-bottom: 1px solid var(--neutral-alpha-weak);
+  color: var(--ink);
+  text-decoration: none;
+  // Entran escalonadas al abrir; el reset global de prefers-reduced-motion
+  // en once-ui/styles/global.scss las deja quietas.
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s ease;
+
+  &[data-active] {
+    color: var(--brand);
+  }
+
+  &:active {
+    color: var(--brand);
+  }
+}
+
+.panel[data-open] a.item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.04s * var(--i, 0) + 0.06s);
+}

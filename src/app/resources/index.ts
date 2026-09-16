@@ -1,6 +1,7 @@
 // import a pre-defined template for config and content options
 export {
   routes,
+  navHidden,
   scheduling,
   effects,
   style,

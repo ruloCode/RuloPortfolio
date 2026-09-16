@@ -60,6 +60,9 @@ function clipUrl(c) {
 
 export function mountStageWorld(container, config) {
   const noop = () => {};
+  // Aviso de recorrido. Sin esto no hay forma de saber en qué estación se
+  // abandona: la analítica del sitio cuenta páginas, y la portada es una sola.
+  const emit = (name, data) => { try { config.onEvent && config.onEvent(name, data); } catch (e) {} };
   if (!container || !config) return noop;
   const SECTIONS = config.sections || [];
   const N = SECTIONS.length;
@@ -86,6 +89,10 @@ export function mountStageWorld(container, config) {
   const scrollbar = el('div', 'sw-scrollbar');
   const scrollbarFill = el('span'); scrollbar.appendChild(scrollbarFill);
 
+  // La barra propia del motor. Con `topbar:false` se construye igual (el resto
+  // del código habla con `nav`) pero nunca se monta: en el portfolio la home
+  // pinta el header del sitio, que navega rutas reales y trae el burger del
+  // teléfono.
   const topbar = el('div', 'sw-topbar');
   if (config.brand) {
     // Sin href no hay navegación: el <a> queda como placeholder inerte válido.
@@ -102,9 +109,7 @@ export function mountStageWorld(container, config) {
   }
   const nav = el('nav', 'sw-nav'); if (config.navLabel) nav.setAttribute('aria-label', config.navLabel);
   if (config.nav !== false) topbar.appendChild(nav);
-  // Enlaces al resto del sitio (about, servicios, blog): la home no pinta el
-  // header general, así que estos son la navegación principal — y lo que un
-  // rastreador sigue desde la portada.
+  // Enlaces al resto del sitio, para quien monte el motor sin un header propio.
   if (config.links && config.links.length) {
     const site = el('nav', 'sw-sitenav'); if (config.linksLabel) site.setAttribute('aria-label', config.linksLabel);
     config.links.forEach(l => { const a = el('a', 'sw-sitenav__item'); a.href = l.href; a.textContent = l.label; site.appendChild(a); });
@@ -118,12 +123,15 @@ export function mountStageWorld(container, config) {
   const stage = el('div', 'sw-stage');
   const copylayer = el('div', 'sw-copylayer');
   const route = el('div', 'sw-route');
+  // Sin `hint` no hay etiqueta: queda el ratón solo, que ya dice "baja" sin
+  // gastar una línea de texto encima del titular.
   const hint = el('div', 'sw-hint');
-  const hintText = el('span'); hintText.textContent = config.hint || 'scroll'; hint.appendChild(hintText);
+  if (config.hint) { const hintText = el('span'); hintText.textContent = config.hint; hint.appendChild(hintText); }
   hint.appendChild(el('i'));
   const track = el('div', 'sw-track');
 
-  [sky, scrollbar, topbar, stage, copylayer, route, hint, track].forEach(n => container.appendChild(n));
+  [sky, scrollbar, config.topbar === false ? null : topbar, stage, copylayer, route, hint, track]
+    .filter(Boolean).forEach(n => container.appendChild(n));
 
   // Una escena por sección (póster + hueco para el vídeo) y un spacer que da el
   // scroll y el punto de anclaje del snap.
@@ -152,7 +160,9 @@ export function mountStageWorld(container, config) {
       (s.title ? `<${i === 0 ? 'h1' : 'h2'} class="sw-copy__title">${mark(s.title, s.highlight)}</${i === 0 ? 'h1' : 'h2'}>` : '') +
       (s.body ? `<p class="sw-copy__body">${esc(s.body)}</p>` : '') +
       (s.tags && s.tags.length ? `<ul class="sw-copy__tags">${s.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '') +
-      (s.cta ? `<div class="sw-copy__cta">${ctaBtns(s.cta)}</div>` : '');
+      (s.by ? `<p class="sw-copy__by"><img src="${esc(s.by.avatar)}" alt="" width="36" height="36">${esc(s.by.text)}</p>` : '') +
+      (s.cta ? `<div class="sw-copy__cta">${ctaBtns(s.cta)}</div>` +
+        (s.cta.note ? `<p class="sw-copy__note">${esc(s.cta.note)}</p>` : '') : '');
     copylayer.appendChild(c); copies.push(c);
 
     const dot = el('button', 'sw-route__dot'); dot.style.setProperty('--sw-accent', s.accent || '');
@@ -282,6 +292,7 @@ export function mountStageWorld(container, config) {
     dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
     nav.querySelectorAll('.sw-nav__item').forEach((n, k) => { n.classList.toggle('is-active', k === i); n.setAttribute('aria-current', k === i ? 'true' : 'false'); });
 
+    emit('station_view', { id: SECTIONS[i].id || String(i + 1), n: i + 1 });
     playSection(S[i]);
     // Red de seguridad: si `timeupdate` no llega (vídeo que no carga, pestaña en
     // segundo plano), el panel entra igual pasado su tiempo.
@@ -323,6 +334,9 @@ export function mountStageWorld(container, config) {
       if (past !== isPast) {
         isPast = past;
         container.classList.toggle('is-past', past);
+        // El header del sitio es un hermano del contenedor: el estado viaja por
+        // <html> para que pueda cambiar de fondo sin JS de por medio.
+        document.documentElement.toggleAttribute('data-sw-past', past);
         if (past) stopSection(S[active]); else playSection(S[active]);
       }
     });
@@ -370,6 +384,18 @@ export function mountStageWorld(container, config) {
   }
   window.addEventListener('click', onTap);
 
+  // Un solo listener delegado: qué botón y desde qué estación. Es el dato que
+  // convierte "se fueron" en "se fueron en la cuarta".
+  function onCtaClick(e) {
+    const a = e.target && e.target.closest && e.target.closest('.sw-btn');
+    if (!a || !container.contains(a)) return;
+    emit('landing_cta_click', {
+      id: (SECTIONS[active] && SECTIONS[active].id) || String(active + 1),
+      kind: a.classList.contains('sw-btn--primary') ? 'primary' : 'secondary',
+    });
+  }
+  container.addEventListener('click', onCtaClick);
+
   seedStageParticles(particles, reduce || coarse);
 
   // Arranque: la primera sección se activa sola, sin esperar al scroll.
@@ -381,6 +407,7 @@ export function mountStageWorld(container, config) {
     window.removeEventListener('scroll', onScroll);
     window.removeEventListener('resize', onScroll);
     window.removeEventListener('click', onTap);
+    container.removeEventListener('click', onCtaClick);
     window.removeEventListener('load', onLoad);
     ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(ev => window.removeEventListener(ev, onFirstGesture));
     copyTimers.forEach(clearTimeout);
@@ -389,6 +416,7 @@ export function mountStageWorld(container, config) {
     container.classList.remove('sw-root', 'is-past');
     container.style.removeProperty('--sw-accent');
     document.documentElement.removeAttribute('data-scroll-world');
+    document.documentElement.removeAttribute('data-sw-past');
   }
   return destroy;
 

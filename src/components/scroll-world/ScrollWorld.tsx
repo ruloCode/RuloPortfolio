@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { routes } from "@/app/resources";
 import { localizeHref } from "@/i18n/routing";
 import { buildWorldConfig, PRELOAD } from "@/lib/scroll-world/sections";
 import { StageWorld } from "./StageWorld";
@@ -20,10 +19,9 @@ document.head.appendChild(l);
 export async function ScrollWorld({ locale }: { locale: string }) {
   const t = await getTranslations("scroll");
   const tNav = await getTranslations("nav");
-  const links = (["/about", "/services", "/blog"] as const)
-    .filter((route) => routes[route])
-    .map((route) => ({ label: tNav(route.slice(1)), href: localizeHref(locale, route) }));
-  const config = buildWorldConfig(t, localizeHref(locale, "/ia"), links, {
+  // No links here: the site header sits above the world and already lists every
+  // route — for the visitor and for a crawler.
+  const config = buildWorldConfig(t, localizeHref(locale, "/ia"), localizeHref(locale, "/services"), [], {
     navLabel: t("stationsNav"),
     linksLabel: tNav("mainNav"),
   });
