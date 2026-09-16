@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="rulocode">
+  <title>rulocode</title>
+  <!-- Un solo color, heredado del contexto (currentColor): bordados, sellos,
+       grabado, fax de la vida. La diferencia de grosor entre cola y bucle es
+       lo único que separa las dos partes, y alcanza.
+
+       OJO: currentColor solo hereda si el SVG está EN LÍNEA en el documento
+       (o se usa como mask-image). Metido en un <img src="..."> no hereda nada
+       y sale negro, porque el archivo es un documento aparte con su propio
+       `color` por defecto. Para <img>, usa mark.svg o mark-inverse.svg. -->
+  <path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+  <path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,114 @@
+// La pantalla de carga: la marca dibujándose sobre el papel hueso.
+//
+// Tres reglas que no se tocan, porque son las que evitan que un adorno se
+// convierta en un muro:
+//
+// 1. `pointer-events: none` SIEMPRE. El velo tapa, no bloquea: si alguien
+//    tiene prisa puede hacer clic a través de él desde el primer milisegundo.
+// 2. La salida es CSS puro con `forwards`. Si la hidratación se atrasa o el
+//    JS se cae, el velo se va igual. React solo lo desmonta después, de
+//    remate.
+// 3. Con `prefers-reduced-motion` no hay velo: `display: none`. Si la salida
+//    es una animación y las animaciones están apagadas, el velo se quedaría
+//    para siempre encima del sitio. Es el fallo clásico de este patrón.
+//
+// Y una cuarta, en el layout: un script en línea marca <html> cuando ya se vio
+// en esta sesión, así no aparece en cada recarga.
+
+.splash {
+    position: fixed;
+    inset: 0;
+    z-index: 200; // por encima del mundo del scroll (60) y de la barra (55)
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    // El papel va literal, no por token: `--page-background` de Once UI no es
+    // opaco y el velo dejaba ver el diorama por debajo. El hueso de la marca
+    // es un valor fijo del sistema, así que aquí no hay nada que heredar.
+    background: #f4f1ea;
+    animation: splash-out 0.45s cubic-bezier(0.4, 0, 1, 1) 1.25s forwards;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.mark {
+    display: block;
+    width: clamp(76px, 15vw, 108px);
+    height: auto;
+    overflow: visible;
+}
+
+// La cola entra primero (el trabajo a mano) y el bucle la recoge: es el
+// concepto de la marca contado en 900 ms. Longitudes medidas sobre los
+// trazos: 26 y 55 unidades de la retícula de 64.
+.tail {
+    animation: draw-tail 0.38s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.loop {
+    animation: draw-loop 0.68s cubic-bezier(0.32, 0, 0.2, 1) 0.24s backwards;
+}
+
+.word {
+    margin: 0;
+    font-family: var(--font-secondary), "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(20px, 4vw, 26px);
+    letter-spacing: -0.025em;
+    color: #08533c;
+    animation: word-in 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) 0.62s backwards;
+}
+
+// `backwards` en todas: el estado natural es el logo COMPLETO y la palabra
+// visible. La animación solo los esconde mientras corre.
+@keyframes draw-tail {
+    from {
+        stroke-dasharray: 26;
+        stroke-dashoffset: 26;
+    }
+    to {
+        stroke-dasharray: 26;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes draw-loop {
+    from {
+        stroke-dasharray: 55;
+        stroke-dashoffset: 55;
+    }
+    to {
+        stroke-dasharray: 55;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes word-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+}
+
+@keyframes splash-out {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+// Ya se vio en esta sesión: ni un parpadeo.
+:global(html[data-splash="seen"]) .splash {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash {
+        display: none;
+    }
+}

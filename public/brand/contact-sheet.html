@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>rulocode — hoja de contacto de marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F4F1EA; --ink:#111110; --brand:#08533C; --muted:#63615a; --hair:rgba(17,17,16,.14); color-scheme: light }
+  * { box-sizing: border-box }
+  body { margin:0; padding:48px 24px 80px; background:var(--paper); color:var(--ink);
+         font:400 15px/1.6 Inter,-apple-system,system-ui,sans-serif; -webkit-font-smoothing:antialiased }
+  .wrap { max-width:1100px; margin-inline:auto; display:flex; flex-direction:column; gap:56px }
+  h1 { font:700 clamp(28px,5vw,42px)/1.05 "Space Grotesk",sans-serif; letter-spacing:-.02em; margin:0; text-wrap:balance }
+  h2 { font:700 clamp(20px,3.4vw,26px)/1.1 "Space Grotesk",sans-serif; letter-spacing:-.015em; margin:0 }
+  .eyebrow { font:600 11px/1 Inter,sans-serif; letter-spacing:.16em; text-transform:uppercase; color:var(--brand); margin:0 }
+  p { margin:0; max-width:64ch } .muted { color:var(--muted) }
+  section { display:flex; flex-direction:column; gap:16px }
+  .head { display:flex; flex-direction:column; gap:8px }
+  .band { display:flex; align-items:flex-end; gap:clamp(20px,4vw,44px); flex-wrap:wrap; padding:26px 28px; border-radius:4px }
+  .paper { background:var(--paper); box-shadow:inset 0 0 0 1px var(--hair) }
+  .ink { background:var(--ink); color:var(--paper) }
+  .cell { display:flex; flex-direction:column; align-items:center; gap:10px }
+  .cell > span:last-child { font:600 10px/1 Inter,sans-serif; letter-spacing:.08em; opacity:.55; white-space:nowrap }
+  img { display:block }
+  .s16{width:16px}.s26{width:26px}.s30{width:30px}.s48{width:48px}.s128{width:128px}
+  .squint img { filter:blur(1.1px) }
+  .lock { display:flex; align-items:center; gap:10px; margin:0; font:700 26px/1 "Space Grotesk",sans-serif; letter-spacing:-.025em }
+  .lock.sm { gap:7px; font-size:16px }
+  .plate { display:grid; place-items:center; background:var(--brand) }
+  .p16{width:16px;height:16px;border-radius:3.75px} .p16 img{width:16px}
+  .p26{width:26px;height:26px;border-radius:6px} .p26 img{width:26px}
+  .p48{width:48px;height:48px;border-radius:11px} .p48 img{width:48px}
+  .p128{width:128px;height:128px;border-radius:30px} .p128 img{width:128px}
+  .mono { color:var(--ink) } .ink .mono { color:var(--paper) }
+  .lockbox { position:relative; display:inline-block; padding:calc(var(--x)); outline:1px dashed rgba(8,83,60,.5); outline-offset:0 }
+  .lockbox img { width:var(--w) }
+  @media (max-width:520px){ .band{padding:20px 16px;gap:22px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <p class="eyebrow">Marca · El rulo</p>
+  <h1>Hoja de contacto</h1>
+  <p class="muted">Los tamaños son píxeles reales, no una maqueta escalada. 16 px es el favicon, 30 px es lo que mide en la cabecera del sitio. La columna borrosa es la prueba de bizqueo: tiene que quedar UNA silueta, no dos manchas. Abre este archivo en <code>/brand/contact-sheet.html</code>.</p>
+</header>
+
+<section>
+  <div class="head"><h2>Sobre papel</h2></div>
+  <div class="band paper">
+    <div class="cell"><img class="s16" src="/brand/mark.svg" alt=""><span>16 · favicon</span></div>
+    <div class="cell"><img class="s26" src="/brand/mark.svg" alt=""><span>26</span></div>
+    <div class="cell"><img class="s30" src="/brand/mark.svg" alt=""><span>30 · cabecera</span></div>
+    <div class="cell"><img class="s48" src="/brand/mark.svg" alt=""><span>48</span></div>
+    <div class="cell"><img class="s128" src="/brand/mark.svg" alt=""><span>128</span></div>
+    <div class="cell squint"><img class="s48" src="/brand/mark.svg" alt=""><span>bizqueo 48</span></div>
+    <div class="cell"><p class="lock"><img class="s30" src="/brand/mark.svg" alt="">rulocode</p><span>lockup 30</span></div>
+    <div class="cell"><p class="lock sm"><img class="s16" src="/brand/mark.svg" alt="">rulocode</p><span>lockup 16</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Sobre tinta</h2><p class="muted">Misma geometría; el verde sube a #7FD9B9 porque el #08533C sobre negro no levanta.</p></div>
+  <div class="band ink">
+    <div class="cell"><img class="s16" src="/brand/mark-inverse.svg" alt=""><span>16</span></div>
+    <div class="cell"><img class="s26" src="/brand/mark-inverse.svg" alt=""><span>26</span></div>
+    <div class="cell"><img class="s30" src="/brand/mark-inverse.svg" alt=""><span>30 · cabecera</span></div>
+    <div class="cell"><img class="s48" src="/brand/mark-inverse.svg" alt=""><span>48</span></div>
+    <div class="cell"><img class="s128" src="/brand/mark-inverse.svg" alt=""><span>128</span></div>
+    <div class="cell squint"><img class="s48" src="/brand/mark-inverse.svg" alt=""><span>bizqueo 48</span></div>
+    <div class="cell"><p class="lock"><img class="s30" src="/brand/mark-inverse.svg" alt="">rulocode</p><span>lockup 30</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>A un solo color</h2><p class="muted">currentColor: hereda el color del contexto — solo si el SVG va EN LÍNEA, como aquí. Dentro de un &lt;img&gt; no hereda y sale negro. La diferencia de grosor entre cola (9) y bucle (10,5) es lo único que separa las dos partes.</p></div>
+  <div class="band paper">
+    <div class="cell mono"><svg style="width:16px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>16</span></div>
+    <div class="cell mono"><svg style="width:26px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>26</span></div>
+    <div class="cell mono"><svg style="width:48px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>48</span></div>
+    <div class="cell mono"><svg style="width:128px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>128</span></div>
+    <div class="cell squint mono"><svg style="width:48px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>bizqueo 48</span></div>
+  </div>
+  <div class="band ink">
+    <div class="cell mono"><svg style="width:16px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>16</span></div>
+    <div class="cell mono"><svg style="width:26px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>26</span></div>
+    <div class="cell mono"><svg style="width:48px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>48</span></div>
+    <div class="cell mono"><svg style="width:128px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>128</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Placa e iconos reales</h2><p class="muted">Arriba el SVG de la placa; abajo los PNG que salen de ella y que usa de verdad el navegador y el teléfono.</p></div>
+  <div class="band paper">
+    <div class="cell"><img class="s16" src="/brand/mark-plate.svg" alt=""><span>placa 16</span></div>
+    <div class="cell"><img class="s26" src="/brand/mark-plate.svg" alt=""><span>placa 26</span></div>
+    <div class="cell"><img class="s48" src="/brand/mark-plate.svg" alt=""><span>placa 48</span></div>
+    <div class="cell"><img class="s128" src="/brand/mark-plate.svg" alt=""><span>placa 128</span></div>
+    <div class="cell squint"><img class="s48" src="/brand/mark-plate.svg" alt=""><span>bizqueo 48</span></div>
+  </div>
+  <div class="band paper">
+    <div class="cell"><img class="s16" src="/icons/icon-192.png" alt=""><span>icon-192 @16</span></div>
+    <div class="cell"><img class="s48" src="/icons/icon-192.png" alt=""><span>icon-192 @48</span></div>
+    <div class="cell"><img class="s128" src="/icons/icon-512.png" alt=""><span>icon-512</span></div>
+    <div class="cell"><img class="s128" src="/icons/apple-touch-icon.png" alt=""><span>apple-touch (esquina recta)</span></div>
+    <div class="cell"><img class="s128" src="/icons/maskable-512.png" alt=""><span>maskable (más aire)</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>Lockup y área de respeto</h2><p class="muted">La palabra va trazada a curvas: el archivo no depende de ninguna fuente instalada. El recuadro punteado marca X — un cuarto de la caja de la marca, o el alto del lockup × 0,36. Nada entra ahí.</p></div>
+  <div class="band paper">
+    <div class="cell"><span class="lockbox" style="--x:16px;--w:200px"><img src="/brand/lockup.svg" alt="rulocode"></span><span>lockup 200 · área de respeto</span></div>
+  </div>
+  <div class="band paper">
+    <div class="cell"><img style="width:320px" src="/brand/lockup.svg" alt="rulocode"><span>320</span></div>
+    <div class="cell"><img style="width:160px" src="/brand/lockup.svg" alt="rulocode"><span>160</span></div>
+    <div class="cell"><img style="width:96px" src="/brand/lockup.svg" alt="rulocode"><span>96 · el suelo</span></div>
+  </div>
+  <div class="band ink">
+    <div class="cell"><img style="width:320px" src="/brand/lockup-inverse.svg" alt="rulocode"><span>320 inversa</span></div>
+    <div class="cell"><img style="width:160px" src="/brand/lockup-inverse.svg" alt="rulocode"><span>160 inversa</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>La prueba de la captura</h2><p class="muted">Los archivos de marca están QUIETOS. La versión animada vivía dentro de <code>mark.svg</code> y se cayó en una prueba real: Chrome headless rasteriza el SVG de un <code>&lt;img&gt;</code> sin esperar su línea de tiempo, y la cabecera salía como un punto negro. Ahora el movimiento vive en <code>BrandSplash</code>, donde se controla. Los dos de abajo tienen que ser idénticos siempre, en cualquier motor.</p></div>
+  <div class="band paper">
+    <div class="cell"><img class="s128" src="/brand/mark.svg" alt=""><span>mark.svg</span></div>
+    <div class="cell mono"><svg style="width:128px" viewBox="0 0 64 64" aria-hidden="true"><path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="currentColor" stroke-width="10.5" stroke-linecap="round"/></svg><span>mono en línea (referencia)</span></div>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

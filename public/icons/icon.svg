@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="rulocode">
   <title>rulocode</title>
-  <!-- Versión en placa: pestaña del navegador e icono del teléfono, donde un
-       trazo suelto se pierde. Quieta a propósito — un favicon que se mueve
-       distrae. Trazo más grueso y recorrido más corto para sobrevivir a 16 px. -->
+  <!-- Placa: favicon, icono de app y tarjeta de OG. Misma geometría exacta,
+       escalada al 88 % y centrada para dejar el aire que pide un icono
+       redondeado. Quieta a propósito: un favicon que se mueve distrae, y el
+       generador de OG rasteriza sin ejecutar CSS. -->
   <rect width="64" height="64" rx="15" fill="#08533C"/>
-  <path d="M18 47C18 36 29 36 32 32.5C35 29 46 29 46 18" fill="none" stroke="#F4F1EA" stroke-width="6.5" stroke-linecap="round"/>
-  <circle cx="18" cy="47" r="6" fill="#F4F1EA"/>
-  <circle cx="32" cy="32.5" r="6.5" fill="#7FD9B9"/>
-  <circle cx="46" cy="18" r="6" fill="#F4F1EA"/>
+  <g transform="translate(3.84 3.84) scale(.88)">
+    <path d="M49 15C41 21 39.5 28 39.5 37" fill="none" stroke="#F4F1EA" stroke-width="9" stroke-linecap="round"/>
+    <path d="M39.5 37A12.5 12.5 0 1 1 22.7 25.3" fill="none" stroke="#7FD9B9" stroke-width="10.5" stroke-linecap="round"/>
+  </g>
 </svg>
