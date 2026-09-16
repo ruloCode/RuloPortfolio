@@ -954,7 +954,7 @@
         "label": "Start",
         "eyebrow": "AI Shift Challenge · Week 0 is open",
         "title": "Automate your work with AI in 4 weeks. No code.",
-        "body": "A live program for non-technical professionals: 4 private sessions, 2 group sessions and one automation of yours running at the end. Getting in is free and asks for no card.",
+        "body": "Live program for non-technical professionals. You finish with an automation of your own running. Getting in is free.",
         "tags": {
           "1": "Start today"
         },
@@ -1000,13 +1000,13 @@
         "label": "The challenge",
         "eyebrow": "The challenge",
         "title": "4 private sessions with me, 2 group ones, one flow running.",
-        "body": "Four one-on-one sessions on your concrete case, two group sessions with other roles, and a complete flow operating at the end.",
+        "body": "No syllabus. Sessions come from your real week. The flow stays in your accounts.",
         "tags": {
           "1": "4 weeks",
           "2": "Only 6 seats"
         },
         "highlight": "one flow running",
-        "by": "I teach it myself, Andrés Santana. Six years shipping software in production for 450K+ users."
+        "by": "I teach it myself, Andrés Santana. Software in production for 450K+ users."
       },
       "posicionate": {
         "label": "Stand out",
@@ -1025,14 +1025,13 @@
         "title": "Don't wait for the cohort — start this week.",
         "body": "Three free lessons to diagnose your week, set up your copilot and leave your first automation running.",
         "tags": {
-          "1": "3 free lessons",
-          "2": "Zero spam"
+          "1": "Zero spam"
         },
         "highlight": "this week"
       }
     },
     "stationsNav": "Stations of the tour",
-    "ctaNote": "No card · 3 lessons today · Leave whenever",
+    "ctaNote": "No card · Leave whenever",
     "ctaCompanies": "Running a company? Let's talk"
   },
   "trajectory": {

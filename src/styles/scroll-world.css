@@ -320,10 +320,13 @@
     bottom:calc(20px + env(safe-area-inset-bottom));
     padding:20px 20px 22px;
     border-radius:20px;
-    --sw-gap-hair: 5px;
-    --sw-gap-tight: 10px;
-    --sw-gap: 12px;
-    --sw-gap-wide: 16px;
+    /* Un punto más apretados que antes: en la estación de la oferta hay siete
+       huecos entre bloques, así que cada 2 px valen 14 px de tarjeta — y esos
+       14 px son imagen que se vuelve a ver. */
+    --sw-gap-hair: 4px;
+    --sw-gap-tight: 9px;
+    --sw-gap: 10px;
+    --sw-gap-wide: 14px;
   }
   /* El contador se queda. En el teléfono no hay rail de estaciones y la barra
      de progreso es una línea de 3 px: sin la pastilla, nadie sabe cuánto falta.
@@ -337,12 +340,29 @@
   .sw-copy__title{ font-size:clamp(1.4rem,5.6vw,1.95rem);line-height:1.14; }
   .sw-copy__body{
     font-size:.94rem;line-height:1.45;max-width:none;
-    /* Con el copy ya acortado no debería recortar nunca; queda como red de
-       seguridad para traducciones o textos más largos. */
-    display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
+    /* Cuatro líneas: es RED DE SEGURIDAD para traducciones largas, no una
+       herramienta de diseño. A tres cortaba cinco de las siete estaciones a
+       media frase — la 01 perdía «Entrar es gratis», que es justo lo que quita
+       el miedo. Lo que baja la altura de las tarjetas grandes es el copy, no
+       el recorte.
+
+       Y se recorta con line-clamp y NO con display:none a propósito: el texto
+       sigue entero en el DOM, así que Google lo indexa igual y solo se esconde
+       visualmente. Con display:none el buscador lo descuenta, y la portada es
+       la página con más peso del sitio. */
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
   }
-  .sw-copy__by{ font-size:.8rem; gap:10px; }
-  .sw-copy__by img{ width:30px; height:30px; }
+  /* La firma con foto es la prueba social de la estación de la oferta, así que
+     no se toca — pero pesaba tres líneas más una foto de 30 px. Con el texto
+     acortado son dos, y la foto baja a 28. */
+  .sw-copy__by{
+    font-size:.8rem; gap:10px;
+    margin-top:var(--sw-gap); padding-top:var(--sw-gap-tight);
+  }
+  .sw-copy__by img{ width:28px; height:28px; }
+  /* El motor inyecta su hoja DESPUÉS de esta, así que para ganarle sus 28 px
+     de margen hace falta un selector de (0,2,0). */
+  .sw-copy .sw-copy__cta{ margin-top:var(--sw-gap-wide); gap:10px; }
   .sw-copy__note{ font-size:.72rem; }
   .sw-copy__tags{ gap:6px 16px; }
   .sw-copy__tags li{ font-size:.78rem; gap:7px; }

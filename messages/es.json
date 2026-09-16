@@ -954,7 +954,7 @@
         "label": "Empieza",
         "eyebrow": "AI Shift Challenge · Semana 0 abierta",
         "title": "Automatiza tu trabajo con IA en 4 semanas. Sin escribir código.",
-        "body": "Programa en vivo para profesionales no técnicos: 4 sesiones privadas, 2 grupales y una automatización tuya funcionando al final. Entrar es gratis y no pide tarjeta.",
+        "body": "Programa en vivo para profesionales no técnicos. Terminas con una automatización tuya funcionando. Entrar es gratis.",
         "tags": {
           "1": "Empiezas hoy"
         },
@@ -1000,13 +1000,13 @@
         "label": "El reto",
         "eyebrow": "El reto",
         "title": "4 sesiones privadas conmigo, 2 grupales, un flujo funcionando.",
-        "body": "Cuatro sesiones uno a uno sobre tu caso concreto, dos grupales con otros roles, y al final un flujo completo operando.",
+        "body": "Sin temario. Cada sesión sale de tu semana y el flujo queda en tus cuentas.",
         "tags": {
           "1": "4 semanas",
           "2": "Solo 6 cupos"
         },
         "highlight": "un flujo funcionando",
-        "by": "Lo doy yo, Andrés Santana. Seis años llevando software a producción para más de 450.000 usuarios."
+        "by": "Lo doy yo, Andrés Santana. Software en producción para +450.000 usuarios."
       },
       "posicionate": {
         "label": "Posiciónate",
@@ -1025,14 +1025,13 @@
         "title": "No esperes a la cohorte — empieza esta semana.",
         "body": "Tres lecciones gratis para diagnosticar tu semana, montar tu copiloto y dejar tu primera automatización corriendo.",
         "tags": {
-          "1": "3 lecciones gratis",
-          "2": "Cero spam"
+          "1": "Cero spam"
         },
         "highlight": "esta semana"
       }
     },
     "stationsNav": "Estaciones del recorrido",
-    "ctaNote": "Sin tarjeta · 3 lecciones hoy · Cancelas cuando quieras",
+    "ctaNote": "Sin tarjeta · Cancelas cuando quieras",
     "ctaCompanies": "¿Eres empresa? Hablemos"
   },
   "trajectory": {

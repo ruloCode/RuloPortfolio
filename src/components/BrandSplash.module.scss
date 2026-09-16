@@ -107,8 +107,26 @@
     display: none;
 }
 
+// Con `prefers-reduced-motion` NO se esconde el velo entero, que era lo que
+// hacía antes. El ahorro de batería de Android activa «quitar animaciones», y
+// eso pone esta preferencia en medio millón de teléfonos cuyos dueños no han
+// pedido nada: se quedaban sin la marca sin saber por qué.
+//
+// Lo que se quita es el movimiento de verdad — el trazo dibujándose y el
+// desplazamiento de la palabra. El logo aparece entero y el velo se va con un
+// fundido corto, que no es movimiento vestibular y es lo que la preferencia
+// busca evitar. La espera se acorta porque ya no hay nada que mirar.
+//
+// Sigue siendo seguro: si el fundido no corriera, React desmonta el velo a los
+// 1,9 s de todas formas.
 @media (prefers-reduced-motion: reduce) {
+    .tail,
+    .loop,
+    .word {
+        animation: none;
+    }
+
     .splash {
-        display: none;
+        animation-delay: 0.55s;
     }
 }
