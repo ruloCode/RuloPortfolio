@@ -42,9 +42,14 @@ const nextConfig = {
       "src/app/*/work/projects/**",
       "src/app/*/dashboard/lessons/**",
     ],
-    // /og reads the font off disk now that it runs on Node, and public/ is
-    // served by the CDN — it isn't in the lambda unless traced in.
-    "/og": ["public/fonts/Inter.ttf"],
+    // /og reads sus fuentes y la marca del disco ahora que corre en Node, y
+    // public/ lo sirve el CDN — no está en la lambda si no se traza aquí.
+    "/og": [
+      "public/fonts/Inter.ttf",
+      "public/fonts/Inter-Regular.ttf",
+      "public/fonts/SpaceGrotesk-Bold.ttf",
+      "public/brand/mark.svg",
+    ],
   },
 };
 
