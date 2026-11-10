@@ -1,0 +1,46 @@
+---
+title: "RuloStark: el WiFi que ve moverse la sala, sin cámaras"
+publishedAt: "2026-10-06"
+summary: "Una demo en vivo de sensado por WiFi: el hotspot de un teléfono transmite, tres nodos ESP32-S3 escuchan y, cuando un cuerpo cruza un enlace, su rayo se enciende en una sala 3D. Hecha sobre el proyecto abierto RuView, y honesta con lo que no mide."
+metric: "3 nodos ESP32-S3 · sin cámaras"
+images:
+  - "/videos/projects/rulostark.jpg"
+video: "/videos/projects/rulostark.mp4"
+videoPoster: "/videos/projects/rulostark.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Construí la demo en vivo sobre RuView"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulocode.github.io/RuView/"
+repository: "https://github.com/ruloCode/RuView/tree/rulostark/live-demo-sala3d"
+---
+
+## Resumen
+
+**RuloStark** es una demo en vivo de sensado por WiFi para una charla en tarima. Un teléfono hace de router y tres nodos ESP32-S3 escuchan su señal. Cuando alguien cruza un enlace, ese rayo se enciende en una sala 3D. Sin cámaras.
+
+Está hecha sobre [RuView](https://github.com/ruvnet/RuView), un proyecto open source de rUv (MIT). Mi parte es la demo en vivo: la sala 3D, la métrica por enlace y las herramientas para correrla en un Mac.
+
+## Cómo funciona
+
+1. **Un teléfono emite WiFi.** Su hotspot es el transmisor; entre él y cada nodo hay un enlace.
+2. **Tres ESP32-S3 escuchan.** Cada nodo mide la señal que recibe (RSSI y CSI) y la envía por UDP, decenas de veces por segundo.
+3. **La sala compara.** El servidor en Rust de RuView recibe los datos, y la sala 3D compara cada enlace con su referencia de escenario vacío. Si un cuerpo lo cruza, el rayo brilla.
+
+## Qué muestra y qué no
+
+**Sí muestra** cuánto se perturba cada enlace frente al escenario vacío, la actividad en la tarima medida con los rayos que la cruzan y cuántos nodos están transmitiendo.
+
+**No muestra** número de personas, posición exacta, pose ni signos vitales. Es una señal de radio, no una imagen, y el servidor no mide eso de forma confiable, así que la demo no lo afirma. Tampoco hay métricas de precisión todavía: es una demo cualitativa.
+
+## Cómo está hecho
+
+- Una métrica de perturbación por enlace: variabilidad, saltos y caídas del RSSI, más la energía de movimiento del firmware.
+- El servidor de sensado en Rust de RuView en Docker, con un relay UDP porque Colima no reenvía UDP en macOS.
+- Una sala en three.js con el teléfono y los nodos en sus posiciones reales.
+- También corre sin hardware, con datos marcados claramente como sintéticos.
+
+## Stack
+
+ESP32-S3, WiFi CSI, Rust, Docker, Python y three.js.

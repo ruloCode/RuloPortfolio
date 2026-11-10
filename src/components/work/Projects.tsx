@@ -13,8 +13,10 @@ interface ProjectsProps {
 /** The case grid: the same card as the home's trajectory and the blog. */
 export async function Projects({ range, locale = "en" }: ProjectsProps) {
   const t = await getTranslations("projectCard");
+  // Featured cases first, in their home order; the rest by date.
   const sortedProjects = getPosts(["work", "projects"], locale).sort(
     (a, b) =>
+      (a.metadata.homeOrder ?? Infinity) - (b.metadata.homeOrder ?? Infinity) ||
       new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
   );
 

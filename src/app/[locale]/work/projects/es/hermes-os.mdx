@@ -1,0 +1,54 @@
+---
+title: "Hermes OS: mi sistema operativo de IA personal, corriendo 24/7"
+publishedAt: "2026-10-25"
+summary: "Un sistema operativo de IA personal y local-first: voz en tiempo real, un agente ejecutor sobre el Claude Agent SDK con herramientas MCP detrás de barandas de permisos y memoria de largo plazo en pgvector. Los patrones de agentes que entrego a clientes, corriendo en mi propia máquina todos los días."
+homeOrder: 2
+metric: "Claude Agent SDK · MCP · corre 24/7"
+images:
+  - "/images/projects/hermes-os/hermes-cover.jpg"
+video: "/videos/projects/hermes-os.mp4"
+videoPoster: "/videos/projects/hermes-os.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Creador, arquitecto e ingeniero full-stack"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+repository: "https://github.com/ruloCode/hermes-os"
+---
+
+## Resumen
+
+**Hermes OS** es mi propio Jarvis: un agente que maneja mi día, por texto o por voz. Conoce mis notas, mis tareas, mis reuniones, mi calendario y mi producción de contenido, y todo lo que muestra en pantalla es dato real. Es open source y corre en mi máquina todo el día.
+
+Lo construí de punta a punta: el dashboard, el servidor del agente, la capa de memoria, el loop de voz y las herramientas.
+
+## El problema
+
+Las tareas vivían en una app, las notas de las reuniones en otra, el conocimiento en un vault y el calendario en otro lado. Todos los asistentes que probé podían hablar de mi trabajo, pero ninguno podía **hacerlo**, con mis datos, en mi máquina y con reglas que yo controlo.
+
+## La decisión: local-first y con barandas
+
+- **El agente corre en mi máquina.** Un ejecutor sobre el Claude Agent SDK. Usa mi sesión de Claude Code, así que no hay API key que se pueda filtrar.
+- **Cada llamada a una herramienta pasa por un permiso.** Las herramientas MCP están detrás de barandas; lo que tiene efectos pregunta antes de ejecutarse.
+- **La memoria es una base de datos, no un prompt.** Supabase con pgvector, con búsqueda sobre cinco fuentes.
+
+## Lo que hace
+
+- **Le escribes o le hablas**: voz en tiempo real, de ida y vuelta.
+- **Un copiloto de reuniones en vivo** que sigue la conversación mientras pasa.
+- **Tareas sobre Linear**, calendario y un estudio que sigue cada pieza de contenido desde la idea hasta publicada.
+- **También entrena**: práctica de inglés por voz y un dojo de Python.
+- **Controla el Mac por voz y con gestos de la mano**, y ve por la cámara.
+- **La Oficina**: una sala 3D donde cada sesión viva de un agente es un personaje en su escritorio. El modo tarima muestra la traza completa del loop: qué leyó, qué herramienta llamó, dónde se equivocó y dónde se corrigió. Una vista pública tapa secretos y nombres de clientes antes de que lleguen a la pantalla.
+
+## Cómo está hecho
+
+- **Servidor del agente**: Hono y el Claude Agent SDK, con un set propio de herramientas MCP.
+- **Memoria**: Supabase y pgvector, RAG sobre cinco fuentes.
+- **Voz**: WebRTC con speech-to-text y text-to-speech.
+- **Evals**: suites de aserciones que corren contra el agente, para medir un cambio en vez de adivinarlo.
+- **Un equipo de agentes en la nube** al que le puede delegar.
+
+## Stack
+
+Claude Agent SDK, MCP, TypeScript, Next.js, Hono, Supabase, pgvector y voz en tiempo real.

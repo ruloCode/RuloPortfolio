@@ -1,0 +1,37 @@
+---
+title: "A Landing Page You Fly Through: The Scroll-Cinematic Home of rulocode.com"
+publishedAt: "2026-09-14"
+summary: "Scrolling pilots a camera through an AI-generated papercraft world: five scenes and four aerial connectors stitched so the flight never cuts, on a dependency-free scroll-scrub engine in vanilla JavaScript."
+metric: "Dependency-free scroll-scrub engine"
+images:
+  - "/videos/projects/scroll-world.jpg"
+video: "/videos/projects/scroll-world.mp4"
+videoPoster: "/videos/projects/scroll-world.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Creator and frontend engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulocode.com"
+repository: "https://github.com/ruloCode/rulocode-scroll-world"
+---
+
+## Overview
+
+The home of this site is not a page you scroll: it is a world you fly through. Scrolling pilots a camera across an AI-generated papercraft diorama, using the same scrubbing technique behind Apple's product pages.
+
+## What It Does
+
+- Five scenes and four aerial connectors, stitched so the flight never cuts.
+- Each scene carries one idea of the site, and the copy arrives as the camera lands.
+
+## How It's Built
+
+- **Vanilla JS, no dependencies**: blob-loaded clips, `requestAnimationFrame` scrubbing and crossfades between clips.
+- **Three encodes per clip** (AV1, HEVC and H.264) at two sizes, so each device downloads the lightest one it can play.
+- **iOS priming and mobile hardening**, because a phone will not seek a video it has not been allowed to play.
+- **Reduced-motion support and WCAG AA contrast**: without motion, the scenes become stills.
+
+## Stack
+
+Next.js, vanilla JavaScript, video scrubbing and AI-generated video.

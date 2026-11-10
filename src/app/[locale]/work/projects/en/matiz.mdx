@@ -1,0 +1,103 @@
+---
+title: "Matiz: An MCP Server That Gives AI Agents Measured Design Data"
+publishedAt: "2026-10-23"
+summary: "An MCP server that turns 800+ real product pages from 165 brands into data an AI agent can build with: colors with roles, real typography, section structure and DESIGN.md. 16 tools, works in Claude Code, Codex, Cursor and VS Code, no account or API key."
+homeOrder: 4
+metric: "16 MCP tools · 165 brands measured"
+images:
+  - "/images/projects/matiz/matiz-cover.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Creator and engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://matiz-mcp.vercel.app"
+video: "/videos/projects/matiz.mp4"
+videoPoster: "/videos/projects/matiz.jpg"
+---
+
+## Overview
+
+**Matiz** is a Model Context Protocol (MCP) server for design references. When a coding agent like Claude Code needs to build a pricing page or a hero section, Matiz hands it what it needs to write the code: measured tokens, the structure of the page and a DESIGN.md. Not just a screenshot.
+
+I built it end to end: the capture pipeline, the analysis, the MCP server, the local gallery and the public site.
+
+## The Problem
+
+Design galleries are built for humans. I measured the contract of an existing design-reference MCP across 69 real calls: each result is an image, a link that expires in 30 days and the site's name. No colors, no type scale, no layout, not even the URL.
+
+For an agent that has to **write code**, that is the bottleneck. It has to guess spacing, colors and font sizes by looking at a JPEG, and it guesses wrong.
+
+## The Decision: Data First, Image Second
+
+Matiz inverts that. Every value comes from `getComputedStyle` on the live site, captured with Playwright:
+
+- **Colors with a role** (background, text, accent), clustered in OKLab, with WCAG contrast measured, not estimated.
+- **Real typography**: families, scale, weights and tracking, plus a free alternative for each paid font.
+- **Section structure**: every section is classified (hero, pricing, FAQ…) and carries the *reasons* for that label, like "3 prices with a billing period".
+- **Exports** to DESIGN.md, W3C design tokens (DTCG), CSS and Tailwind v4.
+
+Two rules shaped the design:
+
+1. **Nothing is invented.** If a value was not measured, the tool doesn't return it.
+2. **Local by default.** The corpus lives on the user's machine, and the package ships measurements only, never third-party screenshots.
+
+## What It Does
+
+| Tool | What it answers |
+|------|-----------------|
+| `search_references` | Find sites or sections, with tokens and a thumbnail |
+| `get_brand_kit` | Everything needed to match a brand, including hover states measured live |
+| `get_section_blueprint` | A section's skeleton plus a React/Tailwind component with real measurements |
+| `get_composition` | Which sections a landing page usually has, and in what order |
+| `critique_against_reference` | Measures your page, even on `localhost`, against a reference |
+| `capture_site` | Adds any public site to the corpus in about 10 seconds |
+
+Sixteen tools in total, plus a guided prompt that walks the agent from composition to references, identity, DESIGN.md, build and critique.
+
+## Results
+
+| Metric | Value |
+|--------|-------|
+| **Brands measured** | 165 |
+| **Product pages** | 800+ (desktop and mobile) |
+| **Classified sections** | 12,000+ |
+| **Open DESIGN.md files indexed** | 141 |
+| **MCP tools** | 16 |
+| **Behavior tests** | 41, all passing |
+
+It installs with one line in Claude Code:
+
+```bash
+claude mcp add matiz --scope user -- npx -y matiz-mcp
+```
+
+The same package works in Codex, Cursor, VS Code, Claude Desktop, Gemini CLI, Windsurf and Zed. No account, no API key.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Protocol** | Model Context Protocol (stdio) |
+| **Language** | TypeScript, Node.js 22 |
+| **Capture** | Playwright |
+| **Storage** | `node:sqlite` with FTS5, zero native dependencies |
+| **Color** | OKLab clustering, WCAG contrast |
+| **Site** | Static, on Vercel |
+
+## What I Learned
+
+### 1. Agents need numbers, not pictures
+The quality of what an agent builds tracks the quality of the data it gets. A measured 72px headline with -0.022em tracking beats any description of "big bold title".
+
+### 2. Explainable beats clever
+Every classification carries its reasons. When the agent, or I, disagree with a label, the reason shows exactly what to fix.
+
+### 3. Close the loop
+`critique_against_reference` is what makes it useful day to day: build, measure against the reference, fix what's missing.
+
+---
+
+> **Need an MCP server for your own data, or an agent that uses one?**
+>
+> [Let's talk →](https://calendly.com/rulocode/30min)

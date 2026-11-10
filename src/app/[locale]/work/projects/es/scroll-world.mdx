@@ -1,0 +1,37 @@
+---
+title: "Una landing que se vuela: el home scroll-cinematic de rulocode.com"
+publishedAt: "2026-09-14"
+summary: "El scroll pilotea una cámara por un mundo de papel generado con IA: cinco escenas y cuatro conectores aéreos cosidos para que el vuelo nunca corte, sobre un motor de scroll-scrub en JavaScript puro y sin dependencias."
+metric: "Motor de scroll-scrub sin dependencias"
+images:
+  - "/videos/projects/scroll-world.jpg"
+video: "/videos/projects/scroll-world.mp4"
+videoPoster: "/videos/projects/scroll-world.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Creador e ingeniero frontend"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulocode.com"
+repository: "https://github.com/ruloCode/rulocode-scroll-world"
+---
+
+## Resumen
+
+El home de este sitio no es una página que se recorre: es un mundo que se vuela. El scroll pilotea una cámara por un diorama de papel generado con IA, con la misma técnica de scrubbing de las páginas de producto de Apple.
+
+## Lo que hace
+
+- Cinco escenas y cuatro conectores aéreos, cosidos para que el vuelo nunca corte.
+- Cada escena lleva una idea del sitio, y el texto llega cuando la cámara aterriza.
+
+## Cómo está hecho
+
+- **JavaScript puro, sin dependencias**: clips cargados como blob, scrubbing con `requestAnimationFrame` y fundidos entre clips.
+- **Tres codificaciones por clip** (AV1, HEVC y H.264) en dos tamaños, para que cada dispositivo baje la más liviana que puede reproducir.
+- **Priming en iOS y endurecimiento móvil**, porque un celular no deja buscar dentro de un video que no ha podido reproducir.
+- **Soporte de movimiento reducido y contraste WCAG AA**: sin movimiento, las escenas quedan como imágenes fijas.
+
+## Stack
+
+Next.js, JavaScript puro, scrubbing de video y video generado con IA.

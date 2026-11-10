@@ -1,0 +1,46 @@
+---
+title: "RuloStark: WiFi That Sees the Room Move, Without Cameras"
+publishedAt: "2026-10-06"
+summary: "A live demo of WiFi sensing: a phone hotspot transmits, three ESP32-S3 nodes listen, and when a body crosses a link its beam lights up in a 3D room. Built on the open-source RuView, and honest about what it does not measure."
+metric: "3 ESP32-S3 nodes · no cameras"
+images:
+  - "/videos/projects/rulostark.jpg"
+video: "/videos/projects/rulostark.mp4"
+videoPoster: "/videos/projects/rulostark.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Built the live demo on top of RuView"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulocode.github.io/RuView/"
+repository: "https://github.com/ruloCode/RuView/tree/rulostark/live-demo-sala3d"
+---
+
+## Overview
+
+**RuloStark** is a live demo of WiFi sensing for a stage talk. A phone acts as the router and three ESP32-S3 nodes listen to its signal. When someone crosses a link, that beam lights up in a 3D room. No cameras.
+
+It is built on [RuView](https://github.com/ruvnet/RuView), an open-source project by rUv (MIT). My part is the live demo stack: the 3D room, the per-link metric and the tooling to run it on a Mac.
+
+## How It Works
+
+1. **A phone transmits WiFi.** Its hotspot is the transmitter; between it and each node there is a link.
+2. **Three ESP32-S3 listen.** Each node measures the signal it receives (RSSI and CSI) and sends it over UDP, dozens of times per second.
+3. **The room compares.** RuView's Rust server receives the data, and the 3D room compares each link with its empty-stage reference. If a body crosses it, the beam glows.
+
+## What It Shows, and What It Doesn't
+
+**It shows** how much each link is disturbed against the empty stage, the activity on the stage measured with the beams that cross it, and how many nodes are transmitting.
+
+**It does not show** a person count, an exact position, a pose or vital signs. It is a radio signal, not an image, and the server does not measure those reliably, so the demo does not claim them. There are no accuracy metrics yet either: it is a qualitative demo.
+
+## How It's Built
+
+- A per-link disturbance metric: RSSI variability, jumps and drops, plus the firmware's motion energy.
+- RuView's Rust sensing server in Docker, with a UDP relay because Colima does not forward UDP on macOS.
+- A three.js room with the phone and the nodes at their real positions.
+- It also runs without hardware, with data clearly marked as synthetic.
+
+## Stack
+
+ESP32-S3, WiFi CSI, Rust, Docker, Python and three.js.

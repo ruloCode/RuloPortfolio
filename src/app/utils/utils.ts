@@ -25,6 +25,9 @@ type Metadata = {
   // the one-line outcome shown on the card. Absent = not featured on the home.
   homeOrder?: number;
   metric?: string;
+  /** Work only: a short walkthrough (MP4 in /public) that replaces the cover on the case page. */
+  video?: string;
+  videoPoster?: string;
   // Dashboard lessons only (src/app/[locale]/dashboard/lessons). Undefined for
   // blog and work.
   module?: string;
@@ -72,6 +75,8 @@ function readMDXFile(filePath: string) {
     repository: data.repository || "",
     homeOrder: typeof data.homeOrder === "number" ? data.homeOrder : undefined,
     metric: data.metric || undefined,
+    video: data.video || undefined,
+    videoPoster: data.videoPoster || undefined,
     module: data.module || undefined,
     order: typeof data.order === "number" ? data.order : undefined,
     duration: typeof data.duration === "number" ? data.duration : undefined,

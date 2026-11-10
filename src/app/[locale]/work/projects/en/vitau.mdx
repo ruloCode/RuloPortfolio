@@ -1,7 +1,7 @@
 ---
 title: "Vitau: Scaling Mexico's Most Human Digital Pharmacy"
 publishedAt: "2024-12-01"
-summary: "4+ years leading frontend development for a healthcare fintech platform processing $2M+/month in financial transactions. Payment processing architecture, real-time pricing systems, and checkout optimization serving 50,000+ patients."
+summary: "Nearly six years leading frontend at a Mexican digital pharmacy: a modular checkout that cut cart abandonment 31% ($2.8M a year), daily active users up 23% to 450K+, and a Tonder payment integration processing $500K+ a month."
 homeOrder: 1
 metric: "−31% abandonment · $2.8M a year"
 images:
@@ -12,13 +12,15 @@ team:
     avatar: "/images/avatar.jpg"
     linkedIn: "https://www.linkedin.com/in/rulocode/"
 link: "https://vitau.mx"
+video: "/videos/projects/vitau.mp4"
+videoPoster: "/videos/projects/vitau.jpg"
 ---
 
 ## Overview
 
 **Vitau** is Mexico's fastest-growing digital pharmacy, focused on serving patients with chronic conditions—diabetes, hypertension, and cardiovascular diseases. Unlike traditional pharmacies, Vitau combines e-commerce with healthcare services: prescription validation, insurance processing, and medication delivery.
 
-As **Senior Frontend Engineer & Tech Lead**, I've been responsible for the entire frontend architecture since 2020, scaling the platform from early-stage startup to processing **$2M+ monthly** in transactions.
+As **Senior Frontend Engineer & Tech Lead**, I was responsible for the entire frontend architecture from 2020 to 2026, scaling the platform from early-stage startup to **450K+ daily active users**.
 
 ## The Challenge
 
@@ -27,7 +29,7 @@ When I joined Vitau, the platform faced critical issues blocking growth:
 - **Slow performance**: 5.8s LCP killing mobile conversions
 - **Complex checkout**: Prescription meds require validation, insurance auth, and compliance
 - **Scaling pain**: Legacy React codebase couldn't handle traffic spikes
-- **Poor DX**: 8+ minute build times slowing feature delivery
+- **Poor DX**: slow builds delaying feature delivery
 
 The business needed a frontend that could **convert visitors into patients** while handling healthcare's unique constraints.
 
@@ -36,9 +38,11 @@ The business needed a frontend that could **convert visitors into patients** whi
 | Metric | Before | After | Impact |
 |--------|--------|-------|--------|
 | **LCP (Largest Contentful Paint)** | 5.8s | 2.5s | -56% |
-| **Conversion Rate** | 2.1% | 2.6% | +23% |
-| **Monthly Transactions** | — | $2M+ | — |
-| **Build Time** | 8 min | 2.5 min | -69% |
+| **CLS (Cumulative Layout Shift)** | 0.3 | 0.1 | -67% |
+| **Checkout Abandonment** | — | — | -31% ($2.8M/year) |
+| **Daily Active Users** | — | 450K+ | +23% |
+| **Payments via Tonder** | — | $500K+/month | — |
+| **Build Time** | — | — | -50% |
 | **Bundle Size** | 1.2 MB | 720 KB | -40% |
 | **Lighthouse Score** | 54 | 92 | +70% |
 
@@ -100,7 +104,7 @@ I designed a **modular checkout system** with these components:
 
 ### Payment Processing & Financial Transaction Architecture
 
-Integrated **Tonder** as the payment gateway, building a robust financial transaction layer handling:
+Integrated **Tonder** as the payment gateway, building a financial transaction layer that processes **$500K+ a month** and handles:
 - Credit/debit cards (Visa, Mastercard, Amex) with tokenized payment processing
 - OXXO cash payments (critical for Mexico's unbanked population)
 - Bank transfers (SPEI) with real-time settlement tracking
@@ -123,7 +127,7 @@ Led the migration from Create React App to Next.js 15 (App Router):
 
 **Benefits realized:**
 - 40% smaller bundle (Server Components)
-- 69% faster builds (Turbopack)
+- 50% faster builds (Turbopack)
 - Better SEO with automatic metadata
 - Simplified data fetching patterns
 
@@ -131,7 +135,7 @@ Led the migration from Create React App to Next.js 15 (App Router):
 
 Beyond the frontend, I built automation workflows with **N8N**:
 
-- **Medical appointment orchestration**: Auto-schedule follow-ups based on prescription cycles
+- **Medical appointment orchestration**: Auto-schedule follow-ups based on prescription cycles, cutting manual scheduling 80%
 - **Insurance pre-authorization**: Automated document submission to carriers
 - **Inventory alerts**: Notify patients when chronic meds are back in stock
 
@@ -161,16 +165,16 @@ Our data showed **every 100ms improvement in load time increased conversion by 0
 Breaking checkout into independent modules allowed parallel development and easier A/B testing. We could ship payment experiments without touching prescription logic.
 
 ### 4. Invest in Developer Experience
-Reducing build times from 8 min to 2.5 min saved ~15 hours/week across the team. Faster feedback loops = faster shipping.
+Halving build times with the Next.js 15 migration gave the whole team faster feedback loops. Faster feedback loops = faster shipping.
 
 ## Impact
 
-Vitau now serves **50,000+ patients** managing chronic conditions, with the platform I built handling:
+When I left in 2026, more than **450,000 people** were using Vitau every day to manage chronic conditions, on a platform that delivered:
 
-- **15,000+ monthly orders**
-- **99.9% checkout uptime**
-- **2.5s average page load** (mobile)
-- **4.8★ app store rating** (related to web experience)
+- **−31% cart abandonment**, worth **$2.8M a year**
+- **$500K+ a month** in payments through Tonder
+- **2.5s LCP** on mobile, down from 5.8s
+- **−80% manual scheduling** with n8n automations
 
 More importantly: patients get their medications on time, every time. In healthcare, that's what matters.
 

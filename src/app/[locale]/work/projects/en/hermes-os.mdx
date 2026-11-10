@@ -1,0 +1,54 @@
+---
+title: "Hermes OS: My Personal AI Operating System, Running 24/7"
+publishedAt: "2026-10-25"
+summary: "A local-first personal AI operating system: real-time voice, an executor agent on the Claude Agent SDK with MCP tools behind permission guardrails, and long-term memory on pgvector. The agent patterns I ship to clients, running on my own machine every day."
+homeOrder: 2
+metric: "Claude Agent SDK · MCP · runs 24/7"
+images:
+  - "/images/projects/hermes-os/hermes-cover.jpg"
+video: "/videos/projects/hermes-os.mp4"
+videoPoster: "/videos/projects/hermes-os.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Creator, architect and full-stack engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+repository: "https://github.com/ruloCode/hermes-os"
+---
+
+## Overview
+
+**Hermes OS** is my own Jarvis: one agent that runs my day, by text or by voice. It knows my notes, my tasks, my meetings, my calendar and my content pipeline, and everything it shows on screen is real data. It is open source and it runs on my machine around the clock.
+
+I built it end to end: the dashboard, the agent server, the memory layer, the voice loop and the tools.
+
+## The Problem
+
+Tasks lived in one app, meeting notes in another, knowledge in a vault and the calendar somewhere else. Every assistant I tried could talk about my work, but none of them could **do** it, with my data, on my machine, under rules I control.
+
+## The Decision: Local-First, With Guardrails
+
+- **The agent runs on my machine.** An executor on the Claude Agent SDK. It uses my Claude Code login, so there is no API key to leak.
+- **Every tool call passes a permission check.** The MCP tools sit behind guardrails; actions with side effects ask before they run.
+- **Memory is a database, not a prompt.** Supabase with pgvector, with retrieval across five sources.
+
+## What It Does
+
+- **Ask by text or talk to it**: real-time voice in and out.
+- **A live meeting copilot** that follows the conversation as it happens.
+- **Linear-first tasks**, calendar and a studio that tracks every piece of content from idea to published.
+- **It coaches too**: English practice by voice and a Python dojo.
+- **Controls the Mac by voice and by hand gestures**, and sees through the camera.
+- **The Office**: a 3D room where every live agent session is a character at its desk. A stage mode shows the full trace of the loop: what it read, which tool it called, where it went wrong and where it corrected itself. A public view masks secrets and client names before they reach the screen.
+
+## How It's Built
+
+- **Agent server**: Hono and the Claude Agent SDK, with a custom MCP toolset.
+- **Memory**: Supabase and pgvector, RAG over five sources.
+- **Voice**: WebRTC with speech-to-text and text-to-speech.
+- **Evals**: assertion suites that run against the agent, so a change is measured and not guessed.
+- **A team of cloud agents** it can delegate to.
+
+## Stack
+
+Claude Agent SDK, MCP, TypeScript, Next.js, Hono, Supabase, pgvector and real-time voice.

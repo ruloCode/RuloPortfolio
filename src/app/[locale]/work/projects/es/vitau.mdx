@@ -1,7 +1,7 @@
 ---
 title: "Vitau: Escalando la farmacia digital más humana de México"
 publishedAt: "2024-12-01"
-summary: "Más de 4 años liderando el desarrollo frontend de una plataforma fintech de salud que procesa más de $2M USD mensuales en transacciones financieras. Arquitectura de procesamiento de pagos, sistemas de precios en tiempo real y optimización del checkout para más de 50,000 pacientes."
+summary: "Casi seis años liderando el frontend de una farmacia digital mexicana: un checkout modular que recortó el abandono de carrito un 31% ($2,8M al año), usuarios activos diarios +23% hasta más de 450K y una integración con Tonder que procesa más de $500K USD al mes."
 homeOrder: 1
 metric: "−31% abandono · $2,8M al año"
 images:
@@ -12,13 +12,15 @@ team:
     avatar: "/images/avatar.jpg"
     linkedIn: "https://www.linkedin.com/in/rulocode/"
 link: "https://vitau.mx"
+video: "/videos/projects/vitau.mp4"
+videoPoster: "/videos/projects/vitau.jpg"
 ---
 
 ## Overview
 
 **Vitau** es la farmacia digital de mayor crecimiento en México, enfocada en atender pacientes con condiciones crónicas: diabetes, hipertensión y enfermedades cardiovasculares. A diferencia de las farmacias tradicionales, Vitau combina e-commerce con servicios de salud: validación de recetas, procesamiento de seguros y entrega de medicamentos.
 
-Como **Senior Frontend Engineer & Tech Lead**, he sido responsable de toda la arquitectura frontend desde 2020, escalando la plataforma desde una startup en etapa temprana hasta procesar **más de $2M USD mensuales** en transacciones.
+Como **Senior Frontend Engineer & Tech Lead**, fui responsable de toda la arquitectura frontend de 2020 a 2026, escalando la plataforma desde una startup en etapa temprana hasta **más de 450K usuarios activos diarios**.
 
 ## El reto
 
@@ -27,7 +29,7 @@ Cuando entré a Vitau, la plataforma tenía problemas críticos que frenaban el 
 - **Performance lento**: un LCP de 5.8s que mataba las conversiones en móvil
 - **Checkout complejo**: los medicamentos con receta requieren validación, autorización del seguro y compliance
 - **Dolores de escalamiento**: el codebase legacy en React no aguantaba los picos de tráfico
-- **Mala DX**: builds de más de 8 minutos que retrasaban la entrega de features
+- **Mala DX**: builds lentos que retrasaban la entrega de features
 
 El negocio necesitaba un frontend capaz de **convertir visitantes en pacientes**, manejando al mismo tiempo las restricciones únicas del sector salud.
 
@@ -36,9 +38,11 @@ El negocio necesitaba un frontend capaz de **convertir visitantes en pacientes**
 | Métrica | Antes | Después | Impacto |
 |--------|--------|-------|--------|
 | **LCP (Largest Contentful Paint)** | 5.8s | 2.5s | -56% |
-| **Tasa de conversión** | 2.1% | 2.6% | +23% |
-| **Transacciones mensuales** | — | $2M+ | — |
-| **Tiempo de build** | 8 min | 2.5 min | -69% |
+| **CLS (Cumulative Layout Shift)** | 0.3 | 0.1 | -67% |
+| **Abandono del checkout** | — | — | -31% ($2,8M al año) |
+| **Usuarios activos diarios** | — | 450K+ | +23% |
+| **Pagos por Tonder** | — | $500K+/mes | — |
+| **Tiempo de build** | — | — | -50% |
 | **Tamaño del bundle** | 1.2 MB | 720 KB | -40% |
 | **Lighthouse Score** | 54 | 92 | +70% |
 
@@ -100,7 +104,7 @@ Diseñé un **sistema de checkout modular** con estos componentes:
 
 ### Procesamiento de pagos y arquitectura de transacciones financieras
 
-Integré **Tonder** como pasarela de pagos, construyendo una capa robusta de transacciones financieras que maneja:
+Integré **Tonder** como pasarela de pagos, construyendo una capa de transacciones financieras que procesa **más de $500K USD al mes** y maneja:
 - Tarjetas de crédito/débito (Visa, Mastercard, Amex) con procesamiento de pagos tokenizado
 - Pagos en efectivo vía OXXO (crítico para la población no bancarizada de México)
 - Transferencias bancarias (SPEI) con seguimiento de liquidación en tiempo real
@@ -123,7 +127,7 @@ Lideré la migración de Create React App a Next.js 15 (App Router):
 
 **Beneficios obtenidos:**
 - Bundle 40% más pequeño (Server Components)
-- Builds 69% más rápidos (Turbopack)
+- Builds 50% más rápidos (Turbopack)
 - Mejor SEO con metadata automática
 - Patrones de data fetching más simples
 
@@ -131,7 +135,7 @@ Lideré la migración de Create React App a Next.js 15 (App Router):
 
 Más allá del frontend, construí workflows de automatización con **N8N**:
 
-- **Orquestación de citas médicas**: agendar seguimientos automáticamente según los ciclos de las recetas
+- **Orquestación de citas médicas**: agendar seguimientos automáticamente según los ciclos de las recetas, con un 80% menos de agendamiento manual
 - **Preautorización de seguros**: envío automatizado de documentos a las aseguradoras
 - **Alertas de inventario**: notificar a los pacientes cuando sus medicamentos crónicos vuelven a estar disponibles
 
@@ -161,16 +165,16 @@ Nuestros datos mostraron que **cada mejora de 100ms en el tiempo de carga aument
 Dividir el checkout en módulos independientes permitió desarrollo en paralelo y A/B testing más sencillo. Podíamos lanzar experimentos de pagos sin tocar la lógica de recetas.
 
 ### 4. Invertir en developer experience
-Reducir los tiempos de build de 8 min a 2.5 min ahorró ~15 horas semanales en todo el equipo. Ciclos de feedback más rápidos = entregas más rápidas.
+Reducir a la mitad los tiempos de build con la migración a Next.js 15 le dio a todo el equipo ciclos de feedback más rápidos. Ciclos de feedback más rápidos = entregas más rápidas.
 
 ## Impacto
 
-Vitau hoy atiende a **más de 50,000 pacientes** con condiciones crónicas, y la plataforma que construí maneja:
+Cuando salí en 2026, **más de 450.000 personas** usaban Vitau cada día para manejar sus condiciones crónicas, sobre una plataforma que entregaba:
 
-- **Más de 15,000 órdenes mensuales**
-- **99.9% de uptime en el checkout**
-- **2.5s de carga promedio** (móvil)
-- **Calificación de 4.8★ en las app stores** (relacionada con la experiencia web)
+- **−31% de abandono de carrito**, equivalente a **$2,8M al año**
+- **Más de $500K USD al mes** en pagos por Tonder
+- **LCP de 2.5s** en móvil, desde 5.8s
+- **−80% de agendamiento manual** con automatizaciones en n8n
 
 Y lo más importante: los pacientes reciben sus medicamentos a tiempo, siempre. En salud, eso es lo que cuenta.
 

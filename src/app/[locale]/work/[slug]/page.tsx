@@ -16,6 +16,7 @@ import { baseURL, routes, scheduling } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import styles from "@/components/work/Projects.module.scss";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -217,7 +218,17 @@ export default async function Project(props: WorkParams) {
         </Button>
         <Heading variant="display-strong-s">{post.metadata.title}</Heading>
       </Column>
-      {post.metadata.images.length > 0 && (
+      {post.metadata.video ? (
+        <video
+          className={styles.video}
+          src={post.metadata.video}
+          poster={post.metadata.videoPoster || post.metadata.images[0]}
+          controls
+          playsInline
+          preload="metadata"
+          aria-label={post.metadata.title}
+        />
+      ) : post.metadata.images.length > 0 && (
         <SmartImage
           priority
           aspectRatio="16 / 9"

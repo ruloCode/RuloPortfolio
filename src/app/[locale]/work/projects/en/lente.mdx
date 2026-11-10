@@ -1,0 +1,67 @@
+---
+title: "Lente: A Clip That Makes Any Glasses See, Listen and Remember"
+publishedAt: "2026-11-05"
+summary: "Built solo in ten days for the Meta Global AI Developer Hackathon: a US$ 13.90 clip for any pair of glasses, its firmware, a hub, an Android app and a web app. It reads a card aloud for someone who no longer sees well and gives you the line to say when a meeting question is for you."
+homeOrder: 3
+metric: "Built solo in 10 days · 863 tests"
+images:
+  - "/images/projects/lente/lente-cover.jpg"
+video: "/videos/projects/lente.mp4"
+videoPoster: "/videos/projects/lente.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Solo builder: hardware, firmware, hub, Android and web"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulocode.github.io/lente/en/"
+repository: "https://github.com/ruloCode/lente"
+---
+
+## Overview
+
+**Lente** is a small clip for any pair of glasses, plus your phone and Meta's models. It sees, listens and remembers with you. I built it alone in Bogotá for the **Meta Global AI Developer Hackathon** (Indie track, *Build for Your World*), between October 26 and November 4, 2026: the clip and its firmware, the printed case, the hub, the Android app and the web app.
+
+The full three-minute demo is on [YouTube](https://youtu.be/IlmcieeMiDA).
+
+## The Problem
+
+**Think of someone you love who no longer sees well.** The card from a grandchild, the medicine label, the letter from the bank: it is all in front of them, and none of it reaches them unless someone reads it. AI glasses for blind people exist, but they are expensive and mean buying new glasses. In Colombia alone, the 2018 census counted 1,948,332 people with difficulty seeing (INCI, citing DANE).
+
+**And at work, the meeting moves faster than your second language.** You know the answer, but while you build the sentence in English someone else answers, and the decision is made without you.
+
+## The Decision: No New Glasses
+
+A camera, a microphone and your phone are enough when the models do the seeing, the listening and the remembering. The clip is a Seeed XIAO ESP32-S3 Sense (US$ 13.90) with a small battery, in a case modelled in code and 3D-printed to fit any glasses. Without the clip, the phone does the same job.
+
+## What It Does
+
+- **Ver**, for someone who no longer sees well: a warm Colombian voice says what is in front of you, one sentence at a time, and reads a paper aloud. When nothing changes it stays quiet. It describes and never guides, and never says who someone is. Works with TalkBack.
+- **Asistir**, at work: Lente knows who is speaking, and when a question is for you it shows the line to say on your phone, with its meaning in Spanish.
+- **Recuerdos**: the moments of your day; turn the wheel, tap one, relive it.
+- **Memory and agents**: notes, decisions and tasks, sealed per account. It answers with its source, or says it can't find it. When there is work to do, Claude Code or Codex do it on your computer, only after you approve it on your phone.
+
+## How It's Built
+
+- **Clip**: XIAO ESP32-S3 Sense with its own firmware; audio and photos travel over Wi-Fi.
+- **Hub**: Node 22 with zero runtime dependencies.
+- **Models**: Muse Voice Transcribe hears and tells speakers apart, Muse Spark 1.3 sees, talks and remembers, and Muse Spark Open runs the fast lane.
+- **Apps**: a native Android app and a web app.
+
+While I soldered, my coding agents built alongside me, task by task, with a harness that decides which group of tasks is ready next.
+
+## Results
+
+Every number is measured by a script in the repository.
+
+| Metric | Value |
+|--------|-------|
+| **Question ends → line on the phone** | 3.0 s (p50) |
+| **Ver: time to first token of a description** | 3.08 s (p50) |
+| **Memory answers right, with the right source** | 90 of 105 |
+| **Trap questions refused** | 25 of 25 |
+| **Unit tests** | 863 |
+| **Commits in ten days** | 311 |
+
+## Stack
+
+ESP32-S3 firmware, Node 22, Kotlin (Android), Muse Spark 1.3, Muse Voice Transcribe, Muse Spark Open and Supabase. The repository is open source under MIT, including the STL files to print the clip.

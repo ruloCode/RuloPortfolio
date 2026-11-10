@@ -1,0 +1,103 @@
+---
+title: "Matiz: un servidor MCP que le da a los agentes de IA datos de diseño medidos"
+publishedAt: "2026-10-23"
+summary: "Un servidor MCP que convierte más de 800 páginas reales de 165 marcas en datos con los que un agente de IA puede construir: colores con rol, tipografía real, estructura de secciones y DESIGN.md. 16 herramientas, funciona en Claude Code, Codex, Cursor y VS Code, sin cuenta ni API key."
+homeOrder: 4
+metric: "16 herramientas MCP · 165 marcas medidas"
+images:
+  - "/images/projects/matiz/matiz-cover.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Creador e ingeniero"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://matiz-mcp.vercel.app"
+video: "/videos/projects/matiz.mp4"
+videoPoster: "/videos/projects/matiz.jpg"
+---
+
+## Resumen
+
+**Matiz** es un servidor MCP (Model Context Protocol) de referencias de diseño. Cuando un agente de código como Claude Code tiene que construir una página de precios o un hero, Matiz le entrega lo que necesita para escribir el código: tokens medidos, la estructura de la página y un DESIGN.md. No solo una captura.
+
+Lo construí de punta a punta: el pipeline de captura, el análisis, el servidor MCP, la galería local y el sitio público.
+
+## El problema
+
+Las galerías de diseño están hechas para personas. Medí el contrato de un MCP de referencias que ya existe en 69 llamadas reales: cada resultado es una imagen, un link que vence en 30 días y el nombre del sitio. Sin colores, sin escala tipográfica, sin layout, ni siquiera la URL.
+
+Para un agente que tiene que **escribir código**, ese es el cuello de botella. Tiene que adivinar espaciados, colores y tamaños mirando un JPEG, y adivina mal.
+
+## La decisión: primero el dato, después la imagen
+
+Matiz lo invierte. Cada valor sale de `getComputedStyle` sobre el sitio en vivo, capturado con Playwright:
+
+- **Colores con rol** (fondo, texto, acento), agrupados en OKLab, con el contraste WCAG medido y no estimado.
+- **Tipografía real**: familias, escala, pesos y tracking, más una alternativa libre para cada fuente paga.
+- **Estructura de secciones**: cada sección queda clasificada (hero, precios, FAQ…) y trae los *motivos* de esa etiqueta, como "3 precios con periodo".
+- **Exporta** a DESIGN.md, tokens W3C (DTCG), CSS y Tailwind v4.
+
+Dos reglas guiaron el diseño:
+
+1. **Nada se inventa.** Si un valor no se midió, la herramienta no lo devuelve.
+2. **Local por defecto.** El corpus vive en la máquina de quien lo usa, y el paquete trae solo medidas, nunca capturas de terceros.
+
+## Qué hace
+
+| Herramienta | Qué responde |
+|------|-----------------|
+| `search_references` | Busca sitios o secciones, con tokens y miniatura |
+| `get_brand_kit` | Todo lo necesario para replicar una marca, con los hover medidos en vivo |
+| `get_section_blueprint` | El esqueleto de una sección y un componente React/Tailwind con las medidas reales |
+| `get_composition` | Qué secciones suele llevar un landing y en qué orden |
+| `critique_against_reference` | Mide tu página, incluso en `localhost`, contra una referencia |
+| `capture_site` | Agrega cualquier sitio público al corpus en unos 10 segundos |
+
+Son dieciséis herramientas en total, más un prompt guiado que lleva al agente de la composición a las referencias, la identidad, el DESIGN.md, la construcción y la crítica.
+
+## Resultados
+
+| Métrica | Valor |
+|--------|-------|
+| **Marcas medidas** | 165 |
+| **Páginas de producto** | Más de 800 (escritorio y móvil) |
+| **Secciones clasificadas** | Más de 12.000 |
+| **DESIGN.md abiertos indexados** | 141 |
+| **Herramientas MCP** | 16 |
+| **Tests de comportamiento** | 41, todos en verde |
+
+Se instala con una línea en Claude Code:
+
+```bash
+claude mcp add matiz --scope user -- npx -y matiz-mcp
+```
+
+El mismo paquete funciona en Codex, Cursor, VS Code, Claude Desktop, Gemini CLI, Windsurf y Zed. Sin cuenta y sin API key.
+
+## Stack
+
+| Capa | Tecnología |
+|-------|------------|
+| **Protocolo** | Model Context Protocol (stdio) |
+| **Lenguaje** | TypeScript, Node.js 22 |
+| **Captura** | Playwright |
+| **Almacenamiento** | `node:sqlite` con FTS5, cero dependencias nativas |
+| **Color** | Agrupación en OKLab, contraste WCAG |
+| **Sitio** | Estático, en Vercel |
+
+## Lo que aprendí
+
+### 1. Los agentes necesitan números, no imágenes
+La calidad de lo que construye un agente depende de la calidad del dato que recibe. Un titular medido de 72 px con tracking de -0,022 em le gana a cualquier descripción de "título grande y en negrita".
+
+### 2. Lo explicable le gana a lo ingenioso
+Cada clasificación trae sus motivos. Cuando el agente, o yo, no estamos de acuerdo con una etiqueta, el motivo muestra exactamente qué corregir.
+
+### 3. Cerrar el ciclo
+`critique_against_reference` es lo que lo vuelve útil en el día a día: construir, medir contra la referencia y corregir lo que falta.
+
+---
+
+> **¿Necesitas un servidor MCP para tus propios datos, o un agente que lo use?**
+>
+> [Hablemos →](https://calendly.com/rulocode/30min)

@@ -1,0 +1,67 @@
+---
+title: "Lente: un clip que hace que cualquier gafa vea, escuche y recuerde"
+publishedAt: "2026-11-05"
+summary: "Lo construí solo, en diez días, para la Meta Global AI Developer Hackathon: un clip de US$ 13,90 para cualquier gafa, su firmware, un hub, una app de Android y una app web. Le lee una tarjeta a quien ya no ve bien y te da la frase para responder cuando una pregunta de la reunión es para ti."
+homeOrder: 3
+metric: "Solo, en 10 días · 863 tests"
+images:
+  - "/images/projects/lente/lente-cover.jpg"
+video: "/videos/projects/lente.mp4"
+videoPoster: "/videos/projects/lente.jpg"
+team:
+  - name: "Andrés Santana"
+    role: "Todo: hardware, firmware, hub, Android y web"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/rulocode/"
+link: "https://rulocode.github.io/lente/"
+repository: "https://github.com/ruloCode/lente"
+---
+
+## Resumen
+
+**Lente** es un clip pequeño para cualquier gafa, más tu celular y los modelos de Meta. Ve, escucha y recuerda contigo. Lo construí solo, en Bogotá, para la **Meta Global AI Developer Hackathon** (track Indie, tema *Build for Your World*), entre el 26 de octubre y el 4 de noviembre de 2026: el clip y su firmware, la carcasa impresa, el hub, la app de Android y la app web.
+
+El demo completo, de tres minutos, está en [YouTube](https://youtu.be/IlmcieeMiDA).
+
+## El problema
+
+**Piensa en alguien que quieres y que ya no ve bien.** La tarjeta de un nieto, la etiqueta de un medicamento, la carta del banco: todo está enfrente, y nada le llega si alguien no se lo lee. Las gafas con IA para personas ciegas existen, pero son caras y obligan a comprar gafas nuevas. Solo en Colombia, el censo de 2018 contó 1.948.332 personas con dificultad para ver (INCI, con datos del DANE).
+
+**Y en el trabajo, la reunión va más rápido que tu segundo idioma.** Sabes la respuesta, pero mientras armas la frase en inglés alguien más contesta, y la decisión se toma sin ti.
+
+## La decisión: sin gafas nuevas
+
+Una cámara, un micrófono y tu celular bastan si los modelos se encargan de ver, escuchar y recordar. El clip es una Seeed XIAO ESP32-S3 Sense (US$ 13,90) con una batería pequeña, en una carcasa modelada en código e impresa en 3D para cualquier gafa. Sin clip, el celular hace el mismo trabajo.
+
+## Lo que hace
+
+- **Ver**, para quien ya no ve bien: una voz cálida, colombiana, te dice qué tienes enfrente, una frase a la vez, y lee un papel en voz alta. Cuando nada cambia, se queda callada. Describe, nunca guía, y nunca dice quién es una persona. Funciona con TalkBack.
+- **Asistir**, en el trabajo: Lente sabe quién está hablando y, cuando una pregunta es para ti, te muestra en el celular la frase para responder, con su significado en español.
+- **Recuerdos**: los momentos de tu día. Giras la rueda, tocas uno y lo revives.
+- **Memoria y agentes**: notas, decisiones y tareas, selladas por cuenta. Responde con la fuente, o te dice que no lo encuentra. Cuando hay trabajo, Claude Code o Codex lo hacen en tu computador, solo después de que lo apruebas en el celular.
+
+## Cómo está hecho
+
+- **Clip**: XIAO ESP32-S3 Sense con firmware propio; el audio y las fotos viajan por Wi-Fi.
+- **Hub**: Node 22, sin dependencias en tiempo de ejecución.
+- **Modelos**: Muse Voice Transcribe escucha y distingue quién habla, Muse Spark 1.3 ve, habla y recuerda, y Muse Spark Open corre el carril rápido.
+- **Apps**: una app nativa de Android y una app web.
+
+Mientras yo soldaba, mis agentes de código construían conmigo, tarea por tarea, con un arnés que decide cuál es el siguiente grupo de tareas listo.
+
+## Resultados
+
+Cada número lo mide un script del repositorio.
+
+| Métrica | Valor |
+|---------|-------|
+| **Termina la pregunta → frase en el celular** | 3,0 s (p50) |
+| **Ver: tiempo al primer token de una descripción** | 3,08 s (p50) |
+| **Respuestas de memoria correctas, con la fuente correcta** | 90 de 105 |
+| **Preguntas trampa rechazadas** | 25 de 25 |
+| **Tests unitarios** | 863 |
+| **Commits en diez días** | 311 |
+
+## Stack
+
+Firmware para ESP32-S3, Node 22, Kotlin (Android), Muse Spark 1.3, Muse Voice Transcribe, Muse Spark Open y Supabase. El repositorio es open source con licencia MIT, e incluye los STL para imprimir el clip.

@@ -4,7 +4,7 @@
     "description": "No aprendí IA en un curso: tengo LLMs corriendo en producción en una siderúrgica global y en mi propia casa. Senior Frontend Engineer en Arkano (asistente multi-agente de Ternium). Next.js, React, TypeScript, Azure OpenAI, LangGraph. Desde Bogotá.",
     "intro": {
       "p1": "Antes de escribir código, escribía canciones. La música era el plan de vida — hasta que la tecnología transformó la industria y me obligó a elegir entre lo que amaba y lo que me permitía vivir. <strong>Elegí sobrevivir.</strong>",
-      "p2": "Aprendí a programar desde cero y me lo tomé en serio: durante más de 4 años fui líder de frontend de la farmacia digital de mayor crecimiento en México. Reduje el tiempo de carga en <strong>56%</strong>, subí las conversiones <strong>23%</strong> y la plataforma que diseñé procesa <strong>más de $2M mensuales</strong> para más de 50,000 pacientes con 99.9% de uptime.",
+      "p2": "Aprendí a programar desde cero y me lo tomé en serio: durante casi seis años construí el frontend de la farmacia digital de mayor crecimiento en México. Bajé el LCP de 5,8 s a 2,5 s, el checkout que diseñé recortó el abandono de carrito un <strong>31 %</strong> (2,8 M USD al año) y los usuarios activos diarios subieron <strong>23 %</strong>, hasta más de <strong>450.000</strong>.",
       "p3": "En el camino descubrí mi ventaja injusta: sé hacer lo técnico <strong>y sé traducirlo</strong>. Como viví el miedo a quedarme atrás, aprendí a enseñar tecnología desde la empatía, no desde la arrogancia.",
       "p4": "Hoy trabajo en tres frentes: <strong>automatización</strong> con IA para empresas, <strong>desarrollo</strong> de software a la medida y <strong>formación en IA</strong> para profesionales no técnicos.",
       "p5": "Mi norte es simple: ayudar a profesionales a dominar la IA <strong>antes de que el mundo los obligue a elegir</strong>. A mí me obligó. A ti no tiene por qué.",
@@ -561,7 +561,7 @@
         },
         "development": {
           "cta": "Cómo trabajo",
-          "description": "Software a la medida con React, Next.js y TypeScript. La misma ingeniería detrás de una plataforma que procesa +$2M/mes.",
+          "description": "Software a la medida con React, Next.js y TypeScript. La misma ingeniería detrás de un checkout que recortó el abandono un 31 % (2,8 M USD al año).",
           "title": "Desarrollo"
         },
         "training": {
@@ -581,11 +581,11 @@
       "cta": "Conóceme más",
       "eyebrow": "Trayectoria",
       "imageAlt": "Paneles de sistemas en producción brillando en verde esmeralda en una sala oscura",
-      "p1": "Lideré el frontend de la farmacia digital de mayor crecimiento en México: una plataforma que procesa más de $2M al mes para 50.000 pacientes, con 99.9% de uptime. Ingeniería real, en producción, durante más de 6 años.",
+      "p1": "Lideré el frontend de la farmacia digital de mayor crecimiento en México: más de 450.000 usuarios activos diarios y un checkout que recortó el abandono un 31 % (2,8 M USD al año). Ingeniería real, en producción, durante más de 6 años.",
       "p2": "Esa base es la diferencia cuando hablo de IA: no vendo demos ni humo — llevo flujos a producción y enseño con la empatía de quien sabe lo que cuesta mantenerse al día. Por eso mi programa funciona para gente no técnica.",
       "title": "Más de 6 años llevando software a producción. Ahora, IA."
     },
-    "subline": "Soy Andrés Santana, experto en IA aplicada. Llevo más de 6 años construyendo software en producción — una plataforma que procesa <strong>+$2M/mes</strong> para <strong>+50K usuarios</strong> — y hoy enseño a profesionales no técnicos a automatizar su trabajo con el <strong>AI Shift Challenge</strong>.",
+    "subline": "Soy Andrés Santana, experto en IA aplicada. Llevo más de 6 años construyendo software en producción — una plataforma con <strong>+450.000 usuarios activos diarios</strong> y un checkout que recupera <strong>2,8 M USD al año</strong> — y hoy enseño a profesionales no técnicos a automatizar su trabajo con el <strong>AI Shift Challenge</strong>.",
     "title": "Andrés Santana — Senior Frontend Engineer · LLMs en producción",
     "blogHighlight": "del blog"
   },

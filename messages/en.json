@@ -4,7 +4,7 @@
     "description": "I didn't learn AI from a course: I have LLMs running in production at a global steel manufacturer and in my own house. Senior Frontend Engineer at Arkano (Ternium's multi-agent assistant). Next.js, React, TypeScript, Azure OpenAI, LangGraph. From Bogotá.",
     "intro": {
       "p1": "Before writing code, I wrote songs. Music was the life plan — until technology transformed the industry and forced me to choose between what I loved and what let me make a living. <strong>I chose to survive.</strong>",
-      "p2": "I learned to code from scratch and took it seriously: for over 4 years I was the frontend lead at Mexico's fastest-growing digital pharmacy. I cut load time by <strong>56%</strong>, lifted conversions <strong>23%</strong>, and the platform I architected processes <strong>$2M+ monthly</strong> for 50,000+ patients with 99.9% uptime.",
+      "p2": "I learned to code from scratch and took it seriously: for nearly six years I built the frontend of Mexico's fastest-growing digital pharmacy. I took LCP from 5.8s to 2.5s, the checkout I architected cut cart abandonment <strong>31%</strong> ($2.8M a year), and daily active users rose <strong>23%</strong> to over <strong>450,000</strong>.",
       "p3": "Along the way I found my unfair advantage: I can do the technical work <strong>and I can translate it</strong>. Because I lived the fear of falling behind, I learned to teach technology from empathy, not arrogance.",
       "p4": "Today I work on three fronts: AI <strong>automation</strong> for companies, custom software <strong>development</strong>, and <strong>AI training</strong> for non-technical professionals.",
       "p5": "My north star is simple: help professionals master AI <strong>before the world forces them to choose</strong>. It forced me. It doesn't have to force you.",
@@ -561,7 +561,7 @@
         },
         "development": {
           "cta": "How I work",
-          "description": "Custom software with React, Next.js and TypeScript. The same engineering behind a platform processing $2M+/month.",
+          "description": "Custom software with React, Next.js and TypeScript. The same engineering behind a checkout that cut abandonment 31% ($2.8M a year).",
           "title": "Development"
         },
         "training": {
@@ -581,11 +581,11 @@
       "cta": "Get to know me",
       "eyebrow": "Track record",
       "imageAlt": "Production system dashboards glowing emerald in a dark room",
-      "p1": "I led the frontend of Mexico's fastest-growing digital pharmacy: a platform processing $2M+ per month for 50,000 patients at 99.9% uptime. Real engineering, in production, for over 6 years.",
+      "p1": "I led the frontend of Mexico's fastest-growing digital pharmacy: more than 450,000 daily active users and a checkout that cut abandonment 31% ($2.8M a year). Real engineering, in production, for over 6 years.",
       "p2": "That foundation is the difference when I talk about AI: no demos, no hype — I ship workflows to production and teach with the empathy of someone who knows what keeping up costs. That's why my program works for non-technical people.",
       "title": "6+ years shipping software to production. Now, AI."
     },
-    "subline": "I'm Andrés Santana, an applied AI expert. I've spent 6+ years building production software — a platform processing <strong>$2M+/month</strong> for <strong>50K+ users</strong> — and today I teach non-technical professionals to automate their work through the <strong>AI Shift Challenge</strong>.",
+    "subline": "I'm Andrés Santana, an applied AI expert. I've spent 6+ years building production software — a platform with <strong>450K+ daily active users</strong> and a checkout that recovers <strong>$2.8M a year</strong> — and today I teach non-technical professionals to automate their work through the <strong>AI Shift Challenge</strong>.",
     "title": "Andrés Santana — Senior Frontend Engineer · LLMs in production",
     "blogHighlight": "the blog"
   },
