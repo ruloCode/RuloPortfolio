@@ -86,6 +86,9 @@ type AboutContent = {
   };
 };
 
+const RECOMMENDATION_KEYS = ["marlon", "alejandro"] as const;
+const RECOMMENDATIONS_SOURCE_LOCALE = "en";
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -128,6 +131,19 @@ export default async function About({ params }: PageParams) {
   const t = await getTranslations();
   const { person, about, social, waitlist } = createI18nContent(t) as AboutContent;
 
+  // LinkedIn recommendations, quoted verbatim. They were written in English,
+  // so the English messages are the source text: other locales show their
+  // translation with that original underneath, never a paraphrase alone.
+  const tOriginal = await getTranslations({ locale: RECOMMENDATIONS_SOURCE_LOCALE });
+  const showOriginal = locale !== RECOMMENDATIONS_SOURCE_LOCALE;
+  const linkedin = social.find((item) => item.icon === "linkedin")?.link;
+  const recommendations = RECOMMENDATION_KEYS.map((key) => ({
+    key,
+    name: t(`about.recommendations.items.${key}.name`),
+    quote: t(`about.recommendations.items.${key}.quote`),
+    original: tOriginal(`about.recommendations.items.${key}.quote`),
+  }));
+
   // Anchors are stable ids, not translated titles: the same URL fragment
   // works in both locales and survives a copy rewrite.
   const structure = [
@@ -138,6 +154,12 @@ export default async function About({ params }: PageParams) {
       title: about.toc.work,
       display: about.work.display,
       items: about.work.experiences.map((experience) => experience.company),
+    },
+    {
+      id: "recomendaciones",
+      title: t("about.toc.recommendations"),
+      display: recommendations.length > 0,
+      items: [],
     },
     {
       id: "logros",
@@ -365,6 +387,76 @@ export default async function About({ params }: PageParams) {
                         {achievement}
                       </Text>
                     ))}
+                  </Column>
+                </Column>
+              </RevealFx>
+            ))}
+          </Column>
+        </Column>
+      )}
+
+      {recommendations.length > 0 && (
+        <Column fillWidth gap="l">
+          <SectionHeader
+            id="recomendaciones"
+            title={t("about.recommendations.title")}
+            intro={t("about.recommendations.intro")}
+          />
+          <Column fillWidth gap="l">
+            {recommendations.map((item, index) => (
+              <RevealFx
+                key={item.key}
+                speed="fast"
+                delay={index * 0.05}
+                translateY="8"
+                inView
+                fillWidth
+              >
+                <Column
+                  as="figure"
+                  className={brand.card}
+                  fillWidth
+                  gap="16"
+                  padding="l"
+                  margin="0"
+                  radius="l"
+                  border="neutral-alpha-weak"
+                  background="surface"
+                >
+                  <Column gap="12">
+                    <Text
+                      as="blockquote"
+                      variant="body-default-l"
+                      onBackground="neutral-strong"
+                      margin="0"
+                    >
+                      “{item.quote}”
+                    </Text>
+                    {showOriginal && (
+                      <Text
+                        as="p"
+                        variant="body-default-s"
+                        onBackground="neutral-weak"
+                        margin="0"
+                      >
+                        <Text as="span" variant="label-strong-s">
+                          {t("about.recommendations.originalLabel")}
+                        </Text>{" "}
+                        <span lang={RECOMMENDATIONS_SOURCE_LOCALE}>“{item.original}”</span>
+                      </Text>
+                    )}
+                  </Column>
+                  <Column as="figcaption" gap="4">
+                    <Text variant="body-strong-m">{item.name}</Text>
+                    {linkedin ? (
+                      <SmartLink href={linkedin} suffixIcon="arrowUpRight">
+                        <Text variant="label-default-s">{t("about.recommendations.source")}</Text>
+                      </SmartLink>
+                    ) : (
+                      <Text variant="label-default-s" onBackground="neutral-weak">
+                        {t("about.recommendations.source")}
+                      </Text>
+                    )}
                   </Column>
                 </Column>
               </RevealFx>

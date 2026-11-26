@@ -256,10 +256,27 @@
         }
       }
     },
+    "recommendations": {
+      "title": "Recommendations",
+      "intro": "As written on my LinkedIn profile.",
+      "source": "Recommendation on LinkedIn",
+      "originalLabel": "Original (LinkedIn):",
+      "items": {
+        "marlon": {
+          "name": "Marlon Ramirez",
+          "quote": "I highly recommend Andrés Santana for his ability to enhance user experience and optimize conversion rates on digital platforms. His analytical approach and skill in implementing effective solutions have had a direct impact on the success of the projects he has been involved in. Additionally, he is passionate about mentoring and sharing his knowledge, fostering growth within his team. His collaborative mindset and initiative to improve processes make him a valuable asset to any team."
+        },
+        "alejandro": {
+          "name": "Alejandro Cortez Alvarez",
+          "quote": "I collaborated with Andres in Platzi Master and I can say honestly that he is a front-end artist. His work is extremely good, so I would not think twice to work with him on any other project that comes up in the future."
+        }
+      }
+    },
     "toc": {
       "story": "My story",
       "help": "How I can help",
       "work": "Experience",
+      "recommendations": "Recommendations",
       "achievements": "Achievements",
       "studies": "Studies",
       "stack": "Stack"

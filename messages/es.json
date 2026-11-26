@@ -256,10 +256,27 @@
         }
       }
     },
+    "recommendations": {
+      "title": "Recomendaciones",
+      "intro": "Traducidas del inglés. Debajo de cada una, el texto original tal como aparece en mi perfil de LinkedIn.",
+      "source": "Recomendación en LinkedIn",
+      "originalLabel": "Original (LinkedIn):",
+      "items": {
+        "marlon": {
+          "name": "Marlon Ramirez",
+          "quote": "Recomiendo ampliamente a Andrés Santana por su capacidad para mejorar la experiencia de usuario y optimizar las tasas de conversión en plataformas digitales. Su enfoque analítico y su habilidad para implementar soluciones efectivas han tenido un impacto directo en el éxito de los proyectos en los que ha participado. Además, le apasiona ser mentor y compartir su conocimiento, lo que fomenta el crecimiento dentro de su equipo. Su mentalidad colaborativa y su iniciativa para mejorar los procesos lo convierten en una pieza valiosa para cualquier equipo."
+        },
+        "alejandro": {
+          "name": "Alejandro Cortez Alvarez",
+          "quote": "Colaboré con Andrés en Platzi Master y puedo decir con honestidad que es un artista del front-end. Su trabajo es extremadamente bueno, así que no lo pensaría dos veces para trabajar con él en cualquier otro proyecto que surja en el futuro."
+        }
+      }
+    },
     "toc": {
       "story": "Mi historia",
       "help": "En qué te ayudo",
       "work": "Experiencia",
+      "recommendations": "Recomendaciones",
       "achievements": "Logros",
       "studies": "Estudios",
       "stack": "Stack"
