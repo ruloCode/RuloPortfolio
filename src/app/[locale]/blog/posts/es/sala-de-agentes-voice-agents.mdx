@@ -1,11 +1,14 @@
 ---
 title: "Sala de agentes: agentes de voz que solo responden con datos reales"
 publishedAt: "2026-11-26"
+image: "/images/blog/sala-de-agentes-voice-agents/cover.jpg"
 summary: "Agentes con voz propia que conversan entre ellos y contigo, en dos pantallas: una sala 3D a la que entras por la webcam y un tótem de estación que responde \"¿cómo llego?\" con rutas del GTFS oficial. La arquitectura y las dos reglas que la sostienen."
 tag: "Agentes de IA"
 ---
 
 **Sala de agentes** es un proyecto que construí como creador e ingeniero full-stack y de IA: agentes con voz propia que conversan entre ellos y contigo, y responden con datos que existen. El código es público con licencia MIT: **[ruloCode/sala-de-agentes](https://github.com/ruloCode/sala-de-agentes)**.
+
+![Tres mockups de diseño del tótem de estación: la ruta en pantalla, los agentes que la explican por voz y el QR para seguir en el celular](/images/blog/sala-de-agentes-voice-agents/cover.jpg)
 
 ## Un motor, dos pantallas
 
@@ -17,11 +20,15 @@ tag: "Agentes de IA"
 
 **Todo dato visible es real.** Las rutas salen del GTFS oficial del sistema de transporte; los lugares y las novedades, de archivos que edita una persona. Si la fuente no existe, la pantalla lo dice en vez de inventar.
 
+![Ilustración: del GTFS del Metro de Medellín a la tool del agente, y de ahí a la ruta que se muestra en pantalla](/images/blog/sala-de-agentes-voice-agents/datos-reales-no-un-guion.jpg)
+
 **Ningún nombre propio en el código.** Los personajes, la ciudad, la estación y los lugares viven en archivos de configuración fuera del repo, en `~/.sala`. El mismo código corre en otra ciudad con otros agentes.
 
 ## Un solo cerebro, muchas voces
 
 Una sola sesión de voz con un agente **multi-voz** interpreta a todos los personajes. Un solo cerebro significa que comparten el contexto completo, nunca hablan encima del otro y nombrar a uno enruta la conversación solo. El cliente reconstruye quién está sonando en cada instante, con etiquetas de voz y alineación del audio, para encender la figura y el subtítulo de ese personaje.
+
+![Ilustración: Hermes e Iván, dos personajes con un solo cerebro y una sola conversación](/images/blog/sala-de-agentes-voice-agents/dos-personalidades-una-conversacion.jpg)
 
 Las **client tools de la voz corren en el navegador** y llaman a un agente local. Por eso la pantalla puede usar datos de tu máquina sin exponerlos al proveedor de voz y sin necesitar un túnel. Y lo que una tool descubre no se pinta con el texto del modelo: se pinta con el payload estructurado que devuelve el agente. El navegador habla con el proveedor de voz por WebRTC; para correrlo hace falta una cuenta de ElevenLabs.
 

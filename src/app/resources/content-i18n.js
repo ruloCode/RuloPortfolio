@@ -58,6 +58,16 @@ const createI18nContent = (t) => {
       icon: "youtube",
       link: "https://www.youtube.com/@ruloCode",
     },
+    {
+      name: "Instagram",
+      icon: "instagram",
+      link: "https://www.instagram.com/rulocode/",
+    },
+    {
+      name: "Upwork",
+      icon: "upwork",
+      link: "https://www.upwork.com/freelancers/~01351ecf47ffd731d4",
+    },
   ];
 
   // The newsletter band (blog index and every post). Same API as the
@@ -162,6 +172,7 @@ const createI18nContent = (t) => {
       title: t.rich("about.hero.title", { fx }),
       intro: t("about.hero.intro"),
       ctaCall: t("about.hero.ctaCall"),
+      ctaServices: t("about.hero.ctaServices"),
       ctaProgram: t("about.hero.ctaProgram"),
       portraitAlt: t("about.hero.portraitAlt"),
       location: t("about.hero.location"),

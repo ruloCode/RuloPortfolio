@@ -1,0 +1,91 @@
+---
+title: "Lente: en diez días les enseñé a mis gafas a ver (Meta Global AI Developer Hackathon)"
+publishedAt: "2026-11-06"
+image: "/images/blog/lente-meta-hackathon/cover.jpg"
+summary: "Me aceptaron en la hackatón global de Meta y, siendo más programador que otra cosa, me metí con hardware: un clip para cualquier gafa que ve, escucha y recuerda contigo. 311 commits, un cautín y una carcasa impresa en 3D."
+tag: "Hackathon"
+---
+
+**20.000 developers, 10 días y una hackatón global de Meta.** Yo construí unas gafas que ven.
+
+Me aceptaron en la **Meta Global AI Developer Hackathon** (Cerebral Valley + Meta), del 26 de octubre al 4 de noviembre de 2026. Y yo, que soy más programador que otra cosa, decidí meterme con hardware.
+
+Se llama **Lente**: un clip para cualquier gafa que ve, escucha y recuerda contigo.
+
+![Foto real de Lente: el clip gris impreso en 3D en la patilla de unas gafas de marco dorado, sobre una mesa de madera](/images/blog/lente-meta-hackathon/cover.jpg)
+
+## Las reglas del juego
+
+El kickoff dejó las cosas claras desde el primer día:
+
+- **USD 1 M en premios**, dos tracks (Indie Developer y Startups) y dos temas: *Build for Your World* —resolver un problema de tu propio mundo— o *Push the Frontier*.
+- **Solo trabajo nuevo**, repositorio público y open source obligatorio.
+- **Un video demo de 3 minutos**, que pesa muchísimo en el juicio.
+- Y una lista explícita de lo que **no** querían ver: chat wrappers, RAG simple, analizadores de imágenes.
+
+Entré solo, en el **track Indie**, con el tema **Build for Your World**.
+
+## El problema
+
+**Piensa en alguien que quieres y que ya no ve bien.** La tarjeta de un nieto, la etiqueta de un medicamento, la carta del banco: todo está ahí, enfrente, y nada le llega si alguien no se lo lee. Las gafas con IA para personas ciegas existen, pero son caras y obligan a comprar gafas nuevas. Solo en Colombia, el censo de 2018 contó **1.948.332 personas con dificultad para ver** (INCI, con datos del DANE).
+
+Y hay un segundo problema, más mío: **en el trabajo, la reunión va más rápido que tu segundo idioma.** *«Rulo, can we ship the beta on Friday?»* Sabes la respuesta, pero mientras armas la frase en inglés alguien más contesta, y la decisión se toma sin ti.
+
+La apuesta de Lente: **no necesitas gafas nuevas.** Una cámara, un micrófono y tu celular bastan si los modelos de Meta se encargan de ver, escuchar y recordar.
+
+## Lo que hace
+
+- **Ver**, para quien ya no ve bien: una voz cálida, colombiana, que aprende tu nombre y te dice qué tienes enfrente, una frase a la vez. Lee un papel en voz alta, responde *«¿qué tengo en la mano?»* y *«¿dónde estoy?»*. Cuando nada cambia, se queda callada. Describe, nunca guía, y nunca dice quién es una persona.
+- **Asistir**, en el trabajo: Lente sabe quién está hablando y, cuando una pregunta es para ti, te muestra en el celular la tarjeta **Dilo** con la frase para responder y su significado en español. Llega **3,0 s** después de que termina la pregunta (mediana).
+- **Recuerdos**: los momentos de tu día. Giras la rueda, tocas uno y lo revives.
+- **Tu memoria y tus agentes**: notas, decisiones y tareas. Le preguntas por texto o por voz y te responde **con la fuente**, o te dice *«No lo encuentro»*. Y cuando hay trabajo, Claude Code o Codex lo hacen en tu computador, solo después de que lo apruebas en el celular.
+
+![El modo Ver de Lente en acción: describe la mesa, detecta una taza y lee una tarjeta de cumpleaños](/images/blog/lente-meta-hackathon/ver.jpg)
+
+## Cómo lo construí
+
+Una persona, en Bogotá, diez días: el clip y su firmware, la carcasa, el hub, la app de Android y la app web.
+
+- **El cerebro llegó el 27 de octubre**: una **Seeed XIAO ESP32-S3 Sense**, cámara y micrófono en algo más pequeño que una moneda. Cuesta **US$ 13,90**.
+- **Cautín, cables y mucha paciencia.** El 29 de octubre ya tenía batería, interruptor y cargador soldados, y el primer prototipo corriendo con su propia batería.
+- **La carcasa la modelé en código** alrededor de las piezas reales, y me la imprimió en 3D **[@geekcodey](https://www.instagram.com/geekcodey/)**. ¡Gracias!
+- **Mientras yo soldaba, mis agentes programaban conmigo**, tarea por tarea, con un arnés que decide cuál es el siguiente grupo de tareas listo y reglas que se hacen cumplir en cada sesión.
+- **Noches largas. 311 commits.** Hasta que un día… mis gafas vieron.
+
+![Del unboxing a la carcasa: la placa XIAO, la soldadura, la carcasa impresa en 3D y el clip terminado](/images/blog/lente-meta-hackathon/construccion.jpg)
+
+## Por dentro
+
+Tres modelos de Meta hacen el trabajo pesado:
+
+| Modelo | Qué hace en Lente |
+|---|---|
+| **Muse Voice Transcribe** | Escucha en tiempo real y distingue quién habla |
+| **Muse Spark 1.3** | Ve, habla y recuerda |
+| **Muse Spark Open** | El carril rápido, con pesos abiertos |
+
+El hub está escrito en **Node 22 sin dependencias de runtime**. Y cada número está medido por un script, no estimado:
+
+- **3,0 s** desde que termina la pregunta hasta la tarjeta Dilo en el celular.
+- **3,08 s** hasta la primera palabra de una descripción en modo Ver.
+- **90 de 105** respuestas de memoria correctas y con la fuente correcta; **25 de 25** trampas rechazadas.
+- **863 tests** unitarios, más una prueba de punta a punta en cada push.
+
+## Lo que me llevo
+
+- **El hardware ya no es una barrera para un programador.** Con una placa de 14 dólares, una carcasa impresa en 3D y agentes que programan contigo, diez días alcanzan para algo que funciona en la mano.
+- **El problema primero, el modelo después.** La regla de *Build for Your World* me obligó a pensar en alguien concreto —una persona que ya no ve bien— antes de pensar en la arquitectura.
+- **Medir todo cambia la conversación.** Decir «es rápido» no vale nada; decir «3,0 s de mediana, y este es el script» sí.
+
+## Pruébalo
+
+Lente es open source:
+
+- **[El video del proyecto en YouTube](https://youtu.be/IlmcieeMiDA)**
+- **[El reel de cómo lo construí](https://www.instagram.com/rulocode/reel/DfXVljBzs4d/)**
+- **[El sitio de Lente](https://rulocode.github.io/lente/)**
+- **[El código en GitHub](https://github.com/ruloCode/lente)**: lo corres en local con `pnpm demo`, sin API keys ni hardware.
+
+{/* TODO(rulo): el juicio es del 5 al 8 de noviembre, la ceremonia final el 9 y el voto de la comunidad el 16. Cuando salga el resultado, actualiza esta sección y, si hay link para votar, ponlo aquí. */}
+
+Y te pregunto lo mismo que en el reel: **¿para qué lo usarías tú?**

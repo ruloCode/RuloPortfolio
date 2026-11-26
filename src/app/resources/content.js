@@ -39,6 +39,16 @@ const social = [
     icon: "youtube",
     link: "https://www.youtube.com/@ruloCode",
   },
+  {
+    name: "Instagram",
+    icon: "instagram",
+    link: "https://www.instagram.com/rulocode/",
+  },
+  {
+    name: "Upwork",
+    icon: "upwork",
+    link: "https://www.upwork.com/freelancers/~01351ecf47ffd731d4",
+  },
 ];
 
 const gallery = {

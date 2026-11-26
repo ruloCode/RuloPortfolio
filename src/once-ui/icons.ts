@@ -51,7 +51,15 @@ import {
   PiPlayCircleDuotone,
 } from "react-icons/pi";
 
-import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import {
+  FaDiscord,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
+import { SiUpwork } from "react-icons/si";
 
 export const iconLibrary: Record<string, IconType> = {
   chevronUp: HiChevronUp,
@@ -85,6 +93,8 @@ export const iconLibrary: Record<string, IconType> = {
   github: FaGithub,
   youtube: FaYoutube,
   linkedin: FaLinkedin,
+  instagram: FaInstagram,
+  upwork: SiUpwork,
   x: FaXTwitter,
   clipboard: HiClipboard,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,

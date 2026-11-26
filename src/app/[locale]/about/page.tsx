@@ -43,6 +43,7 @@ type AboutContent = {
       title: React.ReactNode;
       intro: string;
       ctaCall: string;
+      ctaServices: string;
       ctaProgram: string;
       portraitAlt: string;
       location: string;
@@ -213,9 +214,16 @@ export default async function About({ params }: PageParams) {
               {about.hero.ctaCall}
             </Button>
             <Button
-              href={localizeHref(locale, "/ia")}
+              href={localizeHref(locale, "/services")}
               size="m"
               variant="secondary"
+            >
+              {about.hero.ctaServices}
+            </Button>
+            <Button
+              href={localizeHref(locale, "/ia")}
+              size="m"
+              variant="tertiary"
             >
               {about.hero.ctaProgram}
             </Button>

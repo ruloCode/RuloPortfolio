@@ -1,11 +1,14 @@
 ---
 title: "Sala de agentes: voice agents that only answer with real data"
 publishedAt: "2026-11-26"
+image: "/images/blog/sala-de-agentes-voice-agents/cover.jpg"
 summary: "Voice agents that talk to each other and to you, on two screens: a 3D room you enter through the webcam and a station kiosk that answers \"how do I get there?\" with official GTFS routes. The architecture and the two rules behind it."
 tag: "AI Agents"
 ---
 
 **Sala de agentes** is a project I built as creator and full-stack/AI engineer: voice agents with their own voices that talk to each other and to you, and answer with data that actually exists. The code is public under the MIT license: **[ruloCode/sala-de-agentes](https://github.com/ruloCode/sala-de-agentes)**.
+
+![Three design mockups of the station kiosk: the route on screen, the agents explaining it by voice and the QR code to continue on your phone](/images/blog/sala-de-agentes-voice-agents/cover.jpg)
 
 ## One engine, two screens
 
@@ -17,11 +20,15 @@ tag: "AI Agents"
 
 **Every visible datum is real.** Routes come from the transit system's official GTFS feed; places and service updates come from files a person edits. If the source doesn't exist, the screen says so instead of making something up.
 
+![Illustration: from the Medellín Metro GTFS feed to the agent's tool, and from there to the route on screen](/images/blog/sala-de-agentes-voice-agents/datos-reales-no-un-guion.jpg)
+
 **No proper names in the code.** The characters, the city, the station and the places live in configuration files outside the repo, in `~/.sala`. The same code runs in another city with other agents.
 
 ## One brain, many voices
 
 A single voice session with a **multi-voice** agent plays every character. One brain means they share full context, never talk over each other, and naming one of them routes the conversation on its own. The client reconstructs who is speaking at each moment, from voice tags plus audio alignment, to light up that character's figure and subtitle.
+
+![Illustration: Hermes and Iván, two characters sharing one brain and one conversation](/images/blog/sala-de-agentes-voice-agents/dos-personalidades-una-conversacion.jpg)
 
 The voice's **client tools run in the browser** and call a local agent. That's why the screen can use data from your machine without exposing it to the voice provider and without a tunnel. And what a tool finds isn't drawn from the model's text: it's drawn from the structured payload the agent returns. The browser talks to the voice provider over WebRTC; running it requires an ElevenLabs account.
 

@@ -1,0 +1,91 @@
+---
+title: "Lente: in ten days I taught my glasses to see (Meta Global AI Developer Hackathon)"
+publishedAt: "2026-11-06"
+image: "/images/blog/lente-meta-hackathon/cover.jpg"
+summary: "I got into Meta's global hackathon and, being more of a programmer than anything else, went into hardware: a clip for any pair of glasses that sees, listens and remembers with you. 311 commits, a soldering iron and a 3D-printed case."
+tag: "Hackathon"
+---
+
+**20,000 developers, 10 days and a global Meta hackathon.** I built glasses that see.
+
+I got accepted into the **Meta Global AI Developer Hackathon** (Cerebral Valley + Meta), from October 26 to November 4, 2026. And I, more of a programmer than anything else, decided to go into hardware.
+
+It's called **Lente**: a clip for any pair of glasses that sees, listens and remembers with you.
+
+![A real photo of Lente: the gray 3D-printed clip on the temple of gold-framed glasses, on a wooden table](/images/blog/lente-meta-hackathon/cover.jpg)
+
+## The rules of the game
+
+The kickoff made things clear from day one:
+
+- **USD 1M in prizes**, two tracks (Indie Developer and Startups) and two themes: *Build for Your World* — solve a problem from your own world — or *Push the Frontier*.
+- **New work only**, with a public, open-source repo required.
+- **A 3-minute demo video**, which weighs heavily in judging.
+- And an explicit list of what they did **not** want to see: chat wrappers, simple RAG, image analyzers.
+
+I went in solo, on the **Indie track**, with the **Build for Your World** theme.
+
+## The problem
+
+**Think of someone you love who no longer sees well.** The card from a grandchild, the medicine label, the letter from the bank: it's all right in front of them, and none of it reaches them unless someone reads it. AI glasses for blind people exist, but they're expensive and mean buying new glasses. In Colombia alone, the 2018 census counted **1,948,332 people with difficulty seeing** (INCI, citing DANE).
+
+And there's a second problem, closer to me: **at work, the meeting moves faster than your second language.** *"Rulo, can we ship the beta on Friday?"* You know the answer, but while you build the sentence in English someone else answers, and the decision gets made without you.
+
+Lente's bet: **you don't need new glasses.** A camera, a microphone and your phone are enough when Meta's models do the seeing, the listening and the remembering.
+
+## What it does
+
+- **Ver** (See), for someone who no longer sees well: a warm Colombian voice that learns your name and tells you what's in front of you, one sentence at a time. It reads a paper aloud and answers *"what's in my hand?"* and *"where am I?"*. When nothing changes, it stays quiet. It describes, never guides, and never says who someone is.
+- **Asistir** (Assist), at work: Lente knows who's speaking and, when a question is for you, shows the **Dilo** card on your phone with the line to say and its meaning in Spanish. It arrives **3.0 s** after the question ends (median).
+- **Recuerdos** (Memories): the moments of your day. Turn the wheel, tap one, relive it.
+- **Your memory and your agents**: notes, decisions and tasks. Ask by text or voice and it answers **with its source**, or says *"I can't find it."* And when there's work to do, Claude Code or Codex do it on your computer, only after you approve it on your phone.
+
+![Lente's See mode in action: it describes the table, spots a mug and reads a birthday card](/images/blog/lente-meta-hackathon/ver.jpg)
+
+## How I built it
+
+One person, in Bogotá, ten days: the clip and its firmware, the case, the hub, the Android app and the web app.
+
+- **The brain arrived on October 27**: a **Seeed XIAO ESP32-S3 Sense**, a camera and a microphone in something smaller than a coin. It costs **US$13.90**.
+- **Soldering iron, wires and a lot of patience.** By October 29 I had the battery, switch and charger soldered on, and the first prototype running on its own battery.
+- **I modeled the case in code** around the real parts, and **[@geekcodey](https://www.instagram.com/geekcodey/)** 3D-printed it for me. Thank you!
+- **While I soldered, my agents coded with me**, task by task, with a harness that works out the next ready group of tasks and rules enforced in every session.
+- **Long nights. 311 commits.** Until one day… my glasses saw.
+
+![From unboxing to case: the XIAO board, the soldering, the 3D-printed case and the finished clip](/images/blog/lente-meta-hackathon/construccion.jpg)
+
+## Under the hood
+
+Three Meta models do the heavy lifting:
+
+| Model | What it does in Lente |
+|---|---|
+| **Muse Voice Transcribe** | Listens in real time and tells speakers apart |
+| **Muse Spark 1.3** | Sees, talks and remembers |
+| **Muse Spark Open** | The fast lane, with open weights |
+
+The hub is written in **Node 22 with zero runtime dependencies**. And every number is measured by a script, not estimated:
+
+- **3.0 s** from the end of a question to the Dilo card on the phone.
+- **3.08 s** to the first word of a description in See mode.
+- **90 of 105** memory answers right, with the right source; **25 of 25** traps refused.
+- **863 unit tests**, plus an end-to-end test on every push.
+
+## What I'm taking with me
+
+- **Hardware is no longer a wall for a programmer.** With a 14-dollar board, a 3D-printed case and agents coding alongside you, ten days is enough for something that works in your hand.
+- **Problem first, model second.** The *Build for Your World* rule forced me to think about someone specific — a person who no longer sees well — before thinking about architecture.
+- **Measuring everything changes the conversation.** Saying "it's fast" is worth nothing; saying "3.0 s median, and here's the script" is.
+
+## Try it
+
+Lente is open source:
+
+- **[The project video on YouTube](https://youtu.be/IlmcieeMiDA)**
+- **[The reel on how I built it](https://www.instagram.com/rulocode/reel/DfXVljBzs4d/)**
+- **[Lente's website](https://rulocode.github.io/lente/en/)**
+- **[The code on GitHub](https://github.com/ruloCode/lente)**: run it locally with `pnpm demo`, no API keys and no hardware.
+
+{/* TODO(rulo): judging runs November 5–8, the final ceremony is on the 9th and the community vote on the 16th. When the result is out, update this section and, if there's a voting link, put it here. */}
+
+And I'll ask you the same thing as in the reel: **what would you use it for?**

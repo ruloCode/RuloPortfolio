@@ -1,7 +1,7 @@
 {
   "about": {
     "calendar": "Agenda una llamada",
-    "description": "No aprendí IA en un curso: tengo LLMs corriendo en producción en una siderúrgica global y en mi propia casa. Senior Frontend Engineer en Arkano (asistente multi-agente de Ternium). Next.js, React, TypeScript, Azure OpenAI, LangGraph. Desde Bogotá.",
+    "description": "Andrés Santana (Rulo), ingeniero senior en Bogotá especializado en IA aplicada: agentes, servidores MCP y productos sobre LLMs en producción, con un frontend que aguanta a usuarios reales. El asistente multi-agente de Ternium en Arkano, Hermes OS, Matiz, Vitau y CareWays.",
     "intro": {
       "p1": "Antes de escribir código, escribía canciones. La música era el plan de vida — hasta que la tecnología transformó la industria y me obligó a elegir entre lo que amaba y lo que me permitía vivir. <strong>Elegí sobrevivir.</strong>",
       "p2": "Aprendí a programar desde cero y me lo tomé en serio: durante casi seis años construí el frontend de la farmacia digital de mayor crecimiento en México. Bajé el LCP de 5,8 s a 2,5 s, el checkout que diseñé recortó el abandono de carrito un <strong>31 %</strong> (2,8 M USD al año) y los usuarios activos diarios subieron <strong>23 %</strong>, hasta más de <strong>450.000</strong>.",
@@ -65,7 +65,7 @@
       },
       "title": "Habilidades Técnicas"
     },
-    "title": "Sobre mí — Andrés Santana, Senior Frontend Engineer con LLMs en producción",
+    "title": "Sobre mí — Andrés Santana, ingeniero de IA: agentes, MCP y productos con LLMs en producción",
     "work": {
       "title": "Experiencia",
       "experiences": {
@@ -83,16 +83,16 @@
         },
         "careways": {
           "company": "CareWays Collaborative",
-          "role": "Desarrollador frontend · freelance",
+          "role": "Tech Lead",
           "timeframe": "2026",
           "achievements": {
-            "1": "Plataforma para <strong>reducir la mortalidad en UCI pediátrica</strong> en Latinoamérica: módulo de educación clínica y módulo de analítica, de punta a punta.",
-            "2": "Tableros de resultados clínicos con Recharts, roles y permisos por perfil (RBAC) y formularios clínicos con react-hook-form y Zod."
+            "1": "Construí, de punta a punta, la plataforma que forma a <strong>equipos de UCI pediátrica</strong> en entornos de recursos limitados: cursos con certificados automáticos, telesimulación en vivo calificada en tiempo real y un registro de pacientes con riesgo de mortalidad PIM3.",
+            "2": "Next.js 16 y React 19 sobre Oracle Autonomous Database, acceso por roles e interfaz en inglés, español y portugués, para una red de <strong>12 hospitales en 5 países</strong>."
           }
         },
         "vitau": {
           "company": "Vitau",
-          "role": "Senior Frontend Developer",
+          "role": "Senior Frontend Engineer & Tech Lead",
           "timeframe": "2020 - 2026",
           "achievements": {
             "1": "Checkout modular que recortó el abandono de carrito un <strong>31 %</strong>, con un impacto de <strong>2,8 M USD al año</strong>.",
@@ -103,16 +103,17 @@
           }
         },
         "freelance": {
-          "company": "Freelance",
-          "role": "Desarrollador frontend & consultor",
+          "company": "RuloCode · productos propios y freelance",
+          "role": "Ingeniero de IA y consultor frontend",
           "timeframe": "2019 - Presente",
           "achievements": {
-            "1": "Más de 10 proyectos para startups y pymes en e-commerce, SaaS y bienes raíces.",
-            "2": "Plataformas web de extremo a extremo, desde diseños en Figma hasta producción en Vercel."
+            "1": "<strong>Hermes OS</strong>, mi sistema de agentes open source (MIT): Claude Agent SDK, herramientas MCP detrás de barandas de permisos, RAG con pgvector sobre cinco fuentes y voz en tiempo real, corriendo 24/7.",
+            "2": "<strong>Matiz</strong>, un servidor MCP que les da a los agentes de código datos de diseño medidos: 16 herramientas, más de 800 páginas de 165 marcas y 41 tests de comportamiento.",
+            "3": "Más de 10 plataformas para startups y pymes en e-commerce, SaaS, bienes raíces, salud y estudios creativos, de Figma a producción en Vercel."
           }
         },
         "aishift": {
-          "company": "AI Shift Challenge · rulocode",
+          "company": "AI Shift Challenge · RuloCode",
           "role": "Creador e instructor",
           "timeframe": "2026 - Presente",
           "achievements": {
@@ -124,9 +125,10 @@
     },
     "hero": {
       "eyebrow": "Sobre mí",
-      "title": "No aprendí IA en un curso: tengo <fx>LLMs en producción</fx>.",
-      "intro": "Soy Andrés Santana, Rulo. De día construyo el asistente conversacional multi-agente de Ternium desde Arkano. De noche construyo Hermes OS, mi propio Jarvis. Seis años haciendo que el software sobreviva a usuarios reales, ahora también con IA generativa.",
+      "title": "Agentes de IA y productos con LLMs, <fx>hechos para producción</fx>.",
+      "intro": "Soy Andrés Santana, Rulo: ingeniero senior en Bogotá, especializado en IA aplicada. Construyo agentes, servidores MCP y productos sobre LLMs, con un frontend que aguanta cuando llegan los usuarios reales. De día, el asistente multi-agente de Ternium en Arkano. De noche, Hermes OS, mi propio sistema de agentes, corriendo 24/7.",
       "ctaCall": "Agenda una llamada",
+      "ctaServices": "Ver servicios",
       "ctaProgram": "Ver el AI Shift Challenge",
       "portraitAlt": "Andrés Santana, Rulo, frente a su portátil",
       "location": "Bogotá, Colombia · remoto desde 2020"
@@ -135,7 +137,7 @@
       "eyebrow": "Mi historia",
       "title": "De escribir canciones a poner modelos de lenguaje a trabajar.",
       "quote": "Mi regla: cada número visible es real. Cada métrica de este sitio está respaldada por un commit, un tablero o un reporte.",
-      "north": "Dirijo agentes de código (Claude Code y el Agent SDK) con barandas: la arquitectura y el diseño del sistema son míos, ellos teclean. Fuera de pantalla, músico. De ahí nació «Más allá del código».",
+      "north": "Cómo trabajo: dirijo agentes de código (Claude Code y el Agent SDK) con barandas. La arquitectura y el diseño del sistema son míos; ellos teclean. Fuera de pantalla, músico. De ahí nació «Más allá del código».",
       "acts": {
         "before": {
           "label": "Antes del código",
@@ -150,7 +152,7 @@
         "production": {
           "label": "2020 — 2026",
           "title": "Seis años haciendo que el software sobreviva a usuarios reales.",
-          "body": "De frontend a senior en Vitau, una farmacia digital en México. Bajé el LCP de 5,8 s a 2,5 s y el CLS de 0,3 a 0,1, el checkout modular que diseñé recortó el abandono de carrito un 31 % (2,8 M USD al año) y los usuarios activos diarios subieron 23 %, hasta más de 450.000. Mentoría a tres juniors, dos ascendidos."
+          "body": "Senior Frontend Engineer y Tech Lead en Vitau, una farmacia digital en México. Bajé el LCP de 5,8 s a 2,5 s y el CLS de 0,3 a 0,1, el checkout modular que diseñé recortó el abandono de carrito un 31 % (2,8 M USD al año) y los usuarios activos diarios subieron un 23 %, hasta más de 450.000. En 2026, Tech Lead en CareWays, una plataforma para equipos de UCI pediátrica en 12 hospitales de 5 países."
         },
         "day": {
           "label": "Hoy · de día",
@@ -159,26 +161,26 @@
         },
         "night": {
           "label": "Hoy · de noche",
-          "title": "Hermes OS, mi propio Jarvis.",
-          "body": "Un sistema de agentes de punta a punta que corre 24/7: orquestación multi-agente con llamadas a herramientas y barandas de permisos, RAG con pgvector sobre cinco fuentes, voz de entrada y salida, un copiloto de reuniones con ~2 s de latencia y control por gestos. No es una demo: es mi laboratorio de producción."
+          "title": "Mi propio laboratorio: Hermes OS y Matiz.",
+          "body": "Hermes OS es mi sistema de agentes de punta a punta, open source y corriendo 24/7: orquestación multi-agente con llamadas a herramientas detrás de barandas de permisos, RAG con pgvector sobre cinco fuentes, voz de entrada y salida, un copiloto de reuniones con ~2 s de latencia y evaluaciones con un arnés de punta a punta de 23 aserciones. Matiz es un servidor MCP que les da a los agentes de código datos de diseño medidos: 16 herramientas, 165 marcas, más de 800 páginas."
         }
       }
     },
     "help": {
       "eyebrow": "Servicios",
       "title": "En qué te ayudo",
-      "intro": "Construyo sobre modelos de lenguaje y hago que la parte que el usuario toca sea tan sólida como el modelo que va detrás.",
+      "intro": "Construyo sobre modelos de lenguaje y hago que la parte que el usuario toca sea tan sólida como el modelo que va detrás. Y si una idea no va a funcionar, te lo digo antes de que la pagues.",
       "items": {
         "automation": {
-          "title": "Producto sobre LLMs",
-          "body": "Interfaces de chat con streaming, modo voz, orquestación multi-agente, RAG y llamadas a herramientas con barandas de permisos. Azure OpenAI, Anthropic Claude, LangGraph, Vercel AI SDK y MCP, con evaluaciones para saber si de verdad funciona.",
+          "title": "Agentes de IA, MCP y productos con LLMs",
+          "body": "Agentes sobre el Claude Agent SDK y LangGraph, servidores MCP para tus propios datos, chat con streaming y voz, RAG y llamadas a herramientas detrás de barandas de permisos. Con evaluaciones, para saber si de verdad funciona.",
           "cta": "Ver servicios",
           "tags": {
-            "1": "Agentes multi-agente",
-            "2": "RAG y pgvector",
-            "3": "Streaming y voz",
-            "4": "LangGraph",
-            "5": "MCP"
+            "1": "Agentes de IA",
+            "2": "MCP",
+            "3": "RAG y pgvector",
+            "4": "Streaming y voz",
+            "5": "Evaluaciones"
           }
         },
         "development": {
@@ -248,7 +250,8 @@
             "5": "Application Insights",
             "6": "Better Auth y Entra ID",
             "7": "CI/CD",
-            "8": "Vercel"
+            "8": "Vercel",
+            "9": "Supabase"
           }
         }
       }

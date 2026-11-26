@@ -1,7 +1,7 @@
 {
   "about": {
     "calendar": "Schedule a call",
-    "description": "I didn't learn AI from a course: I have LLMs running in production at a global steel manufacturer and in my own house. Senior Frontend Engineer at Arkano (Ternium's multi-agent assistant). Next.js, React, TypeScript, Azure OpenAI, LangGraph. From Bogotá.",
+    "description": "Andrés Santana (Rulo), a senior engineer in Bogotá specialized in applied AI: agents, MCP servers and LLM products in production, with frontend that holds up for real users. Ternium's multi-agent assistant at Arkano, Hermes OS, Matiz, Vitau and CareWays.",
     "intro": {
       "p1": "Before writing code, I wrote songs. Music was the life plan — until technology transformed the industry and forced me to choose between what I loved and what let me make a living. <strong>I chose to survive.</strong>",
       "p2": "I learned to code from scratch and took it seriously: for nearly six years I built the frontend of Mexico's fastest-growing digital pharmacy. I took LCP from 5.8s to 2.5s, the checkout I architected cut cart abandonment <strong>31%</strong> ($2.8M a year), and daily active users rose <strong>23%</strong> to over <strong>450,000</strong>.",
@@ -65,7 +65,7 @@
       },
       "title": "Technical Skills"
     },
-    "title": "About — Andrés Santana, Senior Frontend Engineer with LLMs in production",
+    "title": "About — Andrés Santana, AI engineer: agents, MCP and LLM products in production",
     "work": {
       "title": "Experience",
       "experiences": {
@@ -83,16 +83,16 @@
         },
         "careways": {
           "company": "CareWays Collaborative",
-          "role": "Frontend developer · freelance",
+          "role": "Tech Lead",
           "timeframe": "2026",
           "achievements": {
-            "1": "A platform to <strong>reduce pediatric ICU mortality</strong> across Latin America: clinical education and analytics modules, end to end.",
-            "2": "Clinical-outcome dashboards with Recharts, role-based permissions (RBAC) and clinical forms with react-hook-form and Zod."
+            "1": "Built, end to end, the platform that trains <strong>pediatric ICU teams</strong> in low-resource settings: courses with automatic certificates, live telesimulation graded in real time and a patient registry with PIM3 mortality risk.",
+            "2": "Next.js 16 and React 19 on Oracle Autonomous Database, role-based access and an interface in English, Spanish and Portuguese, for a network of <strong>12 hospitals in 5 countries</strong>."
           }
         },
         "vitau": {
           "company": "Vitau",
-          "role": "Senior Frontend Developer",
+          "role": "Senior Frontend Engineer & Tech Lead",
           "timeframe": "2020 - 2026",
           "achievements": {
             "1": "Modular checkout that cut cart abandonment <strong>31%</strong>, worth <strong>$2.8M a year</strong>.",
@@ -103,16 +103,17 @@
           }
         },
         "freelance": {
-          "company": "Freelance",
-          "role": "Frontend developer & consultant",
+          "company": "RuloCode · own products and freelance",
+          "role": "AI engineer and frontend consultant",
           "timeframe": "2019 - Present",
           "achievements": {
-            "1": "10+ projects for startups and SMBs across e-commerce, SaaS and real estate.",
-            "2": "End-to-end web platforms, from Figma designs to production on Vercel."
+            "1": "<strong>Hermes OS</strong>, my open-source (MIT) agent system: Claude Agent SDK, MCP tools behind permission guardrails, RAG with pgvector across five sources and real-time voice, running 24/7.",
+            "2": "<strong>Matiz</strong>, an MCP server that gives coding agents measured design data: 16 tools, 800+ pages from 165 brands and 41 behavior tests.",
+            "3": "10+ platforms for startups and SMBs across e-commerce, SaaS, real estate, healthcare and creative studios, from Figma to production on Vercel."
           }
         },
         "aishift": {
-          "company": "AI Shift Challenge · rulocode",
+          "company": "AI Shift Challenge · RuloCode",
           "role": "Creator and instructor",
           "timeframe": "2026 - Present",
           "achievements": {
@@ -124,9 +125,10 @@
     },
     "hero": {
       "eyebrow": "About",
-      "title": "I didn't learn AI from a course: I have <fx>LLMs in production</fx>.",
-      "intro": "I'm Andrés Santana, Rulo. By day I build Ternium's multi-agent conversational assistant from Arkano. By night I build Hermes OS, my own Jarvis. Six years making software survive real users, now with generative AI too.",
+      "title": "AI agents and LLM products, <fx>built for production</fx>.",
+      "intro": "I'm Andrés Santana, Rulo: a senior engineer in Bogotá specialized in applied AI. I build agents, MCP servers and products on top of LLMs, with a frontend that holds up when real users arrive. By day, Ternium's multi-agent assistant at Arkano. By night, Hermes OS, my own agent system, running 24/7.",
       "ctaCall": "Book a call",
+      "ctaServices": "See services",
       "ctaProgram": "See the AI Shift Challenge",
       "portraitAlt": "Andrés Santana, Rulo, in front of his laptop",
       "location": "Bogotá, Colombia · remote since 2020"
@@ -135,7 +137,7 @@
       "eyebrow": "My story",
       "title": "From writing songs to putting language models to work.",
       "quote": "My rule: every visible number is real. Each metric on this site is backed by a commit, a dashboard or a report.",
-      "north": "I direct coding agents (Claude Code and the Agent SDK) under guardrails: I own the architecture and system design, they do the typing. Off-screen, a musician. That's where “Más allá del código” was born.",
+      "north": "How I work: I direct coding agents (Claude Code and the Agent SDK) under guardrails. I own the architecture and system design; they do the typing. Off-screen, a musician. That's where “Más allá del código” was born.",
       "acts": {
         "before": {
           "label": "Before code",
@@ -150,7 +152,7 @@
         "production": {
           "label": "2020 — 2026",
           "title": "Six years making software survive real users.",
-          "body": "From frontend to senior at Vitau, a digital pharmacy in Mexico. I took LCP from 5.8s to 2.5s and CLS from 0.3 to 0.1, the modular checkout I architected cut cart abandonment 31% ($2.8M a year), and daily active users rose 23% to over 450,000. Mentored three juniors, two promoted."
+          "body": "Senior Frontend Engineer and Tech Lead at Vitau, a digital pharmacy in Mexico. I took LCP from 5.8s to 2.5s and CLS from 0.3 to 0.1, the modular checkout I architected cut cart abandonment 31% ($2.8M a year), and daily active users rose 23% to over 450,000. In 2026, Tech Lead at CareWays, a platform for pediatric ICU teams across 12 hospitals in 5 countries."
         },
         "day": {
           "label": "Today · by day",
@@ -159,26 +161,26 @@
         },
         "night": {
           "label": "Today · by night",
-          "title": "Hermes OS, my own Jarvis.",
-          "body": "An end-to-end agent system running 24/7: multi-agent orchestration with tool calling and permission guardrails, RAG with pgvector across five sources, voice in and out, a meeting copilot at ~2s latency and gesture control. Not a demo: my production lab."
+          "title": "My own lab: Hermes OS and Matiz.",
+          "body": "Hermes OS is my end-to-end agent system, open source and running 24/7: multi-agent orchestration with tool calling behind permission guardrails, RAG with pgvector across five sources, voice in and out, a meeting copilot at ~2s latency and evals with a 23-assert end-to-end harness. Matiz is an MCP server that gives coding agents measured design data: 16 tools, 165 brands, 800+ pages."
         }
       }
     },
     "help": {
       "eyebrow": "Services",
       "title": "How I can help",
-      "intro": "I build on language models and make the part users touch as solid as the model behind it.",
+      "intro": "I build on language models and make the part users touch as solid as the model behind it. And if an idea won't work, I tell you before you pay for it.",
       "items": {
         "automation": {
-          "title": "Product on top of LLMs",
-          "body": "Chat interfaces with streaming, voice mode, multi-agent orchestration, RAG and tool calling with permission guardrails. Azure OpenAI, Anthropic Claude, LangGraph, Vercel AI SDK and MCP, with evals so you know it actually works.",
+          "title": "AI agents, MCP and LLM products",
+          "body": "Agents on the Claude Agent SDK and LangGraph, MCP servers for your own data, chat with streaming and voice, RAG and tool calling behind permission guardrails. With evals, so you know it actually works.",
           "cta": "See services",
           "tags": {
-            "1": "Multi-agent",
-            "2": "RAG and pgvector",
-            "3": "Streaming and voice",
-            "4": "LangGraph",
-            "5": "MCP"
+            "1": "AI agents",
+            "2": "MCP",
+            "3": "RAG and pgvector",
+            "4": "Streaming and voice",
+            "5": "Evals"
           }
         },
         "development": {
@@ -248,7 +250,8 @@
             "5": "Application Insights",
             "6": "Better Auth and Entra ID",
             "7": "CI/CD",
-            "8": "Vercel"
+            "8": "Vercel",
+            "9": "Supabase"
           }
         }
       }
