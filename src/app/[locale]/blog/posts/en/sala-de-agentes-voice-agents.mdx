@@ -1,0 +1,48 @@
+---
+title: "Sala de agentes: voice agents that only answer with real data"
+publishedAt: "2026-11-26"
+summary: "Voice agents that talk to each other and to you, on two screens: a 3D room you enter through the webcam and a station kiosk that answers \"how do I get there?\" with official GTFS routes. The architecture and the two rules behind it."
+tag: "AI Agents"
+---
+
+**Sala de agentes** is a project I built as creator and full-stack/AI engineer: voice agents with their own voices that talk to each other and to you, and answer with data that actually exists. The code is public under the MIT license: **[ruloCode/sala-de-agentes](https://github.com/ruloCode/sala-de-agentes)**.
+
+## One engine, two screens
+
+- **`/sala`** — several agents standing in a 3D scene. Your body enters through the webcam, and raising your hand picks who you talk to.
+- **`/estacion`** — a vertical kiosk for a station platform. You ask how to get somewhere and it answers with the transit system's real route: lines, times and transfers.
+- **`/m/:token`** — the same conversation on your phone, with the route you built on the big screen.
+
+## Two rules across the whole repo
+
+**Every visible datum is real.** Routes come from the transit system's official GTFS feed; places and service updates come from files a person edits. If the source doesn't exist, the screen says so instead of making something up.
+
+**No proper names in the code.** The characters, the city, the station and the places live in configuration files outside the repo, in `~/.sala`. The same code runs in another city with other agents.
+
+## One brain, many voices
+
+A single voice session with a **multi-voice** agent plays every character. One brain means they share full context, never talk over each other, and naming one of them routes the conversation on its own. The client reconstructs who is speaking at each moment, from voice tags plus audio alignment, to light up that character's figure and subtitle.
+
+The voice's **client tools run in the browser** and call a local agent. That's why the screen can use data from your machine without exposing it to the voice provider and without a tunnel. And what a tool finds isn't drawn from the model's text: it's drawn from the structured payload the agent returns. The browser talks to the voice provider over WebRTC; running it requires an ElevenLabs account.
+
+## Getting to a place, not a station
+
+Nobody is going "to a station": they're going to a neighborhood, a museum, an address. The route endpoint resolves what the traveler said in a cascade, without guessing: an address (Google Maps Geocoding, only if a key is configured), then a station, then a neighborhood or place from the config files. Several close matches return candidates, and the voice asks again.
+
+The planner uses every mode in the feed — metro, tram, cable car, buses — tries the stations near the destination, and picks the one with the fewest transfers and then the fewest total minutes, walking included. When the feed's calendar has expired, departures are labeled **published schedule**, never as a live prediction. One generic word like "neighborhood" or "park" never identifies a station by itself.
+
+The README uses the **Medellín Metro** GTFS from its open-data portal as the example feed. Any standard GTFS works.
+
+## Handoff to the phone
+
+When there's a route on screen, the kiosk shows a QR code, generated in the repo with no dependencies. It opens a 15-minute pass to continue on your phone. To talk from the phone you need HTTPS, because the browser only hands over the microphone in a secure context; over plain HTTP on the local network the phone still sees its route, and the page explains why it can't talk.
+
+## Testing without a mic or camera
+
+Both screens expose QA hooks to talk to them by text from the browser console. A Playwright script runs the whole demo and checks that each question triggers its tool, the right card appears, only one voice sounds at a time and no bracketed text leaks into subtitles. On top of that, the README lists **66 pure-logic tests**, with no camera and no network.
+
+## Where it came from
+
+The room was born as one of the screens of [Hermes OS](/work/hermes-os). Here it lives on its own: its own agent, its own data and no dependency on that project.
+
+The repo is **[public and MIT](https://github.com/ruloCode/sala-de-agentes)**. If you need voice agents grounded in real data, here's [what I offer](/services).

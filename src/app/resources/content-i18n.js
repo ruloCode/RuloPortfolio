@@ -275,7 +275,7 @@ const createI18nContent = (t) => {
     },
     offerings: {
       title: t("services.offerings.title"),
-      items: ["automation", "frontend", "performance", "consulting"].map((key) => ({
+      items: ["agents", "automation", "nextjs", "frontend", "performance", "consulting"].map((key) => ({
         key,
         title: t(`services.offerings.${key}.title`),
         description: t(`services.offerings.${key}.description`),

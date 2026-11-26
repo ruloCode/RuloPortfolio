@@ -1,0 +1,48 @@
+---
+title: "Sala de agentes: agentes de voz que solo responden con datos reales"
+publishedAt: "2026-11-26"
+summary: "Agentes con voz propia que conversan entre ellos y contigo, en dos pantallas: una sala 3D a la que entras por la webcam y un tótem de estación que responde \"¿cómo llego?\" con rutas del GTFS oficial. La arquitectura y las dos reglas que la sostienen."
+tag: "Agentes de IA"
+---
+
+**Sala de agentes** es un proyecto que construí como creador e ingeniero full-stack y de IA: agentes con voz propia que conversan entre ellos y contigo, y responden con datos que existen. El código es público con licencia MIT: **[ruloCode/sala-de-agentes](https://github.com/ruloCode/sala-de-agentes)**.
+
+## Un motor, dos pantallas
+
+- **`/sala`** — varios agentes de pie en una escena 3D. Tu cuerpo entra por la webcam, y levantar la mano elige con quién hablas.
+- **`/estacion`** — un tótem vertical para un andén. Preguntas cómo llegar y responde con la ruta real del sistema de transporte: líneas, tiempos y transbordos.
+- **`/m/:token`** — la misma conversación en el celular, con la ruta que armaste en la pantalla grande.
+
+## Dos reglas que atraviesan todo el repo
+
+**Todo dato visible es real.** Las rutas salen del GTFS oficial del sistema de transporte; los lugares y las novedades, de archivos que edita una persona. Si la fuente no existe, la pantalla lo dice en vez de inventar.
+
+**Ningún nombre propio en el código.** Los personajes, la ciudad, la estación y los lugares viven en archivos de configuración fuera del repo, en `~/.sala`. El mismo código corre en otra ciudad con otros agentes.
+
+## Un solo cerebro, muchas voces
+
+Una sola sesión de voz con un agente **multi-voz** interpreta a todos los personajes. Un solo cerebro significa que comparten el contexto completo, nunca hablan encima del otro y nombrar a uno enruta la conversación solo. El cliente reconstruye quién está sonando en cada instante, con etiquetas de voz y alineación del audio, para encender la figura y el subtítulo de ese personaje.
+
+Las **client tools de la voz corren en el navegador** y llaman a un agente local. Por eso la pantalla puede usar datos de tu máquina sin exponerlos al proveedor de voz y sin necesitar un túnel. Y lo que una tool descubre no se pinta con el texto del modelo: se pinta con el payload estructurado que devuelve el agente. El navegador habla con el proveedor de voz por WebRTC; para correrlo hace falta una cuenta de ElevenLabs.
+
+## Llegar a un lugar, no a una estación
+
+Nadie va "a una estación": va a un barrio, a un museo, a una dirección. La ruta del agente resuelve lo que dijo el viajero en cascada, sin adivinar: una dirección (Google Maps Geocoding, solo si hay key configurada), luego una estación, luego un barrio o un lugar de los archivos de configuración. Si hay varios parecidos, devuelve candidatas y la voz repregunta.
+
+El plan usa todos los modos del feed — metro, tranvía, cable, buses —, prueba las estaciones cercanas al destino y elige la de menos transbordos y luego menos minutos totales, caminata incluida. Cuando el calendario del feed ya venció, las salidas se marcan como **horario publicado**, nunca como predicción en vivo. Una palabra genérica como "barrio" o "parque" nunca identifica una estación por sí sola.
+
+El README usa como feed de ejemplo el GTFS del **Metro de Medellín**, publicado en su portal de datos abiertos. Sirve cualquier GTFS estándar.
+
+## El pase al celular
+
+Cuando hay una ruta en pantalla, el tótem muestra un QR, generado en el propio repo y sin dependencias. Abre un pase de 15 minutos para seguir en el celular. Para hablar desde el teléfono hace falta https, porque el navegador solo entrega el micrófono en contexto seguro; por http en la red local el teléfono igual ve su ruta, y la página explica por qué no puede hablar.
+
+## Probar sin micrófono ni cámara
+
+Las dos pantallas traen costuras de QA para hablarles por texto desde la consola del navegador. Un script con Playwright corre el guion completo del demo y verifica que cada pregunta dispara su tool, que aparece la tarjeta correcta, que nunca suena más de una voz a la vez y que no se cuela texto entre corchetes en los subtítulos. Además, el README lista **66 tests de lógica pura**, sin cámara ni red.
+
+## De dónde salió
+
+La sala nació como una de las pantallas de [Hermes OS](/es/work/hermes-os). Aquí vive sola: su propio agente, sus propios datos y ninguna dependencia de aquel proyecto.
+
+El repo es **[público y MIT](https://github.com/ruloCode/sala-de-agentes)**. Si necesitas agentes de voz anclados en datos reales, aquí está [lo que ofrezco](/es/services).

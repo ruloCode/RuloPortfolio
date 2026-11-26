@@ -807,7 +807,7 @@
       "description": "Llamada gratuita de 30 minutos, sin discurso de ventas: revisamos tu operación y te digo si puedo ayudarte — y cómo.",
       "title": "Cuéntame qué le está quitando horas a tu equipo"
     },
-    "description": "Automatización de procesos con IA, consultoría de adopción y desarrollo web de alto rendimiento para empresas. Primera llamada gratis de 30 minutos.",
+    "description": "Agentes de IA y MCP, automatización de procesos con IA, consultoría de adopción y desarrollo web de alto rendimiento con Next.js y Supabase para empresas. Primera llamada gratis de 30 minutos.",
     "engagement": {
       "consulting": {
         "description": "Revisiones de arquitectura, auditorías de código y sesiones de estrategia técnica. Facturación por hora o por día.",
@@ -856,6 +856,11 @@
     },
     "label": "Servicios",
     "offerings": {
+      "agents": {
+        "bestFor": "Equipos que necesitan agentes que funcionen de verdad",
+        "description": "Agentes con tool calling, flujos con Claude Code, servidores MCP, RAG, chat y voz — con Claude, OpenAI / Azure OpenAI, LangGraph o el Vercel AI SDK. Con evals, para que sepas que de verdad funciona.",
+        "title": "Agentes de IA y MCP"
+      },
       "automation": {
         "bestFor": "Equipos ahogados en tareas repetitivas",
         "description": "Detecto los procesos que más horas consumen — correo, reportes, datos, atención — y los dejo corriendo solos. Resultados en semanas, no meses.",
@@ -870,6 +875,11 @@
         "bestFor": "Equipos de producto que lanzan rápido",
         "description": "Aplicaciones React y Next.js de nivel producción, desde la arquitectura hasta el despliegue.",
         "title": "Desarrollo Frontend"
+      },
+      "nextjs": {
+        "bestFor": "Productos que pasan de demo a producción",
+        "description": "Apps con Next.js y Supabase: App Router, Server Components, streaming, Postgres y RLS. Hechas para escalar, no para la demo.",
+        "title": "Apps con Next.js + Supabase"
       },
       "performance": {
         "bestFor": "Sitios que pierden usuarios por lentitud",

@@ -806,7 +806,7 @@
       "description": "A free 30-minute call, no sales pitch: we review your operation and I tell you whether I can help — and how.",
       "title": "Tell me what's stealing hours from your team"
     },
-    "description": "AI process automation, adoption consulting and high-performance web development for companies. First 30-minute call is free.",
+    "description": "AI agents and MCP, AI process automation, adoption consulting, and high-performance web development with Next.js and Supabase for companies. First 30-minute call is free.",
     "engagement": {
       "consulting": {
         "description": "Architecture reviews, code audits, and technical strategy sessions. Billed by the hour or day.",
@@ -855,6 +855,11 @@
     },
     "label": "Services",
     "offerings": {
+      "agents": {
+        "bestFor": "Teams that need agents that actually work",
+        "description": "Tool-calling agents, Claude Code workflows, MCP servers, RAG, chat and voice — with Claude, OpenAI / Azure OpenAI, LangGraph or the Vercel AI SDK. With evals, so you know it actually works.",
+        "title": "AI Agents & MCP"
+      },
       "automation": {
         "bestFor": "Teams drowning in repetitive tasks",
         "description": "I find the processes eating the most hours — email, reports, data, support — and set them running on their own. Results in weeks, not months.",
@@ -869,6 +874,11 @@
         "bestFor": "Product teams shipping fast",
         "description": "Production-grade React and Next.js applications, from architecture to deployment.",
         "title": "Frontend Development"
+      },
+      "nextjs": {
+        "bestFor": "Products going from demo to production",
+        "description": "Next.js and Supabase apps with App Router, Server Components, streaming, Postgres and RLS. Built to scale, not to demo.",
+        "title": "Next.js + Supabase Apps"
       },
       "performance": {
         "bestFor": "Sites losing users to slow loads",

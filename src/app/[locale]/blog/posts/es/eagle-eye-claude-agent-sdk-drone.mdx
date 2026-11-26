@@ -1,0 +1,61 @@
+---
+title: "Eagle Eye: un agente de visión con la Claude Agent SDK para un dron, en tres horas"
+publishedAt: "2026-11-26"
+summary: "Un workshop de tres horas de la Claude Agent SDK, un equipo de tres y un DJI Mini 3 Pro. Cómo está organizado el repo, qué hace mi agente y por qué el plan B importaba tanto como el plan A."
+tag: "Agentes de IA"
+---
+
+**Eagle Eye** es un agente de visión por computador para un dron **DJI Mini 3 Pro**. Lo construimos en un workshop de tres horas de la **Claude Agent SDK**, en un equipo de tres. El código es público en GitHub: **[ruloCode/eagle-eye](https://github.com/ruloCode/eagle-eye)**.
+
+Este post cuenta qué está diseñado para hacer el repo y cómo lo repartimos para que tres personas trabajaran en paralelo sin pisarse. No cuenta cómo salió un vuelo: el README no lo registra, así que yo tampoco.
+
+## Dos modos, un agente
+
+El agente mira lo que ve el dron y lo analiza en uno de dos modos:
+
+- **Cultivo:** salud visible de las plantas — zonas amarillas o estresadas, huecos de siembra, maleza. Usa el índice **VARI**, `VARI = (G − R) / (G + R − B)`. La cámara es RGB, así que no hay NDVI: VARI es lo que se puede calcular solo con rojo, verde y azul.
+- **Personas:** conteo para seguridad o aforo. **Sin reconocimiento facial ni identificación de individuos.** Ese límite está escrito en el README a propósito.
+
+El workshop pedía tres cosas y el MVP muestra las tres: **tools propias**, **salida estructurada** y **control de presupuesto**, con `max_budget_usd` y `max_turns`.
+
+## El pipeline
+
+El repo describe la cadena completa así:
+
+1. El dron transmite desde el control y el celular (DJI Fly) por **RTMP**.
+2. **MediaMTX** en el portátil recibe el stream en el puerto 1935, ruta `/live/dron`.
+3. Un **grabber** en OpenCV guarda un frame cada N segundos en `data/frames/`.
+4. El **agente** (Claude Agent SDK) analiza el último frame y devuelve JSON estructurado.
+5. Ese JSON se envía por POST a una API en **FastAPI** en el puerto 8000, que lo guarda en **SQLite**.
+6. Un **dashboard** web en el puerto 5500 consulta la API cada dos segundos.
+
+## Mi parte: el agente
+
+Cada persona era dueña de unas carpetas. La mía era `agent/`: el agente de la SDK, su system prompt y dos tools:
+
+- `ultimo_frame` — trae el frame más reciente que guardó el grabber.
+- `indice_vari` — calcula el índice VARI sobre esa imagen.
+
+La gracia de tener VARI como tool, en vez de pedirle al modelo que "busque amarillo", es que el número sale del código y el modelo razona encima de él. Sumado a la salida estructurada, cada hallazgo tiene una forma fija en la que el backend y el dashboard pueden confiar.
+
+Los otros dos se encargaron de la ingesta y el backend (`ingest/`, `backend/`, `scripts/`) y del dashboard, en HTML/CSS/JS sin build. Entre los tres compartíamos `contracts/` (el JSON Schema del hallazgo, el contrato de la API y los fixtures) y `openspec/`.
+
+## Cómo trabajan tres personas en paralelo durante tres horas
+
+Lo que más me gusta del repo es cómo está organizado para ir rápido:
+
+- **Mocks para cada frente.** El dashboard corre con fixtures usando `?mock=1`, el agente corre con fotos locales con `--dry-run --una-vez` e imprime el JSON, y el backend se puede sembrar con datos de prueba. Nadie espera a nadie.
+- **OpenSpec.** Hay una spec base compartida para el contrato del hallazgo y un change por frente (el mío era `add-vision-agent`). En Claude Code, `/opsx:apply` trabaja las tareas agrupadas por hito: mocks, contrato real, punta a punta.
+- **Reglas del contrato.** Cada uno solo toca su carpeta. Si hay conflicto en `contracts/`, se resuelve entre los tres y va en un commit aparte con el prefijo `contract:`.
+
+## Plan B: sin dron
+
+Si el RTMP de DJI Fly no conecta, `scripts/replay.sh` retransmite un video grabado al mismo servidor, en bucle o una sola vez. El resto del pipeline no cambia. En un build de tres horas eso no es opcional: es lo que te deja seguir trabajando en el agente cuando el hardware o la red no colaboran.
+
+## Lo que me llevo
+
+Los requisitos del workshop — tools propias, salida estructurada, un tope de presupuesto — son lo que convierte un agente en algo que se conecta a un sistema y no en un chat. El agente es una etapa de un pipeline, con un contrato a cada lado.
+
+El repo es **[público en GitHub](https://github.com/ruloCode/eagle-eye)** si quieres leer el agente o correr los mocks.
+
+Si necesitas agentes construidos así, aquí está [lo que ofrezco](/es/services).

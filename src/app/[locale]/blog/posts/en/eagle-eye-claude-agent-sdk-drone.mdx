@@ -1,0 +1,61 @@
+---
+title: "Eagle Eye: a Claude Agent SDK vision agent for a drone, in three hours"
+publishedAt: "2026-11-26"
+summary: "A three-hour Claude Agent SDK workshop, a team of three and a DJI Mini 3 Pro. How the repo is organized, what my agent does, and why the plan B mattered as much as the plan A."
+tag: "AI Agents"
+---
+
+**Eagle Eye** is a computer vision agent for a **DJI Mini 3 Pro** drone. We built it in a three-hour **Claude Agent SDK** workshop, as a team of three. The code is public on GitHub: **[ruloCode/eagle-eye](https://github.com/ruloCode/eagle-eye)**.
+
+This post covers what the repo is designed to do and how we split it so three people could work in parallel without stepping on each other. It doesn't cover how a flight went: the README doesn't record that, so I won't either.
+
+## Two modes, one agent
+
+The agent looks at what the drone sees and analyzes it in one of two modes:
+
+- **Crops:** visible plant health — yellow or stressed areas, gaps in planting, weeds. It uses the **VARI** index, `VARI = (G − R) / (G + R − B)`. The camera is RGB, so there's no NDVI: VARI is what you can compute from red, green and blue alone.
+- **People:** a headcount for safety or capacity. **No facial recognition and no identification of individuals.** That limit is written into the README on purpose.
+
+The workshop asked for three things, and the MVP shows all of them: **custom tools**, **structured output** and **budget control**, via `max_budget_usd` and `max_turns`.
+
+## The pipeline
+
+The repo describes the full chain like this:
+
+1. The drone streams from the controller and the phone (DJI Fly) over **RTMP**.
+2. **MediaMTX** on the laptop receives the stream on port 1935, path `/live/dron`.
+3. A **grabber** in OpenCV saves one frame every N seconds to `data/frames/`.
+4. The **agent** (Claude Agent SDK) analyzes the latest frame and returns structured JSON.
+5. That JSON is POSTed to a **FastAPI** API on port 8000, which stores it in **SQLite**.
+6. A web **dashboard** on port 5500 polls the API every two seconds.
+
+## My part: the agent
+
+Each person owned folders. Mine was `agent/`: the SDK agent, its system prompt and two tools:
+
+- `ultimo_frame` — fetches the most recent frame the grabber saved.
+- `indice_vari` — computes the VARI index on that image.
+
+The point of keeping VARI as a tool, rather than asking the model to "look for yellow", is that the number comes from code, and the model reasons on top of it. Combined with structured output, every finding has a fixed shape that the backend and the dashboard can rely on.
+
+The other two owned ingestion and backend (`ingest/`, `backend/`, `scripts/`) and the dashboard, plain HTML/CSS/JS with no build step. Everyone shared `contracts/` (the finding's JSON Schema, the API contract and fixtures) and `openspec/`.
+
+## How three people work in parallel for three hours
+
+What I like most about the repo is how it's organized for speed:
+
+- **Mocks for every front.** The dashboard runs on fixtures with `?mock=1`, the agent runs on local photos with `--dry-run --una-vez` and prints the JSON, and the backend can be seeded with test data. Nobody waits on anyone.
+- **OpenSpec.** There's a shared base spec for the finding contract and one change per front (`add-vision-agent` was mine). In Claude Code, `/opsx:apply` works through the tasks, grouped by milestone: mocks, real contract, end to end.
+- **Contract rules.** Each person only touches their folder. If there's a conflict in `contracts/`, the three of us resolve it together and it goes in a separate commit with the `contract:` prefix.
+
+## Plan B: no drone
+
+If DJI Fly's RTMP doesn't connect, `scripts/replay.sh` re-streams a recorded video to the same server, in a loop or once. The rest of the pipeline doesn't change. In a three-hour build that's not optional: it's what lets you keep working on the agent when the hardware or the network doesn't cooperate.
+
+## What I took away
+
+The workshop requirements — own tools, structured output, a budget cap — are what makes an agent something you can plug into a system instead of a chat. The agent is one stage in a pipeline, with a contract on both sides.
+
+The repo is **[public on GitHub](https://github.com/ruloCode/eagle-eye)** if you want to read the agent or run the mocks.
+
+If you need agents built like this, here's [what I offer](/services).

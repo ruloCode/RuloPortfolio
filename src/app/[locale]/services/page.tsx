@@ -21,7 +21,9 @@ import { scrollAsset } from "@/lib/scroll-world/sections";
 import brand from "@/styles/brand.module.scss";
 
 const OFFERING_ICONS: Record<string, string> = {
+  agents: "sparkle",
   automation: "robot",
+  nextjs: "grid",
   frontend: "rocket",
   performance: "gauge",
   consulting: "lightbulb",
