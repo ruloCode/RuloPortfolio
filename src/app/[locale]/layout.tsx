@@ -13,7 +13,7 @@ import {
   setRequestLocale,
 } from "next-intl/server";
 
-import { Footer, Header, RouteGuard, SiteShell } from "@/components";
+import { Footer, Header, SiteShell } from "@/components";
 import { baseURL, effects, style } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { routing } from "@/i18n/routing";
@@ -224,7 +224,13 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
                 />
               }
             >
-              <RouteGuard>{children}</RouteGuard>
+              {/*
+                Disabled routes in `routes` are enforced by each page calling
+                notFound() on the server: real HTTP 404 + noindex, rendered
+                through [locale]/not-found.tsx. A client-side guard here can
+                only paint a 404 body over an HTTP 200 (a soft 404).
+              */}
+              {children}
             </SiteShell>
           </NextIntlClientProvider>
           <Analytics />

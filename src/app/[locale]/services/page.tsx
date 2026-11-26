@@ -14,7 +14,7 @@ import {
 import { baseURL } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
 import { CtaBanner, PageHero, SectionHeader } from "@/components";
-import { localeAlternates } from "@/app/utils/seo";
+import { localeAlternates, localeOpenGraph } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 import { scrollAsset } from "@/lib/scroll-world/sections";
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageParams) {
       title,
       description,
       type: "website",
-      url: `https://${baseURL}/services`,
+      ...localeOpenGraph(locale, "/services"),
       images: [
         {
           url: ogImage,

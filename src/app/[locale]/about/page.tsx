@@ -19,7 +19,7 @@ import { StoryTimeline } from "@/components/about/StoryTimeline";
 import brand from "@/styles/brand.module.scss";
 import styles from "@/components/about/about.module.scss";
 import { createI18nContent } from "@/app/resources/content-i18n";
-import { localeAlternates } from "@/app/utils/seo";
+import { localeAlternates, localeOpenGraph } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -108,7 +108,7 @@ export async function generateMetadata({ params }: PageParams) {
       title,
       description,
       type: "profile",
-      url: `https://${baseURL}/about`,
+      ...localeOpenGraph(locale, "/about"),
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {

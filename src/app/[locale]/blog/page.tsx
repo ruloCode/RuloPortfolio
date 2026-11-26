@@ -4,7 +4,7 @@ import { NewsletterBand, PageHero } from "@/components";
 import { BlogIndex, type BlogIndexPost } from "@/components/blog/BlogIndex";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
-import { localeAlternates } from "@/app/utils/seo";
+import { localeAlternates, localeOpenGraph } from "@/app/utils/seo";
 import { getPosts } from "@/app/utils/utils";
 import { formatDate } from "@/app/utils/formatDate";
 import { readingTime } from "@/app/utils/readingTime";
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageParams) {
       title,
       description,
       type: "website",
-      url: `https://${baseURL}/blog`,
+      ...localeOpenGraph(locale, "/blog"),
       images: [
         {
           url: ogImage,

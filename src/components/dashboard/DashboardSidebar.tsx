@@ -16,7 +16,7 @@ import {
   UserMenu,
 } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 export type NavCopy = {
   overview: string;
@@ -192,30 +192,45 @@ const AccountMenu = ({
 
 const COLLAPSE_KEY = "dashboard-rail-collapsed";
 
+// Rail collapsed state as a tiny external store over localStorage. `memory`
+// takes over once the user toggles, so the rail still works when storage is
+// unavailable (private mode, storage disabled).
+const railListeners = new Set<() => void>();
+let railMemory: boolean | null = null;
+
+const subscribeRail = (listener: () => void) => {
+  railListeners.add(listener);
+  return () => {
+    railListeners.delete(listener);
+  };
+};
+
+const readRailCollapsed = (): boolean => {
+  if (railMemory !== null) return railMemory;
+  try {
+    return window.localStorage.getItem(COLLAPSE_KEY) === "1";
+  } catch {
+    // Private mode, or storage disabled. Expanded is the safe default.
+    return false;
+  }
+};
+
+const writeRailCollapsed = (next: boolean) => {
+  railMemory = next;
+  try {
+    window.localStorage.setItem(COLLAPSE_KEY, next ? "1" : "0");
+  } catch {}
+  railListeners.forEach((listener) => listener());
+};
+
 /** Desktop rail. Hidden below the `s` breakpoint, where the top bar takes over. */
 export const DashboardRail = (props: Props) => {
-  // Starts expanded and corrects itself after mount rather than reading
-  // localStorage during render: the server has no idea what this user chose,
-  // and guessing would hydrate against a rail of a different width.
-  const [collapsed, setCollapsed] = useState(false);
+  // The server snapshot is always "expanded": the server has no idea what this
+  // user chose, and guessing would hydrate against a rail of a different
+  // width. React hydrates with that, then re-renders with the stored value.
+  const collapsed = useSyncExternalStore(subscribeRail, readRailCollapsed, () => false);
 
-  useEffect(() => {
-    try {
-      setCollapsed(window.localStorage.getItem(COLLAPSE_KEY) === "1");
-    } catch {
-      // Private mode, or storage disabled. Expanded is the safe default.
-    }
-  }, []);
-
-  const toggle = () => {
-    setCollapsed((value) => {
-      const next = !value;
-      try {
-        window.localStorage.setItem(COLLAPSE_KEY, next ? "1" : "0");
-      } catch {}
-      return next;
-    });
-  };
+  const toggle = () => writeRailCollapsed(!collapsed);
 
   return (
     <Column
@@ -268,9 +283,11 @@ export const DashboardRail = (props: Props) => {
  */
 export const DashboardTopBar = (props: Props) => {
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => setMenuOpen(false), [pathname]);
+  // The menu remembers the path it was opened on, so any navigation closes it
+  // by construction, without an effect resetting state after the fact.
+  const [openedAt, setOpenedAt] = useState<string | null>(null);
+  const menuOpen = openedAt === pathname;
+  const setMenuOpen = (open: boolean) => setOpenedAt(open ? pathname : null);
 
   return (
     <>
@@ -289,7 +306,7 @@ export const DashboardTopBar = (props: Props) => {
         <Flex gap="12" vertical="center">
           <NavIcon
             isActive={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-label={props.nav.menu}
           />
           <Wordmark locale={props.locale} />

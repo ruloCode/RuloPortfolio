@@ -5,9 +5,11 @@ import { createClient } from "@/lib/supabase/client";
 import { Button, Column, Flex, Heading, Icon, Input, Text } from "@/once-ui/components";
 import brand from "@/styles/brand.module.scss";
 import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const subscribeNoop = () => () => {};
 
 type LoginCopy = {
   title: string;
@@ -30,14 +32,25 @@ export const LoginForm = ({ copy }: { copy: LoginCopy }) => {
 
   // The welcome email links here with ?email= so the field is prefilled. Read it
   // once, then strip it from the URL so the address doesn't linger in history.
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const prefill = params.get("email");
+  // The page is static, so the URL can only be read on the client, after
+  // hydration (`isClient` is false on the server and while hydrating). The
+  // read happens during render, guarded so it runs once; the URL is stripped
+  // in an effect only after that read has been committed.
+  const isClient = useSyncExternalStore(subscribeNoop, () => true, () => false);
+  const [prefillRead, setPrefillRead] = useState(false);
+  const [hadPrefill, setHadPrefill] = useState(false);
+  if (isClient && !prefillRead) {
+    setPrefillRead(true);
+    const prefill = new URLSearchParams(window.location.search).get("email");
     if (prefill) {
       setEmail(prefill);
-      window.history.replaceState({}, "", window.location.pathname);
+      setHadPrefill(true);
     }
-  }, []);
+  }
+
+  useEffect(() => {
+    if (hadPrefill) window.history.replaceState({}, "", window.location.pathname);
+  }, [hadPrefill]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

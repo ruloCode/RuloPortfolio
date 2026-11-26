@@ -5,7 +5,7 @@ import { PageHero } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL, routes } from "@/app/resources";
 import { createI18nContent } from "@/app/resources/content-i18n";
-import { localeAlternates } from "@/app/utils/seo";
+import { localeAlternates, localeOpenGraph } from "@/app/utils/seo";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localizeHref, routing } from "@/i18n/routing";
 
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageParams) {
       title,
       description,
       type: "website",
-      url: `https://${baseURL}/work/`,
+      ...localeOpenGraph(locale, "/work"),
       images: [
         {
           url: ogImage,

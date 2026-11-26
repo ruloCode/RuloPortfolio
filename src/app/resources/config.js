@@ -1,6 +1,9 @@
 // Add baseURL definition
 const baseURL = "rulocode.com";
 
+// A `false` here only takes effect if the page itself calls
+// `if (!routes[...]) notFound()` (server-side, so the response is a real 404).
+// Today /gallery, /blog and /work do; add the same check before turning off any other.
 const routes = {
   "/": true,
   "/about": true,

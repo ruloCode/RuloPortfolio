@@ -4,7 +4,7 @@ import { createI18nContent } from "@/app/resources/content-i18n";
 import { ScrollWorld } from "@/components/scroll-world";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { localeAlternates } from "@/app/utils/seo";
+import { localeAlternates, localeOpenGraph } from "@/app/utils/seo";
 
 interface PageParams {
   params: Promise<{ locale: string }>;
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageParams) {
       title,
       description,
       type: "website",
-      url: `https://${baseURL}${locale === routing.defaultLocale ? "" : `/${locale}`}`,
+      ...localeOpenGraph(locale, "/"),
       images: [
         {
           url: ogImage,

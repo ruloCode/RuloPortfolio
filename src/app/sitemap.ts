@@ -55,6 +55,7 @@ export default async function sitemap() {
         languages: {
           en: localeUrl("en", route),
           es: localeUrl("es", route),
+          "x-default": localeUrl("en", route),
         },
       },
     })),

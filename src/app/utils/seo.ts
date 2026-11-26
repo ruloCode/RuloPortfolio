@@ -15,3 +15,13 @@ export function localeAlternates(locale: string, path: string) {
     },
   };
 }
+
+/** openGraph.url + openGraph.locale for a route. Use with localeAlternates(). */
+export function localeOpenGraph(locale: string, path: string) {
+  const { canonical } = localeAlternates(locale, path);
+  return {
+    url: canonical,
+    locale: locale === "es" ? "es_CO" : "en_US",
+  };
+}
+

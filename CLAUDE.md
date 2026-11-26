@@ -1,104 +1,59 @@
-# Rulo Portfolio
+# Rulo Portfolio (rulocode.com)
 
-## MCP Servers Configurados
-
-### 1. playwright (Browser Automation)
-Screenshots, testing visual, interacción con el browser.
-```
-# Tomar screenshot:
-Usa browser_eval con action "screenshot" url "http://localhost:3000"
-
-# Navegar y verificar:
-Usa browser_eval con action "navigate" url "http://localhost:3000"
-```
-
-### 2. context7 (Documentación Actualizada)
-Docs actualizados de Next.js, React y otros frameworks.
-```
-# Buscar documentación:
-Usa resolve con libraryName "nextjs"
-Usa resolve con libraryName "react" 
-```
-
-### 3. github (GitHub Integration)
-PRs, issues, code review, repositorios.
-```
-# Crear PR:
-Usa create_pull_request
-
-# Ver issues:
-Usa list_issues
-```
-
-### Verificar MCPs conectados
-Dentro de Claude Code ejecuta: `/mcp`
+Portfolio personal y plataforma del AI Shift Challenge.
 
 ## Stack
-- Next.js 14.2 (App Router) + React 18
-- TypeScript
-- SASS/SCSS Modules para estilos
-- Once UI (sistema de componentes propio)
-- MDX para contenido (blog y proyectos)
-- Prism.js para code highlighting
+
+- Next.js 16.3 (App Router) + React 19 + TypeScript
+- pnpm
+- next-intl (`en` por defecto sin prefijo; `es` bajo `/es`; `localePrefix: "as-needed"`)
+- MDX para blog y casos (`src/app/[locale]/blog/posts/{en,es}`, `.../work/projects/{en,es}`)
+- Once UI (componentes y tokens) + SASS/SCSS Modules
+- Supabase (auth, waitlist, dashboard), Resend (emails), Polar (checkout)
+- Home: scroll-world (motor client-side en `src/lib/scroll-world`)
+- Proxy: `src/proxy.ts` (i18n + refresh de sesión solo en `/login` y `/dashboard`)
 
 ## Estructura
+
 ```
 src/
 ├── app/
-│   ├── page.tsx           # Home
-│   ├── blog/              # Blog con MDX
-│   │   └── posts/         # Archivos .mdx del blog
-│   ├── work/              # Portfolio/Proyectos
-│   │   └── projects/      # Archivos .mdx de proyectos
-│   └── about/             # Página About
-├── components/            # Componentes React
-├── once-ui/               # Sistema de diseño Once UI
-│   ├── components/        # Componentes base
-│   └── tokens/            # Design tokens
-└── pages/                 # API routes (si las hay)
+│   ├── [locale]/          # Home, about, work, blog, services, ia, gallery, login, dashboard
+│   ├── api/               # waitlist, checkout, webhooks/polar
+│   ├── auth/callback/     # OAuth/magic link (no localizado)
+│   ├── og/                # Imagen OG dinámica
+│   ├── robots.ts
+│   └── sitemap.ts
+├── components/            # UI de la app (no Once UI)
+├── i18n/                  # routing y request config
+├── lib/                   # supabase, auth, billing, scroll-world
+└── once-ui/               # Sistema de diseño
 
-public/
-├── images/                # Imágenes estáticas
-│   ├── projects/          # Screenshots de proyectos
-│   └── blog/              # Imágenes del blog
-└── fonts/                 # Fuentes locales
+messages/                  # en.json, es.json
+public/                    # imágenes, videos, scroll-world assets
+supabase/migrations/
 ```
 
 ## Comandos
+
 ```bash
 pnpm dev      # Desarrollo
 pnpm build    # Build producción
-pnpm lint     # Linting
+pnpm lint     # ESLint
+pnpm start    # Servir el build
 ```
+
+El build de marketing no requiere variables de entorno. Auth, waitlist y checkout
+sí: ver nombres en `.env.example` (copiar a `.env.local`, nunca commitear `.env`).
 
 ## Convenciones
 
-### Componentes
-- Ubicar en `src/components/`
-- Usar SCSS Modules (`.module.scss`)
-- Export con barrel files (`index.ts`)
-
-### Contenido MDX
-- Blog posts en `src/app/blog/posts/`
-- Proyectos en `src/app/work/projects/`
-- Frontmatter obligatorio: title, publishedAt, summary
-
-### Once UI
-- Usar componentes de `@/once-ui/components`
-- Seguir los tokens de diseño existentes
-- No mezclar estilos inline con SCSS
-
-## Agentes disponibles
-- `/agent:code-reviewer` - Revisión de código
-- `/agent:quality-orchestrator` - Orquestador de calidad
-- `/agent:ui-reviewer` - Revisión de UI
-
-## Skills disponibles
-- `new-component` - Crear nuevo componente
-- `new-project` - Agregar proyecto al portfolio
-- `clean-code` - Guidelines de código limpio
-- `once-ui-patterns` - Patrones de Once UI
-- `mdx-content` - Contenido MDX
+- Componentes de app en `src/components/`, SCSS Modules, barrels `index.ts`
+- Frontmatter MDX: `title`, `publishedAt`, `summary`
+- Usar componentes de `@/once-ui/components` y los tokens existentes
+- Rutas públicas se encienden/apagan en `src/app/resources/config.js` (`routes`)
+- Canonical y hreflang: `localeAlternates()` / `localeOpenGraph()` en `src/app/utils/seo.ts`
+- No mezclar estilos inline con SCSS cuando exista un token o módulo
 
 <!-- BEGIN:nextjs-agent-rules -->
 
